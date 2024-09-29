@@ -1,0 +1,121 @@
+PRIORITY: FINISH THE MAIN QUEST!
+- create script of lines with chatgpt
+- add history tab for radio comms and listen to podcast
+- organize to do in this document
+
+TO DO UP NEXT:
+- make subtitles that can be deactivated.
+group appears to be in green chat
+lots of use of music during cutscnenes
+what chat are they using to separate subtitles vs radio subtitles
+chat color changed to gold/yellow in the truck. appears to NOT be say3d
+- for radio stuff arma plays say3d with the radio playsound. it ends up being nice for immersion like you are hearing on the radio and in real life
+- learn to do subtitles like arma main campaign.they are white names instead of blue names.
+- hide radio support module in the radio menu as a back up for players when heli fucks them
+
+TO DO AT SOME POINT:
+- try addvehicle command to no kick players out of vehicle
+- mission fail if friendly fire
+- adjust extract heli height cause its glitching
+- what to do with pilot or hostage on base return. currently they stay in chopper
+- see if smoke can be detected in area marker instead of player
+- end mission page to tell players why they died or succeded
+- add game master slot
+- condition for stab place bomb for players to be outside
+- have npc walk to end of pier and salute as boat drives away.
+- convert lumphat files to hold actions
+- disable the radio after testing because it does help during that.
+- BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
+- how to set server distance view
+- record voice actors
+- update briefing pics
+- write complete script
+- have exfil pilots go somewhere after exit
+- Fog never clearing up because forgot to script it that way.
+
+BUGS:
+- couldnt access arsenal at cache one time.
+- helicopter kicks me out then hovers up. x 2
+- Some sub tasks are out of there main categories. Resolves on mission restart.
+- my computer freezes when entering helo for about 5 seconds.
+- couldn't get in boat until other players exited
+- missile wont down pilot
+- players dont always end up in boat with skip to ingress
+- if hvt fail have hq radio players saying they monitor radio traffic and the chicken has 	flown the coup. "see if you can find anything in lumphat at 
+your discretion"
+- search lumphat optional task doesn't complete
+- disable jukebox by looking at the module code in function viewer
+
+JIP ISSUES:
+- if a player leaves and he had an ai in his group then no one else can control the AI. The AI becomes invincible. maybe the enable damage reverts? I think
+so because this doesnt happen with the POW
+- player may not have access to their loadout from the stab if they have scuba equipped and leave and rejoin.
+- some combination of JIP players coming and going cause some tasks to cycle through when a player joins. Does not seem to affect the sync of the tasks 
+though.
+- If a player leaves and his AI is killed its loadout reverts. Face still working tho.
+
+BEFORE PUBLISH:
+read description.ext on wiki to polish load screens, etc
+- add mission steam main pic (can be any size but must be square. set 1440x1440 in gimp. use square overlay in splendid camera.)
+- two more screen shots. approching village and sinlge file jumngle walk space 10 meters apart.
+- add autosaves for SP
+
+TO EXPORT FOR PLAY (not testing):
+- Change time to night (00:10)
+- adjust respawn settings (on custom position and choose the spawn 60secs1)
+- enable intro in init.sqf
+- make sure player groups call sign is seal team one and all at the start area
+- enable damage for command and scout unit
+- move pics and sound files back
+
+FINISHED:
+-JIP intro type text
+-JIP skip to ingress removed near mission start
+-JIP skip to ingress
+-JIP wait for naval patrol time jump
+-JIP scuba gear available
+-JIP time bombs
+- update briefing screen to current point
+- update tasks to current point
+- new helo extraction with addactions
+- end mission addaction
+- ambient voices for blurfor team disabled
+- 3 questions for captain added in beginning
+- AI and players keep loadoutgear and faces (not JIP friendly)
+- optimization pass (most objects have dynamic sim, some got changed to simple obj, but the biggest factor for performance is number of AI and draw distance)
+- fade in on mission start
+- added new start task 
+- built up starting area
+- INFINITE SMOKE!!
+- added lines for end mission briefing
+- update all previous tasks to be completed for skip to ingress.
+- added randomized MP chatter
+- make mission fail for helicopter dies or all players dead
+- added hold actions for skip and rtb and end mission.
+- added hold action for wait for patrol and scuba tasks.
+- touched up side missions
+- POW task should be good. all tested except helicopter and exfil
+- rescue pilot task should be good. needs testing and esp at extract
+- adjusted naval wait triggers so that you can now fail after passing.
+- added fail mission trigger if stab is destroyed before reaching infil point
+- added exfil trigger that checks for players in the trigger area and alive and in the extract helicopter
+- added pilot trigger that checks for pilot back at base and completes task
+- added pow trigger that checks for pilot back at base and completes task
+- add side chat to pow heal. "its no use. My leg is ruined". in the future randomize 3 responses.
+- moved time bombs to IPL
+- adjusted skipwaypoint for troop reinforcements after general is killed.
+- updates file in lumphat so they dont clip thorugh objects.
+- placed optional tasks on bottom
+- added fail task state for extract task and update PRI and SEC main tasks to reflect it
+- adjusted size of mask area for smoke lz task so it fires if players arent exaclty on the right spot. gives more leeway
+- randomize cloud cover at mission start
+- add camo to unit lobby description
+- add different smoke grenades to loadouts
+- update all dead to be tied to spawn area trigger. that way it cant complete on spawn in (needs testing)
+- add sidechat if general escapes
+- disable heli in starting area
+- move intro questions to be compatible with skip to infil
+- add sachels to boat
+- fix exfil link in execution
+- created history tab and finalized the subtabs with info and pictures.
+- randomize blind spawns with AI

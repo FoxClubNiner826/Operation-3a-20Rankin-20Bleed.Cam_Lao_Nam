@@ -1,0 +1,23 @@
+class Sentences
+{
+	class Question1
+	{
+		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "KBTellSeal";
+	};
+	class Answer1
+	{
+		text = "We can't be certain but blah blah blah...";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+};
+
+// Needed parameters.
+class Arguments {};
+class Special {};
+startWithVocal[] = { hour };
+startWithConsonant[] = { europe, university };

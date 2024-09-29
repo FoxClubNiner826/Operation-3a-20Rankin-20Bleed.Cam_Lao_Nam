@@ -1,0 +1,267 @@
+respawnOnStart = 0;
+allowProfileGlasses = 0;
+
+class CfgIdentities
+{
+    class Marcinko
+    {
+        name = "Captain Marcinko";
+        face = "vn_m_elcid_face";  
+        glasses = "None";
+        speaker = "Male01ENG";
+        pitch = 1.0;
+    };
+}; 
+
+class CfgSentences
+{
+	class StagingArea
+	{
+		class MarcinkoLines
+		{
+			file = "kb\Marcinko.bikb";
+            #include "kb\Marcinko.bikb"
+		};
+		class PlayerQuestions
+		{
+			file = "kb\PlayerQuestions.bikb";
+            #include "kb\PlayerQuestions.bikb"
+		};
+		class MPBanter
+		{
+			file = "kb\MPBanter.bikb";
+            #include "kb\MPBanter.bikb"
+		};
+	};
+};
+
+class CfgDebriefing
+{
+    class Victory
+    {
+        title =    Mission Success;
+        subtitle = Performance Rating: 10/10;
+        description = You had a perfect mission!;
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = Kill the HVT;
+        vn_debrief_notes_text = Excellent Performance!;
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class DefeatSTABDestroyed
+    {
+        title =    Mission Failed;
+        subtitle = The STAB was destroyed;
+        description = Without a way to reach the infiltration point, SEAL Team One was forced to abandon the mission. MST was able to exfiltate the team.;
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = Reach the infiltration point with the STAB.;
+        vn_debrief_notes_text = Consider more training exercises regarding the use of the M2 STAB.;
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_02.paa";
+    };
+	class DefeatHeliDestroyed
+    {
+        title =    Mission Failed;
+        subtitle = The Exfiltration Helicopter was destroyed;
+        description = Without a way to return to base, SEAL Team One has been stranded in the enemy AO. A new mission is being scrambled to retrieve them.;
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = Exfiltrate from the AO.;
+        vn_debrief_notes_text = Not every mission plan survives first contact with the enemy.;
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_02.paa";
+    };
+	class DefeatAllPlayersDead
+    {
+        title =    Mission Failed;
+        subtitle = SEAL Team One has been destroyed;
+        description = We have lost contact with SEAL Team One. Inteligence is looking into if any members are still alive or captured;
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = Execute mission: Rankin Bleed and return to base.;
+        vn_debrief_notes_text = Famlies should only be notified that their loved ones status is MIA.;
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_02.paa";
+    };
+	class DefeatFriendlyFire
+    {
+        title =    Mission Failed;
+        subtitle = SEAL Team One has gone rogue;
+        description = For unknown reasons SEAL Team One has gone rogue.;
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = Execute mission: Rankin Bleed and return to base.;
+        vn_debrief_notes_text = Possible case of combat fatigue?;
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_02.paa";
+    };
+};
+
+class CfgSounds
+{
+	class intro1
+	{
+		name = "intro1"; // Name for custom sound 1
+		sound[] = {\sound\intro1.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class intro2
+	{
+		name = "intro2"; // Name for custom sound 1
+		sound[] = {\sound\intro2.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MP1_1
+	{
+		name = "MP1_1"; // Name for custom sound 1
+		sound[] = {\sound\MP1_1.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MP1_2
+	{
+		name = "MP1_2"; // Name for custom sound 1
+		sound[] = {\sound\MP1_2.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MP1_3
+	{
+		name = "MP1_3"; // Name for custom sound 1
+		sound[] = {\sound\MP1_3.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MP1_4
+	{
+		name = "MP1_4"; // Name for custom sound 1
+		sound[] = {\sound\MP1_4.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MP2_1
+	{
+		name = "MP2_1"; // Name for custom sound 1
+		sound[] = {\sound\MP2_1.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MP2_2
+	{
+		name = "MP2_2"; // Name for custom sound 1
+		sound[] = {\sound\MP2_2.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MP2_3
+	{
+		name = "MP2_3"; // Name for custom sound 1
+		sound[] = {\sound\MP2_3.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MP2_4
+	{
+		name = "MP2_4"; // Name for custom sound 1
+		sound[] = {\sound\MP2_4.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class question1
+	{
+		name = "question1"; // Name for custom sound 1
+		sound[] = {\sound\question1.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class question2
+	{
+		name = "question2"; // Name for custom sound 1
+		sound[] = {\sound\question2.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class question3
+	{
+		name = "question3"; // Name for custom sound 1
+		sound[] = {\sound\question3.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class question4
+	{
+		name = "question4"; // Name for custom sound 1
+		sound[] = {\sound\question4.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class answer1
+	{
+		name = "answer1"; // Name for custom sound 1
+		sound[] = {\sound\answer1.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class answer2
+	{
+		name = "answer2"; // Name for custom sound 1
+		sound[] = {\sound\answer2.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class answer3
+	{
+		name = "answer3"; // Name for custom sound 1
+		sound[] = {\sound\answer3.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class answer4
+	{
+		name = "answer4"; // Name for custom sound 1
+		sound[] = {\sound\answer4.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class timebomb
+	{
+		name = "timebomb"; // Name for custom sound 1
+		sound[] = {\sound\timebomb.ogg, 6, 1.0};
+                titles[] = {0, ""};
+	};
+	class wait1
+	{
+		name = "wait1"; // Name for custom sound 1
+		sound[] = {\sound\wait1.ogg, 6, 1.0};
+                titles[] = {0, ""};
+	};
+	class wait2	
+	{
+		name = "wait2"; // Name for custom sound 2
+		sound[] = {\sound\wait2.ogg, 5, 1.0};
+                titles[] = {0, ""};
+	};
+        class infill1
+	{
+		name = "infill1"; // Name for custom sound 1
+		sound[] = {\sound\infill1.ogg, 6, 1.0};
+                titles[] = {0, ""};
+	};
+	class infill2	
+	{
+		name = "infill2"; // Name for custom sound 2
+		sound[] = {\sound\infill2.ogg, 5, 1.0};
+                titles[] = {0, ""};
+	};
+        class hvt1
+	{
+		name = "hvt1"; // Name for custom sound 1
+		sound[] = {\sound\hvt1.ogg, .25, 1.0};
+                titles[] = {0, ""};
+	};
+	class hvt2	
+	{
+		name = "hvt2"; // Name for custom sound 2
+		sound[] = {\sound\hvt2.ogg, 5, 1.0};
+                titles[] = {0, ""};
+	};
+        class pilot1
+	{
+		name = "pilot1"; // Name for custom sound 1
+		sound[] = {\sound\pilot1.ogg, 50, 1.0};
+                titles[] = {0, ""};
+	};
+	class pilot2	
+	{
+		name = "pilot2"; // Name for custom sound 2
+		sound[] = {\sound\pilot2.ogg, 12, 1.0};
+                titles[] = {0, ""};
+	};
+	class easteregg	
+	{
+		name = "easteregg"; // Name for custom sound 2
+		sound[] = {\sound\easteregg.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+};	

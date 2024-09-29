@@ -1,0 +1,4 @@
+//ptboat addAction ["<t color='#FFFF00'>Equip Loadout Gear</t>", {["scripts\loadoutgear.sqf"] remoteExec ["execVM", 0, true];}, [], 8, false, true, "", "_this in (crew _target) && scubaEquipped"];﻿
+//ptboat addAction ["<t color='#FFFF00'>Equip SCUBA Gear</t>", {["scripts\scubagear.sqf"] remoteExec ["execVM", 0, true];}, [], 8, false, true, "", "_this in (crew _target) && !scubaEquipped"];﻿
+ptboat addAction ["<t color='#FFFF00'>Equip SCUBA Gear</t>", "scripts\scubagear.sqf", nil, 7, false, true, "", "_this in (crew _target) && !scubaEquipped"]; //Shows up if you are in the boat and have your regular loadout
+ptboat addAction ["<t color='#FFFF00'>Equip Loadout Gear</t>", "scripts\loadoutgear.sqf", nil, 7, false, true, "", "_this in (crew _target) && scubaEquipped"]; //Shows up if you are in the boat and have your SCUBA
