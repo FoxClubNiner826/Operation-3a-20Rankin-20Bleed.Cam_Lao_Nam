@@ -1,13 +1,11 @@
 
-MP1 setRandomLip true;
-MP1 say3D ["MP1_4", 200];
-sleep 6;
-MP1 setRandomLip false;
+_MPBanter = [
+    ["MPBanter2", "StagingArea", ["MPBanter1_1", "MPBanter1_5"]],
+    ["MPBanter2", "StagingArea", ["MPBanter2_1", "MPBanter2_5"]],
+    ["MPBanter2", "StagingArea", ["MPBanter3_1", "MPBanter3_5"]]
+];
 
-
-MP3 setRandomLip true;
-MP3 say3D ["MP2_4", 200];
-sleep 3;
-MP3 setRandomLip false;
-
+// Randomly select a conversation and spawn it using BIS_fnc_kbTell
+_selectedBanter = selectRandom _MPBanter;
+[_selectedBanter select 0, _selectedBanter select 1, _selectedBanter select 2, "DIRECT"] spawn BIS_fnc_kbTell;
 

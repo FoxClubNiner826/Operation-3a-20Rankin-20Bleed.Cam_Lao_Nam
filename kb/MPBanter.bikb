@@ -2,7 +2,7 @@ class Sentences
 {
 	class MPBanter1_1
 	{
-		text = "Hop in, Joe.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "Hop in, Lee.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
         actor = "MP2";
@@ -23,7 +23,7 @@ class Sentences
 	};
 	class MPBanter1_4
 	{
-		text = "No promises, Ken. Step on it.";	
+		text = "No promises, Byrd. Step on it.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP1";

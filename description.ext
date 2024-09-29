@@ -11,6 +11,22 @@ class CfgIdentities
         speaker = "Male01ENG";
         pitch = 1.0;
     };
+	class MP2
+    {
+        name = "(MP Driver) Ken Byrd";
+        face = "whitehead_02";  
+        glasses = "None";
+        speaker = "Male01ENG";
+        pitch = 1.0;
+    };
+	class MP1
+    {
+        name = "(MP Passenger) Joe Lee";  
+        face = "whitehead_06";  
+        glasses = "None";
+        speaker = "Male01ENG";
+        pitch = 1.0;
+    };
 }; 
 
 class CfgSentences

@@ -2,91 +2,105 @@ class Sentences
 {
 	class MPBanter1_1
 	{
-		text = "Hop in, Joe.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "What’s this? You two lounging around while you’re supposed to be on patrol?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
         actor = "MP2";
 	};
 	class MPBanter1_2
 	{
-		text = "Thank God. Get me to the latrine. That chow's tearing me up.";	
+		text = "Just catching a break, sir.";	
 		speech[] = { "" };	
 		class Arguments {};	
-        actor = "MP1";
+        actor = "MP3";
 	};
 	class MPBanter1_3
 	{
-		text = "Just don't mess up the damn jeep.";	
+		text = "Catch a break, huh? If you don’t get your act together, I’ll have you assigned to latrine duty and scrub the floors until they shine. Now get moving!";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter1_4
 	{
-		text = "No promises, Ken. Step on it.";	
+		text = "Understood, sir. We’ll get back to it.";	
 		speech[] = { "" };	
 		class Arguments {};	
-        actor = "MP1";
+        actor = "MP3";
+	};
+	class MPBanter1_5
+	{
+		text = "Make sure you do. This isn’t a joke—stay sharp.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "MP2";
 	};
 	class MPBanter2_1
 	{
-		text = "You wouldn’t believe it. I caught a rat in the mess hall.";	
+		text = "What’s going on here? You’re supposed to be patrolling, not sitting around.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter2_2
 	{
-		text = "Seriously? I thought they’d fixed that problem.";	
+		text = "Just taking a quick break, sir.";	
 		speech[] = { "" };	
 		class Arguments {};	
-        actor = "MP1";
+        actor = "MP3";
 	};
 	class MPBanter2_3
 	{
-		text = "Yeah, well, if you think that’s bad, wait till you see the chow tonight.";	
+		text = "A quick break? If I catch you slacking again, I’ll make sure you’re on mess duty for the rest of the month. Now get back to work.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter2_4
 	{
-		text = "I’ll take my chances. Had enough C-rations to last me a lifetime.";	
+		text = "Yes, sir. We’ll get moving.";	
 		speech[] = { "" };	
 		class Arguments {};	
-        actor = "MP1";
+        actor = "MP3";
+	};
+	class MPBanter2_5
+	{
+		text = "Good. We need everyone pulling their weight, so stay sharp.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "MP2";
 	};
 	class MPBanter3_1
 	{
-		text = "You won’t believe what happened last night. We had to chase down an escaped prisoner.";	
+		text = "What the hell are you two doing? You’re supposed to be patrolling, not lounging around.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter3_2
 	{
-		text = "No way! How'd that go down?";	
+		text = "We’re just taking a quick break, sir.";	
 		speech[] = { "MP1" };	
 		class Arguments {};	
-        actor = "MP1";
+        actor = "MP3";
 	};
 	class MPBanter3_3
 	{
-		text = "We tracked him for half a klick through the jungle. Finally caught him trying to hide up a damn palm tree.";	
+		text = "A break? If I catch you slacking again, you’ll be on KP duty, scrubbing pots and pans for the next month. Now get back to work.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter3_4
 	{
-		text = "Sounds like a real mess. Bet you were up all night.";	
+		text = "That’s a raw deal, sir. Seems like you’re always looking for ways to pile on the work.";	
 		speech[] = { "MP1" };	
 		class Arguments {};	
-        actor = "MP1";
+        actor = "MP3";
 	};
 	class MPBanter3_5
 	{
-		text = "You could say that. Just another day in paradise, right?";	
+		text = "Well, it’s my job to keep everyone on their toes. Now get moving before I come up with another assignment.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP2";
