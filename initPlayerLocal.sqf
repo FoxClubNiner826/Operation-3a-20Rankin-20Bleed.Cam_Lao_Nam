@@ -40,7 +40,7 @@ Marcinko addAction [
 	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction
 
-	["PlayerQuestions", "StagingArea", ["Question1", "Question1"], nil, nil, nil] spawn BIS_fnc_kbTell;
+	["PlayerQuestions", "StagingArea", ["Question1", "Question1"], "DIRECT"] spawn BIS_fnc_kbTell;
 	[_caller, ["question1",100]] remoteExec ["say3D"]; //sound file is played from caller
 	[_caller, true] remoteExec ["setRandomLip"]; //caller lips move
 	sleep 6; //waits for sound file to finish

@@ -27,6 +27,14 @@ class CfgIdentities
         speaker = "Male01ENG";
         pitch = 1.0;
     };
+	class MP3
+    {
+        name = "(MP Patrol) Bob McGregor";  
+        face = "Greekhead_a3_08";  
+        glasses = "None";
+        speaker = "Male01ENG";
+        pitch = 1.0;
+    };
 }; 
 
 class CfgSentences
@@ -47,6 +55,11 @@ class CfgSentences
 		{
 			file = "kb\MPBanter.bikb";
             #include "kb\MPBanter.bikb"
+		};
+		class MPBanter2
+		{
+			file = "kb\MPBanter2.bikb";
+            #include "kb\MPBanter2.bikb"
 		};
 	};
 };
