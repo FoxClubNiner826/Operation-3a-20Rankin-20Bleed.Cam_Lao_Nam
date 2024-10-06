@@ -1,9 +1,8 @@
 PRIORITY: FINISH THE MAIN QUEST!
-- create script of lines with chatgpt
-- add history tab for radio comms and listen to podcast
 - organize to do in this document
 
 TO DO UP NEXT:
+- test new snetry blinds AI, they may spot the boat on the river and ruin a task.
 - make subtitles that can be deactivated.
 group appears to be in green chat
 lots of use of music during cutscnenes
@@ -119,3 +118,4 @@ FINISHED:
 - fix exfil link in execution
 - created history tab and finalized the subtabs with info and pictures.
 - randomize blind spawns with AI
+- create rough draft script of lines with chatgpt

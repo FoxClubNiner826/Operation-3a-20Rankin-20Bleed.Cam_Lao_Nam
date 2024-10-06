@@ -176,3 +176,39 @@ _MPBanter = [
 
 selectRandom _MPBanter;
 */
+
+this action ["engineOff", vehicle heli]; // tirn of engines
+
+if (isNil "mission_SmokeinLZArea") then {
+	_player addEventHandler ["FiredMan", {
+		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
+		if !isNil "mission_SmokeinLZArea" exitWith {
+			_unit removeEventHandler [_thisEvent, _thisEventHandler];
+		};
+		if (_weapon == "Throw" && {_magazine == "vn_m18_purple_mag"} && {_unit inArea "marker_1_lzArea"}) then {
+			[_projectile] spawn {
+				params ["_thrownSmoke"];
+				waitUntil {uiSleep 1; abs speed _thrownSmoke == 0};
+				if !(_thrownSmoke inArea "marker_1_lzArea") exitWith {};
+				missionNamespace setVariable ["mission_SmokeinLZArea", true, true];
+				private _smokeEmitter = "ModuleSmoke_F" createVehicleLocal getPos _thrownSmoke;
+				_smokeEmitter setVariable ["repeat", 1];
+				_smokeEmitter setVariable ["type", "SmokeShellPurple"];
+				deleteVehicle _thrownSmoke;
+			};
+		};
+	}];
+};
+
+findIf{(_x isKindOf "Helicopter") && (_x isKindOf "Blufor")} > -1 //Recognizes helo from SOGPF radio support module in a blurfor present trigger zone
+
+76561197974183451 //arma 3 player id, useful for zeus
+
+[[7200,11100,0], [7200,3000,0], 175, "LIMITED", "vn_o_air_mig19_cap", WEST] call BIS_fnc_ambientFlyBy; //jet flyby, kinda sucks because you must use coordinate positions
+
+"vn_m18" in _magazine //for any smoke shell to be detected
+case ("red" in toLower _smokeType): {"SmokeShellRed"};
+					case ("blue" in toLower _smokeType): {"SmokeShellBlue"};
+					case ("green" in toLower _smokeType): {"SmokeShellGreen"};
+					case ("yellow" in toLower _smokeType): {"SmokeShellYellow"};
+					case ("orange" in toLower _smokeType): {"SmokeShellOrange"};

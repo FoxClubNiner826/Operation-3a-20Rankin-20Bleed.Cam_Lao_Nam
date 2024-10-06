@@ -9,67 +9,171 @@ class Sentences
 	};
 	class Answer1
 	{
-		text = "We can't be certain but blah blah blah...";	
+		text = "It’s possible. But if the guys at the farm gave it the green light, they must believe it’s legitimate. Otherwise, we wouldn’t be getting orders from higher-ups.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "Marcinko";
 	};
-	class Question1Command
+	class Question2
 	{
-		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "Do we really need a Kit Carson? How can we trust him?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
-        actor = "command";
+        actor = "KBTellSeal";
 	};
-	class Question1Scout
+	class Answer2
 	{
-		text = "Maybe this trap? VC very tricky! I know!";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "As I mentioned in the briefing, he’s been vetted by the Marines. He’s seen combat and performed better than some of our own. If you have concerns, go talk to him yourself.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question3
+	{
+		text = "If this General is in Lumphat right, why don’t we just blow the place to pieces with an Arclight?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
-        actor = "scout";
+        actor = "KBTellSeal";
 	};
-	class Question1Demo
+	class Answer3
 	{
-		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "We can’t be certain he’s there. We need to confirm his location and get a solid kill before taking any action. Besides, it’s illegal to use an Arclight in Cambodia. Higher-ups fear escalation.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question3_1
+	{
+		text = "Hell, it ain’t legal for us to be here either!";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
-        actor = "demo";
+        actor = "KBTellSeal";
 	};
-	class Question1Medic
+	class Answer3_1
 	{
-		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "Exactly. That’s why you need to make damn sure to destroy the STAB, P.O.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question4
+	{
+		text = "I’m curious—why can’t we insert with a bird if we’re extracting with one?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
-        actor = "medic";
+        actor = "KBTellSeal";
 	};
-	class Question1MG1
+	class Answer4
 	{
-		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "There are a few reasons. First, helicopters are noisy and could blow our cover. Second, what if one gets shot down on the way in—";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question4_1
+	{
+		text = "What if it gets shot down on the way out?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
-        actor = "mg1";
+        actor = "KBTellSeal";
 	};
-	class Question1MG2
+	class Answer4_1
 	{
-		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "Everything is a calculated risk. The operation planners have weighed these risks carefully and done what they can to minimize them.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question5
+	{
+		text = "Can you tell me more about General Tan?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
-        actor = "mg2";
+        actor = "KBTellSeal";
 	};
-	class Question1Gren2
+	class Answer5
 	{
-		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "General Tan has been a key figure with the PAVN for quite a while—longer than we’ve been in Vietnam. He fought against the French before us and has played a crucial role in building and maintaining the Ho Chi Minh Trail. That’s likely why he’s there now—ensuring everything on the trail is running smoothly.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question6
+	{
+		text = "If we get the chance, should we try to capture him? A goddamn General is worth more alive than dead.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
-        actor = "gren2";
+        actor = "KBTellSeal";
 	};
-	class Question1RTO
+	class Answer6
 	{
-		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "Don’t even think about it. Look, P.O., he’s a fanatic. He’s fully committed to this communist bullshit. He’s not going to surrender easily. This guy will either put a bullet in you or take one himself. Understand?";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question6_1
+	{
+		text = "Fuckin’ rat commies.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
-        actor = "rto";
+        actor = "KBTellSeal";
 	};
+	class Answer6_1
+	{
+		text = "Fuckin’ rat commies, indeed.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question7
+	{
+		text = "How reliable is this intel?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "KBTellSeal";
+	};
+	class Answer7
+	{
+		text = "The prisoner who provided it is locked up in the prison just North of us. It’s solid and credible, or the top brass wouldn’t have signed off on the mission.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question8
+	{
+		text = "What’s your story, pal?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "KBTellSeal";
+	};
+	class Answer8
+	{
+		text = "I come from 2nd Battalion, 9th Marine Regiment, 3rd Marine Division. Fight many battles, hills and more. I know combat very well. I fight in tough places and make many missions. I here to do job and help you. You need anything, I can do.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question8_1
+	{
+		text = "You talk the talk. Let's see if you can walk the walk.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "KBTellSeal";
+	};
+	class Answer8_1
+	{
+		text = "You think I just talk big? I show you. Back in hills, I save many. Not just talk, I do. You see.";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "Marcinko";
+	};
+	class Question8_2
+	{
+		text = "Alright, Kit. Let’s see what you’ve got.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "KBTellSeal";
 };
 
 // Needed parameters.

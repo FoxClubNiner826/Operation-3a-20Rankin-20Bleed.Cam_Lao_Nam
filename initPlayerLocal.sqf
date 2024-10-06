@@ -106,11 +106,11 @@ Marcinko addAction [
 
 // This mixes KBTell Subtitles with Say3D.
 Marcinko addAction [
-    "<t color='#FFFF00'>""What if this is a setup? KBTell""</t>", //what addaction is displayed as
-    {
-	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo
-	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
+    "<t color='#FFFF00'>""This mixes KBTell Subtitles with Say3D.""</t>", //what addaction is displayed as
+    {	
+	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo    
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction
+	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action
 
 	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell;
 	[_caller, ["question1",100]] remoteExec ["say3D"]; //sound file is played from caller
@@ -119,10 +119,10 @@ Marcinko addAction [
 	[_caller, false] remoteExec ["setRandomLip"]; //caller lips stop
 
 	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	[Marcinko, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
+	//[Marcinko, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
+	//[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
+	//sleep 6; //waits for sound file to finish
+	//[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
 
 	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
 	}, 
