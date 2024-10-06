@@ -1,3 +1,4 @@
+// Atempt to merge KBTell with my custom function.
 params ["_convo", "_speaker"];
 
 if (!canSuspend) exitWith { _this spawn FoxClub_fnc_Conversation };
@@ -8,7 +9,26 @@ switch toLowerANSI _convo do {
         _speaker setRandomLip true;
         waitUntil {isNull _sound};
         _speaker setRandomLip false;
-        ["answer1", Marcinko] spawn "FoxClub_fnc_Conversation";
+        ["answer1", Marcinko] spawn FoxClub_fnc_Conversation;
+    };
+
+    case "answer1": {
+        ["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
+    };
+};
+
+/*
+params ["_convo", "_speaker"];
+
+if (!canSuspend) exitWith { _this spawn FoxClub_fnc_Conversation };
+
+switch toLowerANSI _convo do {
+    case "question1": {
+        private _sound = _speaker say3D "question1";
+        _speaker setRandomLip true;
+        waitUntil {isNull _sound};
+        _speaker setRandomLip false;
+        ["answer1", Marcinko] spawn FoxClub_fnc_Conversation;
     };
 
     case "answer1": {

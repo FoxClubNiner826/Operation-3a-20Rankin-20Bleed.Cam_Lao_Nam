@@ -112,7 +112,8 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction
 	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action
 
-	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell;
+	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] remoteExec ["BIS_fnc_kbTell", 2];
+	//["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell;
 	[_caller, ["question1",100]] remoteExec ["say3D"]; //sound file is played from caller
 	[_caller, true] remoteExec ["setRandomLip"]; //caller lips move
 	sleep 6; //waits for sound file to finish
@@ -131,7 +132,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko1 && AllowActionTalk", //makes action available
+    "", //makes action available ActionTalkToMarcinko1 && AllowActionTalk
 	4 //radius of addadction
 ];
 
