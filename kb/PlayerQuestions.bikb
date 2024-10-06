@@ -14,6 +14,62 @@ class Sentences
 		class Arguments {};	
         actor = "Marcinko";
 	};
+	class Question1Command
+	{
+		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "command";
+	};
+	class Question1Scout
+	{
+		text = "Maybe this trap? VC very tricky! I know!";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "scout";
+	};
+	class Question1Demo
+	{
+		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "demo";
+	};
+	class Question1Medic
+	{
+		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "medic";
+	};
+	class Question1MG1
+	{
+		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "mg1";
+	};
+	class Question1MG2
+	{
+		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "mg2";
+	};
+	class Question1Gren2
+	{
+		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "gren2";
+	};
+	class Question1RTO
+	{
+		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "rto";
+	};
 };
 
 // Needed parameters.
