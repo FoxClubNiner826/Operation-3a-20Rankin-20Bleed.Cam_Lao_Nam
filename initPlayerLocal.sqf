@@ -33,6 +33,27 @@ if (!isNil "mg2" && {player isEqualTo mg2}) then {
 
 // Testing for multiple protagonists with KBTell Function.
 Marcinko addAction [
+    "<t color='#FFFF00'>""Custom Function Testing.""</t>", //what addaction is displayed as
+    {
+	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo
+	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
+    missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
+	
+	["question1", _caller] remoteExec ["FoxClub_fnc_Conversation"];
+
+	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
+	4 //radius of addadction
+];
+
+// Testing for multiple protagonists with KBTell Function.
+Marcinko addAction [
     "<t color='#FFFF00'>""KBTell Function Test with multiple protagonists.""</t>", //what addaction is displayed as
     {
 	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo

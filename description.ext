@@ -1,6 +1,18 @@
 respawnOnStart = 0;
 allowProfileGlasses = 0;
 
+class CfgFunctions
+{
+    class FoxClub
+    {
+        class fnc
+        {
+            file = "functions";
+            class Conversation {}; // this will make the function FoxClub_fnc_conversation
+        };
+    };
+};
+
 class CfgIdentities
 {
     class Marcinko
