@@ -31,67 +31,16 @@ if (!isNil "mg2" && {player isEqualTo mg2}) then {
     [player , "vn_b_TanoanHead_A3_05_06"] remoteExec ["setFace", 0, player];
 };
 
-// Testing for multiple protagonists with KBTell Function.
+// Custom Function Testing.
 Marcinko addAction [
-    "<t color='#FFFF00'>""Custom Function Testing.""</t>", //what addaction is displayed as
+    "<t color='#FFFF00'>""Custom Function Testing 7.""</t>", //what addaction is displayed as
     {
 	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo
 	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
 	
 	["question1", _caller] remoteExec ["FoxClub_fnc_Conversation"];
-
-	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
-	}, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
-	4 //radius of addadction
-];
-
-// Testing for multiple protagonists with KBTell Function.
-Marcinko addAction [
-    "<t color='#FFFF00'>""KBTell Function Test with multiple protagonists.""</t>", //what addaction is displayed as
-    {
-	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo
-	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
-    missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
-	
-	if (_caller == command) then {
-    ["PlayerQuestions", "StagingArea", ["Question1Command", "Question1Command"]] spawn BIS_fnc_kbTell;
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	};
-	if (_caller == scout) then {
-    ["PlayerQuestions", "StagingArea", ["Question1Scout", "Question1Scout"]] spawn BIS_fnc_kbTell;
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	};
-	if (_caller == demo) then {
-    ["PlayerQuestions", "StagingArea", ["Question1Demo", "Question1Demo"]] spawn BIS_fnc_kbTell;
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	};
-	if (_caller == medic) then {
-    ["PlayerQuestions", "StagingArea", ["Question1Medic", "Question1Medic"]] spawn BIS_fnc_kbTell;
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	};
-	if (_caller == mg1) then {
-    ["PlayerQuestions", "StagingArea", ["Question1MG1", "Question1MG1"]] spawn BIS_fnc_kbTell;
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	};
-	if (_caller == mg2) then {
-    ["PlayerQuestions", "StagingArea", ["Question1MG2", "Question1MG2"]] spawn BIS_fnc_kbTell;
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	};
-	if (_caller == gren2) then {
-    ["PlayerQuestions", "StagingArea", ["Question1Gren2", "Question1Gren2"]] spawn BIS_fnc_kbTell;
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	};
-	if (_caller == rto) then {
-    ["PlayerQuestions", "StagingArea", ["Question1RTO", "Question1RTO"]] spawn BIS_fnc_kbTell;
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	};
+	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell; // For subtitles only
 
 	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
 	}, 

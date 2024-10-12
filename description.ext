@@ -313,4 +313,28 @@ class CfgSounds
 		sound[] = {\sound\easteregg.ogg, 99, 1.0};
                 titles[] = {0, ""};
 	};
+	class MPBanter1_1	
+	{
+		name = "MPBanter1_1"; // Name for custom sound 2
+		sound[] = {\sound\MPBanter1_1.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MPBanter1_2	
+	{
+		name = "MPBanter1_2"; // Name for custom sound 2
+		sound[] = {\sound\MPBanter1_2.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MPBanter1_3	
+	{
+		name = "MPBanter1_3"; // Name for custom sound 2
+		sound[] = {\sound\MPBanter1_3.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class MPBanter1_4	
+	{
+		name = "MPBanter1_4"; // Name for custom sound 2
+		sound[] = {\sound\MPBanter1_4.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
 };	

@@ -1,3 +1,5 @@
+radioChannelCreate [[1, 1, 1, 1], "Q-dance Radio", "%UNIT_NAME", command, false];
+
 missionNamespace setVariable ["AllowActionTalk", true, true];
 missionNamespace setVariable ["ActionTalkToMarcinko1", true, true];
 missionNamespace setVariable ["ActionTalkToMarcinko2", true, true];

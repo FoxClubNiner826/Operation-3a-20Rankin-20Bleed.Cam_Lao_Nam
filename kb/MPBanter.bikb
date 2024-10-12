@@ -31,63 +31,63 @@ class Sentences
 	class MPBanter2_1
 	{
 		text = "You wouldn’t believe it. I caught a rat in the mess hall.";	
-		speech[] = { "" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter2_2
 	{
 		text = "Seriously? I thought they’d fixed that problem.";	
-		speech[] = { "" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP1";
 	};
 	class MPBanter2_3
 	{
 		text = "Yeah, well, if you think that’s bad, wait till you see the chow tonight.";	
-		speech[] = { "" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter2_4
 	{
 		text = "I’ll take my chances. Had enough C-rations to last me a lifetime.";	
-		speech[] = { "" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP1";
 	};
 	class MPBanter3_1
 	{
 		text = "You won’t believe what happened last night. We had to chase down an escaped prisoner.";	
-		speech[] = { "" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter3_2
 	{
 		text = "No way! How'd that go down?";	
-		speech[] = { "MP1" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP1";
 	};
 	class MPBanter3_3
 	{
 		text = "We tracked him for half a klick through the jungle. Finally caught him trying to hide up a damn palm tree.";	
-		speech[] = { "" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP2";
 	};
 	class MPBanter3_4
 	{
 		text = "Sounds like a real mess. Bet you were up all night.";	
-		speech[] = { "MP1" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP1";
 	};
 	class MPBanter3_5
 	{
 		text = "You could say that. Just another day in paradise, right?";	
-		speech[] = { "" };	
+		speech[] = { "\Sound\intro1.ogg" };	
 		class Arguments {};	
         actor = "MP2";
 	};
