@@ -23,11 +23,12 @@ class Sentences
 	};
 	class MPBanter4_4
 	{
-		text = "Ugh, fine. Come on. Let's go.";	
+		text = "Understood. Come on. Let's go.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP3";
 	};
+}
 
 // Needed parameters.
 class Arguments {};

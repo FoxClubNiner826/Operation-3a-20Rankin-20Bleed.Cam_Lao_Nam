@@ -81,6 +81,11 @@ class CfgSentences
 			file = "kb\MPBanter2.bikb";
             #include "kb\MPBanter2.bikb"
 		};
+		class MPBanter3
+		{
+			file = "kb\MPBanter3.bikb";
+            #include "kb\MPBanter3.bikb"
+		};
 	};
 };
 
@@ -88,57 +93,57 @@ class CfgDebriefing
 {
     class Victory
     {
-        title =    Mission Success;
-        subtitle = Performance Rating: 10/10;
-        description = You had a perfect mission!;
+        title =    "Mission Success";
+        subtitle = "Performance Rating: 10/10";
+        description = "You had a perfect mission!";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = Kill the HVT;
-        vn_debrief_notes_text = Excellent Performance!;
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Excellent Performance!";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
     };
 	class DefeatSTABDestroyed
     {
-        title =    Mission Failed;
-        subtitle = The STAB was destroyed;
-        description = Without a way to reach the infiltration point, SEAL Team One was forced to abandon the mission. MST was able to exfiltate the team.;
+        title =    "Mission Failed";
+        subtitle = "The STAB was destroyed.";
+        description = "Without a way to reach the infiltration point, SEAL Team One was forced to abandon the mission. MST was able to exfiltate the team.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = Reach the infiltration point with the STAB.;
-        vn_debrief_notes_text = Consider more training exercises regarding the use of the M2 STAB.;
+        vn_debrief_mission_text = "Reach the infiltration point with the STAB.";
+        vn_debrief_notes_text = "Consider more training exercises regarding the use of the M2 STAB.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_02.paa";
     };
 	class DefeatHeliDestroyed
     {
-        title =    Mission Failed;
-        subtitle = The Exfiltration Helicopter was destroyed;
-        description = Without a way to return to base, SEAL Team One has been stranded in the enemy AO. A new mission is being scrambled to retrieve them.;
+        title =    "Mission Failed";
+        subtitle = "The Exfiltration Helicopter was destroyed.";
+        description = "Without a way to return to base, SEAL Team One has been stranded in the enemy AO. A new mission is being scrambled to retrieve them.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = Exfiltrate from the AO.;
-        vn_debrief_notes_text = Not every mission plan survives first contact with the enemy.;
+        vn_debrief_mission_text = "Exfiltrate from the AO.";
+        vn_debrief_notes_text = "Not every mission plan survives first contact with the enemy.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_02.paa";
     };
 	class DefeatAllPlayersDead
     {
-        title =    Mission Failed;
-        subtitle = SEAL Team One has been destroyed;
-        description = We have lost contact with SEAL Team One. Inteligence is looking into if any members are still alive or captured;
+        title =    "Mission Failed";
+        subtitle = "SEAL Team One has been destroyed.";
+        description = "We have lost contact with SEAL Team One. Intelligence is looking into if any members are still alive or captured";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = Execute mission: Rankin Bleed and return to base.;
-        vn_debrief_notes_text = Famlies should only be notified that their loved ones status is MIA.;
+        vn_debrief_mission_text = "Execute mission: Rankin Bleed and return to base.";
+        vn_debrief_notes_text = "Families should only be notified that their loved ones status is MIA.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_02.paa";
     };
 	class DefeatFriendlyFire
     {
-        title =    Mission Failed;
-        subtitle = SEAL Team One has gone rogue;
-        description = For unknown reasons SEAL Team One has gone rogue.;
+        title =    "Mission Failed";
+        subtitle = "SEAL Team One has gone rogue.";
+        description = "For unknown reasons SEAL Team One has gone rogue.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = Execute mission: Rankin Bleed and return to base.;
-        vn_debrief_notes_text = Possible case of combat fatigue?;
+        vn_debrief_mission_text = "Execute mission: Rankin Bleed and return to base.";
+        vn_debrief_notes_text = "Possible case of combat fatigue?";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_02.paa";
     };
 };
@@ -337,4 +342,4 @@ class CfgSounds
 		sound[] = {\sound\MPBanter1_4.ogg, 99, 1.0};
                 titles[] = {0, ""};
 	};
-};	
+};

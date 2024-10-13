@@ -1,0 +1,30 @@
+class Sentences
+{
+	class MPBanter5_1
+	{
+		text = "Big stuff must be going down. Hope you boys come back in one piece!";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		speech[] = { "" };	// sound file path relative to mission or campaign directory
+		class Arguments {};	// unused here
+        actor = "MP3";
+	};
+	class MPBanter5_2
+	{
+		text = "Looks like yall're in for a wild ride. Keep your heads down!";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "MP3";
+	};
+	class MPBanter5_3
+	{
+		text = "Damn, something serious is happening. Give 'em hell!";	
+		speech[] = { "" };	
+		class Arguments {};	
+        actor = "MP3";
+	};
+}
+
+// Needed parameters.
+class Arguments {};
+class Special {};
+startWithVocal[] = { hour };
+startWithConsonant[] = { europe, university };
