@@ -1,111 +1,33 @@
 class Sentences
 {
-	class MPBanter1_1
+	class MPBanter4_1
 	{
 		text = "What’s this? You two lounging around while you’re supposed to be on patrol?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
         actor = "MP2";
 	};
-	class MPBanter1_2
+	class MPBanter4_2
 	{
-		text = "Just catching a break, sir.";	
+		text = "Just catching a break. Did you read the Stripes yesterday? Westmoreland thinks we've almost licked the VC!";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP3";
 	};
-	class MPBanter1_3
+	class MPBanter4_3
 	{
-		text = "Catch a break, huh? If you don’t get your act together, I’ll have you assigned to latrine duty and scrub the floors until they shine. Now get moving!";	
+		text = "Well, until we have you're still on patrol.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP2";
 	};
-	class MPBanter1_4
+	class MPBanter4_4
 	{
-		text = "Understood, sir. We’ll get back to it.";	
+		text = "Ugh, fine. Come on. Let's go.";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "MP3";
 	};
-	class MPBanter1_5
-	{
-		text = "Make sure you do. This isn’t a joke—stay sharp.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP2";
-	};
-	class MPBanter2_1
-	{
-		text = "What’s going on here? You’re supposed to be patrolling, not sitting around.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP2";
-	};
-	class MPBanter2_2
-	{
-		text = "Just taking a quick break, sir.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP3";
-	};
-	class MPBanter2_3
-	{
-		text = "A quick break? If I catch you slacking again, I’ll make sure you’re on mess duty for the rest of the month. Now get back to work.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP2";
-	};
-	class MPBanter2_4
-	{
-		text = "Yes, sir. We’ll get moving.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP3";
-	};
-	class MPBanter2_5
-	{
-		text = "Good. We need everyone pulling their weight, so stay sharp.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP2";
-	};
-	class MPBanter3_1
-	{
-		text = "What the hell are you two doing? You’re supposed to be patrolling, not lounging around.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP2";
-	};
-	class MPBanter3_2
-	{
-		text = "We’re just taking a quick break, sir.";	
-		speech[] = { "MP1" };	
-		class Arguments {};	
-        actor = "MP3";
-	};
-	class MPBanter3_3
-	{
-		text = "A break? If I catch you slacking again, you’ll be on KP duty, scrubbing pots and pans for the next month. Now get back to work.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP2";
-	};
-	class MPBanter3_4
-	{
-		text = "That’s a raw deal, sir. Seems like you’re always looking for ways to pile on the work.";	
-		speech[] = { "MP1" };	
-		class Arguments {};	
-        actor = "MP3";
-	};
-	class MPBanter3_5
-	{
-		text = "Well, it’s my job to keep everyone on their toes. Now get moving before I come up with another assignment.";	
-		speech[] = { "" };	
-		class Arguments {};	
-        actor = "MP2";
-	};
-};
 
 // Needed parameters.
 class Arguments {};

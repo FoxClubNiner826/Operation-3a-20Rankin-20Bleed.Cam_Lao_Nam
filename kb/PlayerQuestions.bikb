@@ -2,7 +2,7 @@ class Sentences
 {
 	class Question1
 	{
-		text = "Could this be a trap? You know, leak some bogus intel that gets us to show our cards?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "Could this be a trap? Like leaking some false intel to draw us out and expose our plans?";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
         actor = "KBTellSeal";
@@ -44,7 +44,7 @@ class Sentences
 	};
 	class Question3_1
 	{
-		text = "Hell, it ain’t legal for us to be here either!";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "Hell, it ain’t legal for us to be there either!";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
         actor = "KBTellSeal";
@@ -65,7 +65,7 @@ class Sentences
 	};
 	class Answer4
 	{
-		text = "There are a few reasons. First, helicopters are noisy and could blow our cover. Second, what if one gets shot down on the way in—";	
+		text = "There are a few reasons. First, helicopters are noisy and could blow our cover. Second, what if it gets shot down on the way in—";	
 		speech[] = { "" };	
 		class Arguments {};	
         actor = "Marcinko";
@@ -170,7 +170,7 @@ class Sentences
 	};
 	class Question8_2
 	{
-		text = "Alright, Kit. Let’s see what you’ve got.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
+		text = "Alright, Carson. Let’s see what you’ve got.";	// sentence subtitle - can be "text" or $STR_ stringtable reference
 		speech[] = { "" };	// sound file path relative to mission or campaign directory
 		class Arguments {};	// unused here
         actor = "KBTellSeal";

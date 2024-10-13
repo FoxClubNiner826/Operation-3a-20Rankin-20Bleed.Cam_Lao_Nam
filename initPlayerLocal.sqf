@@ -31,7 +31,7 @@ if (!isNil "mg2" && {player isEqualTo mg2}) then {
     [player , "vn_b_TanoanHead_A3_05_06"] remoteExec ["setFace", 0, player];
 };
 
-// Custom Function Testing.
+/* Custom Function Testing. Probably wont use this because I would have to learn custom chat. Will take too long to do that.
 Marcinko addAction [
     "<t color='#FFFF00'>""Custom Function Testing 7.""</t>", //what addaction is displayed as
     {
@@ -56,117 +56,105 @@ Marcinko addAction [
     "", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
 	4 //radius of addadction
 ];
+*/
 
-// This mixes KBTell Subtitles with Say3D.
+// This convo system uses the KBTell function just for subtitles and Say3D for the audio.
+// Question 1
 Marcinko addAction [
-    "<t color='#FFFF00'>""This mixes KBTell Subtitles with Say3D.""</t>", //what addaction is displayed as
+    "<t color='#FFFF00'>""Could this be a trap?""</t>", //what addaction is displayed as
     {	
 	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo    
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction
 	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action
 
-	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] remoteExec ["BIS_fnc_kbTell", 2];
-	//["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell;
+	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] remoteExec ["BIS_fnc_kbTell", 2]; // subtitles
 	[_caller, ["question1",100]] remoteExec ["say3D"]; //sound file is played from caller
 	[_caller, true] remoteExec ["setRandomLip"]; //caller lips move
 	sleep 6; //waits for sound file to finish
 	[_caller, false] remoteExec ["setRandomLip"]; //caller lips stop
 
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
+	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell; // subtitles
 	[Marcinko, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
 	[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
 	sleep 6; //waits for sound file to finish
 	[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
 
-	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
+	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addaction questions
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "", //makes action available ActionTalkToMarcinko1 && AllowActionTalk
+    "ActionTalkToMarcinko1 && AllowActionTalk", //makes action available 
 	4 //radius of addadction
 ];
 
-// question 1
-Marcinko addAction [
-    "<t color='#FFFF00'>""What if this is a setup?""</t>", //what addaction is displayed as
-    {
-	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo
-	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
-    missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
-	[_caller, ["question1",100]] remoteExec ["say3D"]; //sound file is played from caller
-	[_caller, true] remoteExec ["setRandomLip"]; //caller lips move
-	sleep 6; //waits for sound file to finish
-	[_caller, false] remoteExec ["setRandomLip"]; //caller lips stop
-	[Marcinko, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
-	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
-	}, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "ActionTalkToMarcinko1 && AllowActionTalk", //makes action available
-	4 //radius of addadction
-];
-
-//question 2
+// Question 2
 Marcinko addAction [
     "<t color='#FFFF00'>""Can we really trust the Carson?""</t>", 
     { 
     missionNamespace setVariable ["AllowActionTalk", false, true];
-	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
-    missionNamespace setVariable ["ActionTalkToMarcinko2", false, true]; //disables addAction 
-    [_caller, ["question2",100]] remoteExec ["say3D"]; //sound file is played from caller
-	[_caller, true] remoteExec ["setRandomLip"]; //caller lips move
-	sleep 4; //waits for sound file to finish
-	[_caller, false] remoteExec ["setRandomLip"]; //caller lips stop
-	[Marcinko, ["answer2",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 10; //waits for sound file to finish
-	[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
+    missionNamespace setVariable ["ActionTalkToMarcinko2", false, true]; 
+    params ["_target", "_caller", "_actionID", "_args"];    
+
+	["PlayerQuestions", "StagingArea", ["Question2", "Question2"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["question2",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 4; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer2", "Answer2"]] spawn BIS_fnc_kbTell; 
+	[Marcinko, ["answer2",100]] remoteExec ["say3D"];
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 10; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+
 	missionNamespace setVariable ["AllowActionTalk", true, true];
+	missionNamespace setVariable ["ActionTalkToCarson", true, true];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko2 && AllowActionTalk", //makes action available
-	4 //radius
+    "ActionTalkToMarcinko2 && AllowActionTalk", 
+	4 
 ];
 
-//question 3 and 4
+// Question 3
 Marcinko addAction [
     "<t color='#FFFF00'>""Why not use an Archlight instead?""</t>", 
     { 
     missionNamespace setVariable ["AllowActionTalk", false, true];
-	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
-    missionNamespace setVariable ["ActionTalkToMarcinko3", false, true]; //disables addAction 
+	params ["_target", "_caller", "_actionID", "_args"]; 
+    missionNamespace setVariable ["ActionTalkToMarcinko3", false, true]; 
     
-	[_caller, ["question3",100]] remoteExec ["say3D"]; //sound file is played from caller
-	[_caller, true] remoteExec ["setRandomLip"]; //caller lips move
-	sleep 6; //waits for sound file to finish
-	[_caller, false] remoteExec ["setRandomLip"]; //caller lips stop
-	[Marcinko, ["answer3",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 9; //waits for sound file to finish
-	[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
-	sleep 1; //pause before next line
+	["PlayerQuestions", "StagingArea", ["Question3", "Question3"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["question3",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 6; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer3", "Answer3"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[Marcinko, ["answer3",100]] remoteExec ["say3D"]; 
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 9; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+	sleep 1; 
 	
-	[_caller, ["question4",100]] remoteExec ["say3D"]; //sound file is played from caller
-	[_caller, true] remoteExec ["setRandomLip"]; //caller lips move
-	sleep 3; //waits for sound file to finish
-	[_caller, false] remoteExec ["setRandomLip"]; //caller lips stop
-	[Marcinko, ["answer4",100]] remoteExec ["say3D"]; //sound file is played from caller
-	[Marcinko, true] remoteExec ["setRandomLip"]; //caller lips move
-	sleep 4; //waits for sound file to finish
-	[Marcinko, false] remoteExec ["setRandomLip"]; //caller lips stop
+	["PlayerQuestions", "StagingArea", ["Question3_1", "Question3_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question3_1",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 3; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer3_1", "Answer3_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[Marcinko, ["Answer3_1",100]] remoteExec ["say3D"]; 
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 4; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+
 	missionNamespace setVariable ["AllowActionTalk", true, true];
 	}, 
     nil, 
@@ -174,7 +162,207 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko3 && AllowActionTalk", //makes action available
+    "ActionTalkToMarcinko3 && AllowActionTalk",
+	4
+];
+
+// Question 4
+Marcinko addAction [
+    "<t color='#FFFF00'>""Why use the STAB?""</t>", 
+    { 
+    missionNamespace setVariable ["AllowActionTalk", false, true];
+	params ["_target", "_caller", "_actionID", "_args"]; 
+    missionNamespace setVariable ["ActionTalkToMarcinko4", false, true]; 
+    
+	["PlayerQuestions", "StagingArea", ["Question4", "Question4"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question4",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 6; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer4", "Answer4"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[Marcinko, ["Answer4",100]] remoteExec ["say3D"]; 
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 9; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+	sleep 1; 
+	
+	["PlayerQuestions", "StagingArea", ["Question4_1", "Question4_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question4_1",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 3; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer4_1", "Answer4_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[Marcinko, ["Answer4_1",100]] remoteExec ["say3D"]; 
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 4; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+
+	missionNamespace setVariable ["AllowActionTalk", true, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "ActionTalkToMarcinko4 && AllowActionTalk",
+	4
+];
+
+// Question 5
+Marcinko addAction [
+    "<t color='#FFFF00'>""Who is General Tan?""</t>", 
+    { 
+    missionNamespace setVariable ["AllowActionTalk", false, true];
+    missionNamespace setVariable ["ActionTalkToMarcinko5", false, true]; 
+    params ["_target", "_caller", "_actionID", "_args"];    
+
+	["PlayerQuestions", "StagingArea", ["Question5", "Question5"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question5",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 4; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer5", "Answer5"]] spawn BIS_fnc_kbTell; 
+	[Marcinko, ["Answer5",100]] remoteExec ["say3D"];
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 10; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+
+	missionNamespace setVariable ["AllowActionTalk", true, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "ActionTalkToMarcinko5 && AllowActionTalk", 
+	4 
+];
+
+// Question 6
+Marcinko addAction [
+    "<t color='#FFFF00'>""Should we Capture Tan instead?""</t>", 
+    { 
+    missionNamespace setVariable ["AllowActionTalk", false, true];
+	params ["_target", "_caller", "_actionID", "_args"]; 
+    missionNamespace setVariable ["ActionTalkToMarcinko6", false, true]; 
+    
+	["PlayerQuestions", "StagingArea", ["Question6", "Question6"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question6",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 6; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer6", "Answer6"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[Marcinko, ["Answer6",100]] remoteExec ["say3D"]; 
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 9; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+	sleep 1; 
+	
+	["PlayerQuestions", "StagingArea", ["Question6_1", "Question6_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question6_1",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 3; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer6_1", "Answer6_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[Marcinko, ["Answer6_1",100]] remoteExec ["say3D"]; 
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 4; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+
+	missionNamespace setVariable ["AllowActionTalk", true, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "ActionTalkToMarcinko6 && AllowActionTalk",
+	4
+];
+
+// Question 7
+Marcinko addAction [
+    "<t color='#FFFF00'>""How good is the intel?""</t>", 
+    { 
+    missionNamespace setVariable ["AllowActionTalk", false, true];
+    missionNamespace setVariable ["ActionTalkToMarcinko7", false, true]; 
+    params ["_target", "_caller", "_actionID", "_args"];    
+
+	["PlayerQuestions", "StagingArea", ["Question7", "Question7"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question7",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 4; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer7", "Answer7"]] spawn BIS_fnc_kbTell; 
+	[Marcinko, ["Answer7",100]] remoteExec ["say3D"];
+	[Marcinko, true] remoteExec ["setRandomLip"]; 
+	sleep 10; 
+	[Marcinko, false] remoteExec ["setRandomLip"]; 
+
+	missionNamespace setVariable ["AllowActionTalk", true, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "ActionTalkToMarcinko7 && AllowActionTalk", 
+	4 
+];
+
+// Question 8
+scout addAction [
+    "<t color='#FFFF00'>""So, you're our carson?""</t>", 
+    { 
+    missionNamespace setVariable ["AllowActionTalk", false, true];
+	params ["_target", "_caller", "_actionID", "_args"]; 
+    missionNamespace setVariable ["ActionTalkToCarson", false, true]; 
+    
+	["PlayerQuestions", "StagingArea", ["Question8", "Question8"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question8",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 6; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer8", "Answer8"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[scout, ["Answer8",100]] remoteExec ["say3D"]; 
+	[scout, true] remoteExec ["setRandomLip"]; 
+	sleep 9; 
+	[scout, false] remoteExec ["setRandomLip"]; 
+	sleep 1; 
+	
+	["PlayerQuestions", "StagingArea", ["Question8_1", "Question8_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question8_1",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 3; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	["PlayerQuestions", "StagingArea", ["Answer8_1", "Answer8_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[scout, ["Answer8_1",100]] remoteExec ["say3D"]; 
+	[scout, true] remoteExec ["setRandomLip"]; 
+	sleep 4; 
+	[scout, false] remoteExec ["setRandomLip"];
+
+	["PlayerQuestions", "StagingArea", ["Question8_2", "Question8_2"]] remoteExec ["BIS_fnc_kbTell", 2]; 
+	[_caller, ["Question8_2",100]] remoteExec ["say3D"]; 
+	[_caller, true] remoteExec ["setRandomLip"]; 
+	sleep 3; 
+	[_caller, false] remoteExec ["setRandomLip"]; 
+
+	missionNamespace setVariable ["AllowActionTalk", true, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "ActionTalkToCarson && AllowActionTalk",
 	4
 ];
 
