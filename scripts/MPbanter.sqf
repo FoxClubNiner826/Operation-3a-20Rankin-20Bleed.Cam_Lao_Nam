@@ -7,7 +7,6 @@ MPBanter1 = {
 	sleep 1; //waits for sound file to finish
 	[MP2, false] remoteExec ["setRandomLip"]; //NPC lips stop
     
-    sleep 1;
     ["MPBanter", "StagingArea", ["MPBanter1_2", "MPBanter1_2"], "DIRECT"] spawn BIS_fnc_kbTell;
     [MP1, ["MPBanter1_2",100]] remoteExec ["say3D"]; //plays sound file from NPC
 	[MP1, true] remoteExec ["setRandomLip"]; //NPC lips move
@@ -90,7 +89,7 @@ _banterArray = [MPBanter1, MPBanter2, MPBanter3];
 _randomBanter = selectRandom _banterArray;
 
 // Execute the selected random code block
-call MPBanter1;
+call MPBanter1; //_randomBanter
 
 
 /* Can't do it like this because the audio file lowered when they are in the car.

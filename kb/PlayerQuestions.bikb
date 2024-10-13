@@ -10,7 +10,7 @@ class Sentences
 	class Answer1
 	{
 		text = "It’s possible. But if the guys at the farm gave it the green light, they must believe it’s legitimate. Otherwise, we wouldn’t be getting orders from higher-ups.";	
-		speech[] = { "\Sound\answer1.ogg" };	
+		speech[] = { "" };	
 		class Arguments {};	
         actor = "Marcinko";
 	};

@@ -40,7 +40,11 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
 	
 	["question1", _caller] remoteExec ["FoxClub_fnc_Conversation"];
-	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell; // For subtitles only
+	//["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell; // For subtitles only
+	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] remoteExec ["BIS_fnc_kbTell", 2];
+	sleep 5;
+	["PlayerQuestions", "StagingArea", ["answer1", "answer1"]] remoteExec ["BIS_fnc_kbTell", 2];
+
 
 	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
 	}, 
@@ -69,10 +73,10 @@ Marcinko addAction [
 	[_caller, false] remoteExec ["setRandomLip"]; //caller lips stop
 
 	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell;
-	//[Marcinko, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	//[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
-	//sleep 6; //waits for sound file to finish
-	//[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
+	[Marcinko, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
+	[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
+	sleep 6; //waits for sound file to finish
+	[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
 
 	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
 	}, 
