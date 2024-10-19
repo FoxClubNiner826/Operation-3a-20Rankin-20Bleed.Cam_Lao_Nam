@@ -31,7 +31,7 @@ if (!isNil "mg2" && {player isEqualTo mg2}) then {
     [player , "vn_b_TanoanHead_A3_05_06"] remoteExec ["setFace", 0, player];
 };
 
-/* Custom Function Testing. Probably wont use this because I would have to learn custom chat. Will take too long to do that.
+// Custom Function Testing. Uses custom chat with Say3d.
 Marcinko addAction [
     "<t color='#FFFF00'>""Custom Function Testing 7.""</t>", //what addaction is displayed as
     {
@@ -40,11 +40,6 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
 	
 	["question1", _caller] remoteExec ["FoxClub_fnc_Conversation"];
-	//["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell; // For subtitles only
-	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] remoteExec ["BIS_fnc_kbTell", 2];
-	sleep 5;
-	["PlayerQuestions", "StagingArea", ["answer1", "answer1"]] remoteExec ["BIS_fnc_kbTell", 2];
-
 
 	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
 	}, 
@@ -56,7 +51,6 @@ Marcinko addAction [
     "", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
 	4 //radius of addadction
 ];
-*/
 
 // This convo system uses the KBTell function just for subtitles and Say3D for the audio.
 // Question 1

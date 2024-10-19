@@ -119,4 +119,61 @@ addMissionEventHandler ["EntityKilled", {
  [Marcinko, "Rogue Sailor! Put him down!"] remoteExec ["sidechat"];
                         [Marcinko, "Rogue Sailor! Put him down!"] remoteExec ["sidechat"];
             [Marcinko, "Holy shit! Cease Fire! Cease Fire! What happened?"] remoteExec ["sidechat"];
-        
+*/
+
+// Creates custom radio channel to be used as subtitles.
+[] spawn {
+    if !(isServer) exitWith {};
+
+    Fox_UpdatePlayerChannels = true;
+
+    private _NPCtoAdd = [
+        missionNamespace getVariable ["marcinko", objNull],
+        missionNamespace getVariable ["scout", objNull]
+    ];
+
+    private _radioChannel = radioChannelCreate [[1, 1, 1, 1], "Dialogue", "%UNIT_NAME", _NPCtoAdd, false];
+    if (_radioChannel == -1) exitWith {
+        diag_log format["Something went wrong creating radio channel..."];
+    };
+
+    missionNamespace setVariable ["FOX_DialogueChannel", _radioChannel];
+
+    private _managerTime = 0;
+    while {sleep 1; _managerTime = _managerTime + 1; Fox_UpdatePlayerChannels} do {
+
+        private _channelInfo = radioChannelInfo _radioChannel;
+        _channelInfo params ["_color", "_label", "_callsign", "_units", "_sentenceType"];
+
+        // Remove dead units from channel info array
+        _units apply {
+            if !(alive _x) then {
+                _radioChannel radioChannelRemove [_x];
+            };
+        };
+
+        // Add players if not in channel (if not added back in after death, messages won't work)
+        private _players = allUnits select {isPlayer _x};
+        _players apply {
+            private _player = _x;
+            if !(_player in _units) then {
+                diag_log format["Player [%1] not found in chat channel [%2]... adding.", _player, _label];
+
+                _radioChannel radioChannelAdd [_player];
+            };
+        };
+
+                // Update log every 5 seconds
+        if (_managerTime % 5 == 0) then {
+
+            private _channelInfo = radioChannelInfo _radioChannel;
+            _channelInfo params ["_color", "_label", "_callsign", "_units", "_sentenceType"];
+
+            diag_log format["-----Channel Update-----"];
+            diag_log format["Units in chat channel: [%1]", _label];
+            diag_log format["Count: %1", count _units];
+            diag_log format["Units: %1", _units apply {name _x}];
+            diag_log format["------------------------"];
+        };
+    };
+};
