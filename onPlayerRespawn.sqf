@@ -10,8 +10,11 @@
 	{}, //code on start
 	{}, // code every tick
 	{
-		missionNamespace setVariable ["ActionCallHQ", false, true];  
-		["scripts\RadioHQ.sqf"] remoteExec ["execVM", 0];
+		params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action
+		missionNamespace setVariable ["ActionCallHQ", false, true];
+
+		[[_caller],"scripts\RadioHQ.sqf"] remoteExec ["execVM"];
+		//["scripts\RadioHQ.sqf"] remoteExec ["execVM", 0];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
