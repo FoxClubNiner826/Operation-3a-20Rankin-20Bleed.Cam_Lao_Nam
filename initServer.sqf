@@ -128,6 +128,8 @@ addMissionEventHandler ["EntityKilled", {
     Fox_UpdatePlayerChannels = true;
 
     private _NPCtoAdd = [
+        missionNamespace getVariable ["MP1", objNull],
+        missionNamespace getVariable ["MP2", objNull],
         missionNamespace getVariable ["marcinko", objNull],
         missionNamespace getVariable ["scout", objNull]
     ];
@@ -137,7 +139,7 @@ addMissionEventHandler ["EntityKilled", {
         diag_log format["Something went wrong creating radio channel..."];
     };
 
-    missionNamespace setVariable ["FOX_DialogueChannel", _radioChannel];
+    missionNamespace setVariable ["FOX_DialogueChannel", _radioChannel, true];
 
     private _managerTime = 0;
     while {sleep 1; _managerTime = _managerTime + 1; Fox_UpdatePlayerChannels} do {

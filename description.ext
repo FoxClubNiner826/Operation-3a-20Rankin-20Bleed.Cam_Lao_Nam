@@ -33,7 +33,7 @@ class CfgIdentities
     };
 	class MP2
     {
-        name = "(MP Driver) Ken Byrd";
+        name = "Ken Byrd (MP Driver)";
         face = "whitehead_02";  
         glasses = "None";
         speaker = "Male01ENG";
@@ -41,7 +41,7 @@ class CfgIdentities
     };
 	class MP1
     {
-        name = "(MP Passenger) Joe Lee";  
+        name = "Joe Lee (MP Passenger)";  
         face = "whitehead_06";  
         glasses = "None";
         speaker = "Male01ENG";

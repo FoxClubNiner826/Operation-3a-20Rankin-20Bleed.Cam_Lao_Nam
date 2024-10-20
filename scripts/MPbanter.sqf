@@ -1,6 +1,9 @@
 // Define the random code blocks
 MPBanter1 = {
 
+	["mpbanter1_1", MP2] remoteExec ["FoxClub_fnc_Conversation"];
+
+	/*
     ["MPBanter", "StagingArea", ["MPBanter1_1", "MPBanter1_1"], "DIRECT"] spawn BIS_fnc_kbTell;
     [MP2, ["MPBanter1_1",100]] remoteExec ["say3D"]; //plays sound file from NPC
 	[MP2, true] remoteExec ["setRandomLip"]; //NPC lips move
@@ -24,6 +27,7 @@ MPBanter1 = {
 	[MP1, true] remoteExec ["setRandomLip"]; //NPC lips move
 	sleep 2; //waits for sound file to finish
 	[MP1, false] remoteExec ["setRandomLip"]; //NPC lips stop
+	*/
 };
 
 MPBanter2 = {
