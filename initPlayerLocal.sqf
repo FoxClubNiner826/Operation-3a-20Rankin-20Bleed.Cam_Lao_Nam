@@ -32,14 +32,15 @@ if (!isNil "mg2" && {player isEqualTo mg2}) then {
 };
 
 // Custom Function Testing. Uses custom chat with Say3d.
+// Question 1
 Marcinko addAction [
-    "<t color='#FFFF00'>""Custom Function Testing 7.""</t>", //what addaction is displayed as
+    "<t color='#FFFF00'>""Could this be a trap?""</t>", //what addaction is displayed as
     {
 	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo
 	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
 	
-	["question1", _caller] remoteExec ["FoxClub_fnc_Conversation"];
+	["question1", _caller] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
 
 	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addactions not that convo is over
 	}, 
@@ -48,12 +49,11 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
+    "ActionTalkToMarcinko1 && AllowActionTalk", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
 	4 //radius of addadction
 ];
 
-// This convo system uses the KBTell function just for subtitles and Say3D for the audio.
-// Question 1
+/* This convo system uses the KBTell function just for subtitles and Say3D for the audio.
 Marcinko addAction [
     "<t color='#FFFF00'>""Could this be a trap?""</t>", //what addaction is displayed as
     {	
@@ -83,6 +83,7 @@ Marcinko addAction [
     "ActionTalkToMarcinko1 && AllowActionTalk", //makes action available 
 	4 //radius of addadction
 ];
+*/
 
 // Question 2
 Marcinko addAction [
@@ -92,17 +93,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko2", false, true]; 
     params ["_target", "_caller", "_actionID", "_args"];    
 
-	["PlayerQuestions", "StagingArea", ["Question2", "Question2"]] remoteExec ["BIS_fnc_kbTell", 2]; 
-	[_caller, ["question2",100]] remoteExec ["say3D"]; 
-	[_caller, true] remoteExec ["setRandomLip"]; 
-	sleep 4; 
-	[_caller, false] remoteExec ["setRandomLip"]; 
-
-	["PlayerQuestions", "StagingArea", ["Answer2", "Answer2"]] spawn BIS_fnc_kbTell; 
-	[Marcinko, ["answer2",100]] remoteExec ["say3D"];
-	[Marcinko, true] remoteExec ["setRandomLip"]; 
-	sleep 10; 
-	[Marcinko, false] remoteExec ["setRandomLip"]; 
+	["question2", _caller] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
 
 	missionNamespace setVariable ["AllowActionTalk", true, true];
 	missionNamespace setVariable ["ActionTalkToCarson", true, true];
@@ -124,31 +115,8 @@ Marcinko addAction [
 	params ["_target", "_caller", "_actionID", "_args"]; 
     missionNamespace setVariable ["ActionTalkToMarcinko3", false, true]; 
     
-	["PlayerQuestions", "StagingArea", ["Question3", "Question3"]] remoteExec ["BIS_fnc_kbTell", 2]; 
-	[_caller, ["question3",100]] remoteExec ["say3D"]; 
-	[_caller, true] remoteExec ["setRandomLip"]; 
-	sleep 6; 
-	[_caller, false] remoteExec ["setRandomLip"]; 
-
-	["PlayerQuestions", "StagingArea", ["Answer3", "Answer3"]] remoteExec ["BIS_fnc_kbTell", 2]; 
-	[Marcinko, ["answer3",100]] remoteExec ["say3D"]; 
-	[Marcinko, true] remoteExec ["setRandomLip"]; 
-	sleep 9; 
-	[Marcinko, false] remoteExec ["setRandomLip"]; 
-	sleep 1; 
-	
-	["PlayerQuestions", "StagingArea", ["Question3_1", "Question3_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
-	[_caller, ["Question3_1",100]] remoteExec ["say3D"]; 
-	[_caller, true] remoteExec ["setRandomLip"]; 
-	sleep 3; 
-	[_caller, false] remoteExec ["setRandomLip"]; 
-
-	["PlayerQuestions", "StagingArea", ["Answer3_1", "Answer3_1"]] remoteExec ["BIS_fnc_kbTell", 2]; 
-	[Marcinko, ["Answer3_1",100]] remoteExec ["say3D"]; 
-	[Marcinko, true] remoteExec ["setRandomLip"]; 
-	sleep 4; 
-	[Marcinko, false] remoteExec ["setRandomLip"]; 
-
+	["question3", _caller] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
+ 
 	missionNamespace setVariable ["AllowActionTalk", true, true];
 	}, 
     nil, 

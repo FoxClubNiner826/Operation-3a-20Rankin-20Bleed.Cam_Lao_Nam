@@ -1,89 +1,20 @@
 // Define the random code blocks
-MPBanter1 = {
-
-	["mpbanter1_1", MP2] remoteExec ["FoxClub_fnc_Conversation"];
-
-	/*
-    ["MPBanter", "StagingArea", ["MPBanter1_1", "MPBanter1_1"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP2, ["MPBanter1_1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP2, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 1; //waits for sound file to finish
-	[MP2, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_2", "MPBanter1_2"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP1, ["MPBanter1_2",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP1, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 4; //waits for sound file to finish
-	[MP1, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_3", "MPBanter1_3"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP2, ["MPBanter1_3",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP2, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 3; //waits for sound file to finish
-	[MP2, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_4", "MPBanter1_4"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP1, ["MPBanter1_4",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP1, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 2; //waits for sound file to finish
-	[MP1, false] remoteExec ["setRandomLip"]; //NPC lips stop
-	*/
+MPBanter1 = { 
+	
+	["mpbanter1_1", MP2] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP2 <= 100}]; 
+	
 };
 
 MPBanter2 = {
     
-    hint "Executing MPBanter2";
-    ["MPBanter", "StagingArea", ["MPBanter1_1", "MPBanter1_1"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP2, ["question1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP2, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[MP2, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_2", "MPBanter1_2"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP1, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP1, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[MP1, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_3", "MPBanter1_3"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP2, ["question1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP2, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[MP2, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_4", "MPBanter1_4"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP1, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP1, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[MP1, false] remoteExec ["setRandomLip"]; //NPC lips stop
+    ["mpbanter2_1", MP2] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP2 <= 100}];
+
 };
 
 MPBanter3 = {
     
-    hint "Executing MPBanter3";
-    ["MPBanter", "StagingArea", ["MPBanter1_1", "MPBanter1_1"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP2, ["question1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP2, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[MP2, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_2", "MPBanter1_2"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP1, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP1, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[MP1, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_3", "MPBanter1_3"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP2, ["question1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP2, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[MP2, false] remoteExec ["setRandomLip"]; //NPC lips stop
-    
-    ["MPBanter", "StagingArea", ["MPBanter1_4", "MPBanter1_4"], "DIRECT"] spawn BIS_fnc_kbTell;
-    [MP1, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[MP1, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[MP1, false] remoteExec ["setRandomLip"]; //NPC lips stop
+    ["mpbanter3_1", MP2] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP2 <= 100}];
+
 };
 
 // Store the code blocks in an array
@@ -93,10 +24,10 @@ _banterArray = [MPBanter1, MPBanter2, MPBanter3];
 _randomBanter = selectRandom _banterArray;
 
 // Execute the selected random code block
-call MPBanter1; //_randomBanter
+call _randomBanter; //_randomBanter
 
 
-/* Can't do it like this because the audio file lowered when they are in the car.
+/* Can't do it like this with the KBTell function because the audio file lowered when they are in the car.
 
 Array of conversations that can be chosen
 _MPBanter = [

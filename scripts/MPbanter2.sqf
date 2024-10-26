@@ -1,4 +1,6 @@
-    
+["mpbanter4_1", MP2] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP2 <= 100}];
+
+/*
     ["MPBanter2", "StagingArea", ["MPBanter4_1", "MPBanter4_1"], "DIRECT"] spawn BIS_fnc_kbTell;
     [MP2, ["MPBanter4_1",100]] remoteExec ["say3D"]; //plays sound file from NPC
 	[MP2, true] remoteExec ["setRandomLip"]; //NPC lips move

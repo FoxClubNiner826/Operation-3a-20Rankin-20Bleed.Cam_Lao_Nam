@@ -130,7 +130,9 @@ addMissionEventHandler ["EntityKilled", {
     private _NPCtoAdd = [
         missionNamespace getVariable ["MP1", objNull],
         missionNamespace getVariable ["MP2", objNull],
+        missionNamespace getVariable ["MP3", objNull],
         missionNamespace getVariable ["marcinko", objNull],
+        missionNamespace getVariable ["command", objNull],
         missionNamespace getVariable ["scout", objNull]
     ];
 

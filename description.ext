@@ -49,8 +49,16 @@ class CfgIdentities
     };
 	class MP3
     {
-        name = "(MP Patrol) Bob McGregor";  
+        name = "Bob McGregor (MP Patrol)";  
         face = "Greekhead_a3_08";  
+        glasses = "None";
+        speaker = "Male01ENG";
+        pitch = 1.0;
+    };
+	class command
+    {
+        name = "Tony Thomas";  
+        face = "vn_b_LivonianHead_8_06";  
         glasses = "None";
         speaker = "Male01ENG";
         pitch = 1.0;
