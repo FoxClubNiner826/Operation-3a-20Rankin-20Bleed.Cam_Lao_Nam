@@ -103,7 +103,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko2 && AllowActionTalk", 
+    "!(_this in [scout]) && ActionTalkToMarcinko2 && AllowActionTalk", 
 	4 
 ];
 
@@ -180,17 +180,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko5", false, true]; 
     params ["_target", "_caller", "_actionID", "_args"];    
 
-	["PlayerQuestions", "StagingArea", ["Question5", "Question5"]] remoteExec ["BIS_fnc_kbTell", 2]; 
-	[_caller, ["Question5",100]] remoteExec ["say3D"]; 
-	[_caller, true] remoteExec ["setRandomLip"]; 
-	sleep 4; 
-	[_caller, false] remoteExec ["setRandomLip"]; 
-
-	["PlayerQuestions", "StagingArea", ["Answer5", "Answer5"]] spawn BIS_fnc_kbTell; 
-	[Marcinko, ["Answer5",100]] remoteExec ["say3D"];
-	[Marcinko, true] remoteExec ["setRandomLip"]; 
-	sleep 10; 
-	[Marcinko, false] remoteExec ["setRandomLip"]; 
+	["question5", _caller] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
 
 	missionNamespace setVariable ["AllowActionTalk", true, true];
 	}, 
@@ -255,17 +245,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko7", false, true]; 
     params ["_target", "_caller", "_actionID", "_args"];    
 
-	["PlayerQuestions", "StagingArea", ["Question7", "Question7"]] remoteExec ["BIS_fnc_kbTell", 2]; 
-	[_caller, ["Question7",100]] remoteExec ["say3D"]; 
-	[_caller, true] remoteExec ["setRandomLip"]; 
-	sleep 4; 
-	[_caller, false] remoteExec ["setRandomLip"]; 
-
-	["PlayerQuestions", "StagingArea", ["Answer7", "Answer7"]] spawn BIS_fnc_kbTell; 
-	[Marcinko, ["Answer7",100]] remoteExec ["say3D"];
-	[Marcinko, true] remoteExec ["setRandomLip"]; 
-	sleep 10; 
-	[Marcinko, false] remoteExec ["setRandomLip"]; 
+	["question7", _caller] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
 
 	missionNamespace setVariable ["AllowActionTalk", true, true];
 	}, 
@@ -324,7 +304,7 @@ scout addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToCarson && AllowActionTalk",
+    "_target != _this && ActionTalkToCarson && AllowActionTalk",
 	4
 ];
 

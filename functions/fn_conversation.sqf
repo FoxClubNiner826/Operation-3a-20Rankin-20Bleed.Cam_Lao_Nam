@@ -1,5 +1,5 @@
 
-params ["_convo", "_speaker"];
+params ["_convo", "_speaker", "_caller"];
 
 if (!canSuspend) exitWith { _this spawn FoxClub_fnc_Conversation };
 
@@ -253,7 +253,7 @@ case "mpbanter2_1": {
         _speaker setRandomLip true;
         waitUntil {isNull _sound};
         _speaker setRandomLip false;
-        ["answer1", Marcinko] spawn FoxClub_fnc_Conversation;
+        ["answer2", Marcinko] spawn FoxClub_fnc_Conversation;
     };
 
     case "answer2": {
@@ -275,11 +275,11 @@ case "mpbanter2_1": {
     };
 
     case "answer3": {
-        private _sound = _speaker say3D "answer1";
-        _speaker customChat [FOX_DialogueChannel, "We can’t be certain he’s there. We need to confirm his location and get a solid kill before taking any action. Besides, it’s illegal to use an Arclight in Cambodia. Higher-ups fear escalation."];
-        _speaker setRandomLip true;
+        private _sound = Marcinko say3D "answer1";
+        Marcinko customChat [FOX_DialogueChannel, "We can’t be certain he’s there. We need to confirm his location and get a solid kill before taking any action. Besides, it’s illegal to use an Arclight in Cambodia. Higher-ups fear escalation."];
+        Marcinko setRandomLip true;
         waitUntil {isNull _sound};
-        _speaker setRandomLip false;
+        Marcinko setRandomLip false;
         ["question3_1", _speaker] spawn FoxClub_fnc_Conversation;
     };
 
@@ -293,20 +293,52 @@ case "mpbanter2_1": {
     };
 
     case "answer3_1": {
-        private _sound = _speaker say3D "answer1";
-        _speaker customChat [FOX_DialogueChannel, "Exactly. That’s why you need to make damn sure to destroy the STAB, P.O."];
-        _speaker setRandomLip true;
+        private _sound = Marcinko say3D "answer1";
+        Marcinko customChat [FOX_DialogueChannel, "Exactly. That’s why you need to make damn sure to destroy the STAB, P.O."];
+        Marcinko setRandomLip true;
         waitUntil {isNull _sound};
-        _speaker setRandomLip false;
+        Marcinko setRandomLip false;
     };
 
 // Marcinko Question 4
 
 // Marcinko Question 5
+    case "question5": {
+        private _sound = _speaker say3D "question1";
+        _speaker customChat [FOX_DialogueChannel, "Can you tell me more about General Tan?"];
+        _speaker setRandomLip true;
+        waitUntil {isNull _sound};
+        _speaker setRandomLip false;
+        ["answer5", Marcinko] spawn FoxClub_fnc_Conversation;
+    };
+
+    case "answer5": {
+        private _sound = _speaker say3D "answer1";
+        _speaker customChat [FOX_DialogueChannel, "General Tan has been a key figure with the PAVN for quite a while—longer than we’ve been in Vietnam. He fought against the French before us and has played a crucial role in building and maintaining the Ho Chi Minh Trail. That’s likely why he’s there now—ensuring everything on the trail is running smoothly."];
+        _speaker setRandomLip true;
+        waitUntil {isNull _sound};
+        _speaker setRandomLip false;
+    };
 
 // Marcinko Question 6
 
 // Marcinko Question 7
+    case "question7": {
+        private _sound = _speaker say3D "question1";
+        _speaker customChat [FOX_DialogueChannel, "How reliable is this intel?"];
+        _speaker setRandomLip true;
+        waitUntil {isNull _sound};
+        _speaker setRandomLip false;
+        ["answer7", Marcinko] spawn FoxClub_fnc_Conversation;
+    };
+
+    case "answer7": {
+        private _sound = _speaker say3D "answer1";
+        _speaker customChat [FOX_DialogueChannel, "The prisoner who provided it is locked up in the prison just North of us. It’s solid and credible, or the top brass wouldn’t have signed off on the mission."];
+        _speaker setRandomLip true;
+        waitUntil {isNull _sound};
+        _speaker setRandomLip false;
+    };
 
 // Marcinko Question 8
 
