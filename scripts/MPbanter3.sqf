@@ -1,19 +1,19 @@
 // Define the random code blocks
 MPBanter1 = { 
 	
-	["mpbanter5_1", MP3] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP3 <= 100}]; 
+	["mpbanter5_1", nil, MP3] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP3 <= 100}]; 
 	
 };
 
 MPBanter2 = {
     
-    ["mpbanter5_2", MP3] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP3 <= 100}];
+    ["mpbanter5_2", nil, MP3] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP3 <= 100}];
 
 };
 
 MPBanter3 = {
     
-    ["mpbanter5_3", MP3] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP3 <= 100}];
+    ["mpbanter5_3", nil, MP3] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP3 <= 100}];
 
 };
 

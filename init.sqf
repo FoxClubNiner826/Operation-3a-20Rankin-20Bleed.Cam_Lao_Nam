@@ -146,4 +146,31 @@ addMissionEventHandler ["BuildingChanged", {
     };
 }];
 
+// From Nikko
+foxclub_var_conversations = createHashMapFromArray [
+	["convo_8",
+		[
+			[0, "I'm a question!", "intro1", 3],
+			[1, "I'm an answer!", "intro1", 2.5]
+		]
+	],
+	["convo_9",
+		[
+			[0,"I'm another question!", "foxclub_sound3", 2],
+			[1,"I'm another answer!", "foxclub_sound4", 4],
+			[1, "Answer 2 part 2!","foxclub_sound6"]
+		]
+	]
+];
 
+/*
+// CONVERSATION FORMAT
+["keyword reference",
+	[
+		[_speakerIndex, "text", "soundClass"],
+		[_speakerIndex, "text2", "soundClass2"]
+	]
+]
+
+// CALL FORMAT
+["keyword reference",[_speakerUnit0, _speakerUnit1, _speakerUnit2]] remoteExec ["foxclub_fnc_conversation"];

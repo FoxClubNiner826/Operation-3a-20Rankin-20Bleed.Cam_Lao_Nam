@@ -23,6 +23,14 @@ class CfgIdentities
         speaker = "Male01ENG";
         pitch = 1.0;
     };
+	class scout
+    {
+        name = "Chong Thay (Kit Carson)";
+        face = "vn_o_vietnamese_01_01_face_04";  
+        glasses = "None";
+        speaker = "Male01ENG";
+        pitch = 1.0;
+    };
 	class KBTellSeal
     {
         name = "Seal Team ONE";

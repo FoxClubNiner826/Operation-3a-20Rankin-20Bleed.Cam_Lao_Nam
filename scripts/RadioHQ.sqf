@@ -1,7 +1,7 @@
 //JIPtestVAR = player addAction ["Radio Headquarters", {["RadioHQ.sqf"] remoteExec ["execVM", 0];}, [], 8, false, true, "", "isNil 'showGlobalAction'"];
 
 //call{playsound "wait1"};
-
+/*
 params ["_caller"];
 
 _caller say3D ["wait1", 100];
@@ -11,6 +11,7 @@ call{playsound "wait2"};
 sleep 1;
 HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
 sleep 6;
+*/
 
 titleText ["", "BLACK OUT", 3];
 3 fadesound 0;
@@ -42,6 +43,7 @@ sleep 3;
 
 sleep 7;
 
+/*
 if (!isMultiplayer) then {
     command say3D ["waitforboat", 100];
     //["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell;
