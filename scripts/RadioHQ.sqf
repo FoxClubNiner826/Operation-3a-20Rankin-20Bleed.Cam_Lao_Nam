@@ -39,6 +39,10 @@ sleep 3;
  ] 
 ] spawn vn_ms_fnc_sfx_typeText;};
 
+sleep 8;
+
+[ "patrolbegins", [ selectRandom allPlayers ] ] call FoxClub_fnc_Conversation;
+
 600 setOvercast .25;
 
 sleep 7;

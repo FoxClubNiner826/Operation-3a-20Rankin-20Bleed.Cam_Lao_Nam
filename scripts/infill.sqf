@@ -1,6 +1,6 @@
-call{playsound "infill1"};
-player sideChat "Rankin, Hawk. We're in. On the move to the target. Over.";
+playsound "answer"; 
+player sideChat "*keys microphone twice* (code for successful insertion).";
 sleep 6;
-call{playsound "infill2"};
+playsound "answer"; 
 sleep 1;
-HQRadio sideChat "Hawk, Rankin. Happy hunting. Over and out."
+HQRadio sideChat "*keys microphone thrice* (code for acknowledged).";

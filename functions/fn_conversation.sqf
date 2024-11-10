@@ -1,9 +1,16 @@
-params ["_convo","_speakers"];
+params ["_convo", "_speakers"];
+
+{
+	_x setVariable ["foxclub_var_isTalking",true];
+} forEach _speakers;
 
 private _conversationData = foxclub_var_conversations get _convo;
 {
-	_x params ["_speakerIndex","_text","_sound", ["_delayAfter",1]];
+	_x params ["_speakerIndex","_text","_sound", ["_delayAfter", 0], ["_customCode", {}]];
 	private _speaker = _speakers select _speakerIndex;
+	if (isNull _speaker) then { _speakers spawn _customCode; sleep _delayAfter; continue };
+    if !(alive _speaker) then { break };
+	_speakers spawn _customCode;
 	private _sound = _speaker say3D _sound;
 	_speaker customChat [FOX_DialogueChannel, _text];
 	_speaker setRandomLip true;
@@ -12,7 +19,15 @@ private _conversationData = foxclub_var_conversations get _convo;
 	sleep _delayAfter;
 } forEach _conversationData;
 
+{
+	_x setVariable ["foxclub_var_isTalking",false];
+} forEach _speakers;
+
 /* The below works but is not optimized
+// example of how to call this BIS_fnc_function
+["question1", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+
+
 params ["_convo", "_player", "_npc"];
 
 if (!canSuspend) exitWith { _this spawn FoxClub_fnc_Conversation };

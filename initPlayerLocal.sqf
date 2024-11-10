@@ -36,18 +36,17 @@ if (!isNil "mg2" && {player isEqualTo mg2}) then {
 Marcinko addAction [
     "<t color='#FFFF00'>""Could this be a trap?""</t>", //what addaction is displayed as
     {
-	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
 	
 	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
-	["question1", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
+	["question1", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko1 && AllowActionTalk", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
+    "ActionTalkToMarcinko1 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
 	4 //radius of addadction
 ];
 
@@ -87,18 +86,22 @@ Marcinko addAction [
 Marcinko addAction [
     "<t color='#FFFF00'>""Can we really trust the Carson?""</t>", 
     {
-    missionNamespace setVariable ["AllowActionTalk", false, true];
     missionNamespace setVariable ["ActionTalkToMarcinko2", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"];    
-	["question2", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
+	["question2", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+
+	0 spawn {
+  			sleep 10;
+  			missionNamespace setVariable ["ActionTalkToCarson",true,true];
+		}; 
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && ActionTalkToMarcinko2 && AllowActionTalk", 
+    "!(_this in [scout]) && ActionTalkToMarcinko2 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
 	4 
 ];
 
@@ -106,18 +109,17 @@ Marcinko addAction [
 Marcinko addAction [
     "<t color='#FFFF00'>""Why not use an Archlight instead?""</t>", 
     { 
-    missionNamespace setVariable ["AllowActionTalk", false, true];
     missionNamespace setVariable ["ActionTalkToMarcinko3", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question3", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
+	["question3", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko3 && AllowActionTalk",
+    "ActionTalkToMarcinko3 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
 
@@ -125,18 +127,17 @@ Marcinko addAction [
 Marcinko addAction [
     "<t color='#FFFF00'>""Why use the STAB?""</t>", 
     { 
-    missionNamespace setVariable ["AllowActionTalk", false, true];
     missionNamespace setVariable ["ActionTalkToMarcinko4", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question4", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question4", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko4 && AllowActionTalk",
+    "ActionTalkToMarcinko4 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
 
@@ -144,18 +145,17 @@ Marcinko addAction [
 Marcinko addAction [
     "<t color='#FFFF00'>""Who is General Tan?""</t>", 
     { 
-    missionNamespace setVariable ["AllowActionTalk", false, true];
     missionNamespace setVariable ["ActionTalkToMarcinko5", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question5", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question5", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko5 && AllowActionTalk", 
+    "ActionTalkToMarcinko5 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
 	4 
 ];
 
@@ -163,18 +163,17 @@ Marcinko addAction [
 Marcinko addAction [
     "<t color='#FFFF00'>""Should we Capture Tan instead?""</t>", 
     { 
-    missionNamespace setVariable ["AllowActionTalk", false, true];
     missionNamespace setVariable ["ActionTalkToMarcinko6", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question6", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question6", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko6 && AllowActionTalk",
+    "ActionTalkToMarcinko6 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
 
@@ -182,18 +181,17 @@ Marcinko addAction [
 Marcinko addAction [
     "<t color='#FFFF00'>""How good is the intel?""</t>", 
     { 
-    missionNamespace setVariable ["AllowActionTalk", false, true];
     missionNamespace setVariable ["ActionTalkToMarcinko7", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question7", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question7", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko7 && AllowActionTalk", 
+    "ActionTalkToMarcinko7 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
 	4 
 ];
 
@@ -201,18 +199,17 @@ Marcinko addAction [
 scout addAction [
     "<t color='#FFFF00'>""So, you're our carson?""</t>", 
     { 
-    missionNamespace setVariable ["AllowActionTalk", false, true];
 	missionNamespace setVariable ["ActionTalkToCarson", false, true];
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question8", _caller, _target] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question8", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "_target != _this && ActionTalkToCarson && AllowActionTalk",
+    "_target != _this && ActionTalkToCarson && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
 
@@ -259,6 +256,8 @@ scubaEquipped = false;
 	{}, // code every tick
 	{
 		execVM "scripts\scubagear.sqf";
+		params ["_target", "_caller", "_actionID", "_args"];
+		[selectRandom ["scubatime1", "scubatime2", "scubatime3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -282,6 +281,8 @@ scubaEquipped = false;
 	{}, // code every tick
 	{
 		execVM "scripts\loadoutgear.sqf";
+		params ["_target", "_caller", "_actionID", "_args"];
+		[selectRandom ["gearup1", "gearup2", "gearup2"], [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -318,6 +319,8 @@ ptboat addAction [
         missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
         playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
 		["scripts\bomb.sqf"] remoteExec ["execVM", 2];
+		params ["_target", "_caller", "_actionID", "_args"];
+		["bomb15", [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
     }, 
     nil, 
     8, 
@@ -335,6 +338,8 @@ ptboat addAction [
         missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
         playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
 		["scripts\bomb2.sqf"] remoteExec ["execVM", 2];
+		params ["_target", "_caller", "_actionID", "_args"];
+		["bomb30", [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
     }, 
     nil, 
     8, 
@@ -352,6 +357,8 @@ ptboat addAction [
         missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
         playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
 		["scripts\bomb3.sqf"] remoteExec ["execVM", 2];
+		params ["_target", "_caller", "_actionID", "_args"];
+		["bomb45", [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
     }, 
     nil, 
     8, 

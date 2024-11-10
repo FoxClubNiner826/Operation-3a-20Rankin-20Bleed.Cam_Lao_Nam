@@ -13,7 +13,7 @@
 		params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action
 		missionNamespace setVariable ["ActionCallHQ", false, true];
 
-		["radiohq1", _caller, _target] remoteExec ["FoxClub_fnc_Conversation"];
+		["radiohq1", [_caller, HQRadio, objNull]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 
 		//[[_caller],"scripts\RadioHQ.sqf"] remoteExec ["execVM"];
 		//["scripts\RadioHQ.sqf"] remoteExec ["execVM", 0];

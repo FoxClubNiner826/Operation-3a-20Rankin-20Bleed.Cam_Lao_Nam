@@ -1,6 +1,4 @@
-
-
-["mpbanter4_1", nil, MP2] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP2 <= 100}];
+["mpbanter4", [MP2, MP3]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance MP2 <= 100}];
 
 /*
     ["MPBanter2", "StagingArea", ["MPBanter4_1", "MPBanter4_1"], "DIRECT"] spawn BIS_fnc_kbTell;
