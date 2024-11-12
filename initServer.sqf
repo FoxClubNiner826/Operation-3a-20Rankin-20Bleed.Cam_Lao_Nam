@@ -1,4 +1,3 @@
-//radioChannelCreate [[1, 1, 1, 1], "Q-dance Radio", "%UNIT_NAME", command, false];
 
 missionNamespace setVariable ["ActionTalkToMarcinko1", true, true];
 missionNamespace setVariable ["ActionTalkToMarcinko2", true, true];
@@ -9,6 +8,8 @@ missionNamespace setVariable ["ActionTalkToMarcinko6", true, true];
 missionNamespace setVariable ["ActionTalkToMarcinko7", true, true];
 missionNamespace setVariable ["ActionTalkToCarson", false, true];
 missionNamespace setVariable ["ActionCallPOW", false, true];
+missionNamespace setVariable ["speakersloop", true, true];
+
 ExtractAction = false;
 RTBAction = false;
 ChopperLZ = false;
@@ -132,7 +133,8 @@ addMissionEventHandler ["EntityKilled", {
         missionNamespace getVariable ["MP3", objNull],
         missionNamespace getVariable ["marcinko", objNull],
         missionNamespace getVariable ["command", objNull],
-        missionNamespace getVariable ["scout", objNull]
+        missionNamespace getVariable ["scout", objNull],
+        missionNamespace getVariable ["HanoiHannah", objNull]
     ];
 
     private _radioChannel = radioChannelCreate [[1, 1, 1, 1], "Dialogue", "%UNIT_NAME", _NPCtoAdd, false];
@@ -180,3 +182,75 @@ addMissionEventHandler ["EntityKilled", {
         };
     };
 };
+
+// 3 groups players must sneak past
+_patrolGroup = [patrol1, patrol2, patrol3];
+
+{
+	_x addEventHandler ["KnowsAboutChanged", {
+		params ["_group", "_targetUnit", "_newKnowsAbout"];
+
+		        // Check if the AI patrols know about a player
+		if ((_targetUnit in (units playergroup)) && {
+			_newKnowsAbout > 1.5
+		}) then {
+			// Removes EH from the specifc group
+			_group removeEventHandler [_thisEvent, _thisEventHandler];
+
+			            // Give players a few seconds to kill patrol or else
+			[_group]spawn {
+				params["_group"];
+				sleep 10 + (random 5);
+				if ({
+					alive _x
+				} count units _group > 0) then {
+                    //create flare and sound
+                    [(leader _group), ["flarelaunch", 400]] remoteExec ["say3D"];
+					private _pos = getPosATL leader _group;
+					_pos = _pos vectorAdd [0, 0, 150];
+                    private _flare = createVehicle ["F_40mm_Red", _pos, [], 0, "FLY"];
+					_flare setVelocity [random 2, random 2, 0];
+                    sleep 3;
+                    [_flare, ["flarepop", 400]] remoteExec ["say3D"];
+                    sleep 1;
+                    [_flare, ["flarewhistle", 400]] remoteExec ["say3D"];
+                    sleep 5;
+
+					[selectRandom ["playersspotted1", "playersspotted2", "playersspotted3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
+					missionNamespace setVariable ["PlayersSpotted", true, true];
+				};
+			};
+		};
+	}];
+} forEach _patrolGroup;
+
+[]spawn {
+while {speakersloop} do { 
+
+[selectRandom ["speakers1", "speakers2", "speakers3"], [HanoiHannah]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 100}];
+
+sleep 5;
+
+    };
+};
+
+
+/* Array of possible messages
+private _messages = [
+	"Our cover's blown. move to the target AO, now!",
+	"Shit! Haul ass to the target AO!",
+	"Keep moving! Don't stop till we get to the target AO!"
+];
+
+// select a random message
+private _randomMessage = selectRandom _messages;
+
+// select a random unit from playable or switchable units
+//private _unit = selectRandom (playableUnits + switchableUnits);
+
+// Broadcast the message via remoteExec
+[leader player, _randomMessage] remoteExec ["sideChat", 0];
+
+"answer" remoteExec ["playSound", 0];
+
+[selectRandom ["speakers1", "speakers2", "speakers3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 100}];

@@ -370,4 +370,22 @@ class CfgSounds
 		sound[] = {\sound\answer.ogg, 99, 1.0};
                 titles[] = {0, ""};
 	};
+	class flarepop	
+	{
+		name = "flarepop"; // Name for custom sound 2
+		sound[] = {\sound\flarepop.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class flarelaunch	
+	{
+		name = "flarelaunch"; // Name for custom sound 2
+		sound[] = {\sound\flarelaunch.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class flarewhistle	
+	{
+		name = "flarewhistle"; // Name for custom sound 2
+		sound[] = {\sound\flarewhistle.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
 };

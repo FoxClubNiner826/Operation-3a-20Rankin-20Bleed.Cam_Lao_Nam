@@ -265,7 +265,7 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[2, "", "", 5, { 
 				playsound "answer"; 
-				player sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
+				leader player sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
 				}
 			],
 			[1, "", "answer", 0, { 
@@ -349,9 +349,9 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["infill",
 		[
-			[2, "", "", 5, { 
+			[0, "", "answer", 5, { 
 				playsound "answer"; 
-				player sideChat "*three squelches* pause *two squelches* (code for successful insertion)."; 
+				leader player sideChat "*three squelches* pause *two squelches* (code for successful insertion)."; 
 				}
 			],
 			[1,"", "answer", 0, { 
@@ -374,6 +374,71 @@ foxclub_var_conversations = createHashMapFromArray [
 	["bomb45",
 		[
 			[0, "Charge set for 45 minutes. Move out!", "answer"]
+		]
+	],
+	["playersspotted1",
+		[
+			[0, "", "answer", 0, { 
+				playsound "answer"; 
+				leader player sideChat "Our cover's blown. move to the target AO, now!"; 
+				}
+			]
+		]
+	],
+	["playersspotted2",
+		[
+			[0, "", "answer", 0, { 
+				playsound "answer"; 
+				leader player sideChat "Shit! Haul ass to the target AO!"; 
+				}
+			]
+		]
+	],
+	["playersspotted3",
+		[
+			[0, "", "answer", 0, { 
+				playsound "answer"; 
+				leader player sideChat "Keep moving! Don't stop till we get to the target AO!"; 
+				}
+			]
+		]
+	],
+	["generalfled",
+		[
+			[0, "", "answer", 5, {
+				playsound "answer";
+				HQRadio sideChat "HQ, Rankin we’re picking up on enemy comms. The general’s been evacuated. If you can, check out Lumphat for any intel. Otherwise, get the hell out of there!";
+				}
+			],
+			[1, "", "answer", 0, {
+				playsound "answer";
+				leader player sideChat "Rankin, HQ, solid copy. Out.";
+				}
+			]
+		]
+	],
+	["speakers1",
+		[
+			[0, "American soldier, you far from home. No one come to save you. Commander leave you to die in jungle. Surrender now, we treat you good. Fight, and you die.", "answer", 0, { 
+				speakers say3D ["answer", 200]; 
+				}
+			]
+		]
+	],
+	["speakers2",
+		[
+			[0, "Your friend already dead. You surrounded, no hope. Why fight for lost cause? War already lost. Your leader lie to you. Drop weapon, you live.", "answer", 0, { 
+				speakers say3D ["answer", 200];  
+				}
+			]
+		]
+	],
+	["speakers3",
+		[
+			[0, "American, listen good. Jungle belong to us. We watch every step, see every move. You not safe here. Surrender now, or you family cry for you forever.", "answer", 0, { 
+				speakers say3D ["answer", 200]; 
+				}
+			]
 		]
 	]
 ];
