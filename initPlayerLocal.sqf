@@ -435,7 +435,7 @@ ptboat addAction [
 	{
 		missionNamespace setVariable ["hvtdead", true, true];
 		params ["_target", "_caller", "_actionID", "_args"];      
- 		["bingo", [_caller, leader player, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+ 		["bingo", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
  		//["bingo2", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, // code on finish
 	{}, // code on interuption

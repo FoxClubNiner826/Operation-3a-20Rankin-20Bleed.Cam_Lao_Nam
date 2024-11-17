@@ -263,13 +263,13 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["radiohq1",
 		[
-			[2, "", "", 5, { 
-				playsound "answer"; 
+			[0, "", "answer", 3, { 
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
 				leader player sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
 				}
 			],
-			[1, "", "answer", 0, { 
-				playsound "answer"; 
+			[1, "", "talkradio", 0, { 
+				playsound "talkradio"; 
 				HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
 				sleep 6;
 				execVM "scripts\RadioHQ.sqf";
@@ -350,12 +350,12 @@ foxclub_var_conversations = createHashMapFromArray [
 	["infill",
 		[
 			[0, "", "answer", 5, { 
-				playsound "answer"; 
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
 				leader player sideChat "*three squelches* pause *two squelches* (code for successful insertion)."; 
 				}
 			],
 			[1,"", "answer", 0, { 
-				playsound "answer"; 
+				playsound "talkradio"; 
 				HQRadio sideChat "*three squelches* pause *two squelches* (code for acknowledged).";
 				}
 			]
@@ -379,7 +379,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["playersspotted1",
 		[
 			[0, "", "answer", 0, { 
-				playsound "talkradio"; 
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
 				leader player sideChat "Our cover's blown. move to the target AO, now!"; 
 				}
 			]
@@ -388,7 +388,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["playersspotted2",
 		[
 			[0, "", "answer", 0, { 
-				playsound "talkradio"; 
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
 				leader player sideChat "Shit! Haul ass to the target AO!"; 
 				}
 			]
@@ -397,7 +397,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["playersspotted3",
 		[
 			[0, "", "answer", 0, { 
-				playsound "talkradio"; 
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
 				leader player sideChat "Keep moving! Don't stop till we get to the target AO!"; 
 				}
 			]
@@ -406,12 +406,12 @@ foxclub_var_conversations = createHashMapFromArray [
 	["generalfled",
 		[
 			[0, "", "answer", 5, {
-				playsound "answer";
+				playsound "talkradio";
 				HQRadio sideChat "HQ, Rankin we’re picking up on enemy comms. The general’s been evacuated. If you can, check out Lumphat for any intel. Otherwise, get the hell out of there!";
 				}
 			],
 			[1, "", "answer", 0, {
-				playsound "answer";
+				if (player != (_this#1)) then { playsound "talkradio"; }; 
 				leader player sideChat "Rankin, HQ, solid copy. Out.";
 				}
 			]
@@ -459,12 +459,12 @@ foxclub_var_conversations = createHashMapFromArray [
 	["bingo",
 		[
 			[0, "Bingo!", "answer", 3],
-			[1, "", "answer", 3, { 
-				playsound "talkradio"; 
-				leader player sideChat "Rankin, Covey. Touchdown. I repeat, touchdown. Get our bird in the air, over!"; 
+			[0, "", "answer", 3, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Covey. Touchdown. I repeat, touchdown. Get our bird in the air, over!"; 
 				}
 			],
-			[2,"", "answer", 0, { 
+			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
 				covey sideChat "Covey, Rankin. Solid copy. Bird is on standyby. Out.";
 				}
@@ -490,10 +490,37 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0, "Cover me, I've got an idea.", "answer"]
 		]
+	],
+	["commsoff",
+		[
+			[0, "That’ll throw a wrench in their comms.", "answer"]
+		]
+	],
+	["pilotdown",
+		[
+			[0, "That pilot’s in serious trouble without our help.", "answer"]
+		]
 	]
 ];
 
 /* ===============================================================
+
+// backup in case I ruin the trigger
+[]spawn 
+{
+pilot lookAt player;
+sleep 1;
+pilot playmove "Acts_PercMstpSlowWrflDnon_handup2";  
+deletemarker "PilotArea";
+deletemarker "RescuePilotText";
+[pilot, "Hey! Over Here! Where am I?"] remoteExec ["sidechat", 0, false];
+sleep 4;
+[player, "Cambodia. Look sharp and follow me!"] remoteExec ["sidechat", 0, false];
+sleep 2;
+[pilot, true] remoteExec ["allowdamage", 0, true];
+[pilot, "PATH"] remoteExec ["enableai", 0, true];
+};
+
 
 ["scripts\hvt.sqf"] remoteExec ["execVM"];
 
