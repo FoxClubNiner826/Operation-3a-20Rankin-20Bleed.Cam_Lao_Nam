@@ -379,7 +379,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["playersspotted1",
 		[
 			[0, "", "answer", 0, { 
-				playsound "answer"; 
+				playsound "talkradio"; 
 				leader player sideChat "Our cover's blown. move to the target AO, now!"; 
 				}
 			]
@@ -388,7 +388,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["playersspotted2",
 		[
 			[0, "", "answer", 0, { 
-				playsound "answer"; 
+				playsound "talkradio"; 
 				leader player sideChat "Shit! Haul ass to the target AO!"; 
 				}
 			]
@@ -397,7 +397,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["playersspotted3",
 		[
 			[0, "", "answer", 0, { 
-				playsound "answer"; 
+				playsound "talkradio"; 
 				leader player sideChat "Keep moving! Don't stop till we get to the target AO!"; 
 				}
 			]
@@ -440,10 +440,63 @@ foxclub_var_conversations = createHashMapFromArray [
 				}
 			]
 		]
+	],
+	["papers1",
+		[
+			[0, "Hey asshole, papers please.", "answer"]
+		]
+	],
+	["papers2",
+		[
+			[0, "Let's see what you’re hiding, pal.", "answer"]
+		]
+	],
+	["papers3",
+		[
+			[0, "Gonna find out if you were worth all this trouble.", "answer"]
+		]
+	],
+	["bingo",
+		[
+			[0, "Bingo!", "answer", 3],
+			[1, "", "answer", 3, { 
+				playsound "talkradio"; 
+				leader player sideChat "Rankin, Covey. Touchdown. I repeat, touchdown. Get our bird in the air, over!"; 
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
+				covey sideChat "Covey, Rankin. Solid copy. Bird is on standyby. Out.";
+				}
+			]
+		]
+	],
+	["found1",
+		[
+			[0, "I found something!", "answer"]
+		]
+	],
+	["found2",
+		[
+			[0, "Looks like I’ve got some intel here!", "answer"]
+		]
+	],
+	["found3",
+		[
+			[0, "Got a lead here!", "answer"]
+		]
+	],
+	["idea",
+		[
+			[0, "Cover me, I've got an idea.", "answer"]
+		]
 	]
 ];
 
 /* ===============================================================
+
+["scripts\hvt.sqf"] remoteExec ["execVM"];
+
 // in action
 ["convo_8", [_caller, _target]] remoteExec ["foxclub_fnc_conversation"];
 

@@ -31,14 +31,6 @@ class CfgIdentities
         speaker = "Male01ENG";
         pitch = 1.0;
     };
-	class KBTellSeal
-    {
-        name = "Seal Team ONE";
-        face = "vn_o_vietnamese_01_01_face_04";  
-        glasses = "None";
-        speaker = "Male01ENG";
-        pitch = 1.0;
-    };
 	class MP2
     {
         name = "Ken Byrd (MP Driver)";
@@ -63,10 +55,10 @@ class CfgIdentities
         speaker = "Male01ENG";
         pitch = 1.0;
     };
-	class command
+	class HanoiHannah
     {
-        name = "Tony Thomas";  
-        face = "vn_b_LivonianHead_8_06";  
+        name = "Hanoi Hannah (loudspeaker)";  
+        face = "vn_o_vietnamese_01_01_face_04";  
         glasses = "None";
         speaker = "Male01ENG";
         pitch = 1.0;
@@ -386,6 +378,12 @@ class CfgSounds
 	{
 		name = "flarewhistle"; // Name for custom sound 2
 		sound[] = {\sound\flarewhistle.ogg, 99, 1.0};
+                titles[] = {0, ""};
+	};
+	class talkradio	
+	{
+		name = "talkradio"; // Name for custom sound 2
+		sound[] = {\sound\talkradio.ogg, 99, 1.0};
                 titles[] = {0, ""};
 	};
 };

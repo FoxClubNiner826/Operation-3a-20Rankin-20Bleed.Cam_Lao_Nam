@@ -420,6 +420,33 @@ ptboat addAction [
 ] call BIS_fnc_holdActionAdd;
 */
 
+[
+	officer,
+	"<t color='#FFFF00'>Search Body for Identification</t>",
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_forceRespawn_ca.paa", //idle icon 
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
+	"_this distance _target < 2 && !alive officer", //condition
+	"true", //condition progress
+	{
+		params ["_target", "_caller", "_actionID", "_args"];      
+ 		[selectRandom ["papers1", "papers2", "papers3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	}, //code on start
+	{}, // code every tick
+	{
+		missionNamespace setVariable ["hvtdead", true, true];
+		params ["_target", "_caller", "_actionID", "_args"];      
+ 		["bingo", [_caller, leader player, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+ 		//["bingo2", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	5, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+] call BIS_fnc_holdActionAdd;
+
 // creates infinite smoke
 params ["_player", "_didJIP"];
 // Check if SmokeThrown is not initialized

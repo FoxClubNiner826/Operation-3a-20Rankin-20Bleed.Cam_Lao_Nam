@@ -200,7 +200,7 @@ _patrolGroup = [patrol1, patrol2, patrol3];
 			            // Give players a few seconds to kill patrol or else
 			[_group]spawn {
 				params["_group"];
-				sleep 10 + (random 5);
+				sleep 15 + (random 5);
 				if ({
 					alive _x
 				} count units _group > 0) then {
@@ -218,6 +218,8 @@ _patrolGroup = [patrol1, patrol2, patrol3];
 
 					[selectRandom ["playersspotted1", "playersspotted2", "playersspotted3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
 					missionNamespace setVariable ["PlayersSpotted", true, true];
+                    //missionNamespace setVariable ["fox_var_radioLoop", true, true]; //turns on speakers
+                    //missionNamespace setVariable ["fox_var_radioLoop", false, true]; //turns off speakers
 				};
 			};
 		};
@@ -225,15 +227,19 @@ _patrolGroup = [patrol1, patrol2, patrol3];
 } forEach _patrolGroup;
 
 []spawn {
-while {speakersloop} do { 
-
-[selectRandom ["speakers1", "speakers2", "speakers3"], [HanoiHannah]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 100}];
-
-sleep 5;
-
+while {true} do {
+            waitUntil {
+            sleep 5;
+            missionNamespace getVariable ["fox_var_radioLoop",false]
+        };
+            while {missionNamespace getVariable ["fox_var_radioLoop",false]} do {
+                if (alive speakers) then {
+                    [selectRandom ["speakers1", "speakers2", "speakers3"], [HanoiHannah]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 200}];
+                    sleep 60;
+                };
+        };
     };
 };
-
 
 /* Array of possible messages
 private _messages = [
@@ -254,3 +260,14 @@ private _randomMessage = selectRandom _messages;
 "answer" remoteExec ["playSound", 0];
 
 [selectRandom ["speakers1", "speakers2", "speakers3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 100}];
+
+[]spawn {
+while {speakersloop} do { 
+
+[selectRandom ["speakers1", "speakers2", "speakers3"], [HanoiHannah]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 100}];
+
+sleep 5;
+
+    };
+};
+
