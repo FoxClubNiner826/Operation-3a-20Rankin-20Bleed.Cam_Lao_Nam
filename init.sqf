@@ -29,7 +29,7 @@ override_vn_sam_masteraudioarray = compile preprocessFileLineNumbers "override_v
 */
 
 //enableRadio false; //disables side caht too. dont use
-enableSentences false; //turns off audio but you can still see it in systemchat log
+//enableSentences false; //turns off audio but you can still see it in systemchat log
 [] call VN_fnc_QOL_earplugs;
 
 // removes addaction from dead bodies. this makes sure there are no duplicate addactions on players too
@@ -499,6 +499,14 @@ foxclub_var_conversations = createHashMapFromArray [
 	["pilotdown",
 		[
 			[0, "That pilot’s in serious trouble without our help.", "answer"]
+		]
+	],
+	["meet",
+		[
+			[0,"Friendly! Friendly! Over here! Holy shit, I almost shot you. Where are we?", "answer"],
+			[1,"You’re smack in the middle of bumfuck Cambodia.", "answer"],
+			[0,"Cambodia?! This is a hell of a situation to be in.", "answer"],
+			[1,"Stay sharp and follow my lead.", "answer"]
 		]
 	]
 ];

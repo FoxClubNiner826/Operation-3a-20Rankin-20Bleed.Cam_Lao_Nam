@@ -134,7 +134,8 @@ addMissionEventHandler ["EntityKilled", {
         missionNamespace getVariable ["marcinko", objNull],
         missionNamespace getVariable ["command", objNull],
         missionNamespace getVariable ["scout", objNull],
-        missionNamespace getVariable ["HanoiHannah", objNull]
+        missionNamespace getVariable ["HanoiHannah", objNull],
+        missionNamespace getVariable ["pilot", objNull]
     ];
 
     private _radioChannel = radioChannelCreate [[1, 1, 1, 1], "Dialogue", "%UNIT_NAME", _NPCtoAdd, false];

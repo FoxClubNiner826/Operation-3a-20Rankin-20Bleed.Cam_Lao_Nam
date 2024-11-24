@@ -63,6 +63,14 @@ class CfgIdentities
         speaker = "Male01ENG";
         pitch = 1.0;
     };
+	class DownedPilot
+    {
+        name = "Capt. Mike Reynolds (Downed Pilot)";  
+        face = "Greekhead_a3_09";  
+        glasses = "None";
+        speaker = "Male01ENG";
+        pitch = 1.0;
+    };
 }; 
 
 class CfgSentences
