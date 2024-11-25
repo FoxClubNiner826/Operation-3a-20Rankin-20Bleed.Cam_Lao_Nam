@@ -9,6 +9,11 @@ missionNamespace setVariable ["ActionTalkToMarcinko7", true, true];
 missionNamespace setVariable ["ActionTalkToCarson", false, true];
 missionNamespace setVariable ["ActionCallPOW", false, true];
 missionNamespace setVariable ["speakersloop", true, true];
+missionNamespace setVariable ["ActionTalkToPilot1", true, true];
+missionNamespace setVariable ["ActionTalkToPilot2", true, true];
+missionNamespace setVariable ["ActionTalkToPilot3", true, true];
+missionNamespace setVariable ["ActionTalkToPilot4", true, true];
+missionNamespace setVariable ["ActionTalkToPilot", false, true];
 
 ExtractAction = false;
 RTBAction = false;
@@ -135,7 +140,9 @@ addMissionEventHandler ["EntityKilled", {
         missionNamespace getVariable ["command", objNull],
         missionNamespace getVariable ["scout", objNull],
         missionNamespace getVariable ["HanoiHannah", objNull],
-        missionNamespace getVariable ["pilot", objNull]
+        missionNamespace getVariable ["pilot", objNull],
+        missionNamespace getVariable ["pow", objNull],
+        missionNamespace getVariable ["ranger", objNull]
     ];
 
     private _radioChannel = radioChannelCreate [[1, 1, 1, 1], "Dialogue", "%UNIT_NAME", _NPCtoAdd, false];

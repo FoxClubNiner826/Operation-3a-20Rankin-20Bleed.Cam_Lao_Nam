@@ -407,12 +407,12 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0, "", "answer", 5, {
 				playsound "talkradio";
-				HQRadio sideChat "HQ, Rankin we’re picking up on enemy comms. The general’s been evacuated. If you can, check out Lumphat for any intel. Otherwise, get the hell out of there!";
+				HQRadio sideChat "Hawk, Rankin. We’re picking up on enemy comms. The general’s been evacuated. If you can, check out Lumphat for any intel. Otherwise, get the hell out of there!";
 				}
 			],
 			[1, "", "answer", 0, {
 				if (player != (_this#1)) then { playsound "talkradio"; }; 
-				leader player sideChat "Rankin, HQ, solid copy. Out.";
+				leader player sideChat "Rankin, Hawk. Solid copy. Out.";
 				}
 			]
 		]
@@ -508,8 +508,92 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Cambodia?! This is a hell of a situation to be in.", "answer"],
 			[1,"Stay sharp and follow my lead.", "answer"]
 		]
+	],
+	["startpilot",
+		[
+			[0,"Hey airman. I've got some questions.", "answer"],
+			[1,"No problem. Go ahead.", "answer"]
+		]
+	],
+	["askpilot1",
+		[
+			[0,"Who are you? What's your name?", "question"],
+			[1,"I'm Captain Mike Reynolds. I'm with the 615th Tactical Fighter Squadron. And I'm glad as hell to see you. Was starting to think I was a dead man.", "answer"]
+		]
+	],
+	["askpilot2",
+		[
+			[0,"How’s your condition, Captain? Any injuries we need to address right now?", "question"],
+			[1,"My back feels funny but it's not painful—damndest thing. Let's just get the hell out of here, I'll worry about the rest later.", "answer"]
+		]
+	],
+	["askpilot3",
+		[
+			[0,"What was your mission?", "question"],
+			[1,"I was on a CAS run, hitting enemy positions for our ground guys. Took fire, probably a ZPU, and turned back. Nav gear and radio were knocked out, so I had to go visual. Spotted the SAM trail just in time.", "answer"]
+		]
+	],
+	["pilotSeesHeli",
+		[
+			[0,"Hell yes! Get me on that bird!", "answer"]
+		]
+	],
+	["powSeesHeli",
+		[
+			[0,"Thank God... Just a bit further, and I'm out of this hell.", "answer"]
+		]
+	],
+	["pilotpassconvo",
+		[
+			[0,"Warrant Officer, I'm Captain Mike Reynolds, can you notify the 615th Tactical Fighter Squadron of my status?", "answer"],
+			[1,"Roger that, Captain.", "answer", 0, {
+				sleep 5;
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. I have a Captain Mike Reynolds onboard. He wishes that the 615th Tactical Fighter Squadron is updated on his status. Over.";
+				sleep 6;
+				playsound "talkradio";
+				HQRadio sideChat "Hawk, Ranger. Copy, We'll inform the 615th. Out.";
+				}
+			]
+		]
+	],
+	["pilotpasstask",
+		[
+			[0,"Thank God for y'all. The guys on the ground are counting on me for support. Now I can get back up there and do my job.", "answer"],
+			[1,"You just got shot down and you’re already itching to get back up there?! Damn, you’re a certifiable badass.", "answer"]
+		]
+	],
+	["gunboatdead",
+		[
+			[0,"Gunboat’s toast!", "answer"]
+		]
+	],
+	["gunboatpass",
+		[
+			[0,"", "answer", 0, {
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Gunboat’s toast!";
+				}
+			]
+		]
+	],
+	["cachebombset",
+		[
+			[0,"Charge set!", "answer"]
+		]
+	],
+	["cachepass",
+		[
+			[0,"", "answer", 0, {
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Cache is history!";
+				}
+			]
+		]
 	]
 ];
+
+
 
 /* ===============================================================
 

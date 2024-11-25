@@ -107,6 +107,7 @@ if (!isNil "weaponcache") then {
 	{}, //code on start
 	{}, // code every tick
 	{
+		["cachebombset", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 			player addAction [
 			"<t color='#FF0000'>Detonate Weapons Cache</t>", 
 			{
@@ -148,6 +149,7 @@ if (!isNil "foodcache") then {
 	{}, //code on start
 	{}, // code every tick
 	{
+		["cachebombset", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		player addAction [
 			"<t color='#FF0000'>Detonate Food Cache</t>", 
 			{ 
