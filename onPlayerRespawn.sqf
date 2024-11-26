@@ -108,6 +108,7 @@ if (!isNil "weaponcache") then {
 	{}, // code every tick
 	{
 		["cachebombset", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+			
 			player addAction [
 			"<t color='#FF0000'>Detonate Weapons Cache</t>", 
 			{
@@ -117,6 +118,11 @@ if (!isNil "weaponcache") then {
 			deletevehicle ammo_crate2;
 			deletevehicle ammo_crate3;
 			deletevehicle shelter1;
+			params ["_target", "_caller", "_actionID", "_args"];
+			sleep 1;
+			if (!alive foodcache && !alive shelter1) then {
+				["cachepass", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+				};
 			}, 
 			nil, 
 			8, 
@@ -150,7 +156,8 @@ if (!isNil "foodcache") then {
 	{}, // code every tick
 	{
 		["cachebombset", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
-		player addAction [
+			
+			player addAction [
 			"<t color='#FF0000'>Detonate Food Cache</t>", 
 			{ 
 			"M_Mo_82mm_AT_LG" createVehicle (getPos foodcache);
@@ -164,6 +171,11 @@ if (!isNil "foodcache") then {
 			deletevehicle food8;
 			deletevehicle food9;
 			deletevehicle food10;
+			params ["_target", "_caller", "_actionID", "_args"];
+			sleep 1;
+			if (!alive foodcache && !alive shelter1) then {
+				["cachepass", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+				};
 			}, 
 			nil, 
 			8, 

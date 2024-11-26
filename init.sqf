@@ -563,11 +563,6 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"You just got shot down and you’re already itching to get back up there?! Damn, you’re a certifiable badass.", "answer"]
 		]
 	],
-	["gunboatdead",
-		[
-			[0,"Gunboat’s toast!", "answer"]
-		]
-	],
 	["gunboatpass",
 		[
 			[0,"", "answer", 0, {
