@@ -79,6 +79,14 @@ class CfgIdentities
         speaker = "Male01ENG";
         pitch = 1.0;
     };
+	class pow
+    {
+        name = "Mark Davis (POW)";  
+        face = "sturrock";  
+        glasses = "None";
+        speaker = "Male01ENG";
+        pitch = 1.0;
+    };
 }; 
 
 class CfgSentences

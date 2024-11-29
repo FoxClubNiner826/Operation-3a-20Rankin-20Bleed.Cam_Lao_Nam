@@ -265,7 +265,7 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0, "", "answer", 3, { 
 				if (player != (_this#0)) then { playsound "talkradio"; }; 
-				leader player sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
+				_this#0 sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
 				}
 			],
 			[1, "", "talkradio", 0, { 
@@ -584,6 +584,41 @@ foxclub_var_conversations = createHashMapFromArray [
 				_this#0 sideChat "Cache is history!";
 				}
 			]
+		]
+	],
+	["sampass",
+		[
+			[0,"", "answer", 0, {
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "The SAM site has been neutralized!";
+				}
+			]
+		]
+	],
+	["seestunnel",
+		[
+			[0,"Hold up. I think I got something over here!", "answer"]
+		]
+	],
+	["entertunnel",
+		[
+			[0, "", "answer", 0, {
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Oh shit... We've got a rat hole here. A big one too by the looks of it.";
+				}
+			]
+		]
+	],
+	["seespow",
+		[
+			[0,"Hey! Over here! Please help me.", "answer"],
+			[1,"Jesus, you got it pal. Hold tight.", "answer"]
+		]
+	],
+	["untiepow",
+		[
+			[1,"Goddamn, your leg’s messed up... Here hold still, I’ll get those off you. Stay put while I clear the rest of this tunnel. See that field phone on the desk over there? When it’s safe, I’ll call you on that from the topside. Think you can walk on your own?", "answer"],
+			[0,"I think so but I can't move very fast.", "answer"]
 		]
 	]
 ];
