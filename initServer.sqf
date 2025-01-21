@@ -14,6 +14,13 @@ missionNamespace setVariable ["ActionTalkToPilot2", true, true];
 missionNamespace setVariable ["ActionTalkToPilot3", true, true];
 missionNamespace setVariable ["ActionTalkToPilot4", true, true];
 missionNamespace setVariable ["ActionTalkToPilot", false, true];
+missionNamespace setVariable ["ActionTalkToPOW1", true, true];
+missionNamespace setVariable ["ActionTalkToPOW2", true, true];
+missionNamespace setVariable ["ActionTalkToPOW3", true, true];
+missionNamespace setVariable ["ActionTalkToPOW4", true, true];
+missionNamespace setVariable ["ActionTalkToPOW5", true, true];
+
+
 
 ExtractAction = false;
 RTBAction = false;

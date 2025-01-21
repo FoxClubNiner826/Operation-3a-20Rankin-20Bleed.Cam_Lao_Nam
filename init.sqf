@@ -615,10 +615,46 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Jesus, you got it pal. Hold tight.", "answer"]
 		]
 	],
+	["scoutseespow",
+		[
+			[0,"Hey! Over here! Please help me.", "answer"],
+			[1,"I help. You quiet now.", "answer"]
+		]
+	],
 	["untiepow",
 		[
 			[1,"Goddamn, your leg’s messed up... Here hold still, I’ll get those off you. Stay put while I clear the rest of this tunnel. See that field phone on the desk over there? When it’s safe, I’ll call you on that from the topside. Think you can walk on your own?", "answer"],
 			[0,"I think so but I can't move very fast.", "answer"]
+		]
+	],
+	["askpow1",
+		[
+			[0,"Who are you? What's your name, buddy?", "answer"],
+			[1,"I'm Mark Davis, Specialist Fourth Class. I run supplies.", "answer"]
+		]
+	],
+	["askpow2",
+		[
+			[0,"How did you end up in this hellhole?", "answer"],
+			[1,"We were on a supply run when we were ambushed. My unit was overrun, and I got captured. They dragged me here and kept me underground, barely fed.", "answer"]
+		]
+	],
+	["askpow3",
+		[
+			[0,"How long have you been held here, and what have they been doing to you?", "answer"],
+			[1,"I'm not sure how long but it feels like months. They interrogate me sometimes, trying to get information on US operations. The rest of the time, they keep me in chains and in the dark.", "answer"]
+		]
+	],
+	["askpow4",
+		[
+			[0,"Have they been treating you alright? Any other prisoners here?", "answer"],
+			[1,"They’ve been rough. Not much food or water. I’m not sure if there are others; they kept me isolated most of the time. Sometimes I hear voices, but never see anyone.", "answer"]
+		]
+	],
+	["askpow5",
+		[
+			[0,"How'd you get that leg wound? Looks like it's been giving you trouble for a while.", "answer"],
+			[1,"I picked it up three weeks back, trying to escape. Stepped on a punji stick and twisted my leg bad. They just patched me up quick, no real treatment. It's been aching and swollen ever since. I can barely limp along and it just keeps getting worse.", "answer"]
 		]
 	]
 ];

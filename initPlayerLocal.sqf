@@ -513,28 +513,11 @@ pilot addAction [
 	4 
 ];
 
-// downed pilot questions
+// pow questions
 pow addAction [
-    "<t color='#FFFF00'>""So...""</t>", 
+    "<t color='#FFFF00'>""Who are you?""</t>", 
     {
-	missionNamespace setVariable ["ActionTalkToPilot1", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpow", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
-	missionNamespace setVariable ["ActionTalkToPilot", true, true];
-	}, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot1", 
-	4 
-];
-
-pow addAction [
-    "<t color='#FFFF00'>""So...""</t>", 
-    {
-	missionNamespace setVariable ["ActionTalkToPilot2", false, true];
+	missionNamespace setVariable ["ActionTalkToPOW1", false, true];
 	params ["_target", "_caller", "_actionID", "_args"];    
 	["askpow1", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
@@ -543,14 +526,14 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot2 && ActionTalkToPilot", 
+    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW1", 
 	4 
 ];
 
 pow addAction [
-    "<t color='#FFFF00'>""Are you hurt?""</t>", 
+    "<t color='#FFFF00'>""What happened?""</t>", 
     {
-	missionNamespace setVariable ["ActionTalkToPilot3", false, true];
+	missionNamespace setVariable ["ActionTalkToPOW2", false, true];
 	params ["_target", "_caller", "_actionID", "_args"];    
 	["askpow2", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
@@ -559,14 +542,14 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot3 && ActionTalkToPilot", 
+    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW2", 
 	4 
 ];
 
 pow addAction [
-    "<t color='#FFFF00'>""What was your mission?""</t>", 
+    "<t color='#FFFF00'>""Been here long?""</t>", 
     {
-	missionNamespace setVariable ["ActionTalkToPilot4", false, true];
+	missionNamespace setVariable ["ActionTalkToPOW3", false, true];
 	params ["_target", "_caller", "_actionID", "_args"];    
 	["askpow3", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
@@ -575,14 +558,14 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot4 && ActionTalkToPilot", 
+    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW3", 
 	4 
 ];
 
 pow addAction [
-    "<t color='#FFFF00'>""What was your mission?""</t>", 
+    "<t color='#FFFF00'>""How was it?""</t>", 
     {
-	missionNamespace setVariable ["ActionTalkToPilot4", false, true];
+	missionNamespace setVariable ["ActionTalkToPOW4", false, true];
 	params ["_target", "_caller", "_actionID", "_args"];    
 	["askpow4", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
@@ -591,7 +574,23 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot4 && ActionTalkToPilot", 
+    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW4", 
+	4 
+];
+
+pow addAction [
+    "<t color='#FFFF00'>""Your leg...""</t>", 
+    {
+	missionNamespace setVariable ["ActionTalkToPOW5", false, true];
+	params ["_target", "_caller", "_actionID", "_args"];    
+	["askpow5", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW5", 
 	4 
 ];
 
