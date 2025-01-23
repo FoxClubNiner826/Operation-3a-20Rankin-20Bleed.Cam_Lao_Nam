@@ -600,11 +600,25 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Hold up. I think I got something over here!", "answer"]
 		]
 	],
+	["scoutseestunnel",
+		[
+			[0,"I see rat hole! Check for traps or you be very sad.", "answer"]
+		]
+	],
 	["entertunnel",
 		[
 			[0, "", "answer", 0, {
 				if (player != (_this#0)) then { playsound "talkradio"; };  
 				_this#0 sideChat "Oh shit... We've got a rat hole here. A big one too by the looks of it.";
+				}
+			]
+		]
+	],
+	["scoutentertunnel",
+		[
+			[0, "", "answer", 0, {
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Big rat hole. Be quiet. Many V.C.";
 				}
 			]
 		]
@@ -623,8 +637,17 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["untiepow",
 		[
-			[1,"Goddamn, your leg’s messed up... Here hold still, I’ll get those off you. Stay put while I clear the rest of this tunnel. See that field phone on the desk over there? When it’s safe, I’ll call you on that from the topside. Think you can walk on your own?", "answer"],
-			[0,"I think so but I can't move very fast.", "answer"]
+			[1,"Goddamn, your leg’s messed up... Here hold still, I’ll get those off you. Think you can walk on your own?", "answer"],
+			[0,"I think so but I can't move very fast.", "answer"],
+			[1,"Okay, stay put while I clear the rest of this tunnel. See that field phone on the desk over there? When it’s safe, I'm gonna call you on that from the topside.", "answer"],
+			[0,"Sure thing, please hurry. Charlie is everywhere.", "answer"]
+		]
+	],
+	["scoutuntiepow",
+		[
+			[1,"You be still. I help. You stay here. No move at all.", "answer"],
+			[0,"Who are you?", "answer"],
+			[1,"I save you. You welcome. No more talk.", "answer"]
 		]
 	],
 	["askpow1",
@@ -655,6 +678,49 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0,"How'd you get that leg wound? Looks like it's been giving you trouble for a while.", "answer"],
 			[1,"I picked it up three weeks back, trying to escape. Stepped on a punji stick and twisted my leg bad. They just patched me up quick, no real treatment. It's been aching and swollen ever since. I can barely limp along and it just keeps getting worse.", "answer"]
+		]
+	],
+	["callPOW",
+		[
+			[1,"..... Hello?", "answer", 0, { 
+				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
+				}
+			],
+			[0,"It's alright, come on up, pal. Time to get you outta here.", "answer"],
+			[1,"Thank God. I thought I was done for. I’ll be right up.", "answer", 0, { 
+				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
+				}
+			]
+		]
+	],
+	["POWexits",
+		[
+			[1,"Goddamn my eyes. Gimmie a second, it hurts.", "answer"],
+			[0,"Be quick. We gotta get you out of here ASAP and into some real medical care. Stay close, follow my lead.", "answer"]
+		]
+	],
+	["scoutcallPOW",
+		[
+			[1,"..... Hello?", "answer", 0, { 
+				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
+				}
+			],
+			[0,"Okay G.I., you come up now.", "answer"],
+			[1,"Who is this? ... Is this a trick?", "answer", 0, { 
+				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
+				}
+			],
+			[0,"No trick G.I., you come now or we go forever!", "answer"],
+			[1,"Okay, okay. I'm coming right now. Don't leave without me. I hope this isn't a ruse...", "answer", 0, { 
+				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
+				}
+			]
+		]
+	],
+	["scoutPOWexits",
+		[
+			[1,"Goddamn my eyes. Gimmie a second, it hurts.", "answer"],
+			[0,"Don't be baby. I know pain, no more complain. Follow me.", "answer"]
 		]
 	]
 ];

@@ -30,20 +30,32 @@
 // calls POW to surface
 player addAction [
     "<t color='#FFFF00'>Call POW</t>", 
-    { 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
     missionNamespace setVariable ["ActionCallPOW", false, true];
-	[player, "Alright buddy. Come on up."] remoteExec ["sideChat"];
-	sleep 5;
-	[POW, "Be right there."] remoteExec ["sideChat"];
-	sleep 5;
+	_scout = missionNamespace getVariable ["scout", objNull];
+
+	if (_caller == _scout) then {
+		["scoutcallPOW", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+	} else {
+		["callPOW", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+	};
+
+	sleep 20;
 	POW setPosATL (getPosATL ExitSpot);
 	sleep 1;
+
+	if (_caller == _scout) then {
+		["scoutPOWexits", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+	} else {
+		["POWexits", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+	};
+	
+	sleep 9;
 	[POW] join (group player);
 	sleep 1; //needed for setcaptive
 	POW setCaptive false;
 	POW enableai "PATH";
-	sleep 2;
-	[POW, "Lead the way boss."] remoteExec ["sideChat"];
     }, 
     nil, 
     8, 
