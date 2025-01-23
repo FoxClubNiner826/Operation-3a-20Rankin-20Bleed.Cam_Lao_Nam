@@ -722,10 +722,28 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Goddamn my eyes. Gimmie a second, it hurts.", "answer"],
 			[0,"Don't be baby. I know pain, no more complain. Follow me.", "answer"]
 		]
+	],
+	["heal1",
+		[
+			[0,"Forget it, man. My leg’s shot! Let’s just get the hell outta here!", "answer"]
+		]
+	],
+	["heal2",
+		[
+			[0,"Damn it, man, I told you—forget it! We don’t have time for this!", "answer"]
+		]
+	],
+	["heal3",
+		[
+			[0,"I said leave it! You’re wasting time! We need to move—NOW!", "answer"]
+		]
+	],
+	["heal4",
+		[
+			[0,"Fuck you, man...", "answer"]
+		]
 	]
 ];
-
-
 
 /* ===============================================================
 
