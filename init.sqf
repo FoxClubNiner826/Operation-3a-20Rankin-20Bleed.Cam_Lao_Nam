@@ -742,6 +742,21 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0,"Fuck you, man...", "answer"]
 		]
+	],
+	["pow1",
+		[
+			[0,"Damn, this leg is killing me. How much farther to the pickup point?", "answer"]
+		]
+	],
+	["pow2",
+		[
+			[0,"I didn’t think I’d make it this far. Guess slow and steady wins the race.", "answer"]
+		]
+	],
+	["pow3",
+		[
+			[0,"Every step is agony. I don’t know how much longer I can keep this up.", "answer"]
+		]
 	]
 ];
 

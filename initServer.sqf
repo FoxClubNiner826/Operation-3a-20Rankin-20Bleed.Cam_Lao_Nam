@@ -20,8 +20,6 @@ missionNamespace setVariable ["ActionTalkToPOW3", true, true];
 missionNamespace setVariable ["ActionTalkToPOW4", true, true];
 missionNamespace setVariable ["ActionTalkToPOW5", true, true];
 
-
-
 ExtractAction = false;
 RTBAction = false;
 ChopperLZ = false;
@@ -212,7 +210,7 @@ _patrolGroup = [patrol1, patrol2, patrol3];
 			// Removes EH from the specifc group
 			_group removeEventHandler [_thisEvent, _thisEventHandler];
 
-			            // Give players a few seconds to kill patrol or else
+			// Give players a few seconds to kill patrol or else
 			[_group]spawn {
 				params["_group"];
 				sleep 15 + (random 5);
@@ -241,16 +239,37 @@ _patrolGroup = [patrol1, patrol2, patrol3];
 	}];
 } forEach _patrolGroup;
 
+//speakers loop
 []spawn {
 while {true} do {
             waitUntil {
-            sleep 5;
-            missionNamespace getVariable ["fox_var_radioLoop",false]
+            sleep 60;
+            missionNamespace getVariable ["fox_var_radioLoop",false];
         };
             while {missionNamespace getVariable ["fox_var_radioLoop",false]} do {
                 if (alive speakers) then {
                     [selectRandom ["speakers1", "speakers2", "speakers3"], [HanoiHannah]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 200}];
                     sleep 60;
+                };
+        };
+    };
+};
+
+// POW loop
+[]spawn {
+while {true} do {
+            waitUntil {
+            sleep 60;
+            missionNamespace getVariable ["fox_var_powloop",false];
+        };
+            while {missionNamespace getVariable ["fox_var_powloop",false]} do {
+                if (alive POW) then {
+                    ["pow1", [POW]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
+                    sleep 90;
+                    ["pow2", [POW]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
+                    sleep 90;
+                    ["pow3", [POW]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
+                    missionNamespace setVariable ["fox_var_powloop", false, true]; 
                 };
         };
     };
