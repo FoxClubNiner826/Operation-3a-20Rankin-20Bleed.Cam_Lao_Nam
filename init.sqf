@@ -540,7 +540,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["powSeesHeli",
 		[
-			[0,"Thank God... Just a bit further, and I'm out of this hell.", "answer"]
+			[0,"Thank God for that beautiful bird... Please let it be real.", "answer"]
 		]
 	],
 	["pilotpassconvo",
@@ -549,7 +549,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Roger that, Captain.", "answer", 0, {
 				sleep 5;
 				playsound "talkradio"; 
-				ranger sideChat "Ranger, Hawk. I have a Captain Mike Reynolds onboard. He wishes that the 615th Tactical Fighter Squadron is updated on his status. Over.";
+				ranger sideChat "Ranger, Hawk. I have a Captain Mike Reynolds onboard. He wishes the 615th Tactical Fighter Squadron be updated on his status. Over.";
 				sleep 6;
 				playsound "talkradio";
 				HQRadio sideChat "Hawk, Ranger. Copy, We'll inform the 615th. Out.";
@@ -653,7 +653,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["askpow1",
 		[
 			[0,"Who are you? What's your name, buddy?", "answer"],
-			[1,"I'm Mark Davis, Specialist Fourth Class. I run supplies.", "answer"]
+			[1,"Mark Davis, Specialist Fourth Class. I run supplies.", "answer"]
 		]
 	],
 	["askpow2",
@@ -756,6 +756,58 @@ foxclub_var_conversations = createHashMapFromArray [
 	["pow3",
 		[
 			[0,"Every step is agony. I don’t know how much longer I can keep this up.", "answer"]
+		]
+	],
+	["powpassconvo",
+		[
+			[0,"Warrant Officer, we've got wounded on board. Need medical ASAP.", "answer"],
+			[1,"Certainly, P.O.", "answer", 0, {
+				sleep 5;
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. We've got wounded on board, needing immediate medical attention. Over.";
+				sleep 6;
+				playsound "talkradio";
+				HQRadio sideChat "Hawk, Ranger. Copy that. Medical team is on standby, ready for your arrival. Out.";
+				}
+			]
+		]
+	],
+	["powpassconvo2",
+		[
+			[0,"Thank you so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
+			[1,"Don't mention it, pal. We’re all on the same team. Rest up and take care.", "answer"]
+		]
+	],
+	["playersseeprison",
+		[
+			[0,"Look on the right, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[1,"It looks smaller from up here but somehow seems bigger. Must hold hundreds of prisoners.", "answer"]
+		]
+	],
+	["scoutseesprison",
+		[
+			[0,"Look on the right, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[1,"This is very sad place. I stay far away.", "answer"]
+		]
+	],
+	["playersseeprisonPOW",
+		[
+			[0,"Look on the right, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[1,"I can practically smell it from here. I wonder what it's like on the inside?", "answer"],
+			[2,"For how they treated me, I don't give a fuck about them... I hope it's worse than the shit they put me through.", "answer"]
+		]
+	],
+	["scoutseesprisonPOW",
+		[
+			[0,"Look on the right, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[1,"Fuck every last one of them for what they did to me. For all I care they can go to hell.", "answer"],
+			[2,"Many there not belong. I know this true. You suffer one person. They suffer thousands.", "answer"]
+		]
+	],
+	["nosmokeconvo",
+		[
+			[0,"You boys were supposed to smoke the LZ! What happened? It’s a damn miracle I found it on the first pass!", "answer"],
+			[1,"No excuse, Warrant Officer. We’ll lock it down next time.", "answer"]
 		]
 	]
 ];
