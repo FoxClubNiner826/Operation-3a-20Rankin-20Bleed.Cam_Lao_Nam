@@ -21,29 +21,6 @@ if (pow in heli) then {
     };
 };
 
-if (pow in heli) then { 
-    _playersInHeli = (switchableUnits + playableUnits) select { _x in heli }; 
-    _randomPlayer = selectRandom _playersinHeli; 
-    _scout = missionNamespace getVariable ["scout", objNull]; 
- 
-    if (_randomPlayer == _scout) then { 
-        ["scoutseesprisonPOW", [ranger, _scout, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance heli <= 100}]; 
-    } else { 
-        ["playersseeprisonPOW", [ranger, _randomPlayer, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance heli <= 100}]; 
-    }; 
- 
-} else { 
-    _playersInHeli = (switchableUnits + playableUnits) select { _x in heli }; 
-    _randomPlayer = selectRandom _playersinHeli; 
-    _scout = missionNamespace getVariable ["scout", objNull]; 
- 
-    if (_randomPlayer == _scout) then { 
-        ["scoutseesprison", [ranger, _scout]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance heli <= 100}]; 
-    } else { 
-        ["playersseeprison", [ranger, _randomPlayer]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance heli <= 100}]; 
-    }; 
-}; 
-
 
 []spawn {
     if (!alive SmokePassState) then {
