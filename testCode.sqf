@@ -1,3 +1,78 @@
+[]spawn { 
+    if (!alive SmokePassState) then { 
+        ["nosmokeconvo", [ranger, leader player]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance heli <= 100}];  
+        sleep 3; 
+        ["extractpass", [ranger, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance heli <= 100}];  
+    } else { 
+        ["extractpass", [ranger, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance heli <= 100}];  
+    }; 
+}; 
+
+[ranger, "CARELESS"] remoteExec ["setCombatBehaviour", ranger]; 
+[rangercopilot, "CARELESS"] remoteExec ["setCombatBehaviour", rangercopilot]; 
+[doorgunner1, "CARELESS"] remoteExec ["setCombatBehaviour", doorgunner1]; 
+[doorgunner2, "CARELESS"] remoteExec ["setCombatBehaviour", doorgunner2];
+
+
+if (isNil "SmokeThrown") then {
+    _player addEventHandler ["FiredMan", {
+    params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
+
+    // remove EH if task is complete
+    if (!isNil "SmokeThrown") exitWith {
+        _unit removeEventHandler [_thisEvent, _thisEventHandler];
+    };
+
+    // Handle each type of smoke grenade
+    if ("vn_m18_purple_mag" in _magazine && _unit inArea "Grenade_Marker" && triggerActivated ExtractConvo) then {
+        [_projectile] spawn {
+            params ["_thrownSmoke"];
+            waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
+            if !(_thrownSmoke inArea "Grenade_Marker") exitWith {};
+            _smokeEmitter = "SmokeShellPurple_Infinite" createVehicle getPos _thrownSmoke;
+            };
+        missionNamespace setVariable ["SmokeThrown", true, true];
+        };
+    }];
+};
+
+params ["_player", "_didJIP"];
+if (isNil "SmokeThrown") then {
+	_player addEventHandler ["FiredMan", {
+		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
+		
+        
+        if (!isNil "SmokeThrown") exitWith {
+			_unit removeEventHandler [_thisEvent, _thisEventHandler];
+		};
+		
+        
+        if ("vn_m18_purple_mag" in _magazine && _unit distance markerPos "Grenade_Marker" < 100) then {
+			[_projectile] spawn {
+				params ["_thrownSmoke"];
+				waitUntil {uiSleep 1; abs speed _thrownSmoke == 0};
+				if !(_thrownSmoke inArea "Grenade_Marker") exitWith {};
+			    _smokeEmitter = "SmokeShellPurple_Infinite" createVehicle getPos _thrownSmoke;
+				deleteVehicle _thrownSmoke;
+			};
+			missionNamespace setVariable ["SmokeThrown", true, true];
+			Covey sideChat "Covey, Rankin. I see grape smoke please confirm, over.";
+		};
+		
+
+_scout = missionNamespace getVariable ["scout", objNull];
+
+if (_caller == _scout) then {
+
+
+
+} else {
+
+
+
+};
+
+
 if (pow in heli) then {
     _playersInHeli = (switchableUnits + playableUnits) select { _x in heli };
     _randomPlayer = selectRandom _playersinHeli;

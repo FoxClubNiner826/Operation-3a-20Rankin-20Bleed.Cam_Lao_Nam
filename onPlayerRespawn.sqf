@@ -73,9 +73,13 @@ player addAction [
 	missionNamespace setVariable ["ExtractAction", false, true];
     missionNamespace setVariable ["ChopperLZ", true, true];
     missionNamespace setVariable ["RTBAction", true, true];
-	[player, "Rankin, Covey. Requesting exfil. Over."] remoteExec ["sideChat"];
-	sleep 5;
-	[covey, "Covey, Rankin. Air inbound one mike, over."] remoteExec ["sideChat"];
+	_scout = missionNamespace getVariable ["scout", objNull];
+	params ["_target", "_caller", "_actionID", "_args"];
+	if (_caller == _scout) then {
+		["scoutextract", [_scout, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
+		} else {
+		["extract", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
     }, 
     nil, 
     8, 
@@ -90,9 +94,13 @@ player addAction [
     "<t color='#FFFF00'>Confirm Smoke Color</t>", 
     { 
     missionNamespace setVariable ["ActionConfirmSmoke", false, true];
-	[player, "Rankin, Ranger. Affirmative, you are cleared for touchdown. Over."] remoteExec ["sideChat"];
-	sleep 5;
-	[Ranger, "Ranger, Rankin. Copy. Let's do this one quick-like. Over."] remoteExec ["sideChat"];
+	_scout = missionNamespace getVariable ["scout", objNull];
+	params ["_target", "_caller", "_actionID", "_args"];
+	if (_caller == _scout) then {
+		["scoutsmokeconfirm", [_scout, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
+		} else {
+		["smokeconfirm", [_caller, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
     }, 
     nil, 
     8, 

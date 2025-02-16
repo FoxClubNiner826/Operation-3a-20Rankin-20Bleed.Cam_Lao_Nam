@@ -22,8 +22,7 @@ missionNamespace setVariable ["ActionTalkToPOW5", true, true];
 
 ExtractAction = false;
 RTBAction = false;
-ChopperLZ = false;
-ChopperRTB = false;
+
 ActionEndMission = false;
 missionNamespace setVariable ["ActionDebrief", false, true];
 

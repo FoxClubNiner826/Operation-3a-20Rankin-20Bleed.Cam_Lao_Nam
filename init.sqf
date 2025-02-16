@@ -809,6 +809,144 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"You boys were supposed to smoke the LZ! What happened? It’s a damn miracle I found it on the first pass!", "answer"],
 			[1,"No excuse, Warrant Officer. We’ll lock it down next time.", "answer"]
 		]
+	],
+	["extract",
+		[
+			[0, "", "answer", 3, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Covey. Requesting exfil. Over."; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				covey sideChat "Covey, Rankin. Air inbound one mike, over.";
+				}
+			]
+		]
+	],
+	["scoutextract",
+		[
+			[0, "", "answer", 3, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Covey. We need helicopter. You come now, OK?"; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				covey sideChat "Covey, Rankin. Air inbound one mike, over.";
+				}
+			]
+		]
+	],
+	["smokeconfirm",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Ranger. Affirmative, you are cleared for touchdown. Over."; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				covey sideChat "Ranger, Rankin. Copy. Let's do this one quick-like. Over.";
+				}
+			]
+		]
+	],
+	["scoutsmokeconfirm",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Covey. You see smoke. You land now!"; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				covey sideChat "Ranger, Rankin. Copy. Let's do this one quick-like. Over.";
+				}
+			]
+		]
+	],
+	["smokegrape",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. I see grape smoke please confirm, over.";
+				}
+			]
+		]
+	],
+	["smokecherry",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. I see cherry smoke please confirm, over.";
+				}
+			]
+		]
+	],
+	["smokelemon",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. I see lemon smoke please confirm, over.";
+				}
+			]
+		]
+	],
+	["smokeglime",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. I see lime smoke please confirm, over.";
+				}
+			]
+		]
+	],
+	["smokecream",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. I see cream smoke please confirm, over.";
+				}
+			]
+		]
+	],
+	["smoke",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. Requesting smoke pop. Over.";
+				}
+			]
+		]
+	],
+	["leftbehind",
+		[
+			[0,"", "answer", 3, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. The ref has called overtime. We must leave the stadium. Over.";
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Ranger. Understood. Out.";
+				}
+			]
+		]
+	],
+	["extractpass",
+		[
+			[0,"", "answer", 3, { 
+				playsound "talkradio";  
+        		ranger sideChat "Ranger, Hawk. Rankin has been exfiltrated. We are RTB. Over."; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+        		HQRadio sideChat "Hawk, Ranger. Copy that. Safe return.";
+				}
+			]
+		]
 	]
 ];
 

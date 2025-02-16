@@ -607,7 +607,7 @@ if (isNil "SmokeThrown") then {
         };
 
         // Handle each type of smoke grenade
-        if ("vn_m18_purple_mag" in _magazine && _unit inArea "Grenade_Marker" && triggerActivated ExtractConvo) then {
+        if ("vn_m18_purple_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
             [_projectile] spawn {
                 params ["_thrownSmoke"];
                 waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
@@ -617,12 +617,12 @@ if (isNil "SmokeThrown") then {
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
                 sleep 15;
-                [Ranger, "Ranger, Rankin. I see grape smoke please confirm, over."] remoteExec ["sideChat"];
+				["smokegrape", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
                 missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
         };
 
-        if ("vn_m18_red_mag" in _magazine && _unit inArea "Grenade_Marker" && triggerActivated ExtractConvo) then {
+        if ("vn_m18_red_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
             [_projectile] spawn {
                 params ["_thrownSmoke"];
                 waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
@@ -632,12 +632,12 @@ if (isNil "SmokeThrown") then {
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
                 sleep 15;
-                [Ranger, "Ranger, Rankin. I see cherry smoke please confirm, over."] remoteExec ["sideChat"];
+                ["smokecherry", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
                 missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
         };
 
-        if ("vn_m18_yellow_mag" in _magazine && _unit inArea "Grenade_Marker" && triggerActivated ExtractConvo) then {
+        if ("vn_m18_yellow_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
             [_projectile] spawn {
                 params ["_thrownSmoke"];
                 waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
@@ -647,12 +647,12 @@ if (isNil "SmokeThrown") then {
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
                 sleep 15;
-                [Ranger, "Ranger, Rankin. I see limon smoke please confirm, over."] remoteExec ["sideChat"];
+                ["smokelemon", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
                 missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
         };
 
-        if ("vn_m18_green_mag" in _magazine && _unit inArea "Grenade_Marker" && triggerActivated ExtractConvo) then {
+        if ("vn_m18_green_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
             [_projectile] spawn {
                 params ["_thrownSmoke"];
                 waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
@@ -662,12 +662,12 @@ if (isNil "SmokeThrown") then {
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
                 sleep 15;
-                [Ranger, "Ranger, Rankin. I see lime smoke please confirm, over."] remoteExec ["sideChat"];
+                ["smokelime", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
                 missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
         };
 
-        if ("vn_m18_white_mag" in _magazine && _unit inArea "Grenade_Marker" && triggerActivated ExtractConvo) then {
+        if ("vn_m18_white_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
             [_projectile] spawn {
                 params ["_thrownSmoke"];
                 waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
@@ -677,7 +677,7 @@ if (isNil "SmokeThrown") then {
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
                 sleep 15;
-                [Ranger, "Ranger, Rankin. I see cream smoke please confirm, over."] remoteExec ["sideChat"];
+                ["smokecream", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
 				missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
         };
