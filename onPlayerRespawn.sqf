@@ -66,7 +66,7 @@ player addAction [
     "_this distance fieldtelephone < 4 && ActionCallPOW && alive pow"
 ];
 
-//extract action
+/*extract action
 player addAction [
     "<t color='#FFFF00'>Radio for Extraction</t>", 
     { 
@@ -89,6 +89,37 @@ player addAction [
     "", 
     "ExtractAction"
 ];
+*/
+//extract action new version
+player addAction [
+    "<t color='#FFFF00'>Radio for Extraction Testing</t>", 
+    {
+	missionNamespace setVariable ["ExtractAction", false, true];
+	missionNamespace setVariable ["RTBAction", true, true];
+	{[_x,"ALL"] remoteExec ["disableAI",0,true];} forEach crew samlauncher;
+	_scout = missionNamespace getVariable ["scout", objNull];
+	params ["_target", "_caller", "_actionID", "_args"];
+	if (_caller == _scout) then {
+		["scoutextract", [_scout, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
+		} else {
+		["extract", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+
+	_group = ExtractHeliGroup; 
+	_markerName = "loiterSpot"; 
+	_waypointPosition = getMarkerPos _markerName;
+	_waypoint = _group addWaypoint [_waypointPosition, 0];
+	_waypoint setWaypointType "LOITER";
+	_waypoint setWaypointLoiterRadius 100; 
+	_waypoint setWaypointLoiterType "CIRCLE_L";
+    }, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "ExtractAction"
+];
 
 // confirm smoke convo
 player addAction [
@@ -102,6 +133,14 @@ player addAction [
 		} else {
 		["smokeconfirm", [_caller, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
+	
+	_group = ExtractHeliGroup;
+	_markerName = "moveToLZ"; 
+	_waypointPosition = getMarkerPos _markerName;
+	_waypoint = _group addWaypoint [_waypointPosition, 0];
+	_waypoint setWaypointType "MOVE";
+	_group setCurrentWaypoint [_group, 2];
+	[ExtractHeliGroup, [8584.56,8187.52,0], ExtractHeli] spawn BIS_fnc_wpLand;
     }, 
     nil, 
     8, 
@@ -110,7 +149,6 @@ player addAction [
     "", 
     "ActionConfirmSmoke"
 ];
-
 
 //bomb for weapon cache. Although normally you dont want non player object addactions here in OPR, this is needed because if a player uses the hold action
 //it is removed from their action menu. If they die it will remember they used the hold action and wouldnt be able to use it again. Changing the remove

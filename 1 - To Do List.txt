@@ -1,6 +1,6 @@
 TO DO UP NEXT:
-- missing parameter error bottom left
 - update subtitles to include if scout says them with if statements
+- continue to work on new extraction for heli
 
 TO DO AT SOME POINT:
 - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of

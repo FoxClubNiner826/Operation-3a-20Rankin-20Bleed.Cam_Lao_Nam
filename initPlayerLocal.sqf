@@ -711,8 +711,16 @@ heli addAction [
 	{}, //code on start
 	{}, // code every tick
 	{
-		missionNamespace setVariable ["RTBAction", false, true];
-		missionNamespace setVariable ["ChopperRTB", true, true];
+	_group = ExtractHeliGroup;  
+    _markerName = "returnToBase";   
+    _waypointPosition = getMarkerPos _markerName;  
+    _wp1 = _group addWaypoint [_waypointPosition, 0]; 
+    _wp1 setWaypointType "MOVE"; 
+    _wp2 = _group addWaypoint [_waypointPosition, 0]; 
+    _wp2 setWaypointType "SCRIPTED";
+    _wp2 setWaypointScript "A3\functions_f\waypoints\fn_wpLand.sqf";
+        //missionNamespace setVariable ["RTBAction", false, true]; //old style
+		//missionNamespace setVariable ["ChopperRTB", true, true];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -722,35 +730,27 @@ heli addAction [
 	false, //show if unconcious
 	true //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
-/*
-// end the mission early addaction
-player addAction [
-    "<t color='#FFFF00'>End Mission</t>",
-    {
-	["end1", true , true, true, true] remoteExecCall ["VN_fnc_endMission"]
-	},
-    [],
-    8,
-    false,
-    true,
-    "",
-    "ActionEndMission"
-];
-*/
 
-//ends mission early hold action - probably not going to use this now that I have an ending for the mission
-/*
 [
-	player,
-	"<t color='#FFFF00'>End Mission</t>",
-	"a3\ui_f\data\igui\cfg\holdactions\holdaction_thumbsup_ca.paa", //idle icon 
-	"a3\ui_f\data\igui\cfg\holdactions\holdaction_thumbsup_ca.paa", //progress icon
-	"ActionEndMission", //condition
+	extractheli,
+	"<t color='#FFFF00'>Return to Base</t>",
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
+	"RTBAction && (allPlayers - crew extractheli) isEqualTo []", //condition, use this for any player in boat in the init field _this in (crew _target)
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick
 	{
-		["end1", true , true, true, true] remoteExecCall ["VN_fnc_endMission"]
+	_group = ExtractHeliGroup;  
+    _markerName = "returnToBase";   
+    _waypointPosition = getMarkerPos _markerName;  
+    _wp1 = _group addWaypoint [_waypointPosition, 0]; 
+    _wp1 setWaypointType "MOVE"; 
+    _wp2 = _group addWaypoint [_waypointPosition, 0]; 
+    _wp2 setWaypointType "SCRIPTED";
+    _wp2 setWaypointScript "A3\functions_f\waypoints\fn_wpLand.sqf";
+        //missionNamespace setVariable ["RTBAction", false, true]; //old style
+		//missionNamespace setVariable ["ChopperRTB", true, true];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -760,7 +760,6 @@ player addAction [
 	false, //show if unconcious
 	true //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
-*/
 
 // debrief conversation based on what triggers were activated
 Marcinko addAction [
@@ -885,23 +884,6 @@ Marcinko addAction [
 	4
 ];
 
-/* test
-player addAction [
-    "<t color='#FFFF00'>Test</t>", 
-    { 
-    if (isnil "SomeSecTasksCokmplete") then {
-			[player, "trigger was activated"] remoteExec ["sideChat"];
-		};
-    }, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    ""
-];
-*/
-
 //easteregg
 player addAction [
     "<t color='#FFFF00'>Are you Ms. Rankin?</t>", 
@@ -919,3 +901,44 @@ player addAction [
     "_this distance easteregg < 3 && alive easteregg",
 	5
 ];
+/*
+player addAction [
+    "<t color='#FFFF00'>Clear to Land</t>", 
+    { 
+	_group = ExtractHeliGroup;
+	_markerName = "moveToLZ"; 
+	_waypointPosition = getMarkerPos _markerName;
+	_waypoint = _group addWaypoint [_waypointPosition, 0];
+	_waypoint setWaypointType "MOVE";
+	_group setCurrentWaypoint [_group, 2];
+	[ExtractHeliGroup, [8584.56,8187.52,0], ExtractHeli] spawn BIS_fnc_wpLand;
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    ""
+];
+*/
+/*
+player addAction [
+    "<t color='#FFFF00'>Return to Base</t>", 
+    { 
+	_group = ExtractHeliGroup;
+	_markerName = "returnToBase"; 
+	_waypointPosition = getMarkerPos _markerName;
+	_waypoint = _group addWaypoint [_waypointPosition, 0];
+	_waypoint setWaypointType "MOVE";
+	_group setCurrentWaypoint [_group, 3];
+	Sleep 1;
+	[ExtractHeliGroup, [7044.84,4288.17,0], ExtractHeli] spawn BIS_fnc_wpLand; //need to place a move point in between landnings
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    ""
+];
+*/
