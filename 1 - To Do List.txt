@@ -1,24 +1,17 @@
-PRIORITY: FINISH THE MAIN QUEST!
-- organize to do in this document
-
 TO DO UP NEXT:
-- test new snetry blinds AI, they may spot the boat on the river and ruin a task.
-- make subtitles that can be deactivated.
-group appears to be in green chat
-lots of use of music during cutscnenes
-what chat are they using to separate subtitles vs radio subtitles
-chat color changed to gold/yellow in the truck. appears to NOT be say3d
-- for radio stuff arma plays say3d with the radio playsound. it ends up being nice for immersion like you are hearing on the radio and in real life
-- learn to do subtitles like arma main campaign.they are white names instead of blue names.
-- hide radio support module in the radio menu as a back up for players when heli fucks them
+- missing parameter error bottom left
+- update subtitles to include if scout says them with if statements
 
 TO DO AT SOME POINT:
+- entire SFX pass for whole project for addactions and hold actions and whatever else you can think of
+- change hold action icons for equip scuba gear
+- change POW type so it doesnt say co-pilot
+- if people think there is too much talking then have an option to reduce it for SP/MP
 - try addvehicle command to no kick players out of vehicle
 - mission fail if friendly fire
 - adjust extract heli height cause its glitching
 - what to do with pilot or hostage on base return. currently they stay in chopper
 - see if smoke can be detected in area marker instead of player
-- end mission page to tell players why they died or succeded
 - add game master slot
 - condition for stab place bomb for players to be outside
 - have npc walk to end of pier and salute as boat drives away.
@@ -28,13 +21,15 @@ TO DO AT SOME POINT:
 - how to set server distance view
 - record voice actors
 - update briefing pics
-- write complete script
 - have exfil pilots go somewhere after exit
 - Fog never clearing up because forgot to script it that way.
+- rework search lumphat. make multiple item searchable and give a percent chance to collect loot from them.
+- add photos to victory screens
+- beginning jeep needs to move foruther away from players
 
 BUGS:
 - couldnt access arsenal at cache one time.
-- helicopter kicks me out then hovers up. x 2
+- helicopter kicks me out then hovers up. x 4 (has to do with ai in squad?)
 - Some sub tasks are out of there main categories. Resolves on mission restart.
 - my computer freezes when entering helo for about 5 seconds.
 - couldn't get in boat until other players exited
@@ -66,6 +61,9 @@ TO EXPORT FOR PLAY (not testing):
 - make sure player groups call sign is seal team one and all at the start area
 - enable damage for command and scout unit
 - move pics and sound files back
+
+UNTESTED: 
+- pow path wasn't enabled after joining. added a sleep before command to see if it works
 
 FINISHED:
 -JIP intro type text

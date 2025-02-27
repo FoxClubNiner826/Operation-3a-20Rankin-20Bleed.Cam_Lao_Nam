@@ -123,15 +123,125 @@ class CfgSentences
 
 class CfgDebriefing
 {
-    class Victory
+    class 10
     {
         title =    "Mission Success";
         subtitle = "Performance Rating: 10/10";
-        description = "You had a perfect mission!";
+        description = "You took out that filthy commie rat bastard son of a bitch! You destroyed all evidence of our involvement! You must have taken out every target of opportunity in the entire AO! You disrupted enemy operations so badly that they'll be reeling for months. You've all earned the title of true warriors! Dismissed!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Outstanding Performance!";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 9
+    {
+        title =    "Mission Success";
+        subtitle = "Performance Rating: 9/10";
+        description = "You took out that commie rat bastard and covered our tracks like pros! On top of that, you managed to handle some additional objectives that weren’t even on the list. Outstanding work! Hit the showers, and I’ll catch you guys at the bar later. Dismissed!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Amazing Performance!";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 8
+    {
+        title =    "Mission Success";
+        subtitle = "Performance Rating: 8/10";
+        description = "You took out that commie bastard and cleaned up all traces of our involvement. You nailed the primary mission objective, and that’s exactly what we needed. Well done, gentlemen. Your country owes you a great deal. Dismissed!";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
         vn_debrief_mission_text = "Kill the HVT";
         vn_debrief_notes_text = "Excellent Performance!";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 7
+    {
+        title =    "Mission Complete";
+        subtitle = "Performance Rating: 7/10";
+        description = "You took out the bastard, and you did a solid job disrupting their operations by hitting some additional targets. However, leaving evidence of our involvement is a serious breach. It’s unacceptable, but I’ll see if I can work some magic with the top brass, considering the extra effort you put in. Dismissed!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Subpar performance.";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 6
+    {
+        title =    "Mission Complete";
+        subtitle = "Performance Rating: 6/10";
+        description = "You took out the bastard, but unfortunately, you left evidence of our involvement behind. While eliminating the General was crucial, the fact that our tracks are exposed could spell trouble, especially if the enemy can prove our involvement. This isn’t going to sit well with the top brass. Dismissed!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Subpar performance.";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 5
+    {
+        title =    "Mission Complete";
+        subtitle = "Performance Rating: 5/10";
+        description = "I'm sorry you couldn't nail the slippery bastard, but you did a solid job covering our tracks. Textbook work. On the bright side, you managed to disrupt enemy operations by hitting some additional targets, and that’s not going unnoticed. Good effort. Dismissed!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Decent Performance.";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 4
+    {
+        title =    "Mission Complete";
+        subtitle = "Performance Rating: 4/10";
+        description = "I'm sorry you couldn't nail the slippery bastard. However, you did a commendable job covering our tracks. I’ll be hoping for better results on your next mission. Dismissed.";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Decent Performance.";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 3
+    {
+        title =    "Mission Failure";
+        subtitle = "Performance Rating: 3/10";
+        description = "It’s regrettable you missed the target, and worse, you left evidence of our involvement. What am I supposed to tell the top brass? The only small consolation is that you did manage to disrupt enemy operations. Get your shit squared away. Dismissed!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Subpar performance.";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 2
+    {
+        title =    "Mission Failure";
+        subtitle = "Performance Rating: 2/10";
+        description = "Look, it’s regrettable enough that you missed the target, but what’s worse is you left evidence of our involvement. This mission is FUBAR because of you and your lack of discipline. Get out of my sight. Dismissed!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Abysmal performance.";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 1
+    {
+        title =    "Mission Failure";
+        subtitle = "Performance Rating: 1/10";
+        description = "You lost the target. You left evidence behind of our involvement. You got friendlies killed. I expected better from supposed professionals like you. This mission was a complete cluster-fuck and a critical failure. You should be ashamed. You’ll be cleaning latrines for the rest of your tour. Dismissed!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Abysmal performance.";
+        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
+    };
+	class 0
+    {
+        title =    "Mission Failure";
+        subtitle = "Performance Rating: 0/10";
+        description = "You lost the target. You left evidence behind of our involvement. You got friendlies killed. And you left team members behind in the enemy AO. You might as well have signed their death warrants. Fully expect an immediate courtmartial. Surrender your gear right now. MPs, lock 'em up!";
+        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
+        
+        vn_debrief_mission_text = "Kill the HVT";
+        vn_debrief_notes_text = "Abysmal performance.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
     };
 	class DefeatSTABDestroyed

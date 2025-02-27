@@ -1,3 +1,13 @@
+if (missionNamespace getVariable ["waitPassed", false]) then {
+    ["patrolleaves", [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
+};
+
+ private _aopass = missionNamespace getVariable ["aopass", false];
+
+ if (!_aopass) then {
+    ["patrolleaves", [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
+};
+
 []spawn { 
     if (!alive SmokePassState) then { 
         ["nosmokeconvo", [ranger, leader player]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance heli <= 100}];  

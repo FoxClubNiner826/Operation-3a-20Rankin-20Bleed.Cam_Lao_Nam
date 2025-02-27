@@ -17,7 +17,7 @@ titleText ["", "BLACK OUT", 3];
 3 fadesound 0;
 sleep 5;
 
-NavalPatrolvariableActivated = true;
+missionNamespace setVariable ["NavalPatrolvariableActivated", true, true];
 
 skipTime -24;
 86400 setOvercast .5;

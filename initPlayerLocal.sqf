@@ -768,151 +768,113 @@ Marcinko addAction [
     {
         missionNamespace setVariable ["ActionDebrief", false, true];
 		params ["_target", "_caller", "_actionID", "_args"]; //makes the caller say the first line
-		//[_caller, ["debrief",100]] remoteExec ["say3D"]; //ready for debrief sir
-		//sleep 3; //wait for file to finish playing
-		if (AllPriTasksCokmplete && AllSecTasksCokmplete)  then {
-			//[Marcinko, ["10", 100]] remoteExec ["say3D"]; //plays sound file 10
-			[Marcinko, "You took out that filthy commie rat bastard son of a bitch! You destroyed all evidence of our involvement! You must have taken out every target of opportunity in the entire AO! You disrupted enemy operations so badly that they'll be reeling for months. You've all earned the title of true warriors! You're gonna be banging boom-boom girls on R&R till the cows come home! Outstanding job. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["10/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+		
+        _scout = missionNamespace getVariable ["scout", objNull];
+        private _allPrimary = missionnamespace getVariable ["AllPriTasksComplete",false];
+        private _allSecondary = missionnamespace getVariable ["AllSecTasksComplete",false];
+        private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete",false];
+        private _hvtDead = missionNamespace getVariable ["hvtDead",false];
+        private _stabFailed = missionNamespace getVariable ["stabFailed",false];
+        private _hvtFled = missionNamespace getVariable ["hvtFled",false];
+        private _stabPassed = missionNamespace getVariable ["stabPassed",false];
+        private _powDied = missionNamespace getVariable ["powDied",false];
+        private _pilotDied = missionNamespace getVariable ["pilotDied",false];
+        private _menLeftBehind = missionNamespace getVariable ["menLeftBehind",false];
+
+    if (_scout == _caller) then {
+
+		if (_allPrimary && _allSecondary)  then {
+			["scout10", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (AllPriTasksCokmplete && SomeSecTasksCokmplete && isnil "AllSecTasksCokmplete") then {
-			//[Marcinko, ["9", 100]] remoteExec ["say3D"];
-			[Marcinko, "You took out that commie rat bastard and covered our tracks like pros! On top of that, you managed to handle some additional objectives that weren’t even on the list. Outstanding work! Hit the showers, and I’ll catch you guys at the bar later. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["9/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+
+		if (_allPrimary && _someSecondary && !_allSecondary)  then {
+			["scout9", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (AllPriTasksCokmplete && NoSecTasksCokmplete) then {
-            //[Marcinko, ["8", 100]] remoteExec ["say3D"];
-			[Marcinko, "You took out that commie bastard and cleaned up all traces of our involvement. You nailed the primary mission objective, and that’s exactly what we needed. Well done, gentlemen. Your country owes you a great deal. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["8/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+		
+		if (_allPrimary && !_allSecondary && !_someSecondary)  then {
+			["scout8", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (triggerActivated generaldead && triggerActivated STABfail && SomeSecTasksCokmplete) then {
-			//[Marcinko, ["7", 100]] remoteExec ["say3D"];
-			[Marcinko, "You took out the bastard, and you did a solid job disrupting their operations by hitting some additional targets. However, leaving evidence of our involvement is a serious breach. It’s unacceptable, but I’ll see if I can work some magic with the top brass, considering the extra effort you put in. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["7/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+		
+		if (_hvtDead && _stabFailed && _someSecondary)  then {
+			["scout7", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (triggerActivated generaldead && triggerActivated STABfail && isnil "SomeSecTasksCokmplete") then {
-            //[Marcinko, ["6", 100]] remoteExec ["say3D"];
-			[Marcinko, "You took out the bastard, but unfortunately, you left evidence of our involvement behind. While eliminating the General was crucial, the fact that our tracks are exposed could spell trouble, especially if the enemy can prove our involvement. This isn’t going to sit well with the top brass. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["6/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+        
+		if (_hvtDead && _stabFailed && !_someSecondary)  then {
+			["scout6", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (triggerActivated end_task_2_fail && triggerActivated ptboatdead && SomeSecTasksCokmplete) then {
-			//[Marcinko, ["5", 100]] remoteExec ["say3D"];
-			[Marcinko, "I'm sorry you couldn't nail the slippery bastard, but you did a solid job covering our tracks—textbook work. On the bright side, you managed to disrupt enemy operations by hitting some additional targets, and that’s not going unnoticed. Good effort. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["5/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+		
+        if (_hvtFled && _stabPassed && _someSecondary)  then {
+			["scout5", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (triggerActivated end_task_2_fail && triggerActivated ptboatdead && isnil "SomeSecTasksCokmplete") then {
-            //[Marcinko, ["4", 100]] remoteExec ["say3D"];
-			[Marcinko, "I'm sorry you couldn't nail the slippery bastard. However, you did a commendable job covering our tracks. I’ll be hoping for better results on your next mission. Dismissed."] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["4/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+		
+        if (_hvtFled && _stabPassed && !_someSecondary)  then {
+			["scout4", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (triggerActivated end_task_2_fail && triggerActivated STABfail && SomeSecTasksCokmplete) then {
-			//[Marcinko, ["3", 100]] remoteExec ["say3D"];
-			[Marcinko, "It’s regrettable you missed the target, and worse, you left evidence of our involvement. What am I supposed to tell the top brass? The only small consolation is that you did manage to disrupt enemy operations. Get your shit squared away. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["3/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+		
+        if (_hvtFled && _stabFailed && _someSecondary)  then {
+			["scout3", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		
+        };
+		if (_hvtFled && _stabFailed && !_someSecondary && !_powDied && !_pilotDied)  then {
+			["scout2", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		
+        };
+		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && !_menLeftBehind)  then {
+			["scout1", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		
+        };
+		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && _menLeftBehind)  then {
+			["scout0", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (triggerActivated end_task_2_fail && triggerActivated STABfail && isnil "SomeSecTasksCokmplete") then {
-            //[Marcinko, ["2", 100]] remoteExec ["say3D"];
-			[Marcinko, "Look, it’s regrettable enough that you missed the target, but what’s worse is you left evidence of our involvement. This mission is FUBAR because of you and your lack of discipline. Get out of my sight. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["2/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+
+    } else {
+
+        if (_allPrimary && _allSecondary)  then {
+			["10", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (triggerActivated end_task_2_fail && triggerActivated STABfail && (triggerActivated PilotFail || triggerActivated POWfail)) then {
-            //[Marcinko, ["1", 100]] remoteExec ["say3D"];
-			[Marcinko, "You lost the target. You left evidence behind of our involvement. You got friendlies killed. I expected better from supposed professionals like you. This mission was a complete cluster-fuck and a critical failure. You should be ashamed. You’ll be cleaning latrines for the rest of your tour. Dismissed!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["1/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+
+		if (_allPrimary && _someSecondary && !_allSecondary)  then {
+			["9", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
-		if (triggerActivated end_task_2_fail && triggerActivated STABfail && MenLeftBehind && (triggerActivated PilotFail || triggerActivated POWfail)) then {
-            //[Marcinko, ["1", 100]] remoteExec ["say3D"];
-			[Marcinko, "You lost the target. You left evidence behind of our involvement. You got friendlies killed. And left team members behind in the enemy AO. You might as well have signed their death warrants. Fully expect an immediate courtmartial. Surrender your gear right now. MPs, lock 'em up!"] remoteExec ["sideChat"];
-			sleep 10;
-			[  
-			[  
-			["Performance Rating:", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"], 
-			["0/10", "<t align = 'center' shadow = '1' size = '1.5' font='tt2020style_e_vn_bold'>%1</t><br/>"]  
-			]  
-			] remoteExec ["vn_ms_fnc_sfx_typeText"];
-			sleep 7;
-			["end1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+		
+		if (_allPrimary && !_allSecondary && !_someSecondary)  then {
+			["8", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
+		
+		if (_hvtDead && _stabFailed && _someSecondary)  then {
+			["7", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		};
+        
+		if (_hvtDead && _stabFailed && !_someSecondary)  then {
+			["6", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		};
+		
+        if (_hvtFled && _stabPassed && _someSecondary)  then {
+			["5", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		};
+		
+        if (_hvtFled && _stabPassed && !_someSecondary)  then {
+			["4", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		};
+		
+        if (_hvtFled && _stabFailed && _someSecondary)  then {
+			["3", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		
+        };
+		if (_hvtFled && _stabFailed && !_someSecondary && !_powDied && !_pilotDied)  then {
+			["2", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		
+        };
+		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && !_menLeftBehind)  then {
+			["1", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		
+        };
+		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && _menLeftBehind)  then {
+			["0", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+		};
+
+    };
+
 	},
     [],
     8,

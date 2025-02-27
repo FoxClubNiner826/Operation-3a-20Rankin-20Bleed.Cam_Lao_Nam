@@ -55,6 +55,7 @@ player addAction [
 	[POW] join (group player);
 	sleep 1; //needed for setcaptive
 	POW setCaptive false;
+	sleep 1; //possible needed for path command to work
 	POW enableai "PATH";
     }, 
     nil, 

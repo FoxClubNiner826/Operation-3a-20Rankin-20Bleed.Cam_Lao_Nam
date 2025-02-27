@@ -228,8 +228,11 @@ _patrolGroup = [patrol1, patrol2, patrol3];
                     [_flare, ["flarewhistle", 400]] remoteExec ["say3D"];
                     sleep 5;
 
-					[selectRandom ["playersspotted1", "playersspotted2", "playersspotted3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
-					missionNamespace setVariable ["PlayersSpotted", true, true];
+                    if (!(missionNamespace getVariable ["aopassedVar", false])) then {
+                        [selectRandom ["playersspotted1", "playersspotted2", "playersspotted3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
+                    };
+                    
+                    missionNamespace setVariable ["PlayersSpotted", true, true];
                     //missionNamespace setVariable ["fox_var_radioLoop", true, true]; //turns on speakers
                     //missionNamespace setVariable ["fox_var_radioLoop", false, true]; //turns off speakers
 				};
