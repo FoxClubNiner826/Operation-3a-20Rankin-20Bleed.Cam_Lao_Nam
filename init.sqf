@@ -780,26 +780,26 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["playersseeprison",
 		[
-			[0,"Look on the right, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
 			[1,"It looks smaller from up here but somehow seems bigger. Must hold hundreds of prisoners.", "answer"]
 		]
 	],
 	["scoutseesprison",
 		[
-			[0,"Look on the right, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
 			[1,"This is very sad place. I stay far away.", "answer"]
 		]
 	],
 	["playersseeprisonPOW",
 		[
-			[0,"Look on the right, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
 			[1,"I can practically smell it from here. I wonder what it's like on the inside?", "answer"],
 			[2,"For how they treated me, I don't give a fuck about them... I hope it's worse than the shit they put me through.", "answer"]
 		]
 	],
 	["scoutseesprisonPOW",
 		[
-			[0,"Look on the right, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
 			[1,"Fuck every last one of them for what they did to me. For all I care they can go to hell.", "answer"],
 			[2,"Many there not belong. I know this true. You suffer one person. They suffer thousands.", "answer"]
 		]
@@ -819,7 +819,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			],
 			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
-				covey sideChat "Covey, Rankin. Air inbound one mike, over.";
+				covey sideChat "Covey, Rankin. Air inbound two mikes, over.";
 				}
 			]
 		]
@@ -833,7 +833,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			],
 			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
-				covey sideChat "Covey, Rankin. Air inbound one mike, over.";
+				covey sideChat "Covey, Rankin. Air inbound two mikes, over.";
 				}
 			]
 		]
@@ -1173,6 +1173,43 @@ foxclub_var_conversations = createHashMapFromArray [
 	["debriefArea",
 		[
 			[0,"Welcome back, gentlemen.", "answer"]
+		]
+	],
+	["smokedeny",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Ranger. Affirmative, you are at the LZ with us. Over."; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. Copy. Stay clear for touchdown. Out.";
+				}
+			]
+		]
+	],
+	["scoutsmokedeny",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Ranger, we no have smoke. You land now."; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. Copy. Stay clear for touchdown. Out.";
+				}
+			]
+		]
+	],
+	["smokeRequest2",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. We don't see any smoke. Is this you? I think we have visual.";
+				}
+			]
 		]
 	]
 ];

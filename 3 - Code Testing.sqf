@@ -1,3 +1,23 @@
+null=[]spawn 
+{ 
+sleep 3;
+ExtractHeli action ["engineOff", vehicle ExtractHeli];
+sleep 10; 
+ _group = ExtractHeliGroup;  
+ _markerName = "marker1_4";   
+ _waypointPosition = getMarkerPos _markerName;  
+ _waypoint = _group addWaypoint [_waypointPosition, -1]; 
+ _waypoint setWaypointType "GETOUT";  
+ _group setCurrentWaypoint [_group, 4];
+sleep 10;
+_group = ExtractHeliGroup; 
+ _markerName = "marker1_5";  
+ _waypointPosition = getMarkerPos _markerName; 
+ _waypoint = _group addWaypoint [_waypointPosition, -1]; 
+ _waypoint setWaypointType "MOVE"; 
+ _group setCurrentWaypoint [_group, 5]; 
+};
+
 if (missionNamespace getVariable ["waitPassed", false]) then {
     ["patrolleaves", [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
 };

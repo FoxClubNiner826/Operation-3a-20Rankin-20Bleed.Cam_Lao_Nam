@@ -92,7 +92,7 @@ player addAction [
 */
 //extract action new version
 player addAction [
-    "<t color='#FFFF00'>Radio for Extraction Testing</t>", 
+    "<t color='#FFFF00'>Radio for Extraction</t>", 
     {
 	missionNamespace setVariable ["ExtractAction", false, true];
 	missionNamespace setVariable ["RTBAction", true, true];
@@ -104,7 +104,7 @@ player addAction [
 		} else {
 		["extract", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
-
+	//sleep 60;
 	_group = ExtractHeliGroup; 
 	_markerName = "loiterSpot"; 
 	_waypointPosition = getMarkerPos _markerName;
@@ -121,9 +121,53 @@ player addAction [
     "ExtractAction"
 ];
 
+// deny smoke request
+player addAction [
+    "<t color='#FFFF00'>Confirm LZ (Bird Cleared to Land)</t>", 
+    { 
+    missionNamespace setVariable ["denyConfirmSmoke", false, true];
+	_scout = missionNamespace getVariable ["scout", objNull];
+	params ["_target", "_caller", "_actionID", "_args"];
+	if (_caller == _scout) then {
+		["scoutsmokedeny", [_scout, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
+		} else {
+		["smokedeny", [_caller, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+	["scripts\extract.sqf"] remoteExec ["execVM"];
+    }, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "denyConfirmSmoke"
+];
+
+/* delay smoke request
+player addAction [
+    "<t color='#FFFF00'>Delay Smoke Request</t>", 
+    { 
+    missionNamespace setVariable ["delayConfirmSmoke", false, true];
+	_scout = missionNamespace getVariable ["scout", objNull];
+	params ["_target", "_caller", "_actionID", "_args"];
+	if (_caller == _scout) then {
+		["scoutsmokedelay", [_scout, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
+		} else {
+		["smokedelay", [_caller, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+    }, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "delayConfirmSmoke"
+];
+*/
+
 // confirm smoke convo
 player addAction [
-    "<t color='#FFFF00'>Confirm Smoke Color</t>", 
+    "<t color='#FFFF00'>Confirm Smoke Color (Bird Cleared to Land)</t>", 
     { 
     missionNamespace setVariable ["ActionConfirmSmoke", false, true];
 	_scout = missionNamespace getVariable ["scout", objNull];
@@ -133,14 +177,7 @@ player addAction [
 		} else {
 		["smokeconfirm", [_caller, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
-	
-	_group = ExtractHeliGroup;
-	_markerName = "moveToLZ"; 
-	_waypointPosition = getMarkerPos _markerName;
-	_waypoint = _group addWaypoint [_waypointPosition, 0];
-	_waypoint setWaypointType "MOVE";
-	_group setCurrentWaypoint [_group, 2];
-	[ExtractHeliGroup, [8584.56,8187.52,0], ExtractHeli] spawn BIS_fnc_wpLand;
+[	"scripts\extract.sqf"] remoteExec ["execVM"];
     }, 
     nil, 
     8, 

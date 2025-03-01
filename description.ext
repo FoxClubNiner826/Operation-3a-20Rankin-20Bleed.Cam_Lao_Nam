@@ -247,7 +247,7 @@ class CfgDebriefing
 	class DefeatSTABDestroyed
     {
         title =    "Mission Failed";
-        subtitle = "The STAB was destroyed.";
+        subtitle = "The STAB was destroyed";
         description = "Without a way to reach the infiltration point, SEAL Team One was forced to abandon the mission. MST was able to exfiltate the team.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
@@ -258,7 +258,7 @@ class CfgDebriefing
 	class DefeatHeliDestroyed
     {
         title =    "Mission Failed";
-        subtitle = "The Exfiltration Helicopter was destroyed.";
+        subtitle = "The exfiltration helicopter was destroyed";
         description = "Without a way to return to base, SEAL Team One has been stranded in the enemy AO. A new mission is being scrambled to retrieve them.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
@@ -269,7 +269,7 @@ class CfgDebriefing
 	class DefeatAllPlayersDead
     {
         title =    "Mission Failed";
-        subtitle = "SEAL Team One has been destroyed.";
+        subtitle = "SEAL Team One has been destroyed";
         description = "We have lost contact with SEAL Team One. Intelligence is looking into if any members are still alive or captured";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
@@ -280,7 +280,7 @@ class CfgDebriefing
 	class DefeatFriendlyFire
     {
         title =    "Mission Failed";
-        subtitle = "SEAL Team One has gone rogue.";
+        subtitle = "SEAL Team One has gone rogue";
         description = "For unknown reasons SEAL Team One has gone rogue.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         

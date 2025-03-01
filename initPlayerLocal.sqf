@@ -616,7 +616,7 @@ if (isNil "SmokeThrown") then {
             };
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
-                sleep 15;
+                sleep 20;
 				["smokegrape", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
                 missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
@@ -631,7 +631,7 @@ if (isNil "SmokeThrown") then {
             };
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
-                sleep 15;
+                sleep 20;
                 ["smokecherry", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
                 missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
@@ -646,7 +646,7 @@ if (isNil "SmokeThrown") then {
             };
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
-                sleep 15;
+                sleep 20;
                 ["smokelemon", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
                 missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
@@ -661,7 +661,7 @@ if (isNil "SmokeThrown") then {
             };
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
-                sleep 15;
+                sleep 20;
                 ["smokelime", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
                 missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
@@ -676,7 +676,7 @@ if (isNil "SmokeThrown") then {
             };
             missionNamespace setVariable ["SmokeThrown", true, true];
             [] spawn {
-                sleep 15;
+                sleep 20;
                 ["smokecream", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
 				missionNamespace setVariable ["ActionConfirmSmoke", true, true];
             };
@@ -901,44 +901,53 @@ player addAction [
     "_this distance easteregg < 3 && alive easteregg",
 	5
 ];
-/*
-player addAction [
-    "<t color='#FFFF00'>Clear to Land</t>", 
-    { 
-	_group = ExtractHeliGroup;
-	_markerName = "moveToLZ"; 
-	_waypointPosition = getMarkerPos _markerName;
-	_waypoint = _group addWaypoint [_waypointPosition, 0];
-	_waypoint setWaypointType "MOVE";
-	_group setCurrentWaypoint [_group, 2];
-	[ExtractHeliGroup, [8584.56,8187.52,0], ExtractHeli] spawn BIS_fnc_wpLand;
-	}, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    ""
-];
-*/
-/*
-player addAction [
-    "<t color='#FFFF00'>Return to Base</t>", 
-    { 
-	_group = ExtractHeliGroup;
-	_markerName = "returnToBase"; 
-	_waypointPosition = getMarkerPos _markerName;
-	_waypoint = _group addWaypoint [_waypointPosition, 0];
-	_waypoint setWaypointType "MOVE";
-	_group setCurrentWaypoint [_group, 3];
-	Sleep 1;
-	[ExtractHeliGroup, [7044.84,4288.17,0], ExtractHeli] spawn BIS_fnc_wpLand; //need to place a move point in between landnings
-	}, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    ""
-];
-*/
+
+// Define objects (Replace with actual object variable names in your mission)
+private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10];
+
+// Counter for attempts and successful hints
+missionNamespace setVariable ["holdActionAttemptCount", 0];
+
+{
+    private _objects = _x;
+    [
+	_objects,
+	"<t color='#FFFF00'>Search for intel</t>",
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //idle icon 
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
+	"_this distance _target < 3", //condition
+	"true", //condition progress
+	{}, //code on start
+	{}, // code every tick
+	{
+		params ["_target", "_caller", "_actionId", "_arguments"];
+
+        // Increase attempt count
+        private _attemptCount = missionNamespace getVariable ["holdActionAttemptCount", 0];
+        _attemptCount = _attemptCount + 1;
+        missionNamespace setVariable ["holdActionAttemptCount", _attemptCount];
+
+        // Calculate chance (10% per attempt, guaranteed at the 10th)
+        private _chance = _attemptCount * 10;
+        private _randomRoll = random 100;
+
+        // Check if hint should be displayed
+        if (_randomRoll < _chance) then {      
+ 		    [selectRandom ["found1", "found2", "found3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+            private _tasks = ["cacheTask", "gunboatTask", "samsiteTask"];
+            private _selectedTask = selectRandom _tasks;
+            missionNamespace setVariable [_selectedTask, true, true];
+
+        };
+
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	1, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+    ] call BIS_fnc_holdActionAdd;
+
+} forEach _objects;

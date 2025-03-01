@@ -1,8 +1,12 @@
 TO DO UP NEXT:
 - update subtitles to include if scout says them with if statements
-- continue to work on new extraction for heli
+- work on new search for intel system
 
 TO DO AT SOME POINT:
+- fill out the prison with prisoners, equipment etc and put hide on it until extract
+- add achievements. (perfect mission, 0/10 mission, never spotted, etc)
+- have pilots exit heli at missons end
+- have npcs welcome you back at mission end
 - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of
 - change hold action icons for equip scuba gear
 - change POW type so it doesnt say co-pilot
@@ -66,6 +70,7 @@ UNTESTED:
 - pow path wasn't enabled after joining. added a sleep before command to see if it works
 
 FINISHED:
+- converted to new heli extract
 -JIP intro type text
 -JIP skip to ingress removed near mission start
 -JIP skip to ingress
