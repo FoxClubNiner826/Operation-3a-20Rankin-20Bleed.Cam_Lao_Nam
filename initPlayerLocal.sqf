@@ -903,15 +903,11 @@ player addAction [
 ];
 
 // Define objects (Replace with actual object variable names in your mission)
-private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10];
-
-// Counter for attempts and successful hints
-missionNamespace setVariable ["holdActionAttemptCount", 0];
+private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16];
 
 {
-    private _object = _x;
     [
-	_object,
+	_x,
 	"<t color='#FFFF00'>Search for Intel</t>",
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //idle icon 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
@@ -921,25 +917,25 @@ missionNamespace setVariable ["holdActionAttemptCount", 0];
 	{}, // code every tick
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
-        // Remove action for all players
+        // Remove action for all players once hold action is complete
         [_target, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _target];
         
+        private _soldierObject = _target in [obj11, obj12, obj13, obj14, obj15, obj16]; // Identify objects 11-16
+        private _multiplier = if (_soldierObject) then {0.05} else {0.1}; // 5% multiplier for soldiers 11-16, 10% for others
+
         // Increase attempt count
         private _attemptCount = missionNamespace getVariable ["holdActionAttemptCount", 0];
         _attemptCount = _attemptCount + 1;
         missionNamespace setVariable ["holdActionAttemptCount", _attemptCount];
-        // Calculate chance (10% per attempt, guaranteed at the 10th)
-        private _chance = _attemptCount * 10;
+        
+        // Calculate chance based on multiplier
+        private _chance = _attemptCount * _multiplier * 100; // Adjust the chance based on multiplier
         private _randomRoll = random 100;
 
-        // Check if hint should be displayed
+        // Check if intel was found
         if (_randomRoll < _chance) then {
-            [selectRandom ["found1", "found2", "found3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];    
-            /*
-            private _selectedTask = selectRandom tasks;
-            missionNamespace setVariable [_selectedTask, true, true];
-            tasks = tasks - [_selectedTask];
-            */
+            [selectRandom ["found1", "found2", "found3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}]; 
+            
             private _tasks = ["cacheTask", "gunboatTask", "samsiteTask"] select {!(missionNamespace getVariable [_x, false])};
             if (_tasks isNotEqualTo []) then {
             private _selectedTask = selectRandom _tasks;
@@ -948,11 +944,12 @@ missionNamespace setVariable ["holdActionAttemptCount", 0];
             };
 
             if (_tasks isEqualTo []) then {
-                private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10];
-                { //[_x, _actionId] call BIS_fnc_holdActionRemove; 
-                  [_x, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _x];
-                } forEach _objects;
-            }; //add else statment so play knows they didnt find anything
+                private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16];
+                { [_x, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _x]; } forEach _objects;
+            };
+        }  else {
+            // message if nothing found
+            [selectRandom ["notfound1", "notfound2", "notfound3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 50}];
         };
 	}, // code on finish
 	{}, // code on interuption

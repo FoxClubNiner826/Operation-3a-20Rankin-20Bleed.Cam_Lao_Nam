@@ -473,17 +473,32 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["found1",
 		[
-			[0, "I found something!", "answer"]
+			[0, "Jackpot. Looks like we just got our golden ticket.", "answer"]
 		]
 	],
 	["found2",
 		[
-			[0, "Looks like I’ve got some intel here!", "answer"]
+			[0, "Well, well, looks like Charlie’s been writing love letters.", "answer"]
 		]
 	],
 	["found3",
 		[
-			[0, "Got a lead here!", "answer"]
+			[0, "Bingo. Somebody's about to have a real bad day.", "answer"]
+		]
+	],
+	["notfound1",
+		[
+			[0, "Guess Charlie ain't much for record-keeping.", "answer"]
+		]
+	],
+	["notfound2",
+		[
+			[0, "Figures. Just a whole lotta squat.", "answer"]
+		]
+	],
+	["notfound3",
+		[
+			[0, "Damn. Nothing but rice receipts.", "answer"]
 		]
 	],
 	["idea",

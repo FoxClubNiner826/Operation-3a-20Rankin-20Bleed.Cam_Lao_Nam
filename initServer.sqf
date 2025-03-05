@@ -23,8 +23,11 @@ missionNamespace setVariable ["ActionTalkToPOW5", true, true];
 ExtractAction = false;
 RTBAction = false;
 
-ActionEndMission = false;
+ActionEndMission = false; //might not be needed anymore
 missionNamespace setVariable ["ActionDebrief", false, true];
+
+// Counter for attempts and successful hints
+missionNamespace setVariable ["holdActionAttemptCount", 0];
 
 //Below is an unworking attempt to make the bombs available only from OUTSIDE the boat.
 //ActionSTABTimeBombs = units west findIf { isPlayer _x && _x in ptboat } == -1;
