@@ -27,8 +27,8 @@ ActionEndMission = false; //might not be needed anymore
 missionNamespace setVariable ["ActionDebrief", false, true];
 
 // Counter for attempts and successful hints
-missionNamespace setVariable ["holdActionAttemptCount", 0];
-
+missionNamespace setVariable ["holdActionAttemptCount", 0]; 
+//missionNamespace setVariable ["holdActionsuccessCount", 0];
 //Below is an unworking attempt to make the bombs available only from OUTSIDE the boat.
 //ActionSTABTimeBombs = units west findIf { isPlayer _x && _x in ptboat } == -1;
 //missionNamespace setVariable ["ActionSTABTimeBombs", false, true];

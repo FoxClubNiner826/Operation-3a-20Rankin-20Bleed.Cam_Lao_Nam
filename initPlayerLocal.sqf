@@ -926,7 +926,7 @@ private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10,
         // Increase attempt count
         private _attemptCount = missionNamespace getVariable ["holdActionAttemptCount", 0];
         _attemptCount = _attemptCount + 1;
-        missionNamespace setVariable ["holdActionAttemptCount", _attemptCount];
+        missionNamespace setVariable ["holdActionAttemptCount", _attemptCount, true];
         
         // Calculate chance based on multiplier
         private _chance = _attemptCount * _multiplier * 100; // Adjust the chance based on multiplier
@@ -934,22 +934,63 @@ private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10,
 
         // Check if intel was found
         if (_randomRoll < _chance) then {
-            [selectRandom ["found1", "found2", "found3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}]; 
-            
-            private _tasks = ["cacheTask", "gunboatTask", "samsiteTask"] select {!(missionNamespace getVariable [_x, false])};
-            if (_tasks isNotEqualTo []) then {
+            private _availableMessages = missionNamespace getVariable ["availableIntelMessages", ["found1", "found2", "found3"]];
+            private _message = if (count _availableMessages > 0) then {
+                private _selected = selectRandom _availableMessages;
+                _availableMessages = _availableMessages - [_selected]; 
+                missionNamespace setVariable ["availableIntelMessages", _availableMessages, true];
+                _selected;
+                } else {
+                selectRandom ["found1", "found2", "found3"];
+                };
+
+        // Play function
+        [_message, [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+
+        // Makes sure no task is selected twice
+        private _tasks = ["cacheTask", "gunboatTask", "samsiteTask"] select {!(missionNamespace getVariable [_x, false])};
+        if (_tasks isNotEqualTo []) then {
             private _selectedTask = selectRandom _tasks;
             missionNamespace setVariable [_selectedTask, true, true];
             _tasks = _tasks - [_selectedTask];
+        };
+
+        // Remove all holdActions if no tasks remain 
+        if (_tasks isEqualTo []) then {
+            private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16];
+            { [_x, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _x]; } forEach _objects;
+        };
+        
+        // message if nothing found
+        }  else {
+            // Get or initialize the shuffled list
+            private _intelMessages = missionNamespace getVariable ["intelMessageQueue", []];
+            private _lastMessage = missionNamespace getVariable ["lastIntelMessage", ""];
+
+            // If the list is empty, generate and shuffle a new one
+            if (_intelMessages isEqualTo []) then {
+                _intelMessages = ["notfound1", "notfound2", "notfound3"];
+                _intelMessages = _intelMessages call BIS_fnc_arrayShuffle;
+
+                // Ensure the first message isn't the same as the last used one
+                if (!(_lastMessage isEqualTo "") && {_intelMessages select 0 == _lastMessage}) then {
+                    // Pick a random index (excluding 0) to swap with
+                    private _swapIndex = 1 + floor (random ((count _intelMessages) - 1));
+                    private _temp = _intelMessages select 0;
+                    _intelMessages set [0, _intelMessages select _swapIndex];
+                    _intelMessages set [_swapIndex, _temp];
+                };
             };
 
-            if (_tasks isEqualTo []) then {
-                private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16];
-                { [_x, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _x]; } forEach _objects;
-            };
-        }  else {
-            // message if nothing found
-            [selectRandom ["notfound1", "notfound2", "notfound3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 50}];
+            // Select the first message from the shuffled list
+            private _message = _intelMessages deleteAt 0;
+
+            // Save the updated queue and last message back to missionNamespace
+            missionNamespace setVariable ["intelMessageQueue", _intelMessages, true];
+            missionNamespace setVariable ["lastIntelMessage", _message, true];
+    
+            // Play function
+            [_message, [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
         };
 	}, // code on finish
 	{}, // code on interuption
@@ -962,3 +1003,127 @@ private _objects = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10,
     ] call BIS_fnc_holdActionAdd;
 
 } forEach _objects;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*test
+player addAction [
+    "<t color='#FFFF00'>Variable tracked</t>", 
+    {
+    params ["_target", "_caller", "_actionId", "_arguments"];
+	private _availableMessages = missionNamespace getVariable ["availableIntelMessages", ["found1", "found2", "found3"]];
+    private _message = if (count _availableMessages > 0) then {
+        private _selected = selectRandom _availableMessages;
+        _availableMessages = _availableMessages - [_selected]; 
+        missionNamespace setVariable ["availableIntelMessages", _availableMessages, true];
+        _selected;
+    } else {
+        selectRandom ["found1", "found2", "found3"];
+    };
+
+    private _successCount = missionNamespace getVariable ["holdActionSuccessCount", 0];
+    _successCount = _successCount + 1;
+    missionNamespace setVariable ["holdActionSuccessCount", _successCount, true];
+
+    [_message, [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+ 
+    }, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "",
+	5
+];
+
+//test
+player addAction [
+    "<t color='#FFFF00'>shuffle</t>", 
+    {
+    params ["_target", "_caller", "_actionId", "_arguments"];
+	// Get or initialize the shuffled list
+    private _intelMessages = missionNamespace getVariable ["intelMessageQueue", []];
+
+    if (_intelMessages isEqualTo []) then {
+        // If the list is empty, create a new shuffled list
+        _intelMessages = ["found1", "found2", "found3"];
+        _intelMessages = _intelMessages call BIS_fnc_arrayShuffle;
+    };
+
+    // Select the first message from the shuffled list
+    private _message = _intelMessages deleteAt 0;
+
+    // Save the updated queue back to missionNamespace
+    missionNamespace setVariable ["intelMessageQueue", _intelMessages, true];
+
+    [_message, [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+    }, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "",
+	5
+];
+
+//test
+player addAction [
+    "<t color='#FFFF00'>shuffle2</t>", 
+    {
+    params ["_target", "_caller", "_actionId", "_arguments"];
+	// Get or initialize the shuffled list
+private _intelMessages = missionNamespace getVariable ["intelMessageQueue", []];
+private _lastMessage = missionNamespace getVariable ["lastIntelMessage", ""];
+
+// If the list is empty, generate and shuffle a new one
+if (_intelMessages isEqualTo []) then {
+    _intelMessages = ["notfound1", "notfound2", "notfound3"];
+    _intelMessages = _intelMessages call BIS_fnc_arrayShuffle;
+
+    // Ensure the first message isn't the same as the last used one
+    if (!(_lastMessage isEqualTo "") && {_intelMessages select 0 == _lastMessage}) then {
+        // Pick a random index (excluding 0) to swap with
+        private _swapIndex = 1 + floor (random ((count _intelMessages) - 1));
+        private _temp = _intelMessages select 0;
+        _intelMessages set [0, _intelMessages select _swapIndex];
+        _intelMessages set [_swapIndex, _temp];
+    };
+};
+
+// Select the first message from the shuffled list
+private _message = _intelMessages deleteAt 0;
+
+// Save the updated queue and last message back to missionNamespace
+missionNamespace setVariable ["intelMessageQueue", _intelMessages, true];
+missionNamespace setVariable ["lastIntelMessage", _message, true];
+
+
+
+    [_message, [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+    }, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "",
+	5
+];
