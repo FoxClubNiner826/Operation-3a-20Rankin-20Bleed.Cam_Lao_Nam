@@ -63,11 +63,8 @@ addMissionEventHandler ["BuildingChanged", {
 		deleteVehicle hut_cup1;
 		deleteVehicle hut_cup2;
 		deleteVehicle hut_cup3;
-		deleteVehicle hut_file1;
-		deleteVehicle hut_file2;
 		deleteVehicle hut_trash1;
-		deleteVehicle hut_cupboard1;
-		hint "hut 1 deleted"; // put your deleteVehicle commands here
+		//hint "hut 1 deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuilding2) then
     {
@@ -77,7 +74,7 @@ addMissionEventHandler ["BuildingChanged", {
 		deleteVehicle hut2_table2;
 		deleteVehicle hut2_bed1;
 		deleteVehicle hut2_bedroll1;
-		hint "hut 2 deleted"; // put your deleteVehicle commands here
+		//hint "hut 2 deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuilding3) then
     {
@@ -88,61 +85,61 @@ addMissionEventHandler ["BuildingChanged", {
 		deleteVehicle hut3_bench1;
 		deleteVehicle cachetask;
 		deleteVehicle photo;
-		hint "hut 3 deleted"; // put your deleteVehicle commands here
+		//hint "hut 3 deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildgunboat1) then
     {
         deleteVehicle gunboattask;
 		deleteVehicle gunboat_file;
-		hint "boat file deleted"; // put your deleteVehicle commands here
+		//hint "boat file deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildgunboat2) then
     {
         deleteVehicle gunboattask;
 		deleteVehicle gunboat_file;
-		hint "boat file deleted"; // put your deleteVehicle commands here
+		//hint "boat file deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildgunboat3) then
     {
         deleteVehicle gunboattask;
 		deleteVehicle gunboat_file;
-		hint "boat file deleted"; // put your deleteVehicle commands here
+		//hint "boat file deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildcache1) then
     {
         deleteVehicle photo;
 		deleteVehicle cachetask;
-		hint "cache file deleted"; // put your deleteVehicle commands here
+		//hint "cache file deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildcache2) then
     {
         deleteVehicle photo;
 		deleteVehicle cachetask;
-		hint "cache file deleted"; // put your deleteVehicle commands here
+		//hint "cache file deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildcache3) then
     {
         deleteVehicle photo;
 		deleteVehicle cachetask;
-		hint "cache file deleted"; // put your deleteVehicle commands here
+		//hint "cache file deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildsam1) then
     {
         deleteVehicle samsite_file;
 		deleteVehicle samtask;
-		hint "samsite file deleted"; // put your deleteVehicle commands here
+		//hint "samsite file deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildsam2) then
     {
         deleteVehicle samsite_file;
 		deleteVehicle samtask;
-		hint "samsite file deleted"; // put your deleteVehicle commands here
+		//hint "samsite file deleted"; // put your deleteVehicle commands here
     };
 	if (_from isEqualTo myBuildsam3) then
     {
         deleteVehicle samsite_file;
 		deleteVehicle samtask;
-		hint "samsite file deleted"; // put your deleteVehicle commands here
+		//hint "samsite file deleted"; // put your deleteVehicle commands here
     };
 }];
 
