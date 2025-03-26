@@ -450,7 +450,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["papers3",
 		[
-			[0, "Gonna find out if you were worth all this trouble.", "answer"]
+			[0, "Time to find out if you were worth all this trouble.", "answer"]
 		]
 	],
 	["bingo",
@@ -466,6 +466,21 @@ foxclub_var_conversations = createHashMapFromArray [
 				covey sideChat "Covey, Rankin. Solid copy. Bird is on standyby. Out.";
 				}
 			]
+		]
+	],
+	["search1",
+		[
+			[0, "Let’s see what Uncle Ho left us.", "answer"]
+		]
+	],
+	["search2",
+		[
+			[0, "Let’s crack this open and see if it sings.", "answer"]
+		]
+	],
+	["search3",
+		[
+			[0, "This better not be a wild goose chase.", "answer"]
 		]
 	],
 	["found1",
@@ -485,7 +500,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["notfound1",
 		[
-			[0, "Guess Charlie ain't much for record-keeping.", "answer"]
+			[0, "Humph, guess Charlie ain't much for record-keeping.", "answer"]
 		]
 	],
 	["notfound2",

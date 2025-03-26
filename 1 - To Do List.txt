@@ -1,6 +1,6 @@
 TO DO UP NEXT:
 - update subtitles to include if scout says them with if statements
-- work on new search for intel system. continue to place objects. obj5 floating car
+- work on polished spotted consequences. add squad in lumphat that can be killed like the first patrols.
 
 TO DO AT SOME POINT:
 - fill out the prison with prisoners, equipment etc and put hide on it until extract
@@ -122,3 +122,4 @@ FINISHED:
 - created history tab and finalized the subtabs with info and pictures.
 - randomize blind spawns with AI
 - create rough draft script of lines with chatgpt
+- work on new search for intel system.
