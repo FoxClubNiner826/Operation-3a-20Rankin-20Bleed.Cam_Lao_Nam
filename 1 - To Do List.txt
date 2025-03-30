@@ -1,6 +1,11 @@
 TO DO UP NEXT:
 - update subtitles to include if scout says them with if statements
 - work on polished spotted consequences. add squad in lumphat that can be killed like the first patrols.
+- add subtitle for when all intel has been found. "looks like weve picked this place dry"
+- First patrol sees player. send variable to start loud speakers and send troop transport to patrol road.
+Patrol in lymphatic sees player. Turns on variable that will be broadcast on first side task activation that will send troop transport to town.
+Trigger that will starts trackers (not loud speakers) based on blufor Detected.
+
 
 TO DO AT SOME POINT:
 - fill out the prison with prisoners, equipment etc and put hide on it until extract

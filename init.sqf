@@ -513,6 +513,51 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Damn. Nothing but rice receipts.", "answer"]
 		]
 	],
+	["scoutsearch1",
+		[
+			[0, "Could be nothing, but I check anyway.", "answer"]
+		]
+	],
+	["scoutsearch2",
+		[
+			[0, "I search good, maybe find something.", "answer"]
+		]
+	],
+	["scoutsearch3",
+		[
+			[0, "Maybe luck on our side.", "answer"]
+		]
+	],
+	["scoutfound1",
+		[
+			[0, "Enemy not careful. Bad for them, good for us.", "answer"]
+		]
+	],
+	["scoutfound2",
+		[
+			[0, "We take this, make them regret.", "answer"]
+		]
+	],
+	["scoutfound3",
+		[
+			[0, "They not hide good enough.", "answer"]
+		]
+	],
+	["scoutnotfound1",
+		[
+			[0, "Bah, waste of time.", "answer"]
+		]
+	],
+	["scoutnotfound2",
+		[
+			[0, "Bad luck, maybe next one better.", "answer"]
+		]
+	],
+	["scoutnotfound3",
+		[
+			[0, "Nothing here. Only junk.", "answer"]
+		]
+	],
 	["idea",
 		[
 			[0, "Cover me, I've got an idea.", "answer"]
@@ -1237,6 +1282,16 @@ foxclub_var_conversations = createHashMapFromArray [
 				ranger sideChat "Ranger, Rankin. We don't see any smoke. Is this you? I think we have visual.";
 				}
 			]
+		]
+	],
+	["LumphatSearched",
+		[
+			[0, "Time to pack it in, this place is tapped. Move out!", "answer"]
+		]
+	],
+	["scoutLumphatSearched",
+		[
+			[0, "This place empty, like old rice bowl.", "answer"]
 		]
 	]
 ];
