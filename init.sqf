@@ -485,7 +485,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["found1",
 		[
-			[0, "Jackpot. Looks like we just got our golden ticket.", "answer"]
+			[0, "Jackpot. Looks like we just got a golden ticket.", "answer"]
 		]
 	],
 	["found2",
