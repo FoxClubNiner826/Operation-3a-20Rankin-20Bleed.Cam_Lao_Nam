@@ -198,18 +198,38 @@ addMissionEventHandler ["EntityKilled", {
         };
     };
 };
+/*
+patrol4 addEventHandler [
+    "EnemyDetected",
+    {
+        params ["_group", "_newTarget"];
 
-// 3 groups players must sneak past
-_patrolGroup = [patrol1, patrol2, patrol3];
+        if (_newTarget in (units playergroup)) then {
+            systemChat format [
+                "Patrol4 has detected: %1",
+                name _newTarget
+            ];
+        };
+    }
+];
+*/
+/////////////////////////////////////////////////////
+// PATROLS THAT SHOOT FLARES WHEN PLAYER SPOTTED   //
+/////////////////////////////////////////////////////
+
+// 4 groups players must sneak past
+_patrolGroup = [patrol1, patrol2, patrol3, patrol4];
 
 {
-	_x addEventHandler ["KnowsAboutChanged", {
-		params ["_group", "_targetUnit", "_newKnowsAbout"];
+	_x addEventHandler ["EnemyDetected", {
+		params ["_group", "_newTarget"];
 
-		        // Check if the AI patrols know about a player
-		if ((_targetUnit in (units playergroup)) && {
-			_newKnowsAbout > 1.5
-		}) then {
+		// Check if the AI patrols know about a player
+		if (_newTarget in (units playergroup)) then {
+            
+            // print who was detect by the patrol
+            [format ["An enemy patrol has detected: %1", name _newTarget]] remoteExec ["systemChat", 0];
+
 			// Removes EH from the specifc group
 			_group removeEventHandler [_thisEvent, _thisEventHandler];
 
@@ -230,15 +250,32 @@ _patrolGroup = [patrol1, patrol2, patrol3];
                     [_flare, ["flarepop", 400]] remoteExec ["say3D"];
                     sleep 1;
                     [_flare, ["flarewhistle", 400]] remoteExec ["say3D"];
-                    sleep 5;
+                    sleep 3;
 
-                    if (!(missionNamespace getVariable ["aopassedVar", false])) then {
+                    // if its the first time players are spotted by a patrol outside of lumphat and no other players have reached lumphat and the general hasnt fled then play this otherwise do nothing
+                    if (!(missionNamespace getVariable ["PlayersSpotted", false]) && 
+                        !(missionNamespace getVariable ["aopassedVar", false]) && 
+                        !(missionNamespace getVariable ["hvtFled", false])) then {
                         [selectRandom ["playersspotted1", "playersspotted2", "playersspotted3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
                     };
                     
-                    missionNamespace setVariable ["PlayersSpotted", true, true];
-                    //missionNamespace setVariable ["fox_var_radioLoop", true, true]; //turns on speakers
+                    // if players got to lumphat in stealth then get spotted by a patrol and the general hasn't fled then play this
+                    if (missionNamespace getVariable ["aopassedVar", false] && 
+                       !(missionNamespace getVariable ["hvtFled", false]) && 
+                       (_group == patrol4)) then {
+                        ["playersspottedLumphat", [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
+                    };
+                    
+                    // sends troop transport to road if group 1-4 spotted player and turns on speakers
+                    missionNamespace setVariable ["PlayersSpotted", true, true]; //sends troop transport to road and general flees
+                    sleep 15; //wait to turn on speaker
+                    missionNamespace setVariable ["fox_var_radioLoop", true, true]; //turns on speakers
                     //missionNamespace setVariable ["fox_var_radioLoop", false, true]; //turns off speakers
+                    
+                    //sends troop transport to lumphat if group 4 spotted player
+                    if (_group == patrol4) then {
+                        missionNamespace setVariable ["reinforcements", true, true];
+                    };
 				};
 			};
 		};
@@ -281,33 +318,5 @@ while {true} do {
     };
 };
 
-/* Array of possible messages
-private _messages = [
-	"Our cover's blown. move to the target AO, now!",
-	"Shit! Haul ass to the target AO!",
-	"Keep moving! Don't stop till we get to the target AO!"
-];
 
-// select a random message
-private _randomMessage = selectRandom _messages;
-
-// select a random unit from playable or switchable units
-//private _unit = selectRandom (playableUnits + switchableUnits);
-
-// Broadcast the message via remoteExec
-[leader player, _randomMessage] remoteExec ["sideChat", 0];
-
-"answer" remoteExec ["playSound", 0];
-
-[selectRandom ["speakers1", "speakers2", "speakers3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 100}];
-
-[]spawn {
-while {speakersloop} do { 
-
-[selectRandom ["speakers1", "speakers2", "speakers3"], [HanoiHannah]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 100}];
-
-sleep 5;
-
-    };
-};
 

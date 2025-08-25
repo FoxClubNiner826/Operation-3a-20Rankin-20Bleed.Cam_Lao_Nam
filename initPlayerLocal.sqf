@@ -906,7 +906,7 @@ player addAction [
 // HOLD ACTION FOR SEARCHABLE ITEMS IN LUMPHAT  //
 //////////////////////////////////////////////////
 
-// Define objects with their modifiers
+// List of objects, percent modifier, and holdAction title
 private _objectsWithModifiers = [
     [obj11, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],  // 5% per attempt (bodies)
     [obj12, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
@@ -925,13 +925,14 @@ private _objectsWithModifiers = [
 ];
 
 {
+    // Used to swap out different objects so I only have to have one holdAction code block
     private _object = _x select 0;
     private _modifier = _x select 1;
     private _title = _x select 2;
 
     [
-	_object,
-	_title,
+	_object, //object
+	_title, //title
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //idle icon 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
 	"_this distance _target < 3", //condition
@@ -1017,12 +1018,12 @@ private _objectsWithModifiers = [
         private _attemptCount = missionNamespace getVariable ["holdActionAttemptCount", 0];
         _attemptCount = _attemptCount + 1;
         missionNamespace setVariable ["holdActionAttemptCount", _attemptCount, true];
-        [format ["Attempt Count: %1", _attemptCount]] remoteExec ["systemChat"];
+        //[format ["Attempt Count: %1", _attemptCount]] remoteExec ["systemChat"]; //for debug
 
         // Calculate chance based on multiplier. More attempts increase the chance of success.
         private _chance = _attemptCount * _modifier * 100; // Adjust the chance based on multiplier
         private _randomRoll = random 100;
-        [format ["Chance: %1%%", _chance]] remoteExec ["systemChat"];
+        //[format ["Chance: %1%%", _chance]] remoteExec ["systemChat"]; //for debug
 
         // Check if intel was found. If yes, then run the code below.
         if (_randomRoll < _chance) then {
@@ -1069,12 +1070,10 @@ private _objectsWithModifiers = [
                 { [_x, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _x]; } forEach _objects;
             };
 
-            // Sends reinforcements to Lumphat if players were spotted. Players get one guarenteed side task before backup comes.
+            // Sends reinforcements to Lumphat if players were spotted by OPFOR in set area AND at least one side task was found.
             if (missionNamespace getVariable ["playersSpottedLumphat", false] && !(missionNamespace getVariable ["reinforcements", false])) then {
                 missionNamespace setVariable ["reinforcements", true, true];
             };
-
-            // message if nothing found missionNamespace getVariable ["reinforcements", false];
             // if the roll doesn't suceed then run the code below.
         } else {
             if (_caller == _scout) then {

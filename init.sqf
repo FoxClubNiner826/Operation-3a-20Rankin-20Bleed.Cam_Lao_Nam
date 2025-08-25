@@ -400,6 +400,20 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
+	["playersspottedLumphat",
+		[
+			[0, "", "answer", 0, {
+				if (alive officer) then {
+					if (player != (_this#0)) then { playsound "talkradio"; }; 
+					leader player sideChat "Fuck! Take out the target now!";
+					} else {
+					if (player != (_this#0)) then { playsound "talkradio"; }; 
+					leader player sideChat "Fuck! Put these bastards in the ground, quick!";
+					};
+				}
+			]
+		]
+	],
 	["generalfled",
 		[
 			[0, "", "answer", 5, {

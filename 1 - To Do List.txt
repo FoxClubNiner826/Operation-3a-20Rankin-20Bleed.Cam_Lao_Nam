@@ -1,20 +1,20 @@
 TO DO UP NEXT:
-- Load advanced dev tools mod and use it to global exec code to see why scout isn't saying that lumphat was searched
+- The deactivate mines task didnt create after the boat went by. The wait for patrol taask did finish just fine (the task prior)
+
+- Time of day didnt change after radioing hq
+- The naval patrol boat got stuck on the shore but did eventually find its way out. I noticed in zeus that maybe it only had one waypoint to the west. Maybe putting more will help?
+
+- General got in the jeep and tried to flee but I didnt see a patrol spot us. This may be arma behavior because henrys guys shot across the river towards the
+back up transports and one of them drove over without loading dudes in the back
 
 - update subtitles in entire mission to include if scout says them with if statements
-- work on polished spotted consequences. add squad in lumphat that can be killed like the first patrols.
-
-- First patrol sees player. send variable to start loud speakers and send troop transport to patrol road.
-Patrol in lymphatic sees player. Turns on variable that will be broadcast on first side task activation that will send troop transport to town.
-Trigger that will starts trackers (not loud speakers) based on blufor Detected.
-
 
 TO DO AT SOME POINT:
 - fill out the prison with prisoners, equipment etc and put hide on it until extract
 - add achievements. (perfect mission, 0/10 mission, never spotted, etc)
 - have pilots exit heli at missons end
 - have npcs welcome you back at mission end
-- entire SFX pass for whole project for addactions and hold actions and whatever else you can think of
+- entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can learn the program and workflow)
 - change hold action icons for equip scuba gear
 - change POW type so it doesnt say co-pilot
 - if people think there is too much talking then have an option to reduce it for SP/MP
@@ -34,22 +34,14 @@ TO DO AT SOME POINT:
 - update briefing pics
 - have exfil pilots go somewhere after exit
 - Fog never clearing up because forgot to script it that way.
-- rework search lumphat. make multiple item searchable and give a percent chance to collect loot from them.
 - add photos to victory screens
 - beginning jeep needs to move foruther away from players
 
 BUGS:
 - couldnt access arsenal at cache one time.
-- helicopter kicks me out then hovers up. x 4 (has to do with ai in squad?)
 - Some sub tasks are out of there main categories. Resolves on mission restart.
-- my computer freezes when entering helo for about 5 seconds.
 - couldn't get in boat until other players exited
-- missile wont down pilot
 - players dont always end up in boat with skip to ingress
-- if hvt fail have hq radio players saying they monitor radio traffic and the chicken has 	flown the coup. "see if you can find anything in lumphat at 
-your discretion"
-- search lumphat optional task doesn't complete
-- disable jukebox by looking at the module code in function viewer
 
 JIP ISSUES:
 - if a player leaves and he had an ai in his group then no one else can control the AI. The AI becomes invincible. maybe the enable damage reverts? I think
@@ -69,14 +61,23 @@ TO EXPORT FOR PLAY (not testing):
 - Change time to night (00:10)
 - adjust respawn settings (on custom position and choose the spawn 60secs1)
 - enable intro in init.sqf
-- make sure player groups call sign is seal team one and all at the start area
+- make sure player groups call sign is Rankin and all at the start area
 - enable damage for command and scout unit
-- move pics and sound files back
+- move pics files back
 
 UNTESTED: 
 - pow path wasn't enabled after joining. added a sleep before command to see if it works
 
 FINISHED:
+- adjusted the order and timings of tasks created at the infil spot
+- adjusted task wording for clarity (remain undeteced and kill the HVT)
+- fixed issue where "remain undetected" task wouldn't pop up at the correct time. The variable was tied to a 60sec trigger. Had to create a separate trigger so the general and troop transport could
+leave at separate times. this also helps with vehicle colisions since they travel the same road.
+- polished spotted consequences. How it works currently: If patrol 1-4 sees player then turn on loud speakers and send troop 
+transport to patrol road: (PlayersSpotted var). If OPFOR in set area sees player, same as previous sentence AND sends 
+troop transport to lumphat AFTER collecting first side mission. Trackers get turned on if any opfor spots players in rectangular area. Once you search the
+general I think something happens too but need to look into it.
+- Implemented new search for intel task in lumphat. Now there are several items with randomized locations with randomize chance of finding a task on search.
 - converted to new heli extract
 -JIP intro type text
 -JIP skip to ingress removed near mission start
