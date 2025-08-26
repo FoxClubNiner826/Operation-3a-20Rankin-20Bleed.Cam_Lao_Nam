@@ -1,11 +1,9 @@
 TO DO UP NEXT:
-- The deactivate mines task didnt create after the boat went by. The wait for patrol taask did finish just fine (the task prior)
 
-- Time of day didnt change after radioing hq
-- The naval patrol boat got stuck on the shore but did eventually find its way out. I noticed in zeus that maybe it only had one waypoint to the west. Maybe putting more will help?
+- Time of day didnt change after radioing hq on the dedicated server but works fine in testing
 
 - General got in the jeep and tried to flee but I didnt see a patrol spot us. This may be arma behavior because henrys guys shot across the river towards the
-back up transports and one of them drove over without loading dudes in the back
+back up transports and one of them drove over without loading dudes in the back. maybe put a 4th patrol to make it so it doesnt get fucked up by bad player choices
 
 - update subtitles in entire mission to include if scout says them with if statements
 
@@ -69,6 +67,7 @@ UNTESTED:
 - pow path wasn't enabled after joining. added a sleep before command to see if it works
 
 FINISHED:
+- reworked the patrol boat tasks in the beginning of the mission to flow better and make more sense.
 - adjusted the order and timings of tasks created at the infil spot
 - adjusted task wording for clarity (remain undeteced and kill the HVT)
 - fixed issue where "remain undetected" task wouldn't pop up at the correct time. The variable was tied to a 60sec trigger. Had to create a separate trigger so the general and troop transport could

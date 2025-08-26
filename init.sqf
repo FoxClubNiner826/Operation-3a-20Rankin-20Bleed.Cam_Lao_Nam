@@ -268,6 +268,8 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1, "", "talkradio", 0, { 
 				playsound "talkradio"; 
 				HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
+				sleep 3;
+				missionNamespace setVariable ["radiohqpass", true, true];
 				sleep 6;
 				execVM "scripts\RadioHQ.sqf";
 				}
@@ -291,7 +293,11 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["patrolbegins",
 		[
-			[0, "The patrol should be coming through soon. Keep your eyes open and let it pass.", "answer"]
+			[0, "The patrol should be coming through soon. Keep your eyes open and let it pass.", "answer", 0, {
+				//sleep 3;
+				missionNamespace setVariable ["proceedPass", true, true];
+				}
+			]
 		]
 	],
 	["patrolspotted",
@@ -306,7 +312,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["patrolleaves",
 		[
-			[0, "They’ve left the area. Get your SCUBA gear on—we’ve got mines to deal with.", "answer"]
+			[0, "Area is clear. Get your SCUBA gear on, we’ve got mines to deal with.", "answer"]
 		]
 	],
 	["scubatime1",
