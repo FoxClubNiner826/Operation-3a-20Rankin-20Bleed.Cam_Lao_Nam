@@ -116,7 +116,7 @@ The trail operates both day and night, with no end in sight.<br/><br/>
 Above: Ho Chi Minh Trail flows through Laos and Cambodia into South Vietnam.
 "]];
 
-player createDiarySubject ["Historical","History"];
+player createDiarySubject ["Historical","Field Manual"];
 
 player createDiaryRecord ["Historical", ["Phu Quoc Prison", 
 "<br/>Phu Quoc POW camp, known as Phu Quoc Prison or Coconut Tree Prison, was the largest POW camp in South Vietnam during the Vietnam War. 
@@ -304,12 +304,14 @@ Above: SEAL Team One (1967).<br/><br/>
 " ]];
 
 player createDiaryRecord ["Historical", ["Introduction", 
-"<br/>The History tab highlights the historically accurate features incorporated into this historical fiction mission.<br/><br/>
+"<br/>This history codex showcases the authentic elements incorporated into this historical-fiction Vietnam War era mission.<br/><br/>
 
-As the mission author, I have made every effort to craft this mission using real-life equipment, weapons, uniforms, and other relevant elements, all 
-implemented in a manner that is period-correct.<br/><br/>
+As the mission author, I have made every effort to use period-correct equipment, weapons, uniforms, and other relevant elements.<br/><br/>
 
 If I have made an error regarding the previous statement, please contact me on Steam. Happy learing and happy gaming! I hope you enjoy my mission.<br/><br/>
+
+Best Regards,
+FoxClubNiner
 
 <img image='pics\introhistory.jpg'/><br/><br/>
 

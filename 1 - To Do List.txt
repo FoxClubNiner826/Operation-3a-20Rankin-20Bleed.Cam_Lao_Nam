@@ -1,61 +1,64 @@
 TO DO UP NEXT:
 
-- Time of day didnt change after radioing hq on the dedicated server but works fine in testing
-
+tonight playtest the mission and focus on this:
 - General got in the jeep and tried to flee but I didnt see a patrol spot us. This may be arma behavior because henrys guys shot across the river towards the
-back up transports and one of them drove over without loading dudes in the back. maybe put a 4th patrol to make it so it doesnt get fucked up by bad player choices
+    back up transports and one of them drove over without loading dudes in the back. maybe put a 4th patrol to make it so it doesnt get fucked up by bad player choices
+- Fog never clearing up because forgot to script it that way. (added line to set to 0 at infil after 5 mins but need to test.)
+- pow path wasn't enabled after joining. added a sleep before command to see if it works
+- play as scout and write down every time he should say a line vs other squadmates
 
-- update subtitles in entire mission to include if scout says them with if statements
 
-TO DO AT SOME POINT:
-- fill out the prison with prisoners, equipment etc and put hide on it until extract
-- add achievements. (perfect mission, 0/10 mission, never spotted, etc)
-- have pilots exit heli at missons end
-- have npcs welcome you back at mission end
-- entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can learn the program and workflow)
-- change hold action icons for equip scuba gear
-- change POW type so it doesnt say co-pilot
-- if people think there is too much talking then have an option to reduce it for SP/MP
-- try addvehicle command to no kick players out of vehicle
-- mission fail if friendly fire
-- adjust extract heli height cause its glitching
-- what to do with pilot or hostage on base return. currently they stay in chopper
-- see if smoke can be detected in area marker instead of player
-- add game master slot
-- condition for stab place bomb for players to be outside
-- have npc walk to end of pier and salute as boat drives away.
-- convert lumphat files to hold actions
-- disable the radio after testing because it does help during that.
-- BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
-- how to set server distance view
-- record voice actors
-- update briefing pics
-- have exfil pilots go somewhere after exit
-- Fog never clearing up because forgot to script it that way.
-- add photos to victory screens
-- beginning jeep needs to move foruther away from players
+TO DO MASTER LIST:
+    HIGH PRIORITY:
+        - update subtitles in entire mission to include if scout says them with if statements
+        - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
+        learn the program and workflow)
+        - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
+    MEDIUM PRIORITY:
+        - picture pass for continuity since there have been changes. includes making pics for death/victory screens
+        - convert lumphat files to hold actions
+        - fill out the prison with prisoners, equipment etc and put hide on it until extract
+        - add achievements. (perfect mission, 0/10 mission, never spotted, etc)
+        - add game master slot
+        - condition for stab place bomb for players to be outside
+        - beginning jeep needs to move foruther away from players
+    LOW PRIORITY:
+        - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
+        - disable the squad radio cahtter. Keep for now testing because it does help during that. Chance that this breaks something though.
+        - adjust extract heli height cause its glitching
+        - have pilots, pow, downed pilot exit heli at missons end
+        - have npcs welcome you back at mission end
+        - have npc walk to end of pier and salute as boat drives away.
+        - if people think there is too much talking then have an option to reduce it for SP/MP
+        - mission fail if friendly fire
+        - see if smoke can be detected in area marker instead of player
 
-BUGS:
+
+TOUGH BUGS:
+- try addvehicle command to no kick players out of vehicle (not verified since waypoints rework of helicopter extraction)
+- scout wont get in the stab
 - couldnt access arsenal at cache one time.
 - Some sub tasks are out of there main categories. Resolves on mission restart.
 - couldn't get in boat until other players exited
 - players dont always end up in boat with skip to ingress
 
-JIP ISSUES:
-- if a player leaves and he had an ai in his group then no one else can control the AI. The AI becomes invincible. maybe the enable damage reverts? I think
-so because this doesnt happen with the POW
-- player may not have access to their loadout from the stab if they have scuba equipped and leave and rejoin.
-- some combination of JIP players coming and going cause some tasks to cycle through when a player joins. Does not seem to affect the sync of the tasks 
-though.
-- If a player leaves and his AI is killed its loadout reverts. Face still working tho.
+    JIP ISSUES:
+        - if a player leaves and he had an ai in his group then no one else can control the AI. The AI becomes invincible. maybe the enable damage reverts? I think
+        so because this doesnt happen with the POW
+        - player may not have access to their loadout from the stab if they have scuba equipped and leave and rejoin.
+        - some combination of JIP players coming and going cause some tasks to cycle through when a player joins. Does not seem to affect the sync of the tasks 
+        though.
+        - If a player leaves and his AI is killed its loadout reverts. Face still working tho.
 
-BEFORE PUBLISH:
+
+BEFORE YOU PUBLISH:
 read description.ext on wiki to polish load screens, etc
 - add mission steam main pic (can be any size but must be square. set 1440x1440 in gimp. use square overlay in splendid camera.)
 - two more screen shots. approching village and sinlge file jumngle walk space 10 meters apart.
 - add autosaves for SP
 
-TO EXPORT FOR PLAY (not testing):
+
+TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 - Change time to night (00:10)
 - adjust respawn settings (on custom position and choose the spawn 60secs1)
 - enable intro in init.sqf
@@ -63,19 +66,21 @@ TO EXPORT FOR PLAY (not testing):
 - enable damage for command and scout unit
 - move pics files back
 
-UNTESTED: 
-- pow path wasn't enabled after joining. added a sleep before command to see if it works
 
 FINISHED:
+- changed hold action icons for equip scuba gear to better fit visual continuity
+- changed POW type so it says driver to fit the narritive better
+- adjusted codex for clarity.
+- fixed time of day and weather not changing on dedicated server. Had to remoteExec them to get them to work.
 - reworked the patrol boat tasks in the beginning of the mission to flow better and make more sense.
 - adjusted the order and timings of tasks created at the infil spot
 - adjusted task wording for clarity (remain undeteced and kill the HVT)
 - fixed issue where "remain undetected" task wouldn't pop up at the correct time. The variable was tied to a 60sec trigger. Had to create a separate trigger so the general and troop transport could
 leave at separate times. this also helps with vehicle colisions since they travel the same road.
 - polished spotted consequences. How it works currently: If patrol 1-4 sees player then turn on loud speakers and send troop 
-transport to patrol road: (PlayersSpotted var). If OPFOR in set area sees player, same as previous sentence AND sends 
-troop transport to lumphat AFTER collecting first side mission. Trackers get turned on if any opfor spots players in rectangular area. Once you search the
-general I think something happens too but need to look into it.
+transport to patrol road: (PlayersSpotted var). If OPFOR in set area sees player turn on tracker and sends troop transport to lumphat after players fined
+one side mission. Once you search the general no reinforcements come. General flees after 60sec (var playersspotted) if any patrol sees players.
+If the patrols see the boat because it was destroyed then general flees after 60 secs.
 - Implemented new search for intel task in lumphat. Now there are several items with randomized locations with randomize chance of finding a task on search.
 - converted to new heli extract
 -JIP intro type text

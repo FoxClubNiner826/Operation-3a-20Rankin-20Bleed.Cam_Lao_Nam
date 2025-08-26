@@ -248,8 +248,8 @@ scubaEquipped = false;
 [
 	ptboat,
 	"<t color='#FFFF00'>Equip SCUBA Gear</t>",
-	"a3\ui_f\data\igui\cfg\actions\take_ca.paa", //idle icon 
-	"a3\ui_f\data\igui\cfg\actions\take_ca.paa", //progress icon
+	"a3\missions_f_oldman\data\img\holdactions\holdAction_box_ca.paa", //idle icon 
+	"a3\missions_f_oldman\data\img\holdactions\holdAction_box_ca.paa", //progress icon
 	"_this in (crew _target) && !scubaEquipped && ActionSCUBA", 
 	"true", //condition progress
 	{}, //code on start
@@ -273,8 +273,8 @@ scubaEquipped = false;
 [
 	ptboat,
 	"<t color='#FFFF00'>Equip Loadout Gear</t>",
-	"a3\ui_f\data\igui\cfg\actions\obsolete\ui_action_takeweapon_ca.paa", //idle icon 
-	"a3\ui_f\data\igui\cfg\actions\obsolete\ui_action_takeweapon_ca.paa", //progress icon
+	"a3\missions_f_oldman\data\img\holdactions\holdAction_box_ca.paa", //idle icon 
+	"a3\missions_f_oldman\data\img\holdactions\holdAction_box_ca.paa", //progress icon
 	"_this in (crew _target) && scubaEquipped", //condition //triggerActivated wait_pass || triggeractivated wait_fail
 	"true", //condition progress
 	{}, //code on start

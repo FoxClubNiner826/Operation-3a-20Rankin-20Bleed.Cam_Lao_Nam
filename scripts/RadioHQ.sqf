@@ -19,12 +19,25 @@ sleep 5;
 
 missionNamespace setVariable ["NavalPatrolvariableActivated", true, true];
 
+/*
 skipTime -24;
 86400 setOvercast .5;
 skipTime 24;
 0 setRain .40;
 0 setFog [1, .20, 5];
 setDate [1967, 3, 31, 5, 57];
+*/
+
+[
+    {
+        skipTime -24;
+        86400 setOvercast 0.5;
+        skipTime 24;
+        0 setRain 0.40;
+        0 setFog [1, 0.20, 5];
+        setDate [1967, 3, 31, 5, 57];
+    }
+] remoteExec ["call", 0, true];
 
 3 fadesound 1;
 sleep 2;
@@ -43,7 +56,8 @@ sleep 8;
 
 [ "patrolbegins", [ leader player ] ] call FoxClub_fnc_Conversation;
 
-600 setOvercast .25;
+//600 setOvercast .25;
+[600, 0.25] remoteExec ["setOvercast", 0, true];
 
 sleep 7;
 
