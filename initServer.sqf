@@ -231,7 +231,12 @@ _patrolGroup = [patrol1, patrol2, patrol3, patrol4];
             [format ["An enemy patrol has detected: %1", name _newTarget]] remoteExec ["systemChat", 0];
 
 			// Removes EH from the specifc group
-			_group removeEventHandler [_thisEvent, _thisEventHandler];
+			//_group removeEventHandler [_thisEvent, _thisEventHandler];
+
+            //since all groups randomly popped the message at once we will now remove all EH once one group sees the players.
+            {
+                _x removeEventHandler [_thisEvent, _thisEventHandler];
+            } forEach [patrol1, patrol2, patrol3, patrol4];
 
 			// Give players a few seconds to kill patrol or else
 			[_group]spawn {
@@ -272,10 +277,10 @@ _patrolGroup = [patrol1, patrol2, patrol3, patrol4];
                     missionNamespace setVariable ["fox_var_radioLoop", true, true]; //turns on speakers
                     //missionNamespace setVariable ["fox_var_radioLoop", false, true]; //turns off speakers
                     
-                    //sends troop transport to lumphat if group 4 spotted player
-                    if (_group == patrol4) then {
+                    //sends troop transport to lumphat if group 4 spotted player. makes real word sense but i want players to have access to side missions
+                    /*if (_group == patrol4) then {
                         missionNamespace setVariable ["reinforcements", true, true];
-                    };
+                    }; */
 				};
 			};
 		};

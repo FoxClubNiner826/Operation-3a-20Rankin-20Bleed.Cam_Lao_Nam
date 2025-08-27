@@ -1,11 +1,48 @@
 TO DO UP NEXT:
 
+-why is there an extract heli and heli hold action? should be one or th other lookat the object names
+
+-if players skirt the water and avoid the patrols then the situation can break the mission. the troop transports drive toward the players. crash
+on the bridge when they try to return to load up and the general cant flee right.
+    option 1: make it so the players cant get to that spot without triggering the fail task
+    option 2: move the trucks back further where they wont get shot.
+
 tonight playtest the mission and focus on this:
 - General got in the jeep and tried to flee but I didnt see a patrol spot us. This may be arma behavior because henrys guys shot across the river towards the
     back up transports and one of them drove over without loading dudes in the back. maybe put a 4th patrol to make it so it doesnt get fucked up by bad player choices
 - Fog never clearing up because forgot to script it that way. (added line to set to 0 at infil after 5 mins but need to test.)
 - pow path wasn't enabled after joining. added a sleep before command to see if it works
 - play as scout and write down every time he should say a line vs other squadmates
+
+VERIFY NEXT PLAYTHROUGH:
+mercinko should have no questions left. but the way its scripted looks like they still will be there.
+
+BUGS From Tonights Playthrough:
+- pilot task didn't proc and sam site was targeting me. tohught i fixed this? the plane didnt destroy thats why. maybe lower its health so its cant take a hit
+task created much later after the plane destroyed
+-destroy cahce complete poped up waaaay to late. investigate how it decides to complete and see if there is more sure fire way
+- pow saying sog lines and pilot. pilot was defintley out of the area. and the pow is when underground but i heard him near the lz say stuff too
+- empty the pows inventroy 
+- make sure variable is still the same for pow object name
+- new line: extraction. lets get the hell out of here as youre holding the action
+- lumphat searched no voice line proc for the scout and i know he has one
+- no line for destroyed boat
+- make area longer for destorying cache x2
+- change sabatague icon to destroy
+- delete rankin easter egg
+
+Missing Subtitles for Scout: When played as Scout in MP with AI off
+- no subs for captain marchikno
+- before and after radio HQ
+- all naval patrol interactions (3) but the one about suit up for scuba didnt proc at all
+- killed hvt convo
+- spotted by patrol 4 convos (2)
+- all search intel stuff
+- blow c4 cache new lines: fire in the hole. change to hold action?
+- all pow lines
+- comms sabatagued
+- all pilot interactions
+- extraction and smoke
 
 
 TO DO MASTER LIST:
@@ -15,6 +52,8 @@ TO DO MASTER LIST:
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
     MEDIUM PRIORITY:
+        - - new line: i see a big ass cache. take what you need then lets blow it.
+        - search lumphat should pop-up on infil not mission start
         - picture pass for continuity since there have been changes. includes making pics for death/victory screens
         - convert lumphat files to hold actions
         - fill out the prison with prisoners, equipment etc and put hide on it until extract
@@ -68,6 +107,8 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- fixed bug, all patrols spotted player while he was far away. Maybe AI shares info with each other? Removed event handler fromm all patrols after first use.
+- fixed fog not clearing after 5 minutes at the infil
 - changed hold action icons for equip scuba gear to better fit visual continuity
 - changed POW type so it says driver to fit the narritive better
 - adjusted codex for clarity.
