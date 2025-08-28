@@ -1082,3 +1082,53 @@ if (leader player == _scout) then {
                 } else { 
                     ["LumphatSearched", [leader player]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance leader player <= 100}]; 
                 };
+//old version
+private _tasks = ["cacheTask", "gunboatTask", "samsiteTask"] select {!(missionNamespace getVariable [_x, false])};
+            if (_tasks isNotEqualTo []) then {
+                private _selectedTask = selectRandom _tasks;
+                if (_selectedTask == "gunboatTask") then {
+                    if (gunboat == objNull) then {
+				        missionNamespace setVariable [gunboatTaskComplete, true, true];
+				    } else {
+                        missionNamespace setVariable [gunboatTask, true, true];
+                    };
+                };
+                if (_selectedTask == "samsiteTask") then {
+                    if (samlauncher == objNull && samradar == objNull) then {
+				        missionNamespace setVariable [samsiteTaskComplete, true, true];
+				    } else {
+                        missionNamespace setVariable [samsiteTask, true, true];
+                    };
+                };
+                if (_selectedTask == "cacheTask") then {
+                    if (foodcache == objNull && shelter1 == objNull) then {
+				        missionNamespace setVariable [cacheTaskComplete, true, true];
+				    } else {
+                        missionNamespace setVariable [cacheTask, true, true];
+                    };
+                };
+                _tasks = _tasks - [_selectedTask];
+            };
+
+
+// Makes sure no task is selected twice
+            private _tasks = ["cacheTask", "gunboatTask", "samsiteTask"] select {!(missionNamespace getVariable [_x, false])};
+            if (_tasks isNotEqualTo []) then {
+                private _selectedTask = selectRandom _tasks;
+                missionNamespace setVariable [_selectedTask, true, true];
+                _tasks = _tasks - [_selectedTask];
+                //if players complete a task before they receive the task
+				if (gunboat == objNull) then {
+				    missionNamespace setVariable [gunboatTaskComplete, true, true];
+				};
+				if (samlauncher == objNull && samradar == objNull) then {
+				    missionNamespace setVariable [samsiteTaskComplete, true, true];
+				};
+				if (foodcache == objNull && shelter1 == objNull) then {
+				    missionNamespace setVariable [cacheTaskComplete, true, true];
+				};
+            };
+
+(missionNamespace getVariable ["cacheTask", false] || missionNamespace getVariable ["cacheTaskAlreadyDone", false]) && 
+(missionNamespace getVariable ["gunboatTask", false] || missionNamespace getVariable ["gunboatTaskAlreadyDone", false]) && 
+(missionNamespace getVariable ["samsiteTask", false] || missionNamespace getVariable ["samsiteTaskAlreadyDone", false]);

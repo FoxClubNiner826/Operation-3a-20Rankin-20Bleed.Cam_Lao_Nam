@@ -1,53 +1,51 @@
 TO DO UP NEXT:
 
--why is there an extract heli and heli hold action? should be one or th other lookat the object names
+what i did yesterday:
+completely reworked the way that side tasks are picked and completed to allow for completion before pickup. i added functions for the lines so the hold action is more readable. next it to create another function that plays line if a task has already been completed.
+//gonna have to write code if players complete a task before they receive the task. starting with gunboat task to easy
 
+Find a solution to this:
 -if players skirt the water and avoid the patrols then the situation can break the mission. the troop transports drive toward the players. crash
 on the bridge when they try to return to load up and the general cant flee right.
     option 1: make it so the players cant get to that spot without triggering the fail task
     option 2: move the trucks back further where they wont get shot.
+    option 3: disableAi path
 
-tonight playtest the mission and focus on this:
-- General got in the jeep and tried to flee but I didnt see a patrol spot us. This may be arma behavior because henrys guys shot across the river towards the
-    back up transports and one of them drove over without loading dudes in the back. maybe put a 4th patrol to make it so it doesnt get fucked up by bad player choices
-- Fog never clearing up because forgot to script it that way. (added line to set to 0 at infil after 5 mins but need to test.)
-- pow path wasn't enabled after joining. added a sleep before command to see if it works
-- play as scout and write down every time he should say a line vs other squadmates
 
-VERIFY NEXT PLAYTHROUGH:
-mercinko should have no questions left. but the way its scripted looks like they still will be there.
-
-BUGS From Tonights Playthrough:
+BUGS LATEST PLAYTHROUGH:
 - pilot task didn't proc and sam site was targeting me. tohught i fixed this? the plane didnt destroy thats why. maybe lower its health so its cant take a hit
 task created much later after the plane destroyed
--destroy cahce complete poped up waaaay to late. investigate how it decides to complete and see if there is more sure fire way
+
 - pow saying sog lines and pilot. pilot was defintley out of the area. and the pow is when underground but i heard him near the lz say stuff too
 - empty the pows inventroy 
 - make sure variable is still the same for pow object name
 - new line: extraction. lets get the hell out of here as youre holding the action
 - lumphat searched no voice line proc for the scout and i know he has one
 - no line for destroyed boat
-- make area longer for destorying cache x2
+
 - change sabatague icon to destroy
 - delete rankin easter egg
 
-Missing Subtitles for Scout: When played as Scout in MP with AI off
-- no subs for captain marchikno
-- before and after radio HQ
-- all naval patrol interactions (3) but the one about suit up for scuba didnt proc at all
-- killed hvt convo
-- spotted by patrol 4 convos (2)
-- all search intel stuff
-- blow c4 cache new lines: fire in the hole. change to hold action?
-- all pow lines
-- comms sabatagued
-- all pilot interactions
-- extraction and smoke
+
+VERIFY NEXT PLAYTHROUGH:
+- mercinko should have no questions left. but the way its scripted looks like they still will be there.
 
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
         - update subtitles in entire mission to include if scout says them with if statements
+            - no subs for captain marchikno
+            - before and after radio HQ
+            - all naval patrol interactions (3) but the one about suit up for scuba didnt proc at all
+            - killed hvt convo
+            - spotted by patrol 4 convos (2)
+            - all search intel stuff
+            - blow c4 cache new lines: fire in the hole. change to hold action?
+            - all pow lines
+            - comms sabatagued
+            - all pilot interactions
+            - extraction and smoke
+            - rescure pilot
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)

@@ -9,6 +9,9 @@ class CfgFunctions
         {
             file = "functions";
             class Conversation {}; // this will make the function FoxClub_fnc_conversation
+            class intelFound {};
+            class intelNotFound {};
+            class intelSearch {};
         };
     };
 };

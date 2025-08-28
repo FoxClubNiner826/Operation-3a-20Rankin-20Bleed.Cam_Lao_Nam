@@ -188,7 +188,7 @@ player addAction [
 ];
 
 //bomb for weapon cache. Although normally you dont want non player object addactions here in OPR, this is needed because if a player uses the hold action
-//it is removed from their action menu. If they die it will remember they used the hold action and wouldnt be able to use it again. Changing the remove
+//it is removed from their action menu. If they die it will remember they used the hold action and wouldnt be able to use it again. Changing the hold
 //action to repeat wont work cause there is an addaction nested in the hold action and they could repeatedly add the addaction to the obhect. Thus if we 
 //place the hold action in OPR then the player will get the option to use it again regardless of death. And because of the remove action command in init
 //duplicates of the hold action wont be a problem.
@@ -208,6 +208,7 @@ if (!isNil "weaponcache") then {
 			player addAction [
 			"<t color='#FF0000'>Detonate Weapons Cache</t>", 
 			{
+			missionNamespace setVariable ["weaponsCacheDestroyed", true, true];	
 			"M_Mo_82mm_AT_LG" createVehicle (getPos weaponcache);
 			sleep 1;
 			deletevehicle weaponcache;
@@ -216,7 +217,7 @@ if (!isNil "weaponcache") then {
 			deletevehicle shelter1;
 			params ["_target", "_caller", "_actionID", "_args"];
 			sleep 1;
-			if (!alive foodcache && !alive shelter1) then {
+			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && missionNamespace getvariable ["foodCacheDestroyed", false]) then {
 				["cachepass", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 				};
 			}, 
@@ -225,7 +226,7 @@ if (!isNil "weaponcache") then {
 			false, 
 			true,
 			"",
-			"_this distance weaponcache < 30"
+			"_this distance weaponcache < 60"
 			];
 
 	}, // code on finish
@@ -255,7 +256,8 @@ if (!isNil "foodcache") then {
 			
 			player addAction [
 			"<t color='#FF0000'>Detonate Food Cache</t>", 
-			{ 
+			{
+			missionNamespace setVariable ["foodCacheDestroyed", true, true];
 			"M_Mo_82mm_AT_LG" createVehicle (getPos foodcache);
 			sleep 1;
 			deletevehicle foodcache;
@@ -269,7 +271,7 @@ if (!isNil "foodcache") then {
 			deletevehicle food10;
 			params ["_target", "_caller", "_actionID", "_args"];
 			sleep 1;
-			if (!alive foodcache && !alive shelter1) then {
+			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && missionNamespace getvariable ["foodCacheDestroyed", false]) then {
 				["cachepass", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 				};
 			}, 
@@ -278,7 +280,7 @@ if (!isNil "foodcache") then {
 			false, 
 			true,
 			"",
-			"_this distance foodcache < 30"
+			"_this distance foodcache < 60"
 			];
 		
 	}, // code on finish
