@@ -884,26 +884,10 @@ Marcinko addAction [
 	4
 ];
 
-//easteregg
-player addAction [
-    "<t color='#FFFF00'>Are you Ms. Rankin?</t>", 
-    {
-	[easteregg, true] remoteExec ["setRandomLip"]; 
-    [easteregg, ["easteregg",100]] remoteExec ["say3D"];
-	sleep 49;
-	[easteregg, false] remoteExec ["setRandomLip"]; 
-    }, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "_this distance easteregg < 3 && alive easteregg",
-	5
-];
-
 //////////////////////////////////////////////////
+//                                              //
 // HOLD ACTION FOR SEARCHABLE ITEMS IN LUMPHAT  //
+//                                              //
 //////////////////////////////////////////////////
 
 // List of objects, percent modifier, and holdAction title
@@ -970,11 +954,12 @@ private _objectsWithModifiers = [
             if (_tasks isNotEqualTo []) then {
                 private _selectedTask = selectRandom _tasks;
                 _tasks = _tasks - [_selectedTask];
-                systemChat _selectedTask;
+                //systemChat _selectedTask; // for debugging
                 if (_selectedTask == "gunboatTaskPool") then {
                     if (missionNamespace getvariable ["gunboatDestroyed", false]) then {
 				        missionNamespace setVariable ["gunboatTaskAlreadyDone", true, true]; //creates and completes the task
                         missionNamespace setVariable ["gunboatTaskPool", true, true]; // removes task from pool so it isnt chosen twice
+                        _this call FoxClub_fnc_intelAlreadyDone; 
 				    } else {
                         missionNamespace setVariable ["gunboatTask", true, true]; // creates the task
                         missionNamespace setVariable ["gunboatTaskPool", true, true]; // removes task from pool so it isnt chosen twice
@@ -985,6 +970,7 @@ private _objectsWithModifiers = [
                     if (missionNamespace getvariable ["samsiteDestroyed", false]) then {
 				        missionNamespace setVariable ["samsiteTaskAlreadyDone", true, true];
                         missionNamespace setVariable ["samsiteTaskPool", true, true];
+                        _this call FoxClub_fnc_intelAlreadyDone;
 				    } else {
                         missionNamespace setVariable ["samsiteTask", true, true];
                         missionNamespace setVariable ["samsiteTaskPool", true, true];
@@ -995,6 +981,7 @@ private _objectsWithModifiers = [
                     if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && missionNamespace getvariable ["foodCacheDestroyed", false]) then {
 				        missionNamespace setVariable ["cacheTaskAlreadyDone", true, true];
                         missionNamespace setVariable ["cacheTaskPool", true, true];
+                        _this call FoxClub_fnc_intelAlreadyDone;
 				    } else {
                         missionNamespace setVariable ["cacheTask", true, true];
                         missionNamespace setVariable ["cacheTaskPool", true, true];

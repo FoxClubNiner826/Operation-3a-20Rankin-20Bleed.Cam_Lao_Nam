@@ -1313,6 +1313,36 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0, "This place empty, like old rice bowl.", "answer"]
 		]
+	],
+	["foundDone1",
+		[
+			[0, "One step ahead of you, Charlie.", "answer"]
+		]
+	],
+	["foundDone2",
+		[
+			[0, "Hell, we beat ’em to the punch.", "answer"]
+		]
+	],
+	["foundDone3",
+		[
+			[0, "They’re planning for a fight that’s already over.", "answer"]
+		]
+	],
+	["scoutfounddone1",
+		[
+			[0, "They make map. We walk it yesterday.", "answer"]
+		]
+	],
+	["scoutfounddone2",
+		[
+			[0, "They late. We done already.", "answer"]
+		]
+	],
+	["scoutfounddone3",
+		[
+			[0, "They write paper, we already kill.", "answer"]
+		]
 	]
 ];
 

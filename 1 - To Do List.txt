@@ -1,10 +1,4 @@
 TO DO UP NEXT:
-
-what i did yesterday:
-completely reworked the way that side tasks are picked and completed to allow for completion before pickup. i added functions for the lines so the hold action is more readable. next it to create another function that plays line if a task has already been completed.
-//gonna have to write code if players complete a task before they receive the task. starting with gunboat task to easy
-
-Find a solution to this:
 -if players skirt the water and avoid the patrols then the situation can break the mission. the troop transports drive toward the players. crash
 on the bridge when they try to return to load up and the general cant flee right.
     option 1: make it so the players cant get to that spot without triggering the fail task
@@ -12,19 +6,17 @@ on the bridge when they try to return to load up and the general cant flee right
     option 3: disableAi path
 
 
-BUGS LATEST PLAYTHROUGH:
-- pilot task didn't proc and sam site was targeting me. tohught i fixed this? the plane didnt destroy thats why. maybe lower its health so its cant take a hit
-task created much later after the plane destroyed
-
+BUGS FROM LATEST PLAYTHROUGH:
+- Figure out how to proceed with the downed pilot task
+    - option 1: make the sam invincible so that the pilot always gets downed.
+    - option 2: allow the pilot to be saved a figure a way to deletehim without it messing up anything.
+    - option 3: ???
 - pow saying sog lines and pilot. pilot was defintley out of the area. and the pow is when underground but i heard him near the lz say stuff too
-- empty the pows inventroy 
-- make sure variable is still the same for pow object name
-- new line: extraction. lets get the hell out of here as youre holding the action
-- lumphat searched no voice line proc for the scout and i know he has one
-- no line for destroyed boat
 
-- change sabatague icon to destroy
-- delete rankin easter egg
+
+NEW LINES TO ADD: 
+- extraction. lets get the hell out of here as youre holding the action
+- c4 hold action. 3.2.1. boom. frenchv ersion for scout
 
 
 VERIFY NEXT PLAYTHROUGH:
@@ -33,6 +25,8 @@ VERIFY NEXT PLAYTHROUGH:
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
+        - convert lumphat files to hold actions
+        - change sabatague icon to destroy and change holdAction from CBA to script. test what happens if you die
         - update subtitles in entire mission to include if scout says them with if statements
             - no subs for captain marchikno
             - before and after radio HQ
@@ -50,16 +44,25 @@ TO DO MASTER LIST:
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
     MEDIUM PRIORITY:
+        - figure out how you want AI multiplayer to function in your misison:
+            - option 1: disable AI. simple?
+            - option 2: leave as is but if players leave AI on and dont take group leader then itll be jank.
+            - option 3: use select leader and leader changed EH to avoid AI taking control of the AI (what happens if slot one dies and respoawns
+                does he get control back?) or some solution that always passes AI to a player
+        - there is a locker in lumphat that keeps clipping into the buildings.
+        - floating objects in bulding when they are destroyed
+        - literally last thing you do maybe because the misisons is always evolving but you need to recheck how the mission performance are working.
+            some stuff might have broken.
         - - new line: i see a big ass cache. take what you need then lets blow it.
         - search lumphat should pop-up on infil not mission start
         - picture pass for continuity since there have been changes. includes making pics for death/victory screens
-        - convert lumphat files to hold actions
         - fill out the prison with prisoners, equipment etc and put hide on it until extract
         - add achievements. (perfect mission, 0/10 mission, never spotted, etc)
         - add game master slot
         - condition for stab place bomb for players to be outside
         - beginning jeep needs to move foruther away from players
     LOW PRIORITY:
+        - if you put on an enemy back pack you get to know if you are being tracked and what the state of things are
         - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
         - disable the squad radio cahtter. Keep for now testing because it does help during that. Chance that this breaks something though.
         - adjust extract heli height cause its glitching
@@ -105,6 +108,10 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- completely reworked the way that side tasks are picked and completed, to allow for completion before pickup. i added functions for the lines so 
+the hold action is more readable. added more voice lines for certain conditions
+- deleted rankin easter egg
+- Emptied the pows inventroy
 - fixed bug, all patrols spotted player while he was far away. Maybe AI shares info with each other? Removed event handler fromm all patrols after first use.
 - fixed fog not clearing after 5 minutes at the infil
 - changed hold action icons for equip scuba gear to better fit visual continuity
