@@ -218,7 +218,7 @@ patrol4 addEventHandler [
 /////////////////////////////////////////////////////
 
 // 4 groups players must sneak past
-_patrolGroup = [patrol1, patrol2, patrol3, patrol4];
+_patrolGroup = [patrol1, patrol2, patrol3, patrol4, patrol5, patrol6];
 
 {
 	_x addEventHandler ["EnemyDetected", {
@@ -236,7 +236,7 @@ _patrolGroup = [patrol1, patrol2, patrol3, patrol4];
             //since all groups randomly popped the message at once we will now remove all EH once one group sees the players.
             {
                 _x removeEventHandler [_thisEvent, _thisEventHandler];
-            } forEach [patrol1, patrol2, patrol3, patrol4];
+            } forEach [patrol1, patrol2, patrol3, patrol4, patrol5, patrol6];
 
 			// Give players a few seconds to kill patrol or else
 			[_group]spawn {
