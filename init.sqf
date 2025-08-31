@@ -1343,6 +1343,16 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0, "They write paper, we already kill.", "answer"]
 		]
+	],
+	["wentPastInfil",
+		[
+			[0, "Ah shit, I think we missed our infil spot. Lemme check the map.", "answer"]
+		]
+	],
+	["wrongWayCove",
+		[
+			[0, "This doesn't look right to me. Let's check the map.", "answer"]
+		]
 	]
 ];
 

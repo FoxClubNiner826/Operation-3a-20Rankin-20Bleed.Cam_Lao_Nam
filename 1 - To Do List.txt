@@ -1,8 +1,6 @@
 TO DO UP NEXT:
-- worked on a contingency if players miss the infil spot. if they miss that trigger area they can still enter the AO. if they get spotted then
-all the tasks that would have poped up fromt he infil will not pop up. need to work out a plan if this still make it to lumphat without beening detected
 
-
+I have already setup how the tasks will proc based on if players miss the infil but i still need to test pass/fail states to those tasks
 
 BUGS FROM LATEST PLAYTHROUGH:
 - Figure out how to proceed with the downed pilot task
@@ -106,6 +104,18 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- made some trigger areas with subtitles if the STAB goes in the wrong direction
+- Chose a design choice regarding the Infil Task. On one hand, I want objectives to be open ended for players to determine how to complete them. 
+    But on the other hand if I want to "tell a story" its better to have very specific things happen, like a specific infil spot. 
+    I need to decide what kind of misison do I want to make. Or try a blend of the two.
+    Decision: I love the idea of player choice and having the chance to make mistakes without a hard fail state. I also love a very tight story and
+    immersive mission. If I plan for both then I can have the best of both worlds. That way on my single-player play through, I get to enact my prefered
+    "story" and when other players play then they can have more freedom to make mistakes. Therefore we will go with option 1.
+    - option 1: Players allowed to miss the infil spot. If they get spotted by AI then all the tasks that would have popped up from 
+        the infil task, will now pop up. If they dont get spotted then when they reach Lumphat tasks will need to pop up. This might require them to back
+        track or abandon the destroy STAB task but I guess thats what they get for not paying attention.
+    - option 2: End mission if they proceed too far upriver. But this wont stop players entering too early.
+    - option 3: End the mission if players reach Lumphat without triggering infil task. 
 - Reduced the chance of the mission breaking if players skirt the water and avoid the patrols then the situation can break the mission. 
     the troop transports drive toward the players. crash on the bridge when they try to return to load up and the general cant flee right.
     implemented all options below.
