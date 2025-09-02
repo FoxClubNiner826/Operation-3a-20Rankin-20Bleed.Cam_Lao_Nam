@@ -305,14 +305,29 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Hit the deck, we've been spotted!", "answer"]
 		]
 	],
+	["patrolspottedScout",
+		[
+			[0, "Địt mẹ! Họ thấy rồi! (Fuck! They saw us!)", "answer"]
+		]
+	],
 	["patroldead",
 		[
 			[0, "Let’s hope that didn't fuck up the mission.", "answer"]
 		]
 	],
+	["patroldeadScout",
+		[
+			[0, "This very bad for quiet mission.", "answer"]
+		]
+	],
 	["patrolleaves",
 		[
 			[0, "Area is clear. Get your SCUBA gear on, we’ve got mines to deal with.", "answer"]
+		]
+	],
+	["patrolleavesScout",
+		[
+			[0, "Time for SCUBA.", "answer"]
 		]
 	],
 	["scubatime1",
@@ -1352,6 +1367,16 @@ foxclub_var_conversations = createHashMapFromArray [
 	["wrongWayCove",
 		[
 			[0, "This doesn't look right to me. Let's check the map.", "answer"]
+		]
+	],
+	["wentPastInfilScout",
+		[
+			[0, "I know area. We go too far.", "answer"]
+		]
+	],
+	["wrongWayCoveScout",
+		[
+			[0, "We go to cove. You go wrong way.", "answer"]
 		]
 	]
 ];

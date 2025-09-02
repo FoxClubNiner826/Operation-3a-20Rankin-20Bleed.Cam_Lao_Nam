@@ -1132,3 +1132,122 @@ private _tasks = ["cacheTask", "gunboatTask", "samsiteTask"] select {!(missionNa
 (missionNamespace getVariable ["cacheTask", false] || missionNamespace getVariable ["cacheTaskAlreadyDone", false]) && 
 (missionNamespace getVariable ["gunboatTask", false] || missionNamespace getVariable ["gunboatTaskAlreadyDone", false]) && 
 (missionNamespace getVariable ["samsiteTask", false] || missionNamespace getVariable ["samsiteTaskAlreadyDone", false]);
+
+
+_scout = missionNamespace getVariable ["scout", objNull];
+if (leader playergroup == _scout) then {
+["scoutSays", [_scout]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance leader playergroup <= 100}];
+} else {
+["anyoneElseSays", [leader playergroup]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance leader playergroup <= 100}];
+};
+
+
+if (!(missionNamespace getVariable ["dontsaydeadboat", false])) then {
+
+    _scout = missionNamespace getVariable ["scout", objNull]; // prevents an error if Nil is returned
+
+    if (!isNull _scout && alive _scout && _scout in units playergroup && leader playergroup == _scout) then {
+        // Scout is alive and in the group
+        ["scoutSays", [_scout]] remoteExec [
+            "FoxClub_fnc_Conversation",
+            allPlayers select { _x distance _scout <= 100 }
+        ];
+    } else {
+        // Anyone else leading will speak
+        ["anyoneElseSays", [leader playergroup]] remoteExec [
+            "FoxClub_fnc_Conversation",
+            allPlayers select { _x distance leader playergroup <= 100 }
+        ];
+    };
+
+};
+
+
+_scout = missionNamespace getVariable ["scout", objNull];
+_leader = leader playergroup;
+__randomUnitInBoat = 
+
+if (!isNull _scout && alive _scout && _scout in units playergroup && vehicle _scout == ptboat) then {
+    ["wrongWayCoveScout", [_scout]] remoteExec [
+        "FoxClub_fnc_Conversation",
+        allPlayers select { _x distance _scout <= 100 }
+    ];
+} else {
+    if (!isNull _leader && alive _leader && vehicle _leader == ptboat) then {
+        ["wrongWayCove", [_leader]] remoteExec [
+            "FoxClub_fnc_Conversation",
+            allPlayers select { _x distance _leader <= 100 }
+        ];
+    } else {
+        ["wrongWayCove", [_randomUnitInBoat]] remoteExec [
+            "FoxClub_fnc_Conversation",
+            allPlayers select { _x distance marcinko <= 100 }
+        ];
+    };
+};
+
+_scout = missionNamespace getVariable ["scout", objNull];
+_leader = leader playergroup;
+_unitsInBoat = crew ptboat - [_leader];
+_randomUnitInBoat = if (count _unitsInBoat > 0) then { selectRandom _unitsInBoat } else { objNull };
+
+if (!isNull _scout && alive _scout && _scout in units playergroup && vehicle _scout == ptboat) then {
+    ["wrongWayCoveScout", [_scout]] remoteExec [
+        "FoxClub_fnc_Conversation",
+        allPlayers select { _x distance _scout <= 100 }
+    ];
+} else {
+    if (!isNull _leader && alive _leader && vehicle _leader == ptboat) then {
+        ["wrongWayCove", [_leader]] remoteExec [
+            "FoxClub_fnc_Conversation",
+            allPlayers select { _x distance _leader <= 100 }
+        ];
+    } else {
+        if (!isNull _randomUnitInBoat && alive _randomUnitInBoat) then {
+            ["wrongWayCove", [_randomUnitInBoat]] remoteExec [
+                "FoxClub_fnc_Conversation",
+                allPlayers select { _x distance _randomUnitInBoat <= 100 }
+            ];
+        };
+    };
+};
+
+_scout = missionNamespace getVariable ["scout", objNull];
+_leader = leader playergroup;
+_unitsInBoat = crew ptboat - [_leader];
+_randomUnitInBoat = if (count _unitsInBoat > 0) then { selectRandom _unitsInBoat } else { objNull };
+
+call {
+if (alive _scout && _scout in units playergroup && vehicle _scout == ptboat) exitWith { 
+    ["wrongWayCoveScout", [_scout]] remoteExec [
+        "FoxClub_fnc_Conversation",
+        allPlayers select { _x distance _scout <= 100 }
+    ]; };
+if (alive _leader && vehicle _leader == ptboat) exitWith { 
+    ["wrongWayCove", [_leader]] remoteExec [
+        "FoxClub_fnc_Conversation",
+        allPlayers select { _x distance _leader <= 100 }
+    ]; };
+if (alive _randomUnitInBoat) then {
+    ["wrongWayCove", [_randomUnitInBoat]] remoteExec [
+        "FoxClub_fnc_Conversation",
+        allPlayers select { _x distance _randomUnitInBoat <= 100 }
+        ];
+    };
+};
+
+
+_scout = missionNamespace getVariable ["scout", objNull];
+_randomUnitInGroup = selectRandom units playergroup;
+
+if (alive _randomUnitInGroup && _randomUnitInGroup == scout) then { 
+    ["patrolspottedScout", [_scout]] remoteExec [
+        "FoxClub_fnc_Conversation",
+        allPlayers select { _x distance _scout <= 100 }
+    ]
+} else {
+    ["patrolspotted", [_randomUnitInGroup]] remoteExec [
+        "FoxClub_fnc_Conversation",
+        allPlayers select { _x distance _randomUnitInGroup <= 100 }
+    ]
+};
