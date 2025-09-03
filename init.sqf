@@ -278,17 +278,58 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["looksharp1",
 		[
-			[0, "Secure your gear and get serious. Time to focus, everyone.", "answer"]
+			[0, "Secure your gear and get serious. Time to focus, everyone.", "answer"],
+			[1, "We go deep. Many enemy.", "answer"]
 		]
 	],
 	["looksharp2",
 		[
-			[0, "Pack it up and stay sharp. We’re going into the real deal.", "answer"]
+			[0, "Pack it up and stay sharp. We’re going into the real deal.", "answer"],
+			[1, "Real fight now. No play.", "answer"]
 		]
 	],
 	["looksharp3",
 		[
-			[0, "Lock down your gear. It’s game time, so stay on point.", "answer"]
+			[0, "Lock down your gear. It’s game time, so stay on point.", "answer"],
+			[1, "No mistake now. We serious.", "answer"]
+		]
+	],
+	["looksharpScout",
+		[
+			[0, "We go deep. Danger waiting.", "answer"],
+			[1, "You said it Thay. Glad to have you with us.", "answer"]
+		]
+	],
+	["wentPastInfil",
+		[
+			[0, "Ah shit, I think we missed our infil spot. Lemme check the map.", "answer"]
+		]
+	],
+	["wrongWayCove",
+		[
+			[0, "This doesn't look right to me. Let's check the map.", "answer"]
+		]
+	],
+	["wentPastInfilScout",
+		[
+			[0, "I know area. We go too far.", "answer"]
+		]
+	],
+	["wrongWayCoveScout",
+		[
+			[0, "We go to cove. You go wrong way.", "answer"]
+		]
+	],
+	["arrivedAtCove",
+		[
+			[0, "Nicely done boys. Grab some lights outta the STAB and set up a recon position.", "answer"],
+			[1, "I know spot. We watch there.", "answer"]
+		]
+	],
+	["arrivedAtCoveScout",
+		[
+			[0, "Okay. Take light, watch ground.", "answer"],
+			[1, "You got it Thay.", "answer"]
 		]
 	],
 	["patrolbegins",
@@ -1357,26 +1398,6 @@ foxclub_var_conversations = createHashMapFromArray [
 	["scoutfounddone3",
 		[
 			[0, "They write paper, we already kill.", "answer"]
-		]
-	],
-	["wentPastInfil",
-		[
-			[0, "Ah shit, I think we missed our infil spot. Lemme check the map.", "answer"]
-		]
-	],
-	["wrongWayCove",
-		[
-			[0, "This doesn't look right to me. Let's check the map.", "answer"]
-		]
-	],
-	["wentPastInfilScout",
-		[
-			[0, "I know area. We go too far.", "answer"]
-		]
-	],
-	["wrongWayCoveScout",
-		[
-			[0, "We go to cove. You go wrong way.", "answer"]
 		]
 	]
 ];
