@@ -55,3 +55,37 @@ if (alive _leader && vehicle _leader == ptboat) exitWith {
 
 //After players get to the cove the next task will pop up. I want the leader of the group to comment. Vice versa if the leader is the scout.
 // As players enter the cove. Nicely done boys. Grab some lights outta the STAB and set up a recon position. I know spot. We watch there.
+_scout = missionNamespace getVariable ["scout", objNull]; 
+_leader = leader playergroup; 
+ 
+if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {   
+    ["arrivedAtCove", [_leader, _scout]] remoteExec [  
+        "FoxClub_fnc_Conversation",  
+        allPlayers select { _x distance _leader <= 100 }  
+    ]; 
+};  
+if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {   
+    ["arrivedAtCoveScout", [_scout, _leader]] remoteExec [  
+        "FoxClub_fnc_Conversation",  
+        allPlayers select { _x distance _scout <= 100 }  
+    ];  
+};
+
+// Redid the call HQ hold action to include scout 
+
+// Next is after the radio call the leader says to keep quiet. Vice versa for scout.
+_scout = missionNamespace getVariable ["scout", objNull];  
+_leader = leader playergroup;  
+  
+if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {    
+    ["patrolbegins", [_leader, _scout]] remoteExec [   
+        "FoxClub_fnc_Conversation",   
+        allPlayers select { _x distance _leader <= 100 }   
+    ];  
+};   
+if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {    
+    ["patrolbeginsScout", [_scout, _leader]] remoteExec [   
+        "FoxClub_fnc_Conversation",   
+        allPlayers select { _x distance _scout <= 100 }   
+    ];   
+};

@@ -12,11 +12,11 @@
 	{
 		params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action
 		missionNamespace setVariable ["ActionCallHQ", false, true];
-
-		["radiohq1", [_caller, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
-
-		//[[_caller],"scripts\RadioHQ.sqf"] remoteExec ["execVM"];
-		//["scripts\RadioHQ.sqf"] remoteExec ["execVM", 0];
+		if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["radiohqScout", [_caller, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["radiohq1", [_caller, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements

@@ -258,24 +258,6 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Alright, Carson. Let’s see what you’ve got.", "question"]
 		]
 	],
-	["radiohq1",
-		[
-			[0, "", "answer", 3, { 
-				if (player != (_this#0)) then { playsound "talkradio"; }; 
-				_this#0 sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
-				}
-			],
-			[1, "", "talkradio", 0, { 
-				playsound "talkradio"; 
-				HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
-				sleep 3;
-				missionNamespace setVariable ["radiohqpass", true, true];
-				sleep 6;
-				execVM "scripts\RadioHQ.sqf";
-				}
-			]
-		]
-	],
 	["looksharp1",
 		[
 			[0, "Secure your gear and get serious. Time to focus, everyone.", "answer"],
@@ -332,12 +314,57 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1, "You got it Thay.", "answer"]
 		]
 	],
+	["radiohq1",
+		[
+			[0, "", "answer", 3, { 
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
+				_this#0 sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
+				}
+			],
+			[1, "", "talkradio", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
+				sleep 3;
+				missionNamespace setVariable ["radiohqpass", true, true];
+				sleep 7; // lets task complete before fade out
+				execVM "scripts\RadioHQ.sqf";
+				}
+			]
+		]
+	],
+	["radiohqScout",
+		[
+			[0, "", "answer", 3, { 
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
+				_this#0 sideChat "Rankin, Hawk. We here. Over."; 
+				}
+			],
+			[1, "", "talkradio", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
+				sleep 3;
+				missionNamespace setVariable ["radiohqpass", true, true];
+				sleep 7;
+				execVM "scripts\RadioHQ.sqf";
+				}
+			]
+		]
+	],
 	["patrolbegins",
 		[
-			[0, "The patrol should be coming through soon. Keep your eyes open and let it pass.", "answer", 0, {
-				//sleep 3;
+			[0, "The patrol should be coming through soon. Keep your eyes open and let it pass.", "answer"],
+			[1, "No talk. No Move.", "answer", 0, {
 				missionNamespace setVariable ["proceedPass", true, true];
-				}
+			}
+			]
+		]
+	],
+	["patrolbeginsScout",
+		[
+			[0, "Here comes boat. No talk. No Move.", "answer"],
+			[1, "Copy Thay.", "answer", 0, {
+				missionNamespace setVariable ["proceedPass", true, true];
+			}
 			]
 		]
 	],

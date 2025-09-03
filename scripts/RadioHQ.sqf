@@ -1,32 +1,8 @@
-//JIPtestVAR = player addAction ["Radio Headquarters", {["RadioHQ.sqf"] remoteExec ["execVM", 0];}, [], 8, false, true, "", "isNil 'showGlobalAction'"];
-
-//call{playsound "wait1"};
-/*
-params ["_caller"];
-
-_caller say3D ["wait1", 100];
-player sideChat "Rankin, Hawk. We’re set and ready for the show. Over.";
-sleep 7;
-call{playsound "wait2"};
-sleep 1;
-HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
-sleep 6;
-*/
-
 titleText ["", "BLACK OUT", 3];
 3 fadesound 0;
 sleep 5;
 
 missionNamespace setVariable ["NavalPatrolvariableActivated", true, true];
-
-/*
-skipTime -24;
-86400 setOvercast .5;
-skipTime 24;
-0 setRain .40;
-0 setFog [1, .20, 5];
-setDate [1967, 3, 31, 5, 57];
-*/
 
 [
     {
@@ -54,16 +30,22 @@ sleep 3;
 
 sleep 8;
 
-[ "patrolbegins", [ leader player ] ] call FoxClub_fnc_Conversation;
+_scout = missionNamespace getVariable ["scout", objNull];  
+_leader = leader playergroup;  
+  
+if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {    
+    ["patrolbegins", [_leader, _scout]] remoteExec [   
+        "FoxClub_fnc_Conversation",   
+        allPlayers select { _x distance _leader <= 100 }   
+    ];  
+};   
+if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {    
+    ["patrolbeginsScout", [_scout, _leader]] remoteExec [   
+        "FoxClub_fnc_Conversation",   
+        allPlayers select { _x distance _scout <= 100 }   
+    ];   
+};
 
-//600 setOvercast .25;
 [600, 0.25] remoteExec ["setOvercast", 0, true];
 
 sleep 7;
-
-/*
-if (!isMultiplayer) then {
-    command say3D ["waitforboat", 100];
-    //["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] spawn BIS_fnc_kbTell;
-    hint "This is a single-player mission.";
-};
