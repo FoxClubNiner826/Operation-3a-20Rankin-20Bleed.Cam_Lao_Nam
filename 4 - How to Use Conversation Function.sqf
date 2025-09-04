@@ -73,7 +73,7 @@ if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {
 
 // Redid the call HQ hold action to include scout 
 
-// Next is after the radio call the leader says to keep quiet. Vice versa for scout.
+// After the radio call the leader says to keep quiet. Vice versa for scout.
 _scout = missionNamespace getVariable ["scout", objNull];  
 _leader = leader playergroup;  
   
@@ -89,3 +89,81 @@ if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {
         allPlayers select { _x distance _scout <= 100 }   
     ];   
 };
+
+// When the patrol boat leaves the ao. I want the leader of the group to comment. Vice versa if the leader is the scout.
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;   
+   
+if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {     
+    ["patrolleaves", [_leader, _scout]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _leader <= 100 }    
+    ];   
+};    
+if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {     
+    ["patrolleavesScout", [_scout, _leader]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _scout <= 100 }    
+    ];    
+};
+
+// if the playes are spotted. I want the leader of the group to comment. Vice versa if the leader is the scout.
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;   
+   
+if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {     
+    ["patrolspotted", [_leader, _scout]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _leader <= 100 }    
+    ];   
+};    
+if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {     
+    ["patrolspottedScout", [_scout, _leader]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _scout <= 100 }    
+    ];    
+};
+
+// // if the patrol boat is destrpyed. I want the leader of the group to comment. Vice versa if the leader is the scout.
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;   
+   
+if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {     
+    ["patroldead", [_leader, _scout]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _leader <= 100 }    
+    ];   
+};    
+if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {     
+    ["patroldeadScout", [_scout, _leader]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _scout <= 100 }    
+    ];    
+};
+
+// when players complete upriver task. I want the leader of the group to comment. Vice versa if the leader is the scout.
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;   
+   
+if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {     
+    ["upriver", [_leader, _scout]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _leader <= 100 }    
+    ];   
+};    
+if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {     
+    ["upriverScout", [_scout, _leader]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _scout <= 100 }    
+    ];    
+};
+
+// when players dawn and remove scuba
+// done
+
+// at infil spot. doesn't matter if the scout in the leader this time because the subtitles are just squelches
+_leader = leader playergroup;
+["infill", [_leader, HQRadio]] remoteExec [    
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _leader <= 100 }    
+];

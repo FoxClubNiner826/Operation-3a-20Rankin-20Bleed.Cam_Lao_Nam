@@ -255,9 +255,13 @@ scubaEquipped = false;
 	{}, //code on start
 	{}, // code every tick
 	{
-		execVM "scripts\scubagear.sqf";
 		params ["_target", "_caller", "_actionID", "_args"];
-		[selectRandom ["scubatime1", "scubatime2", "scubatime3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["scubatimeScout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			[selectRandom ["scubatime1", "scubatime2", "scubatime3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+        execVM "scripts\scubagear.sqf";
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -280,9 +284,13 @@ scubaEquipped = false;
 	{}, //code on start
 	{}, // code every tick
 	{
-		execVM "scripts\loadoutgear.sqf";
 		params ["_target", "_caller", "_actionID", "_args"];
-		[selectRandom ["gearup1", "gearup2", "gearup2"], [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["gearupScout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			[selectRandom ["gearup1", "gearup2", "gearup3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+        execVM "scripts\loadoutgear.sqf";
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements

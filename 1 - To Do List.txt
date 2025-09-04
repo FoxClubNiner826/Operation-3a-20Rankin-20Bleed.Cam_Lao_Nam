@@ -19,6 +19,7 @@ DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
 - mercinko should have no questions left. but the way its scripted looks like they still will be there.
 - fixed issue where the POW was saying SOG voice lines because I changed his object type and forgot to update it in the restrict voices module
+- test infil convo for working on dedicated server.
 
 
 TO DO MASTER LIST:

@@ -370,32 +370,38 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["patrolspotted",
 		[
-			[0, "Hit the deck, we've been spotted!", "answer"]
+			[0, "Hit the deck, we've been spotted!", "answer"],
+			[1, "(Fuck! They saw us!)", "answer"] //Địt mẹ! Họ thấy rồi! 
 		]
 	],
 	["patrolspottedScout",
 		[
-			[0, "Địt mẹ! Họ thấy rồi! (Fuck! They saw us!)", "answer"]
+			[0, "(Fuck! They saw us!)", "answer"], //Địt mẹ! Họ thấy rồi! 
+			[1, "Hit the deck, we've been spotted!", "answer"]
 		]
 	],
 	["patroldead",
 		[
-			[0, "Let’s hope that didn't fuck up the mission.", "answer"]
+			[0, "Let’s hope that didn't fuck up the mission.", "answer"],
+			[1, "This very bad for quiet mission.", "answer"]
 		]
 	],
 	["patroldeadScout",
 		[
-			[0, "This very bad for quiet mission.", "answer"]
+			[0, "This very bad for quiet mission.", "answer"],
+			[1, "Let’s hope that didn't fuck up the mission.", "answer"]
 		]
 	],
 	["patrolleaves",
 		[
-			[0, "Area is clear. Get your SCUBA gear on, we’ve got mines to deal with.", "answer"]
+			[0, "Area is clear. Get your SCUBA gear on, we’ve got mines to deal with.", "answer"],
+			[1, "Okay, I ready. We clear mine.", "answer"]
 		]
 	],
 	["patrolleavesScout",
 		[
-			[0, "Time for SCUBA.", "answer"]
+			[0, "Time for SCUBA. Danger, mines.", "answer"],
+			[1, "On it.", "answer"]
 		]
 	],
 	["scubatime1",
@@ -413,6 +419,11 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Eyes on the mission, breath by breath.", "answer"]
 		]
 	],
+	["scubatimeScout",
+		[
+			[0, "SCUBA on. Ready for water.", "answer"]
+		]
+	],
 	["gearup1",
 		[
 			[0, "The only easy day was yesterday.", "answer"]
@@ -428,16 +439,28 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Slow is smooth; smooth is fast.", "answer"]
 		]
 	],
+	["gearupScout",
+		[
+			[0, "No more dive. I ready rifle.", "answer"]
+		]
+	],
 	["upriver",
 		[
-			[0, "Keep your eyes peeled. We’ve got no idea what’s ahead.", "answer"]
+			[0, "Stay sharp. Keeps eyes out for our infil spot.", "answer"],
+			[1, "I watch close. No miss.", "answer"]
+		]
+	],
+	["upriverScout",
+		[
+			[0, "Look close now. Infil place near.", "answer"],
+			[1, "Sharp and ready.", "answer"]
 		]
 	],
 	["infill",
 		[
 			[0, "", "answer", 5, { 
 				if (player != (_this#0)) then { playsound "talkradio"; }; 
-				leader player sideChat "*three squelches* pause *two squelches* (code for successful insertion)."; 
+				_this#0 sideChat "*three squelches* pause *two squelches* (code for successful insertion)."; 
 				}
 			],
 			[1,"", "answer", 0, { 
