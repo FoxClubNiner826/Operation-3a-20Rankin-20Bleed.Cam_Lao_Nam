@@ -1,3 +1,10 @@
+/*
+    File: bomb2.sqf
+    Author: Hypoxic (Built for FoxClubNiner by Hypoxic of Arma Discord - Scripting Channel)
+    Description:
+        Starts a timer then executes the code after timer completes.
+*/
+
 if !(isServer) exitWith {};
 
 private _startTime = time;
@@ -10,17 +17,3 @@ while { sleep 1; time <= _startTime + (60*30) } do {
 };
 
 "M_Mo_82mm_AT_LG" createVehicle (ASLToAGL getPosASL ptboat);
-
-
-/* OLD VERSION
-ptboat say3D ["timebomb", 50]; //play tick tock
-sleep 40;
-ptboat say3D ["timebomb", 50]; //play tick tock
-sleep 40;
-ptboat say3D ["timebomb", 50]; //play tick tock
-sleep 40;
-
-bombTimerStart = time;
-waituntil { sleep 1; (time - bombTimerStart) >= (60*28) };
-
-"M_Mo_82mm_AT_LG" createVehicle (getPos ptboat);

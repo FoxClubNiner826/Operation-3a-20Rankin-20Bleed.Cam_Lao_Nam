@@ -1,3 +1,10 @@
+/*
+    File: loadoutgear.sqf
+    Author: FoxClubNiner
+    Description:
+        Saves the player loadout so they can recall it later. Removes all items from player. Adds SCUBA equipment.
+*/
+
 playerLoadout = getUnitLoadout player;
 
 comment "Remove existing items";

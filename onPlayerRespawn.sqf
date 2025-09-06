@@ -1,5 +1,16 @@
-//wait for naval patrol hold action. old one below was in trigger on activation
-//player addAction ["<t color='#FFFF00'>Radio Headquarters</t>", {GlobalRadioHQ = false; publicVariable "GlobalRadioHQ"; ["scripts\RadioHQ.sqf"] remoteExec ["execVM", 0];}, nil, 8, false, true, "", "isNil 'GlobalRadioHQ'"];
+/*
+    File: onPlayerRespawn.sqf
+    Author: FoxClubNiner
+    Description:
+        Runs on player respawn.
+*/
+
+//////////////////////////////////////////////////
+//                                              //
+//            HOLD ACTION FOR RADIO HQ          //
+//                                              //
+//////////////////////////////////////////////////
+
 [
 	player,
 	"<t color='#FFFF00'>Radio Headquarters</t>",
@@ -27,7 +38,13 @@
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
 
-// calls POW to surface
+
+//////////////////////////////////////////////////
+//                                              //
+//             CALL POW TO SURFACE              //
+//                                              //
+//////////////////////////////////////////////////
+
 player addAction [
     "<t color='#FFFF00'>Call POW</t>", 
     {
@@ -66,31 +83,13 @@ player addAction [
     "_this distance fieldtelephone < 4 && ActionCallPOW && alive pow"
 ];
 
-/*extract action
-player addAction [
-    "<t color='#FFFF00'>Radio for Extraction</t>", 
-    { 
-	{[_x,"ALL"] remoteExec ["disableAI",0,true];} forEach crew samlauncher;
-	missionNamespace setVariable ["ExtractAction", false, true];
-    missionNamespace setVariable ["ChopperLZ", true, true];
-    missionNamespace setVariable ["RTBAction", true, true];
-	_scout = missionNamespace getVariable ["scout", objNull];
-	params ["_target", "_caller", "_actionID", "_args"];
-	if (_caller == _scout) then {
-		["scoutextract", [_scout, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
-		} else {
-		["extract", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
-		};
-    }, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "ExtractAction"
-];
-*/
-//extract action new version
+
+//////////////////////////////////////////////////
+//                                              //
+//     RADIO FOR EXTRACTION - HELI LOITERS      //
+//                                              //
+//////////////////////////////////////////////////
+
 player addAction [
     "<t color='#FFFF00'>Radio for Extraction</t>", 
     {
@@ -104,7 +103,7 @@ player addAction [
 		} else {
 		["extract", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
-	//sleep 60;
+	//sleep 60; // use to set how fast the heli comes
 	_group = ExtractHeliGroup; 
 	_markerName = "loiterSpot"; 
 	_waypointPosition = getMarkerPos _markerName;
@@ -121,7 +120,12 @@ player addAction [
     "ExtractAction"
 ];
 
-// deny smoke request
+//////////////////////////////////////////////////
+//                                              //
+//          NO SMOKE CONVO - LAND AT LZ         //
+//                                              //
+//////////////////////////////////////////////////
+
 player addAction [
     "<t color='#FFFF00'>Confirm LZ (Bird Cleared to Land)</t>", 
     { 
@@ -143,29 +147,13 @@ player addAction [
     "denyConfirmSmoke"
 ];
 
-/* delay smoke request
-player addAction [
-    "<t color='#FFFF00'>Delay Smoke Request</t>", 
-    { 
-    missionNamespace setVariable ["delayConfirmSmoke", false, true];
-	_scout = missionNamespace getVariable ["scout", objNull];
-	params ["_target", "_caller", "_actionID", "_args"];
-	if (_caller == _scout) then {
-		["scoutsmokedelay", [_scout, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
-		} else {
-		["smokedelay", [_caller, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
-		};
-    }, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "delayConfirmSmoke"
-];
-*/
 
-// confirm smoke convo
+//////////////////////////////////////////////////
+//                                              //
+//    CONFIRM SMOKE COLOR CONVO - LAND AT LZ    //
+//                                              //
+//////////////////////////////////////////////////
+
 player addAction [
     "<t color='#FFFF00'>Confirm Smoke Color (Bird Cleared to Land)</t>", 
     { 
@@ -187,11 +175,18 @@ player addAction [
     "ActionConfirmSmoke"
 ];
 
+
+//////////////////////////////////////////////////
+//                                              //
+//      HOLD ACTION FOR WEAPON CACHE BOMB       //
+//                                              //
+//////////////////////////////////////////////////
 //bomb for weapon cache. Although normally you dont want non player object addactions here in OPR, this is needed because if a player uses the hold action
 //it is removed from their action menu. If they die it will remember they used the hold action and wouldnt be able to use it again. Changing the hold
 //action to repeat wont work cause there is an addaction nested in the hold action and they could repeatedly add the addaction to the obhect. Thus if we 
 //place the hold action in OPR then the player will get the option to use it again regardless of death. And because of the remove action command in init
 //duplicates of the hold action wont be a problem.
+
 if (!isNil "weaponcache") then {
 [
 	weaponcache,
@@ -240,7 +235,13 @@ if (!isNil "weaponcache") then {
 ] call BIS_fnc_holdActionAdd;
 };
 
-//bomb for food cache
+
+//////////////////////////////////////////////////
+//                                              //
+//        HOLD ACTION FOR FOOD CACHE BOMB       //
+//                                              //
+//////////////////////////////////////////////////
+
 if (!isNil "foodcache") then {
 [
 	foodcache,

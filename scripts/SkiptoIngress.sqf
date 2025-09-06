@@ -1,3 +1,10 @@
+/*
+    File: SkiptoIngress.sqf
+    Author: FoxClubNiner
+    Description:
+        Fades player screen. Completes a task. Moves units into boat. Changes weather. Displays text.
+*/
+
 titleText ["", "BLACK OUT", 3];
 4 fadesound 0;
 0 fadespeech 0;

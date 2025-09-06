@@ -1,3 +1,10 @@
+/*
+    File: extract.sqf
+    Author: FoxClubNiner
+    Description:
+        Tells helicopter to land at a specific point. Executed from an addAction in onPlayerRespawn.sqf
+*/
+
 _group = ExtractHeliGroup;
 _markerName = "moveToLZ"; 
 _waypointPosition = getMarkerPos _markerName;

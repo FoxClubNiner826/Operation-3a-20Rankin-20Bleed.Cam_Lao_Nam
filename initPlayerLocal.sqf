@@ -1,11 +1,29 @@
-// creates briefing tabs
+/*
+    File: initPlayerLocal.sqf
+    Author: FoxClubNiner
+    Description:
+        Runs at mission start.
+*/
+
+//////////////////////////////////////////////////
+//                                              //
+//              CREATES BRIEFING                //
+//                                              //
+//////////////////////////////////////////////////
+
 if ((!isServer) && (player != player)) then
 {
   waitUntil {player == player};
 };
 _null = [] execVM "diary.sqf";
 
-//replaces multiplayer faces with the ones I want
+
+//////////////////////////////////////////////////
+//                                              //
+//         OVERRIDES MULTIPLAYER FACES          //
+//                                              //
+//////////////////////////////////////////////////
+
 if (!isNil "scout" && {player isEqualTo scout}) then { //these replace profile faces with mission faces
     [player , "vn_o_vietnamese_01_01_face_04"] remoteExec ["setFace", 0, player];
 };
@@ -31,7 +49,13 @@ if (!isNil "mg2" && {player isEqualTo mg2}) then {
     [player , "vn_b_TanoanHead_A3_05_06"] remoteExec ["setFace", 0, player];
 };
 
-// Custom Function Testing. Uses custom chat with Say3d.
+
+//////////////////////////////////////////////////
+//                                              //
+//             SEAL BOSS QUESTIONS              //
+//                                              //
+//////////////////////////////////////////////////
+
 // Question 1
 Marcinko addAction [
     "<t color='#FFFF00'>""Could this be a trap?""</t>", //what addaction is displayed as
@@ -50,37 +74,6 @@ Marcinko addAction [
 	4 //radius of addadction
 ];
 
-/* This convo system uses the KBTell function just for subtitles and Say3D for the audio.
-Marcinko addAction [
-    "<t color='#FFFF00'>""Could this be a trap?""</t>", //what addaction is displayed as
-    {	
-	missionNamespace setVariable ["AllowActionTalk", false, true]; //disables all addactions during the convo    
-    missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction
-	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action
-
-	["PlayerQuestions", "StagingArea", ["Question1", "Question1"]] remoteExec ["BIS_fnc_kbTell", 2]; // subtitles
-	[_caller, ["question1",100]] remoteExec ["say3D"]; //sound file is played from caller
-	[_caller, true] remoteExec ["setRandomLip"]; //caller lips move
-	sleep 6; //waits for sound file to finish
-	[_caller, false] remoteExec ["setRandomLip"]; //caller lips stop
-
-	["PlayerQuestions", "StagingArea", ["Answer1", "Answer1"]] spawn BIS_fnc_kbTell; // subtitles
-	[Marcinko, ["answer1",100]] remoteExec ["say3D"]; //plays sound file from NPC
-	[Marcinko, true] remoteExec ["setRandomLip"]; //NPC lips move
-	sleep 6; //waits for sound file to finish
-	[Marcinko, false] remoteExec ["setRandomLip"]; //NPC lips stop
-
-	missionNamespace setVariable ["AllowActionTalk", true, true]; //enables remaining addaction questions
-	}, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "ActionTalkToMarcinko1 && AllowActionTalk", //makes action available 
-	4 //radius of addadction
-];
-*/
 
 // Question 2
 Marcinko addAction [
@@ -213,21 +206,24 @@ scout addAction [
 	4
 ];
 
-//skip to infil hold action
-//old addaction just in case. was in boat init.
-//this addAction ["<t color='#FFFF00'>Skip to the Infiltration Point</t>", {GlobalSkipIngress = false; publicVariable "GlobalSkipIngress"; ["scripts\SkiptoIngress.sqf"] remoteExec ["execVM", 0];}, nil, 8, false, true, "", "isNil 'GlobalSkipIngress' && _this in (crew _target)"]; 
+
+//////////////////////////////////////////////////
+//                                              //
+//          HOLD ACTION SKIP TO INFIL           //
+//                                              //
+//////////////////////////////////////////////////
+
 [
 	ptboat,
 	"<t color='#FFFF00'>Skip to the Infiltration Point</t>",
 	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
 	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
-	"isNil 'GlobalSkipIngress' && (allPlayers - crew ptboat) isEqualTo []", //condition, use this for any player in boat in the init field _this in (crew _target)
+	"isNil 'skipToInfil' && (allPlayers - crew ptboat) isEqualTo []", //condition, use this for any player in boat in the init field _this in (crew _target)
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick
 	{
-		GlobalSkipIngress = false; 
-		publicVariable "GlobalSkipIngress"; 
+		missionNamespace setVariable ["skipToInfil", false, true]; 
 		["scripts\SkiptoIngress.sqf"] remoteExec ["execVM", 0];
 	}, // code on finish
 	{}, // code on interuption
@@ -239,12 +235,15 @@ scout addAction [
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
 
-//lets player equip scuba when its ready
-scubaEquipped = false;
 
-//equip SCUBA
-//["scripts\scubanow.sqf"] remoteExec ["execVM", 0, true]; was in trigger from wait_pass or fail
-//ptboat addAction ["<t color='#FFFF00'>Equip SCUBA Gear</t>", "scripts\scubagear.sqf", nil, 7, false, true, "", "_this in (crew _target) && !scubaEquipped"]; //Shows up if you are in the boat and have your regular loadout
+//////////////////////////////////////////////////
+//                                              //
+//         HOLD ACTION FOR EQUIP SCUBA          //
+//                                              //
+//////////////////////////////////////////////////
+
+scubaEquipped = false; //lets player equip scuba when its ready
+
 [
 	ptboat,
 	"<t color='#FFFF00'>Equip SCUBA Gear</t>",
@@ -272,8 +271,13 @@ scubaEquipped = false;
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
 
-//equip loadout
-//ptboat addAction ["<t color='#FFFF00'>Equip Loadout Gear</t>", "scripts\loadoutgear.sqf", nil, 7, false, true, "", "_this in (crew _target) && scubaEquipped"]; //Shows up if you are in the boat and have your SCUBA
+
+//////////////////////////////////////////////////
+//                                              //
+//        HOLD ACTION FOR EQUIP LOADOUT         //
+//                                              //
+//////////////////////////////////////////////////
+
 [
 	ptboat,
 	"<t color='#FFFF00'>Equip Loadout Gear</t>",
@@ -301,99 +305,43 @@ scubaEquipped = false;
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
 
-/*
-ptboat addAction [
-    "<t color='#FFFF00'>TEST</t>", 
-    {
-        missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
-		[getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 5] remoteExec ["playSound3D", 0];
-		//playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 5];
+
+//////////////////////////////////////////////////
+//                                              //
+//        HOLD ACTION FOR STAB TIME-BOMB        //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionC4 = {
+    (missionNamespace getVariable ['ActionSTABTimeBombs', false]) && (vehicle _this != _target)
+};
+
+[
+	ptboat,
+	"<t color='#FFFF00'>Place C-4 Plastic Explosive: 15 Minutes</t>",
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+	toString _conditionC4,
+	"true", //condition progress
+	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bomb15Scout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bomb15", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+    }, //code on start
+	{}, // code every tick
+	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bombplantedScout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bombplanted", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+		missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
+        playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
         ["scripts\bomb.sqf"] remoteExec ["execVM", 2];
-    }, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "ActionSTABTimeBombs",
-    5.5
-];
-*/
-
-//Place time bombs on STAB
-ptboat addAction [
-    "<t color='#FFFF00'>Place C-4 Plastic Explosive: 15 Minutes</t>", 
-    {
-        missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
-        playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
-		["scripts\bomb.sqf"] remoteExec ["execVM", 2];
-		params ["_target", "_caller", "_actionID", "_args"];
-		["bomb15", [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
-    }, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "ActionSTABTimeBombs",
-    5.5
-];
-
-//Place time bombs on STAB
-ptboat addAction [
-    "<t color='#FFFF00'>Place C-4 Plastic Explosive: 30 Minutes</t>", 
-    {
-        missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
-        playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
-		["scripts\bomb2.sqf"] remoteExec ["execVM", 2];
-		params ["_target", "_caller", "_actionID", "_args"];
-		["bomb30", [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
-    }, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "ActionSTABTimeBombs",
-    5.5
-];
-
-//Place time bombs on STAB
-ptboat addAction [
-    "<t color='#FFFF00'>Place C-4 Plastic Explosive: 45 Minutes</t>", 
-    {
-        missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
-        playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
-		["scripts\bomb3.sqf"] remoteExec ["execVM", 2];
-		params ["_target", "_caller", "_actionID", "_args"];
-		["bomb45", [_caller]] remoteExec ["FoxClub_fnc_Conversation"];
-    }, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "ActionSTABTimeBombs",
-    5.5
-];
-
-// equip time bombs. not using hold action for now cause of bug on multiple ones not showing icon. gencoder may have a fix try at last resort
-//["scripts\bombs.sqf"] remoteExec ["execVM", 0, true]; // in trigger area on infil.
-//ptboat addAction ["<t color='#FFFF00'>Place Timed Explosive: 15 Minutes</t>", {timebomb = false; publicVariable "timebomb"; ["scripts\bomb.sqf"] remoteExec ["execVM", 0];}, nil, 8, false, true, "", "isNil 'timebomb'", 5.5];
-/*
-[
-	ptboat,
-	"<t color='#FFFF00'>Place Timed Explosive: 15 Minutes</t>",
-	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
-	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
-	"true", //condition //triggerActivated wait_pass || triggeractivated wait_fail
-	"true", //condition progress
-	{}, //code on start
-	{}, // code every tick
-	{
-		timebomb = false; 
-		publicVariable "timebomb"; 
-		["scripts\bomb.sqf"] remoteExec ["execVM", 0];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -406,17 +354,30 @@ ptboat addAction [
 
 [
 	ptboat,
-	"<t color='#FFFF00'>Place Timed Explosive: 30 Minutes</t>",
+	"<t color='#FFFF00'>Place C-4 Plastic Explosive: 30 Minutes</t>",
 	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
 	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
-	"true", //condition //triggerActivated wait_pass || triggeractivated wait_fail
+	toString _conditionC4,
 	"true", //condition progress
-	{}, //code on start
+	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bomb30Scout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bomb30", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+    }, //code on start
 	{}, // code every tick
 	{
-		timebomb = false; 
-		publicVariable "timebomb"; 
-		["scripts\bomb2.sqf"] remoteExec ["execVM", 0];
+        params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bombplantedScout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bombplanted", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+		missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
+        playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
+        ["scripts\bomb2.sqf"] remoteExec ["execVM", 2];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -426,7 +387,49 @@ ptboat addAction [
 	false, //show if unconcious
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
-*/
+
+[
+	ptboat,
+	"<t color='#FFFF00'>Place C-4 Plastic Explosive: 45 Minutes</t>",
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+	toString _conditionC4,
+	"true", //condition progress
+	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bomb45Scout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bomb45", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+    }, //code on start
+	{}, // code every tick
+	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bombplantedScout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bombplanted", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+		missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
+        playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
+        ["scripts\bomb3.sqf"] remoteExec ["execVM", 2];
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	3, //duration
+	8, //order from top
+	false, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+] call BIS_fnc_holdActionAdd;
+
+
+//////////////////////////////////////////////////
+//                                              //
+//      HOLD ACTION FOR SEARCHING GENERAL       //
+//                                              //
+//////////////////////////////////////////////////
 
 [
 	officer,
@@ -455,7 +458,13 @@ ptboat addAction [
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
 
-// downed pilot questions
+
+//////////////////////////////////////////////////
+//                                              //
+//            DOWNED PILOT QUESTIONS            //
+//                                              //
+//////////////////////////////////////////////////
+
 pilot addAction [
     "<t color='#FFFF00'>""So...""</t>", 
     {
@@ -521,7 +530,13 @@ pilot addAction [
 	4 
 ];
 
-// pow questions
+
+//////////////////////////////////////////////////
+//                                              //
+//               POW QUESTIONS                  //
+//                                              //
+//////////////////////////////////////////////////
+
 pow addAction [
     "<t color='#FFFF00'>""Who are you?""</t>", 
     {
@@ -601,6 +616,13 @@ pow addAction [
     "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW5", 
 	4 
 ];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//     INFINITE SMOKE AND CONVO FOR LZ TASK     //
+//                                              //
+//////////////////////////////////////////////////
 
 // creates infinite smoke
 params ["_player", "_didJIP"];
@@ -692,53 +714,13 @@ if (isNil "SmokeThrown") then {
     }];
 };
 
-/*
-// return heli to base addadction //_this in (crew _target) if you want people to use it without everyone having to be in the helicopter
-heli addAction [
-    "<t color='#FFFF00'>Return to Base</t>", 
-    { 
-	missionNamespace setVariable ["RTBAction", false, true];
-	missionNamespace setVariable ["ChopperRTB", true, true];
-	}, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "RTBAction && (allPlayers - crew heli) isEqualTo []"
-];
-*/
-/* return heli to base hold action, this might be redundant. gonna disable for now
-[
-	heli,
-	"<t color='#FFFF00'>Return to Base</t>",
-	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
-	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
-	"RTBAction && (allPlayers - crew heli) isEqualTo []", //condition, use this for any player in boat in the init field _this in (crew _target)
-	"true", //condition progress
-	{}, //code on start
-	{}, // code every tick
-	{
-	_group = ExtractHeliGroup;  
-    _markerName = "returnToBase";   
-    _waypointPosition = getMarkerPos _markerName;  
-    _wp1 = _group addWaypoint [_waypointPosition, 0]; 
-    _wp1 setWaypointType "MOVE"; 
-    _wp2 = _group addWaypoint [_waypointPosition, 0]; 
-    _wp2 setWaypointType "SCRIPTED";
-    _wp2 setWaypointScript "A3\functions_f\waypoints\fn_wpLand.sqf";
-        //missionNamespace setVariable ["RTBAction", false, true]; //old style
-		//missionNamespace setVariable ["ChopperRTB", true, true];
-	}, // code on finish
-	{}, // code on interuption
-	[], //arguements
-	3, //duration
-	8, //order from top
-	true, //remove on finish
-	false, //show if unconcious
-	true //show in middle of screen
-] call BIS_fnc_holdActionAdd;
-*/
+
+//////////////////////////////////////////////////
+//                                              //
+//       HOLD ACTION FOR RETURN TO BASE         //
+//                                              //
+//////////////////////////////////////////////////
+
 [
 	extractheli,
 	"<t color='#FFFF00'>Return to Base</t>",
@@ -769,7 +751,13 @@ heli addAction [
 	true //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
 
-// debrief conversation based on what triggers were activated
+
+//////////////////////////////////////////////////
+//                                              //
+//     DEBFRIEF CONVO BASED ON PERFORMANCE      //
+//                                              //
+//////////////////////////////////////////////////
+
 Marcinko addAction [
     "<t color='#FFFF00'>""Ready for debrief, sir.""</t>",
     {
@@ -891,6 +879,7 @@ Marcinko addAction [
     "ActionDebrief", //ActionDebrief
 	4
 ];
+
 
 //////////////////////////////////////////////////
 //                                              //

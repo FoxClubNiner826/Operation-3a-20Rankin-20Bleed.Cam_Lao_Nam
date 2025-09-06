@@ -1,3 +1,10 @@
+/*
+    File: bomb.sqf
+    Author: Hypoxic (Built for FoxClubNiner by Hypoxic of Arma Discord - Scripting Channel)
+    Description:
+        Starts a timer then executes the code after timer completes.
+*/
+
 if !(isServer) exitWith {};
 
 private _startTime = time;

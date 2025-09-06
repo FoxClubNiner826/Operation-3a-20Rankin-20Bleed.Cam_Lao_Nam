@@ -1,4 +1,17 @@
 /*
+    File: init.sqf
+    Author: FoxClubNiner
+    Description:
+        Runs at mission start.
+*/
+
+//////////////////////////////////////////////////
+//                                              //
+//              MISSION INTRO TEXT              //
+//                                              //
+//////////////////////////////////////////////////
+
+/*
 if (hasInterface && !(missionNamespace getVariable ["MissionIntro", false])) then {
  0 fadeSound 0; //starts with sound off
 cuttext ["", "BLACK FADED", 60]; //starts with black screen
@@ -28,9 +41,23 @@ override_vn_sam_masteraudioarray = compile preprocessFileLineNumbers "override_v
 [] call override_vn_sam_masteraudioarray;
 */
 
+
+//////////////////////////////////////////////////
+//                                              //
+//               MISSION SETTINGS               //
+//                                              //
+//////////////////////////////////////////////////
+
 //enableRadio false; //disables side caht too. dont use
 //enableSentences false; //turns off audio but you can still see it in systemchat log
-[] call VN_fnc_QOL_earplugs;
+[] call VN_fnc_QOL_earplugs; // addAction for earplugs
+
+
+//////////////////////////////////////////////////
+//                                              //
+//          REMOVE ADDACTION ON DEATH           //
+//                                              //
+//////////////////////////////////////////////////
 
 // removes addaction from dead bodies. this makes sure there are no duplicate addactions on players too
 player addEventHandler ["Killed", {
@@ -39,6 +66,12 @@ player addEventHandler ["Killed", {
 	removeAllActions foodcache;
 }];
 
+
+//////////////////////////////////////////////////
+//                                              //
+//   STOP FLOATING OBJECTS ON DESTROYED HUTS    //
+//                                              //
+//////////////////////////////////////////////////
 
 myBuilding = ((nearestObjects [getpos chair1,["Land_vn_hut_02"],20])#0);
 myBuilding2 = ((nearestObjects [getpos hut_table2,["Land_vn_hut_07"],20])#0);
@@ -142,6 +175,13 @@ addMissionEventHandler ["BuildingChanged", {
 		//hint "samsite file deleted"; // put your deleteVehicle commands here
     };
 }];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//          CONVOS FOR CONVO FUNCTION           //
+//                                              //
+//////////////////////////////////////////////////
 
 foxclub_var_conversations = createHashMapFromArray [
 	["intro1",
@@ -472,17 +512,42 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["bomb15",
 		[
-			[0, "Charge set for 15 minutes. Move out!", "answer"]
+			[0, "Setting charge for 15 minutes.", "answer"]
+		]
+	],
+	["bomb15Scout",
+		[
+			[0, "I make boom, 15 minutes.", "answer"]
 		]
 	],
 	["bomb30",
 		[
-			[0, "Charge set for 30 minutes. Move out!", "answer"]
+			[0, "Setting charge for 30 minutes.", "answer"]
+		]
+	],
+	["bomb30Scout",
+		[
+			[0, "I make boom, 30 minutes.", "answer"]
 		]
 	],
 	["bomb45",
 		[
-			[0, "Charge set for 45 minutes. Move out!", "answer"]
+			[0, "Setting charge for 45 minutes.", "answer"]
+		]
+	],
+	["bomb45Scout",
+		[
+			[0, "I make boom, 45 minutes.", "answer"]
+		]
+	],
+	["bombplanted",
+		[
+			[0, "Move out!", "answer"]
+		]
+	],
+	["bombplantedScout",
+		[
+			[0, "We move, now!", "answer"]
 		]
 	],
 	["playersspotted1",
@@ -1451,45 +1516,3 @@ foxclub_var_conversations = createHashMapFromArray [
 		]
 	]
 ];
-
-/* ===============================================================
-
-// backup in case I ruin the trigger
-[]spawn 
-{
-pilot lookAt player;
-sleep 1;
-pilot playmove "Acts_PercMstpSlowWrflDnon_handup2";  
-deletemarker "PilotArea";
-deletemarker "RescuePilotText";
-[pilot, "Hey! Over Here! Where am I?"] remoteExec ["sidechat", 0, false];
-sleep 4;
-[player, "Cambodia. Look sharp and follow me!"] remoteExec ["sidechat", 0, false];
-sleep 2;
-[pilot, true] remoteExec ["allowdamage", 0, true];
-[pilot, "PATH"] remoteExec ["enableai", 0, true];
-};
-
-
-["scripts\hvt.sqf"] remoteExec ["execVM"];
-
-// in action
-["convo_8", [_caller, _target]] remoteExec ["foxclub_fnc_conversation"];
-
-["convo_10", [_sally, _jim, _annoyingOrange]] remoteExec ["foxclub_fnc_conversation"];
-
-
-// ===============================================================
-// FOR YOUR REFERENCE ONLY, NOT VALID CODE
-// CONVERSATION FORMAT
-["keyword reference",
-	[
-		[_speakerIndex, "text", "soundClass", _delayAfter, { hint "custom code!" }],
-		[_speakerIndex, "text2", "soundClass2"]
-	]
-]
-
-// The array of speakers is passed to the custom code when it's executed, contained in variable _this
-
-// CALL FORMAT
-["keyword reference",[_speakerUnit0, _speakerUnit1, _speakerUnit2]]

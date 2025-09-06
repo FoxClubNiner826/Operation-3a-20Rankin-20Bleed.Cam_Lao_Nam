@@ -20,6 +20,8 @@ DEDICATED SERVER TESTING:
 - mercinko should have no questions left. but the way its scripted looks like they still will be there.
 - fixed issue where the POW was saying SOG voice lines because I changed his object type and forgot to update it in the restrict voices module
 - test infil convo for working on dedicated server.
+- Test if players still have holdAction after respawn.
+- Test if skip to infil needs to be remoteexeced. weather and time might not change. you can copy some code from radiohq.sqf
 
 
 TO DO MASTER LIST:
@@ -59,7 +61,6 @@ TO DO MASTER LIST:
         - fill out the prison with prisoners, equipment etc and put hide on it until extract
         - add achievements. (perfect mission, 0/10 mission, never spotted, etc)
         - add game master slot
-        - condition for stab place bomb for players to be outside
         - beginning jeep needs to move foruther away from players
     LOW PRIORITY:
         - if you put on an enemy back pack you get to know if you are being tracked and what the state of things are
@@ -108,6 +109,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- reworked time bomb on stab to be holdAction and made it so you can only place it on the boat from the outside.
 - made some trigger areas with subtitles if the STAB goes in the wrong direction
 - Chose a design choice regarding the Infil Task. On one hand, I want objectives to be open ended for players to determine how to complete them. 
     But on the other hand if I want to "tell a story" its better to have very specific things happen, like a specific infil spot. 

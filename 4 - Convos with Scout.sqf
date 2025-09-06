@@ -1,21 +1,3 @@
-// The first index is the name of the subtitle text in init.sqf. This contains the actual text of the subtitle. 
-// The second index is who will be saying the subtitle. This determines things like who gets lip movement, the name tag of the subtitle, etc. 
-// RemoteExec then broadcasts the function (subtitle) to all players on the server. The proximity determines which clients the function is 
-// executed on (subtitles, say3d, etc).
-
-//Examples
-//1. To send the subtitle to all the players regardless of proximity:
-["name1", [leader playergroup]] remoteExec ["FoxClub_fnc_Conversation"];
-
-//2. To send the subtitle to all players withiin 100 meters of the leader of the group:
-["name1", [leader playergroup]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance leader playergroup <= 100}];
-//Cannot use `leader player` because it wouldnt work on a dedicated server since `player` doesn't exist. 
-//This option also wouldn't filter out if the scout is the leader of the group.
-
-//3. To send a randomly chosen subtitle to all players regardless of proximity.
-[selectRandom ["name1", "name2", "name3"], [leader playergroup]] remoteExec ["FoxClub_fnc_Conversation"];
-
-
 // After players leave the docks. The leader sets the tone. Then the scout agrees. Vice versa if the leader is the scout.
 // In a perfect world I wold have chosen a random unit for response. But that means I would have to add another voice actor plus it would add 
 // feature creap and who knows whatever other issues. Keep it simple for now. In the future maybe you make a 4 player one where there are 4 distinct characters.
@@ -167,3 +149,44 @@ _leader = leader playergroup;
     "FoxClub_fnc_Conversation",    
     allPlayers select { _x distance _leader <= 100 }    
 ];
+
+//placing c4 charge based on the caller of the action. On start: convo. beep boop. On finish: clunk. Move out.
+private _conditionC4 = {
+    (missionNamespace getVariable ['ActionSTABTimeBombs', false]) && (vehicle _this != _target)
+};
+
+[
+	ptboat,
+	"<t color='#FFFF00'>Place C-4 Plastic Explosive: 15 Minutes</t>",
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+	toString _conditionC4,
+	"true", //condition progress
+	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bomb15Scout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bomb15", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+    }, //code on start
+	{}, // code every tick
+	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bombplantedScout", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bombplanted", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		};
+		missionNamespace setVariable ["ActionSTABTimeBombs", false, true];
+        playSound3D [getMissionPath "sound\PlaceBomb.ogg", getPosASL ptboat, false, ptboat, 3];
+        ["scripts\bomb.sqf"] remoteExec ["execVM", 2];
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	3, //duration
+	8, //order from top
+	false, //remove on finish
+	false, //show if unconcious
+	true //show in middle of screen
+] call BIS_fnc_holdActionAdd;

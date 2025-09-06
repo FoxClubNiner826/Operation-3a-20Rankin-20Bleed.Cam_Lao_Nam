@@ -1,3 +1,10 @@
+/*
+    File: RadioHQ.sqf
+    Author: FoxClubNiner
+    Description:
+        Fades player screen. Starts naval patrol. Changes weather. Displays text. Starts convo.
+*/
+
 titleText ["", "BLACK OUT", 3];
 3 fadesound 0;
 sleep 5;

@@ -1,12 +1,9 @@
 /*
-    File: fn_playVoiceLine.sqf
+    File: fn_intelNotFound.sqf
     Author: FoxClubNiner
     Description:
         Determines if the caller is the Scout or not then picks a random voice line from the pool, 
         removes it so it can’t repeat until exhausted, and broadcasts it with FoxClub_fnc_Conversation.
-
-    Params:
-        0: OBJECT - the character speaking
 */
 
 if (_caller == _scout) then {
