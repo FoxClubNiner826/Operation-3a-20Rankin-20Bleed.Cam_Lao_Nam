@@ -1,11 +1,10 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements
-            * sabatague comms
+            * - all pilot interactions
             - blow c4 cache new lines: fire in the hole. change to hold action?
             - all pow lines
             - comms sabatagued
-            - all pilot interactions
             - extraction and smoke
             - rescure pilot
             - no subs for captain marchikno
@@ -16,9 +15,6 @@ NEW LINES TO ADD:
 - interaction between scout and marcinko so players dont think its a bug if there was nothing
 - - new line: i see a big ass cache. take what you need then lets blow it.
 
-
--need to adjust holdaction condition to allow for strings like i did with the time bomb. check all hold actions conditions but mainly for searchable
-items in lumphat.
 
 BUGS FROM LATEST PLAYTHROUGH:
 - Figure out how to proceed with the downed pilot task

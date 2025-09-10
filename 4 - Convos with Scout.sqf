@@ -231,3 +231,88 @@ if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {
 // if the general flees 
 ["generalfled", [HQRadio, leader playergroup]] remoteExec ["FoxClub_fnc_Conversation"];
 
+// hold action for disabling comms 
+
+// after pilot gets shot down. I want the leader to say something to the scout but only if they are within distance to each other because 
+// players might be split up at this point. I need to consider that the leader might not even be present so no convo would happen.
+
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;   
+// convo if the leader isn't the scout
+if (alive _leader && 
+    _leader != _scout && 
+    _leader in units playergroup &&
+    _leader inArea pilot_trigger) then {  
+
+        ["pilotdown", [_leader, _scout]] remoteExec [    
+            "FoxClub_fnc_Conversation",    
+            allPlayers select { _x distance _leader <= 100 }    
+        ];
+
+        sleep 3;
+
+        if (_leader distance _scout <= 100) then {
+        ["pilotdownScout", [_scout]] remoteExec [    
+            "FoxClub_fnc_Conversation",    
+            allPlayers select { _x distance _scout <= 100 }    
+        ];    
+        };  
+} else {
+    _unitsInArea = (switchableUnits + playableUnits) select {  
+    (_x inArea pilot_trigger) && (alive _x)  
+    }; 
+
+    private ["_selectedUnit"];
+    if (count _unitsInArea > 0) then { 
+        _selectedUnit = selectRandom _unitsInArea;
+    };
+
+    ["pilotdown", [_selectedUnit]] remoteExec [
+        "FoxClub_fnc_Conversation", 
+        allPlayers select {_x distance _selectedUnit <= 100}];
+};
+
+// convo if the leader is the scout   
+if (alive _scout && 
+    _leader == _scout && 
+    _scout in units playergroup &&
+    _leader inArea pilot_trigger) then { 
+
+        ["pilotdownScout", [_scout]] remoteExec [    
+            "FoxClub_fnc_Conversation",    
+            allPlayers select { _x distance _scout <= 100 }    
+        ];
+
+        sleep 3;
+
+        if (_leader distance _scout <= 100) then {
+        ["pilotdown", [_leader]] remoteExec [    
+            "FoxClub_fnc_Conversation",    
+            allPlayers select { _x distance _leader <= 100 }    
+        ];    
+        };   
+} else {
+    _unitsInArea = (switchableUnits + playableUnits) select {  
+    (_x inArea pilot_trigger) && (alive _x)  
+    }; 
+
+    private ["_selectedUnit"];
+    if (count _unitsInArea > 0) then { 
+        _selectedUnit = selectRandom _unitsInArea;
+    };
+
+    ["pilotdown", [_selectedUnit]] remoteExec [
+        "FoxClub_fnc_Conversation", 
+        allPlayers select {_x distance _selectedUnit <= 100}];
+};
+
+if (leader !scout) then {
+    // leader speaks (not scout)
+} else {
+    // pick random unit to speak
+  if (leader scout) then {
+    // scout speaks
+  } else {
+    // pick random unit to speak
+};
+};

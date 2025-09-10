@@ -247,3 +247,29 @@ case ("red" in toLower _smokeType): {"SmokeShellRed"};
 
 // old version of finding intel.
 this setPosATL (getPosATL (selectRandom [gunboat_file_pos_1, gunboat_file_pos_2, gunboat_file_pos_3]));
+
+// old generator version
+_unitsInArea = (switchableUnits + playableUnits) select {  
+    (_x inArea generatorArea) && (alive _x)  
+}; 
+
+private ["_selectedUnit"];
+if (count _unitsInArea > 0) then { 
+    _selectedUnit = selectRandom _unitsInArea;
+};
+
+["idea", [_selectedUnit]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance generator <= 25}];
+
+// old pilot convo 
+_unitsInArea = (switchableUnits + playableUnits) select {  
+    (_x inArea pilot_trigger) && (alive _x)  
+}; 
+
+private ["_selectedUnit"];
+if (count _unitsInArea > 0) then { 
+    _selectedUnit = selectRandom _unitsInArea;
+};
+
+["pilotdown", [_selectedUnit]] remoteExec [
+    "FoxClub_fnc_Conversation", 
+    allPlayers select {_x distance _selectedUnit <= 100}];

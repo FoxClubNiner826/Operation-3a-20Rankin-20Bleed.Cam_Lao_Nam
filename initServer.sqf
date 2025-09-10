@@ -254,11 +254,13 @@ _patrolGroup = [patrol1, patrol2, patrol3, patrol4, patrol5, patrol6];
                             };
                         };
                     
-                    // sends troop transport to road if group 1-4 spotted player and turns on speakers
-                    missionNamespace setVariable ["PlayersSpotted", true, true]; //sends troop transport to road and general flees
-                    sleep 15; //wait to turn on speaker
-                    missionNamespace setVariable ["fox_var_radioLoop", true, true]; //turns on speakers
-                    //missionNamespace setVariable ["fox_var_radioLoop", false, true]; //turns off speakers
+                    // sends troop transport to road if group 1-4 spotted player and their comms arent disabled. Also turns on speakers.
+                    if (!(missionNamespace getVariable ["comsdestroyed", false])) then {
+                        missionNamespace setVariable ["PlayersSpotted", true, true]; //sends troop transport to road and general flees
+                        sleep 15; //wait to turn on speaker
+                        missionNamespace setVariable ["fox_var_radioLoop", true, true]; //turns on speakers
+                        //missionNamespace setVariable ["fox_var_radioLoop", false, true]; //turns off speakers
+                    };
 				};
 			};
 		};

@@ -768,19 +768,34 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Nothing here. Only junk.", "answer"]
 		]
 	],
-	["idea",
+	["commsdestroy",
 		[
-			[0, "Cover me, I've got an idea.", "answer"]
+			[0, "Kill their voice, kill their fight.", "answer"]
+		]
+	],
+	["commsdestroyScout",
+		[
+			[0, "No voice, no help come.", "answer"]
 		]
 	],
 	["commsoff",
 		[
-			[0, "That’ll throw a wrench in their comms.", "answer"]
+			[0, "Silent airwaves. Let’s move.", "answer"]
+		]
+	],
+	["commsoffScout",
+		[
+			[0, "Radio dead. Enemy scared now.", "answer"]
 		]
 	],
 	["pilotdown",
 		[
 			[0, "That pilot’s in serious trouble without our help.", "answer"]
+		]
+	],
+	["pilotdownScout",
+		[
+			[0, "I see pilot! We go now!", "answer"]
 		]
 	],
 	["meet",

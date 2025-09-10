@@ -427,16 +427,73 @@ private _conditionC4 = {
 
 //////////////////////////////////////////////////
 //                                              //
+//          HOLD ACTION DISABLING COMMS         //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionComms = {
+    _this distance _target < 3
+};
+
+[
+	generator,
+	"<t color='#FFFF00'>Sabotage Communications Equipment</t>",
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\destroy_ca.paa", //idle icon 
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\destroy_ca.paa", //progress icon
+	toString _conditionComms, //condition
+	"true", //condition progress
+	{
+		params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["commsdestroyScout", [_caller]] remoteExec [
+                "FoxClub_fnc_Conversation", 
+                allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["commsdestroy", [_caller]] remoteExec [
+                "FoxClub_fnc_Conversation", 
+                allPlayers select {_x distance _caller <= 100}];
+		};
+	}, //code on start
+	{}, // code every tick
+	{
+		params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["commsoffScout", [_caller, covey]] remoteExec [
+                "FoxClub_fnc_Conversation", 
+                allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["commsoff", [_caller]] remoteExec [
+                "FoxClub_fnc_Conversation", 
+                allPlayers select {_x distance _caller <= 100}];
+		};
+        missionNamespace setVariable ["comsdestroyed", true, true];
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	5, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+] call BIS_fnc_holdActionAdd;
+
+
+//////////////////////////////////////////////////
+//                                              //
 //      HOLD ACTION FOR SEARCHING GENERAL       //
 //                                              //
 //////////////////////////////////////////////////
+
+private _conditionGeneral = {
+    _this distance _target < 2 && !alive officer
+};
 
 [
 	officer,
 	"<t color='#FFFF00'>Search Body for Identification</t>",
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //idle icon 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
-	"_this distance _target < 2 && !alive officer", //condition
+	toString _conditionGeneral, //condition
 	"true", //condition progress
 	{
 		params ["_target", "_caller", "_actionID", "_args"];
@@ -480,6 +537,10 @@ private _conditionC4 = {
 //                                              //
 //////////////////////////////////////////////////
 
+private _conditionItems = {
+    _this distance _target < 3
+};
+
 // List of objects, percent modifier, and holdAction title
 private _objectsWithModifiers = [
     [obj11, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],  // 5% per attempt (bodies)
@@ -509,7 +570,7 @@ private _objectsWithModifiers = [
 	_title, //title
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //idle icon 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
-	"_this distance _target < 3", //condition
+	toString _conditionItems, //condition
 	"true", //condition progress
 	{
         params ["_target", "_caller", "_actionId", "_arguments"];
