@@ -190,3 +190,44 @@ private _conditionC4 = {
 	false, //show if unconcious
 	true //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
+
+
+// if players are spotted  by patrol 1-3. This one is tricky because player could be split up at this point. I need a convo for subs when they are together
+// and when they are split. because when they are split I need to do a radio or groupChat message. I need to decide if I want to use groupChat or sideChat.
+// groupChat will be most like vanilla arma. sideChat would make more sense for the time period. Ultimatley teams tried to stay off the radio, so I have 
+// changed this to not do radio and will do a check for distance.
+
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;   
+// convo if the leader isn't the scout
+if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {     
+    ["playersspotted", [_leader, _scout]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _leader <= 100 }    
+    ];
+    sleep 3;
+    if (_leader distance _scout <= 100) then {
+    ["playersspottedScout2", [_scout]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _scout <= 100 }    
+    ];    
+    };  
+};
+// convo if the leader is the scout   
+if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {     
+    ["playersspottedScout", [_scout]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _scout <= 100 }    
+    ];
+    sleep 3;
+    if (_leader distance _scout <= 100) then {
+    ["playersspotted2", [_leader]] remoteExec [    
+        "FoxClub_fnc_Conversation",    
+        allPlayers select { _x distance _leader <= 100 }    
+    ];    
+    };   
+};
+
+// if the general flees 
+["generalfled", [HQRadio, leader playergroup]] remoteExec ["FoxClub_fnc_Conversation"];
+

@@ -67,7 +67,7 @@ forceWeatherChange;
 ////////////////////////////////////////////////////
 //                                                //
 //       CUSTOM RADIO CHANNEL FOR SUBTITLES       //
-//                                                //
+//               Author: Hypoxic                  //
 ////////////////////////////////////////////////////
 
 [] spawn {
@@ -188,15 +188,71 @@ _patrolGroup = [patrol1, patrol2, patrol3, patrol4, patrol5, patrol6];
                     if (!(missionNamespace getVariable ["PlayersSpotted", false]) && 
                         !(missionNamespace getVariable ["aopassedVar", false]) && 
                         !(missionNamespace getVariable ["hvtFled", false])) then {
-                        [selectRandom ["playersspotted1", "playersspotted2", "playersspotted3"], [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
+                            // if players are spotted  by patrol 1-3
+                            _scout = missionNamespace getVariable ["scout", objNull];   
+                            _leader = leader playergroup;   
+                            // convo if the leader isn't the scout
+                            if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {     
+                                ["playersspotted", [_leader, _scout]] remoteExec [    
+                                    "FoxClub_fnc_Conversation",    
+                                    allPlayers select { _x distance _leader <= 100 }    
+                                ];
+                                sleep 3;
+                                if (_leader distance _scout <= 100) then {
+                                ["playersspottedScout2", [_scout]] remoteExec [    
+                                    "FoxClub_fnc_Conversation",    
+                                    allPlayers select { _x distance _scout <= 100 }    
+                                ];    
+                                };  
+                            };
+                            // convo if the leader is the scout   
+                            if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {     
+                                ["playersspottedScout", [_scout]] remoteExec [    
+                                    "FoxClub_fnc_Conversation",    
+                                    allPlayers select { _x distance _scout <= 100 }    
+                                ];
+                                sleep 3;
+                                if (_leader distance _scout <= 100) then {
+                                ["playersspotted2", [_leader]] remoteExec [    
+                                    "FoxClub_fnc_Conversation",    
+                                    allPlayers select { _x distance _leader <= 100 }    
+                                ];    
+                                };   
+                            };
                     };
-                    
                     // if players got to lumphat in stealth then get spotted by a patrol and the general hasn't fled then play this
                     if (missionNamespace getVariable ["aopassedVar", false] && 
                        !(missionNamespace getVariable ["hvtFled", false]) && 
                        (_group == patrol4)) then {
-                        ["playersspottedLumphat", [leader player]] remoteExec ["FoxClub_fnc_Conversation"];
-                    };
+                            _leader = leader playergroup;
+                            _scout = missionNamespace getVariable ["scout", objNull];   
+                            if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {     
+                                if (alive officer) then {
+                                    ["generalAlive", [_leader]] remoteExec [    
+                                        "FoxClub_fnc_Conversation",    
+                                        allPlayers select { _x distance _scout <= 100 }    
+                                    ];
+                                } else {
+                                    ["generalDead", [_leader]] remoteExec [    
+                                        "FoxClub_fnc_Conversation",    
+                                        allPlayers select { _x distance _scout <= 100 }    
+                                    ];
+                                };   
+                            };    
+                            if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {     
+                                if (alive officer) then {
+                                    ["generalAliveScout", [_scout]] remoteExec [    
+                                        "FoxClub_fnc_Conversation",    
+                                        allPlayers select { _x distance _scout <= 100 }    
+                                    ];
+                                } else {
+                                    ["generalDeadScout", [_scout]] remoteExec [    
+                                        "FoxClub_fnc_Conversation",    
+                                        allPlayers select { _x distance _scout <= 100 }    
+                                    ];
+                                };   
+                            };
+                        };
                     
                     // sends troop transport to road if group 1-4 spotted player and turns on speakers
                     missionNamespace setVariable ["PlayersSpotted", true, true]; //sends troop transport to road and general flees

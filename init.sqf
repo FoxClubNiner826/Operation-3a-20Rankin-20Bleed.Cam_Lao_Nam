@@ -72,7 +72,7 @@ player addEventHandler ["Killed", {
 //   STOP FLOATING OBJECTS ON DESTROYED HUTS    //
 //                                              //
 //////////////////////////////////////////////////
-
+/*
 myBuilding = ((nearestObjects [getpos chair1,["Land_vn_hut_02"],20])#0);
 myBuilding2 = ((nearestObjects [getpos hut_table2,["Land_vn_hut_07"],20])#0);
 myBuilding3 = ((nearestObjects [getpos hut3_wire1,["Land_vn_hut_06"],20])#0);
@@ -175,7 +175,7 @@ addMissionEventHandler ["BuildingChanged", {
 		//hint "samsite file deleted"; // put your deleteVehicle commands here
     };
 }];
-
+*/
 
 //////////////////////////////////////////////////
 //                                              //
@@ -550,57 +550,56 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "We move, now!", "answer"]
 		]
 	],
-	["playersspotted1",
+	["playersspotted",
 		[
-			[0, "", "answer", 0, { 
-				if (player != (_this#0)) then { playsound "talkradio"; }; 
-				leader player sideChat "Our cover's blown. move to the target AO, now!"; 
-				}
-			]
+			[0, "Shit! Haul ass to the target, now!", "answer"]
 		]
 	],
 	["playersspotted2",
 		[
-			[0, "", "answer", 0, { 
-				if (player != (_this#0)) then { playsound "talkradio"; }; 
-				leader player sideChat "Shit! Haul ass to the target AO!"; 
-				}
-			]
+			[0, "Moving now!", "answer"]
 		]
 	],
-	["playersspotted3",
+	["playersspottedScout",
 		[
-			[0, "", "answer", 0, { 
-				if (player != (_this#0)) then { playsound "talkradio"; }; 
-				leader player sideChat "Keep moving! Don't stop till we get to the target AO!"; 
-				}
-			]
+			[0, "Shit! Move fast, go target now!", "answer"]
 		]
 	],
-	["playersspottedLumphat",
+	["playersspottedScout2",
 		[
-			[0, "", "answer", 0, {
-				if (alive officer) then {
-					if (player != (_this#0)) then { playsound "talkradio"; }; 
-					leader player sideChat "Fuck! Take out the target now!";
-					} else {
-					if (player != (_this#0)) then { playsound "talkradio"; }; 
-					leader player sideChat "Fuck! Put these bastards in the ground, quick!";
-					};
-				}
-			]
+			[0, "I go now!", "answer"]
+		]
+	],
+	["generalAlive",
+		[
+			[0, "Fuck! Take out the target now!", "answer"]
+		]
+	],
+	["generalDead",
+		[
+			[0, "Fuck! Put these bastards in the ground, quick!", "answer"]
+		]
+	],
+	["generalAliveScout",
+		[
+			[0, "Shit! Kill target fast!", "answer"]
+		]
+	],
+	["generalDeadScout",
+		[
+			[0, "Shit! Kill enemy fast!", "answer"]
 		]
 	],
 	["generalfled",
 		[
-			[0, "", "answer", 5, {
+			[0, "", "answer", 3, {
 				playsound "talkradio";
-				HQRadio sideChat "Hawk, Rankin. We’re picking up on enemy comms. The general’s been evacuated. If you can, check out Lumphat for any intel. Otherwise, get the hell out of there!";
+				HQRadio sideChat "Hawk, Rankin. We’re picking up on enemy comms. The general’s been evacuated. If you can, search Lumphat for any intel. Otherwise, get the hell out of there!";
 				}
 			],
 			[1, "", "answer", 0, {
 				if (player != (_this#1)) then { playsound "talkradio"; }; 
-				leader player sideChat "Rankin, Hawk. Solid copy. Out.";
+				_this#1 sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
 				}
 			]
 		]
@@ -644,12 +643,32 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Time to find out if you were worth all this trouble.", "answer"]
 		]
 	],
+	["papersScout",
+		[
+			[0, "You choose wrong side. Now you die here.", "answer"]
+		]
+	],
 	["bingo",
 		[
-			[0, "Bingo!", "answer", 3],
+			[0, "Bingo!", "answer", 1],
 			[0, "", "answer", 3, { 
 				if (player != (_this#0)) then { playsound "talkradio"; };  
 				_this#0 sideChat "Rankin, Covey. Touchdown. I repeat, touchdown. Get our bird in the air, over!"; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				covey sideChat "Covey, Rankin. Solid copy. Bird is on standyby. Out.";
+				}
+			]
+		]
+	],
+	["bingoScout",
+		[
+			[0, "Voilà!", "answer", 1],
+			[0, "", "answer", 3, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Covey. We finish! Get bird, over!"; 
 				}
 			],
 			[1,"", "answer", 0, { 

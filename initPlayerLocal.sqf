@@ -434,20 +434,35 @@ private _conditionC4 = {
 [
 	officer,
 	"<t color='#FFFF00'>Search Body for Identification</t>",
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_forceRespawn_ca.paa", //idle icon 
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //idle icon 
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
 	"_this distance _target < 2 && !alive officer", //condition
 	"true", //condition progress
 	{
-		params ["_target", "_caller", "_actionID", "_args"];      
- 		[selectRandom ["papers1", "papers2", "papers3"], [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+		params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["papersScout", [_caller]] remoteExec [
+                "FoxClub_fnc_Conversation", 
+                allPlayers select {_x distance _caller <= 100}];
+		} else {
+			[selectRandom ["papers1", "papers2", "papers3"], [_caller]] remoteExec [
+                "FoxClub_fnc_Conversation", 
+                allPlayers select {_x distance _caller <= 100}];
+		};
 	}, //code on start
 	{}, // code every tick
 	{
-		missionNamespace setVariable ["hvtdead", true, true];
-		params ["_target", "_caller", "_actionID", "_args"];      
- 		["bingo", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
- 		//["bingo2", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+		params ["_target", "_caller", "_actionID", "_args"];
+        if (_caller == missionNamespace getVariable ["scout", objNull]) then {
+			["bingoScout", [_caller, covey]] remoteExec [
+                "FoxClub_fnc_Conversation", 
+                allPlayers select {_x distance _caller <= 100}];
+		} else {
+			["bingo", [_caller, covey]] remoteExec [
+                "FoxClub_fnc_Conversation", 
+                allPlayers select {_x distance _caller <= 100}];
+		};
+        missionNamespace setVariable ["hvtdead", true, true];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -457,6 +472,139 @@ private _conditionC4 = {
 	false, //show if unconcious
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
+
+
+//////////////////////////////////////////////////
+//                                              //
+// HOLD ACTION FOR SEARCHABLE ITEMS IN LUMPHAT  //
+//                                              //
+//////////////////////////////////////////////////
+
+// List of objects, percent modifier, and holdAction title
+private _objectsWithModifiers = [
+    [obj11, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],  // 5% per attempt (bodies)
+    [obj12, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
+    [obj13, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
+    [obj14, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
+    [obj15, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
+    [obj16, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
+    [obj3, 0.10, "<t color='#FFFF00'>Search Folder for Intel</t>"],  // 10% per attempt (folders)
+    [obj4, 0.10, "<t color='#FFFF00'>Search Folder for Intel</t>"],  
+    [obj5, 0.075, "<t color='#FFFF00'>Search Locker for Intel</t>"],  // 7.5% per attempt (lockers)
+    [obj6, 0.075, "<t color='#FFFF00'>Search Locker for Intel</t>"],  
+    [obj7, 0.15, "<t color='#FFFF00'>Search File Cabinet for Intel</t>"],  // 15% per attempt (file cabinets)
+    [obj8, 0.15, "<t color='#FFFF00'>Search File Cabinet for Intel</t>"],  
+    [obj9, 0.05, "<t color='#FFFF00'>Search Vehicle for Intel</t>"],  // 5% per attempt (cars)
+    [obj10, 0.05, "<t color='#FFFF00'>Search Vehicle for Intel</t>"]   
+];
+
+{
+    // Used to swap out different objects so I only have to have one holdAction code block
+    private _object = _x select 0;
+    private _modifier = _x select 1;
+    private _title = _x select 2;
+
+    [
+	_object, //object
+	_title, //title
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //idle icon 
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
+	"_this distance _target < 3", //condition
+	"true", //condition progress
+	{
+        params ["_target", "_caller", "_actionId", "_arguments"];
+        _this call FoxClub_fnc_intelSearch; 
+    }, //code on start
+	{}, // code every tick
+	{
+		// This runs after the holdAction has been completed
+        params ["_target", "_caller", "_actionId", "_arguments"];
+        _scout = missionNamespace getVariable ["scout", objNull]; //prevents errors if noone is play scout
+        private _modifier = _arguments select 0;   // << grab modifier
+
+        // Remove action for all players once hold action is complete
+        [_target, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _target];
+        
+        // Increase attempt count
+        private _attemptCount = missionNamespace getVariable ["holdActionAttemptCount", 0];
+        _attemptCount = _attemptCount + 1;
+        missionNamespace setVariable ["holdActionAttemptCount", _attemptCount, true];
+        //[format ["Attempt Count: %1", _attemptCount]] remoteExec ["systemChat"]; //for debug
+
+        // Calculate chance based on multiplier. More attempts increase the chance of success.
+        private _chance = _attemptCount * _modifier * 100; // Adjust the chance based on multiplier
+        private _randomRoll = random 100;
+        //[format ["Chance: %1%%", _chance]] remoteExec ["systemChat"]; //for debug
+
+        // Check if intel was found. If yes, then run the code below.
+        if (_randomRoll < _chance) then {
+            
+            // make sure created side tasks are randomized and complete a task if it was done before the task was created
+            private _tasks = ["cacheTaskPool", "gunboatTaskPool", "samsiteTaskPool"] select {!(missionNamespace getVariable [_x, false])};
+            if (_tasks isNotEqualTo []) then {
+                private _selectedTask = selectRandom _tasks;
+                _tasks = _tasks - [_selectedTask];
+                //systemChat _selectedTask; // for debugging
+                if (_selectedTask == "gunboatTaskPool") then {
+                    if (missionNamespace getvariable ["gunboatDestroyed", false]) then {
+				        missionNamespace setVariable ["gunboatTaskAlreadyDone", true, true]; //creates and completes the task
+                        missionNamespace setVariable ["gunboatTaskPool", true, true]; // removes task from pool so it isnt chosen twice
+                        _this call FoxClub_fnc_intelAlreadyDone; 
+				    } else {
+                        missionNamespace setVariable ["gunboatTask", true, true]; // creates the task
+                        missionNamespace setVariable ["gunboatTaskPool", true, true]; // removes task from pool so it isnt chosen twice
+                        _this call FoxClub_fnc_intelFound; // plays lines after task is created
+                    };
+                };
+                if (_selectedTask == "samsiteTaskPool") then {
+                    if (missionNamespace getvariable ["samsiteDestroyed", false]) then {
+				        missionNamespace setVariable ["samsiteTaskAlreadyDone", true, true];
+                        missionNamespace setVariable ["samsiteTaskPool", true, true];
+                        _this call FoxClub_fnc_intelAlreadyDone;
+				    } else {
+                        missionNamespace setVariable ["samsiteTask", true, true];
+                        missionNamespace setVariable ["samsiteTaskPool", true, true];
+                        _this call FoxClub_fnc_intelFound;
+                    };
+                };
+                if (_selectedTask == "cacheTaskPool") then {
+                    if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && missionNamespace getvariable ["foodCacheDestroyed", false]) then {
+				        missionNamespace setVariable ["cacheTaskAlreadyDone", true, true];
+                        missionNamespace setVariable ["cacheTaskPool", true, true];
+                        _this call FoxClub_fnc_intelAlreadyDone;
+				    } else {
+                        missionNamespace setVariable ["cacheTask", true, true];
+                        missionNamespace setVariable ["cacheTaskPool", true, true];
+                        _this call FoxClub_fnc_intelFound;
+                    };
+                };
+            };
+
+            // Remove all holdActions if no tasks remain 
+            if (_tasks isEqualTo []) then {
+                private _objects = [obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16];
+                { [_x, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _x]; } forEach _objects;
+            };
+
+            // Sends reinforcements to Lumphat if players were spotted by OPFOR in set area AND at least one side task was found.
+            if (missionNamespace getVariable ["playersSpottedLumphat", false] && !(missionNamespace getVariable ["reinforcements", false])) then {
+                missionNamespace setVariable ["reinforcements", true, true];
+            };
+            // if the roll doesn't suceed then run the code below.
+        } else {
+            [_caller] call FoxClub_fnc_intelNotFound;
+        };
+	}, // code on finish
+	{}, // code on interuption
+	[_modifier, _title], //arguements
+	5, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+    ] call BIS_fnc_holdActionAdd;
+
+} forEach _objectsWithModifiers;
 
 
 //////////////////////////////////////////////////
@@ -879,136 +1027,3 @@ Marcinko addAction [
     "ActionDebrief", //ActionDebrief
 	4
 ];
-
-
-//////////////////////////////////////////////////
-//                                              //
-// HOLD ACTION FOR SEARCHABLE ITEMS IN LUMPHAT  //
-//                                              //
-//////////////////////////////////////////////////
-
-// List of objects, percent modifier, and holdAction title
-private _objectsWithModifiers = [
-    [obj11, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],  // 5% per attempt (bodies)
-    [obj12, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
-    [obj13, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
-    [obj14, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
-    [obj15, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
-    [obj16, 0.05, "<t color='#FFFF00'>Search Body for Intel</t>"],
-    [obj3, 0.10, "<t color='#FFFF00'>Search Folder for Intel</t>"],  // 10% per attempt (folders)
-    [obj4, 0.10, "<t color='#FFFF00'>Search Folder for Intel</t>"],  
-    [obj5, 0.075, "<t color='#FFFF00'>Search Locker for Intel</t>"],  // 7.5% per attempt (lockers)
-    [obj6, 0.075, "<t color='#FFFF00'>Search Locker for Intel</t>"],  
-    [obj7, 0.15, "<t color='#FFFF00'>Search File Cabinet for Intel</t>"],  // 15% per attempt (file cabinets)
-    [obj8, 0.15, "<t color='#FFFF00'>Search File Cabinet for Intel</t>"],  
-    [obj9, 0.05, "<t color='#FFFF00'>Search Vehicle for Intel</t>"],  // 5% per attempt (cars)
-    [obj10, 0.05, "<t color='#FFFF00'>Search Vehicle for Intel</t>"]   
-];
-
-{
-    // Used to swap out different objects so I only have to have one holdAction code block
-    private _object = _x select 0;
-    private _modifier = _x select 1;
-    private _title = _x select 2;
-
-    [
-	_object, //object
-	_title, //title
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //idle icon 
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa", //progress icon
-	"_this distance _target < 3", //condition
-	"true", //condition progress
-	{
-        params ["_target", "_caller", "_actionId", "_arguments"];
-        _this call FoxClub_fnc_intelSearch; 
-    }, //code on start
-	{}, // code every tick
-	{
-		// This runs after the holdAction has been completed
-        params ["_target", "_caller", "_actionId", "_arguments"];
-        _scout = missionNamespace getVariable ["scout", objNull]; //prevents errors if noone is play scout
-        private _modifier = _arguments select 0;   // << grab modifier
-
-        // Remove action for all players once hold action is complete
-        [_target, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _target];
-        
-        // Increase attempt count
-        private _attemptCount = missionNamespace getVariable ["holdActionAttemptCount", 0];
-        _attemptCount = _attemptCount + 1;
-        missionNamespace setVariable ["holdActionAttemptCount", _attemptCount, true];
-        //[format ["Attempt Count: %1", _attemptCount]] remoteExec ["systemChat"]; //for debug
-
-        // Calculate chance based on multiplier. More attempts increase the chance of success.
-        private _chance = _attemptCount * _modifier * 100; // Adjust the chance based on multiplier
-        private _randomRoll = random 100;
-        //[format ["Chance: %1%%", _chance]] remoteExec ["systemChat"]; //for debug
-
-        // Check if intel was found. If yes, then run the code below.
-        if (_randomRoll < _chance) then {
-            
-            // make sure created side tasks are randomized and complete a task if it was done before the task was created
-            private _tasks = ["cacheTaskPool", "gunboatTaskPool", "samsiteTaskPool"] select {!(missionNamespace getVariable [_x, false])};
-            if (_tasks isNotEqualTo []) then {
-                private _selectedTask = selectRandom _tasks;
-                _tasks = _tasks - [_selectedTask];
-                //systemChat _selectedTask; // for debugging
-                if (_selectedTask == "gunboatTaskPool") then {
-                    if (missionNamespace getvariable ["gunboatDestroyed", false]) then {
-				        missionNamespace setVariable ["gunboatTaskAlreadyDone", true, true]; //creates and completes the task
-                        missionNamespace setVariable ["gunboatTaskPool", true, true]; // removes task from pool so it isnt chosen twice
-                        _this call FoxClub_fnc_intelAlreadyDone; 
-				    } else {
-                        missionNamespace setVariable ["gunboatTask", true, true]; // creates the task
-                        missionNamespace setVariable ["gunboatTaskPool", true, true]; // removes task from pool so it isnt chosen twice
-                        _this call FoxClub_fnc_intelFound; // plays lines after task is created
-                    };
-                };
-                if (_selectedTask == "samsiteTaskPool") then {
-                    if (missionNamespace getvariable ["samsiteDestroyed", false]) then {
-				        missionNamespace setVariable ["samsiteTaskAlreadyDone", true, true];
-                        missionNamespace setVariable ["samsiteTaskPool", true, true];
-                        _this call FoxClub_fnc_intelAlreadyDone;
-				    } else {
-                        missionNamespace setVariable ["samsiteTask", true, true];
-                        missionNamespace setVariable ["samsiteTaskPool", true, true];
-                        _this call FoxClub_fnc_intelFound;
-                    };
-                };
-                if (_selectedTask == "cacheTaskPool") then {
-                    if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && missionNamespace getvariable ["foodCacheDestroyed", false]) then {
-				        missionNamespace setVariable ["cacheTaskAlreadyDone", true, true];
-                        missionNamespace setVariable ["cacheTaskPool", true, true];
-                        _this call FoxClub_fnc_intelAlreadyDone;
-				    } else {
-                        missionNamespace setVariable ["cacheTask", true, true];
-                        missionNamespace setVariable ["cacheTaskPool", true, true];
-                        _this call FoxClub_fnc_intelFound;
-                    };
-                };
-            };
-
-            // Remove all holdActions if no tasks remain 
-            if (_tasks isEqualTo []) then {
-                private _objects = [obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16];
-                { [_x, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, _x]; } forEach _objects;
-            };
-
-            // Sends reinforcements to Lumphat if players were spotted by OPFOR in set area AND at least one side task was found.
-            if (missionNamespace getVariable ["playersSpottedLumphat", false] && !(missionNamespace getVariable ["reinforcements", false])) then {
-                missionNamespace setVariable ["reinforcements", true, true];
-            };
-            // if the roll doesn't suceed then run the code below.
-        } else {
-            [_caller] call FoxClub_fnc_intelNotFound;
-        };
-	}, // code on finish
-	{}, // code on interuption
-	[_modifier, _title], //arguements
-	5, //duration
-	8, //order from top
-	true, //remove on finish
-	false, //show if unconcious
-	false //show in middle of screen
-    ] call BIS_fnc_holdActionAdd;
-
-} forEach _objectsWithModifiers;

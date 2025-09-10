@@ -212,3 +212,38 @@ case ("red" in toLower _smokeType): {"SmokeShellRed"};
 					case ("green" in toLower _smokeType): {"SmokeShellGreen"};
 					case ("yellow" in toLower _smokeType): {"SmokeShellYellow"};
 					case ("orange" in toLower _smokeType): {"SmokeShellOrange"};
+
+// old version
+["playersspotted",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; }; // plays the radio effect for all players minus the speaking player			
+				_this#0 groupChat "Shit! Haul ass to the target, now!"; // provides subtitle for radio transmission above
+				}
+			],
+			[1, "", "answer", 0, { 
+				if (player != (_this#1)) then { playsound "talkradio"; }; 			
+				_this#1 groupChat "I go now!";
+				}
+			]
+		]
+	]
+
+
+["playersspottedLumphat",
+	[
+		[0, "", "answer", 0, {
+			if (alive officer) then {
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
+				leader player sideChat "Fuck! Take out the target now!";
+				} else {
+				if (player != (_this#0)) then { playsound "talkradio"; }; 
+				leader player sideChat "Fuck! Put these bastards in the ground, quick!";
+				};
+			}
+		]
+	]
+]
+
+// old version of finding intel.
+this setPosATL (getPosATL (selectRandom [gunboat_file_pos_1, gunboat_file_pos_2, gunboat_file_pos_3]));
