@@ -316,3 +316,296 @@ if (leader !scout) then {
     // pick random unit to speak
 };
 };
+
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;
+private _units = units playergroup inAreaArray pilot_trigger; // why not inArea? I've used that one before.
+private _speaker = selectRandom _units;
+private _convo = "americanLines";
+
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+  if (_scout in _units) then {
+    _speaker = _scout;
+    _convo = "vietnameseLines";
+  };
+};
+
+[_convo, [_speaker]] remoteExec [    
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];
+
+
+Would it be possible to have a second speaker respond to the first speaker? Maybe like this:
+```sqf
+_scout = missionNamespace getVariable ["scout", objNull];
+private _allPlayers = call BIS_fnc_listPlayers;  
+_leader = _allPlayers - _scout;
+private _units = units playergroup inAreaArray pilot_trigger; // why not inArea? I've used that one before.
+private _speaker = selectRandom _units;
+private _convo = "americanLines";
+private _responder = _scout;
+
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+  if (_scout in _units) then {
+    _speaker = _scout;
+    _convo = "vietnameseLines";
+    _responder = _leader;
+  };
+};
+
+[_convo, [_speaker, _responder]] remoteExec [    
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];
+```
+
+
+_scout = missionNamespace getVariable ["scout", objNull];   
+private _allPlayers = call BIS_fnc_listPlayers;  
+_leader = _allPlayers - _scout;
+private _units = units playergroup inAreaArray pilot_trigger; // why not inArea? I've used that one before.
+private _speaker = selectRandom _units;
+private _convo = "americanLines";
+
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+  if (_scout in _units) then {
+    _speaker = _scout;
+    _convo = "vietnameseLines";
+  };
+};
+
+[_convo, [_speaker]] remoteExec [    
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];
+
+
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;
+private _units = units playergroup inAreaArray pilot_trigger;
+private _speaker = selectRandom _units;
+private _responder = _scout;
+
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+  if (_scout in _units) then {
+    _speaker = _scout;
+    _responder = _leader;
+  };
+};
+private _convo = ["americanLines", "vietnameseLines"] select (_speaker == _scout);
+[_convo, [_speaker, _responder]] remoteExec [    
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];
+
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;
+private _units = units playergroup inAreaArray pilot_trigger;
+private _speaker = selectRandom _units;
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+  if (_scout in _units) then {
+    _speaker = _scout;
+  };
+};
+private _convo = ["americanLines", "vietnameseLines"] select (_speaker == _scout);
+[_convo, [_speaker]] remoteExec [    
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];
+
+
+// try this new version. didnt find any bugs yet but maybe give randomization priority to players before AI?
+// found an issue. if a random player is chosen the scout will respond, even though the scout could be far away 
+// because the scout only needs to be close to the leader to respond. so I situation could arrise where the scout 
+// and  the leader are across the map and the scout responds because a player walking into the trigger area.
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;
+_responder = objNull;
+private _units = units playergroup inAreaArray pilot_trigger;
+private _speaker = selectRandom _units;
+
+
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+  if (_scout in _units) then {
+    _speaker = _scout;
+  };
+};
+
+private _convo = ["pilotdown", "pilotdownScout"] select (_speaker == _scout);
+
+if (_leader distance _scout <= 100) then {
+    if (_speaker == _scout) then {
+        _responder = _leader;
+    } else {
+        _responder = _scout;
+    };
+};
+
+[_convo, [_speaker, _responder]] remoteExec [    
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];
+
+
+
+// new logic version 
+_scout = missionNamespace getVariable ["scout", objNull];   
+private _leader = leader playergroup;
+private _units = units playergroup inAreaArray pilot_trigger;
+private _speaker = selectRandom _units;
+private _responder = objNull;
+
+// prioritize leader or scout if they're inside the area
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _units) then {
+        _speaker = _scout;
+    };
+};
+
+private _convo = ["pilotdown", "pilotdownScout"] select (_speaker == _scout);
+
+// responder logic
+if (_speaker == _scout) then {
+    if (_leader distance _scout <= 100) then {
+        _responder = _leader;
+    } else {
+        // pick a random other unit from the trigger (excluding scout)
+        private _others = _units - [_scout];
+        if (count _others > 0) then {
+            _responder = selectRandom _others;
+        };
+    };
+} else {
+    if (_scout distance _speaker <= 100) then {
+        _responder = _scout;
+    };
+};
+
+[_convo, [_speaker, _responder]] remoteExec [
+    "FoxClub_fnc_Conversation",
+    allPlayers select { _x distance _speaker <= 100 }
+];
+
+
+
+
+
+
+// --- Version that prioritizes human responders ---
+_scout = missionNamespace getVariable ["scout", objNull];   
+private _leader    = leader playergroup;
+private _units     = units playergroup inAreaArray pilot_trigger;
+private _speaker   = selectRandom _units;
+private _responder = objNull;  // start as objNull
+
+// --- Prioritize leader or scout if they're inside the trigger area ---
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _units) then {
+        _speaker = _scout;
+    };
+};
+
+// --- Select conversation type ---
+private _convo = ["pilotdown", "pilotdownScout"] select (_speaker == _scout);
+
+// --- Determine responder ---
+if (_speaker == _scout) then {
+    if (_leader distance _scout <= 100) then {
+        _responder = _leader;
+    } else {
+        // fallback: pick a random unit in the trigger excluding scout, prefer humans
+        private _others  = _units - [_scout];
+        private _humans  = _others select { isPlayer _x };
+        private _ai      = _others select { !isPlayer _x };
+
+        if (count _humans > 0) then {
+            _responder = selectRandom _humans;
+        } else {
+            if (count _ai > 0) then {
+                _responder = selectRandom _ai;
+            };
+        };
+    };
+} else {
+    // if the speaker isn't the scout, scout responds if close enough
+    if (_scout distance _speaker <= 100) then {
+        _responder = _scout;
+    };
+};
+
+// Function
+[_convo, [_speaker, _responder]] remoteExec [
+    "FoxClub_fnc_Conversation",
+    allPlayers select { _x distance _speaker <= 100 }
+];
+
+
+
+
+// version without trigger area
+_scout   = missionNamespace getVariable ["scout", objNull];
+private _leader  = leader playergroup;
+private _anchor  = samsiteConvo;  // invisible, indestructible object in editor
+private _units   = units playergroup select { alive _x && _x distance _anchor <= 100 };
+private _speaker = selectRandom _units;
+private _responder = objNull;
+private _convo;
+
+// --- Prioritize leader or scout as speaker ---
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _units) then {
+        _speaker = _scout;
+    };
+};
+
+// --- Choose conversation type ---
+_convo = ["pilotdown", "pilotdownScout"] select (_speaker == _scout);
+
+// --- Determine responder ---
+private _eligible = (units playergroup) select { _x != _speaker && alive _x && _x distance _speaker <= 100 };
+
+if (_speaker == _scout) then {
+    if (_leader distance _scout <= 100) then {
+        _responder = _leader;
+    } else {
+        private _humans = _eligible select { isPlayer _x };
+        private _ai     = _eligible select { !isPlayer _x };
+
+        if (count _humans > 0) then { _responder = selectRandom _humans; }
+        else { if (count _ai > 0) then { _responder = selectRandom _ai; }; };
+    };
+} else {
+    if (_scout distance _speaker <= 100) then { _responder = _scout; };
+};
+
+// Function
+[_convo, [_speaker, _responder]] remoteExec [
+    "FoxClub_fnc_Conversation",
+    allPlayers select { _x distance _speaker <= 100 }
+];
+
+
+
+
+
+
+

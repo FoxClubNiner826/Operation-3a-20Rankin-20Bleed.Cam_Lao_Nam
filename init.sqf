@@ -790,12 +790,14 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["pilotdown",
 		[
-			[0, "That pilot’s in serious trouble without our help.", "answer"]
+			[0, "That pilot’s in serious trouble without our help.", "answer"],
+			[1, "I see pilot! We go now!", "answer"]
 		]
 	],
 	["pilotdownScout",
 		[
-			[0, "I see pilot! We go now!", "answer"]
+			[0, "I see pilot! We go now!", "answer"],
+			[1, "That pilot’s in serious trouble without our help.", "answer"]
 		]
 	],
 	["meet",
