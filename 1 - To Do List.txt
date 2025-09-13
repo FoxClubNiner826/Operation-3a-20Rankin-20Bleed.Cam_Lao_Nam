@@ -101,6 +101,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- reworked how the downed pilot is shot down and added the possibility that the players can destroy the samsite before it can shoot down the plane.
 - figured out why control z wasnt working
 - reworked: search lumphat should pop-up on infil not mission start
 - reworked time bomb on stab to be holdAction and made it so you can only place it on the boat from the outside.

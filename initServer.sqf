@@ -57,6 +57,12 @@ ActionEndMission = false; //might not be needed anymore
 };
 
 
+//////////////////////////////////////////////////
+//                                              //
+//               MISSION SETTINGS               //
+//                                              //
+//////////////////////////////////////////////////
+
 //random clouds on mission start
 //_RandomClouds = (random 1); //too dark probably for players to nav
 _RandomClouds = (random [0.2, .35, 0.43]);
@@ -193,7 +199,7 @@ _patrolGroup = [patrol1, patrol2, patrol3, patrol4, patrol5, patrol6];
                             _leader = leader playergroup;   
                             // convo if the leader isn't the scout
                             if (alive _leader && _leader != _scout && _leader in units playergroup) exitWith {     
-                                ["playersspotted", [_leader, _scout]] remoteExec [    
+                                ["playersspotted", [_leader]] remoteExec [    
                                     "FoxClub_fnc_Conversation",    
                                     allPlayers select { _x distance _leader <= 100 }    
                                 ];

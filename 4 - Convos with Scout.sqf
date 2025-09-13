@@ -282,8 +282,61 @@ if (_speaker == _scout) then {
 	allPlayers select { _x distance _speaker <= 100 }
 ];
 
+// original version
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;
+private _units = units playergroup inAreaArray pilot_joins_group;
+private _speaker = selectRandom _units;
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+  if (_scout in _units) then {
+    _speaker = _scout;
+  };
+};
+private _convo = ["americanLines", "vietnameseLines"] select (_speaker == _scout);
+[_convo, [_speaker]] remoteExec [    
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];
 
 
 
+_scout = missionNamespace getVariable ["scout", objNull];   
+_leader = leader playergroup;
+private _units = units playergroup inAreaArray pilot_joins_group;
 
+// Start with random pick
+private _speaker = selectRandom _units;
+
+// Priority order: leader > scout > player (closest to pilot) > AI
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _units) then {
+        _speaker = _scout;
+    } else {
+        // If the current speaker is AI but humans exist, pick the closest human to pilot
+        private _players = _units select { isPlayer _x };
+        if (count _players > 0 && {!isPlayer _speaker}) then {
+            _speaker = _players select 0;  // default fallback
+            private _closestDist = _speaker distance pilot;
+
+            {
+                private _d = _x distance pilot;
+                if (_d < _closestDist) then {
+                    _closestDist = _d;
+                    _speaker = _x;
+                };
+            } forEach _players;
+        };
+    };
+};
+
+private _convo = ["americanLines", "vietnameseLines"] select (_speaker == _scout);
+
+[_convo, [_speaker]] remoteExec [
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];
 

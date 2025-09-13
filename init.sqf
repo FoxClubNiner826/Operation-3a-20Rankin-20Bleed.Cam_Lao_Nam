@@ -52,6 +52,15 @@ override_vn_sam_masteraudioarray = compile preprocessFileLineNumbers "override_v
 //enableSentences false; //turns off audio but you can still see it in systemchat log
 [] call VN_fnc_QOL_earplugs; // addAction for earplugs
 
+// disable sam launchers at start so they dont target players before shooting down the pilot
+{
+  _x disableAI "ALL";
+} forEach crew samlauncher;
+
+{
+  _x disableAI "ALL";
+} forEach crew samradar;
+
 
 //////////////////////////////////////////////////
 //                                              //
