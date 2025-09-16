@@ -825,15 +825,9 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Danger here. You follow now.", "answer"]
 		]
 	],
-	["startpilot",
-		[
-			[0,"Hey airman. I've got some questions.", "answer"],
-			[1,"No problem. Go ahead.", "answer"]
-		]
-	],
 	["askpilot1",
 		[
-			[0,"Who are you? What's your name?", "question"],
+			[0,"Who are you, airman?", "question"],
 			[1,"I'm Captain Mike Reynolds. I'm with the 615th Tactical Fighter Squadron. And I'm glad as hell to see you. Was starting to think I was a dead man.", "answer"]
 		]
 	],
@@ -846,6 +840,24 @@ foxclub_var_conversations = createHashMapFromArray [
 	["askpilot3",
 		[
 			[0,"What was your mission?", "question"],
+			[1,"I was on a CAS run, hitting enemy positions for our ground guys. Took fire, probably a ZPU, and turned back. Nav gear and radio were knocked out, so I had to go visual. Spotted the SAM trail just in time.", "answer"]
+		]
+	],
+	["askpilot1Scout",
+		[
+			[0,"Name, airman. Say.", "question"],
+			[1,"I'm Captain Mike Reynolds. I'm with the 615th Tactical Fighter Squadron. And I'm glad as hell to see you. Was starting to think I was a dead man.", "answer"]
+		]
+	],
+	["askpilot2Scout",
+		[
+			[0,"Condition what? You bleed?", "question"],
+			[1,"My back feels funny but it's not painful—damndest thing. Let's just get the hell out of here, I'll worry about the rest later.", "answer"]
+		]
+	],
+	["askpilot3Scout",
+		[
+			[0,"You fly for what?", "question"],
 			[1,"I was on a CAS run, hitting enemy positions for our ground guys. Took fire, probably a ZPU, and turned back. Nav gear and radio were knocked out, so I had to go visual. Spotted the SAM trail just in time.", "answer"]
 		]
 	],

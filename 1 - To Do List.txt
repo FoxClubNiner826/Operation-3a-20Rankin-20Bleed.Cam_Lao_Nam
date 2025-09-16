@@ -2,6 +2,7 @@ TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements
             * - all pilot interactions
+                - ask pilot questions
             - blow c4 cache new lines: fire in the hole. change to hold action?
             - all pow lines
             - comms sabatagued

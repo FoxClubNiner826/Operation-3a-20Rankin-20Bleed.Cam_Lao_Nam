@@ -675,23 +675,6 @@ private _objectsWithModifiers = [
 //////////////////////////////////////////////////
 
 pilot addAction [
-    "<t color='#FFFF00'>""So...""</t>", 
-    {
-	missionNamespace setVariable ["ActionTalkToPilot1", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["startpilot", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
-	missionNamespace setVariable ["ActionTalkToPilot", true, true];
-	}, 
-    nil, 
-    8, 
-    false, 
-    true, 
-    "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot1", 
-	4 
-];
-
-pilot addAction [
     "<t color='#FFFF00'>""Who are you?""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPilot2", false, true];
@@ -703,7 +686,7 @@ pilot addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot2 && ActionTalkToPilot", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot2", 
 	4 
 ];
 
@@ -719,7 +702,7 @@ pilot addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot3 && ActionTalkToPilot", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot3", 
 	4 
 ];
 
@@ -735,7 +718,7 @@ pilot addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot4 && ActionTalkToPilot", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot4", 
 	4 
 ];
 

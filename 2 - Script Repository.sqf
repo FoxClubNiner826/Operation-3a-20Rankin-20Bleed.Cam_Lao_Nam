@@ -273,3 +273,22 @@ if (count _unitsInArea > 0) then {
 ["pilotdown", [_selectedUnit]] remoteExec [
     "FoxClub_fnc_Conversation", 
     allPlayers select {_x distance _selectedUnit <= 100}];
+
+// old pilot meet and greet 
+thisList spawn {
+
+_firstUnit = _this#0;
+pilot lookAt _firstUnit;
+sleep 1;
+pilot playmove "Acts_PercMstpSlowWrflDnon_handup2"; 
+deletemarker "PilotArea";
+deletemarker "RescuePilotText";
+
+["meet", [pilot, _firstUnit]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance pilot <= 100}];
+
+sleep 15;
+[pilot] join _firstUnit;
+[pilot, true] remoteExec ["allowdamage", 0, true];
+[pilot, "PATH"] remoteExec ["enableai", 0, true];
+
+};

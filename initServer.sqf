@@ -21,7 +21,6 @@ missionNamespace setVariable ["ActionTalkToMarcinko7", true, true];
 missionNamespace setVariable ["ActionTalkToCarson", false, true];
 missionNamespace setVariable ["ActionCallPOW", false, true];
 missionNamespace setVariable ["speakersloop", true, true];
-missionNamespace setVariable ["ActionTalkToPilot1", true, true];
 missionNamespace setVariable ["ActionTalkToPilot2", true, true];
 missionNamespace setVariable ["ActionTalkToPilot3", true, true];
 missionNamespace setVariable ["ActionTalkToPilot4", true, true];

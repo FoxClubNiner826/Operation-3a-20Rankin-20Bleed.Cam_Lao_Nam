@@ -235,7 +235,9 @@ if (alive _scout && _leader == _scout && _scout in units playergroup) exitWith {
 
 
 /* Convo after pilot gets shot down. Priority speaker is the leader then scout then other human players in the group then AI in the group.
-Responder must be within 50m and priority is opposite the speaker, either scout or leader. If not then AI. 
+Responder must be within 50m and priority is opposite the speaker, either scout or leader. If not then AI. The reason I am not doing a 
+array in the trigger area is because there is a chance that only one person would be in the array. If that happened then there wouldnt 
+be a responder. This chooses a responder as long as the unit is less than 50m away. 
 */
 
 // Makes the defaut speaker be not the leader or scout.
@@ -301,50 +303,54 @@ private _convo = ["americanLines", "vietnameseLines"] select (_speaker == _scout
     allPlayers select { _x distance _speaker <= 100 }    
 ];
 
-// the interaction with the downed pilot. I want priority of speaker to go to leader then scout then random human then random AI.
-thisList spawn {
 
-_firstUnit = _this#0;
-pilot lookAt _firstUnit;
-sleep 1;
-pilot playmove "Acts_PercMstpSlowWrflDnon_handup2"; 
-deletemarker "PilotArea";
-deletemarker "RescuePilotText";
+/* the interaction with the downed pilot. I want priority of speaker to go to leader then scout then random human. No need for AI to 
+say the line cause the trigger is activted by players being present. The reason it is ok to use an array in the trigger area 
+is because the trigger area is so small so there is no need to check a distance to make sure the convo looks natural. Also, 
+the other unit talking will always be the pilot so I dont need to do any distance checks for different responders like the previous.
+*/
 
-_scout   = missionNamespace getVariable ["scout", objNull];   
-_leader  = leader playergroup;
-private _units = units playergroup inAreaArray pilot_joins_group;
+thisList spawn { 
+ 
+_firstUnit = _this#0; 
+pilot lookAt _firstUnit; 
+sleep 1; 
+pilot playmove "Acts_PercMstpSlowWrflDnon_handup2";  
+deletemarker "PilotArea"; 
+deletemarker "RescuePilotText"; 
+ 
+_scout   = missionNamespace getVariable ["scout", objNull];    
+_leader  = leader playergroup; 
+private _units = units playergroup inAreaArray pilot_joins_group; 
+  
+private _speaker = objNull; 
+ 
 
-// Start with a default speaker (doesn’t matter, gets overridden by priority)
-private _speaker = objNull;
-
-// Priority order: leader > scout > any player in trigger
-if (_leader in _units) then {
-    _speaker = _leader;
-} else {
-    if (_scout in _units) then {
-        _speaker = _scout;
-    } else {
-        // Just pick a random player (no need for distance check inside 40m trigger)
-        private _players = _units select { isPlayer _x };
-        if (count _players > 0) then {
-            _speaker = selectRandom _players;
-        };
-    };
-};
-
-private _convo = ["meet", "meetScout"] select (_speaker == _scout);
-
-[_convo, [_speaker, pilot]] remoteExec [
-    "FoxClub_fnc_Conversation",    
-    allPlayers select { _x distance _speaker <= 100 }    
-];
-
-
-sleep 15;
-[pilot] join _firstUnit;
-[pilot, true] remoteExec ["allowdamage", 0, true];
-[pilot, "PATH"] remoteExec ["enableai", 0, true];
-
+if (_leader in _units) then { 
+    _speaker = _leader; 
+} else { 
+    if (_scout in _units) then { 
+        _speaker = _scout; 
+    } else {  
+        private _players = _units select { isPlayer _x }; 
+        if (count _players > 0) then { 
+            _speaker = selectRandom _players; 
+        }; 
+    }; 
+}; 
+ 
+private _convo = ["meet", "meetScout"] select (_speaker == _scout); 
+ 
+[_convo, [pilot, _speaker]] remoteExec [ 
+    "FoxClub_fnc_Conversation",     
+    allPlayers select { _x distance _speaker <= 100 }     
+]; 
+ 
+ 
+sleep 15; 
+[pilot] join _firstUnit; 
+[pilot, true] remoteExec ["allowdamage", 0, true]; 
+[pilot, "PATH"] remoteExec ["enableai", 0, true]; 
+ 
 };
 
