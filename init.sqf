@@ -811,10 +811,18 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["meet",
 		[
-			[0,"Friendly! Friendly! Over here! Holy shit, I almost shot you. Where are we?", "answer"],
+			[0,"Friendly! Friendly! Over here! Where are we?", "answer"],
 			[1,"You’re smack in the middle of bumfuck Cambodia.", "answer"],
 			[0,"Cambodia?! This is a hell of a situation to be in.", "answer"],
 			[1,"Stay sharp and follow my lead.", "answer"]
+		]
+	],
+	["meetScout",
+		[
+			[0,"Holy shit, I thought you were one of them! I almost put you dowm! Where are we?", "answer"],
+			[1,"We in Cambodia.", "answer"],
+			[0,"Cambodia?! This is a hell of a situation to be in.", "answer"],
+			[1,"Danger here. You follow now.", "answer"]
 		]
 	],
 	["startpilot",

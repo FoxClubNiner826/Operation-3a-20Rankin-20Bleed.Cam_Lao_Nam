@@ -28,13 +28,12 @@ DEDICATED SERVER TESTING:
 - mercinko should have no questions left. but the way its scripted looks like they still will be there.
 - fixed issue where the POW was saying SOG voice lines because I changed his object type and forgot to update it in the restrict voices module
 - test infil convo for working on dedicated server.
-- Test if players still have holdAction after respawn.
+- Test if players still have holdAction after respawn. there is some question as to if they persist.
 - Test if skip to infil needs to be remoteexeced. weather and time might not change. you can copy some code from radiohq.sqf
 
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
-        - change sabatague icon to destroy and change holdAction from CBA to script. test what happens if you die
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
@@ -101,6 +100,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- changed sabatague icon to destroy and change holdAction from CBA to script.
 - reworked how the downed pilot is shot down and added the possibility that the players can destroy the samsite before it can shoot down the plane.
 - figured out why control z wasnt working
 - reworked: search lumphat should pop-up on infil not mission start

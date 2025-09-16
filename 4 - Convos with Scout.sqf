@@ -282,7 +282,8 @@ if (_speaker == _scout) then {
 	allPlayers select { _x distance _speaker <= 100 }
 ];
 
-// original version
+
+// original version of the above
 _scout = missionNamespace getVariable ["scout", objNull];   
 _leader = leader playergroup;
 private _units = units playergroup inAreaArray pilot_joins_group;
@@ -300,43 +301,50 @@ private _convo = ["americanLines", "vietnameseLines"] select (_speaker == _scout
     allPlayers select { _x distance _speaker <= 100 }    
 ];
 
+// the interaction with the downed pilot. I want priority of speaker to go to leader then scout then random human then random AI.
+thisList spawn {
 
+_firstUnit = _this#0;
+pilot lookAt _firstUnit;
+sleep 1;
+pilot playmove "Acts_PercMstpSlowWrflDnon_handup2"; 
+deletemarker "PilotArea";
+deletemarker "RescuePilotText";
 
-_scout = missionNamespace getVariable ["scout", objNull];   
-_leader = leader playergroup;
+_scout   = missionNamespace getVariable ["scout", objNull];   
+_leader  = leader playergroup;
 private _units = units playergroup inAreaArray pilot_joins_group;
 
-// Start with random pick
-private _speaker = selectRandom _units;
+// Start with a default speaker (doesn’t matter, gets overridden by priority)
+private _speaker = objNull;
 
-// Priority order: leader > scout > player (closest to pilot) > AI
+// Priority order: leader > scout > any player in trigger
 if (_leader in _units) then {
     _speaker = _leader;
 } else {
     if (_scout in _units) then {
         _speaker = _scout;
     } else {
-        // If the current speaker is AI but humans exist, pick the closest human to pilot
+        // Just pick a random player (no need for distance check inside 40m trigger)
         private _players = _units select { isPlayer _x };
-        if (count _players > 0 && {!isPlayer _speaker}) then {
-            _speaker = _players select 0;  // default fallback
-            private _closestDist = _speaker distance pilot;
-
-            {
-                private _d = _x distance pilot;
-                if (_d < _closestDist) then {
-                    _closestDist = _d;
-                    _speaker = _x;
-                };
-            } forEach _players;
+        if (count _players > 0) then {
+            _speaker = selectRandom _players;
         };
     };
 };
 
-private _convo = ["americanLines", "vietnameseLines"] select (_speaker == _scout);
+private _convo = ["meet", "meetScout"] select (_speaker == _scout);
 
-[_convo, [_speaker]] remoteExec [
+[_convo, [_speaker, pilot]] remoteExec [
     "FoxClub_fnc_Conversation",    
     allPlayers select { _x distance _speaker <= 100 }    
 ];
+
+
+sleep 15;
+[pilot] join _firstUnit;
+[pilot, true] remoteExec ["allowdamage", 0, true];
+[pilot, "PATH"] remoteExec ["enableai", 0, true];
+
+};
 
