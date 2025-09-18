@@ -292,3 +292,15 @@ sleep 15;
 [pilot, "PATH"] remoteExec ["enableai", 0, true];
 
 };
+
+// simulates the convo over the radio by not letting the player who is talking hear the static sound file.
+,
+	["gunboatpass",
+		[
+			[0,"", "answer", 0, {
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Gunboat’s toast!";
+				}
+			]
+		]
+	]

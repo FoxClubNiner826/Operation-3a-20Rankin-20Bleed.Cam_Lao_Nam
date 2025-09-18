@@ -891,13 +891,20 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"You just got shot down and you’re already itching to get back up there?! Damn, you’re a certifiable badass.", "answer"]
 		]
 	],
+	["pilotpasstaskScout",
+		[
+			[0,"Thank God for y'all. The guys on the ground are counting on me for support. Now I can get back up there and do my job.", "answer"],
+			[1,"You number one brave man!", "answer"]
+		]
+	],
 	["gunboatpass",
 		[
-			[0,"", "answer", 0, {
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Gunboat’s toast!";
-				}
-			]
+			[0,"Gunboat’s toast!", "answer"]
+		]
+	],
+	["gunboatpassScout",
+		[
+			[0,"Gunboat’s finished!", "answer"]
 		]
 	],
 	["cachebombset",

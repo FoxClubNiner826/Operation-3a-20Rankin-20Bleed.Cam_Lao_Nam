@@ -1,20 +1,17 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements
-            * - all pilot interactions
-                - ask pilot questions
-            - blow c4 cache new lines: fire in the hole. change to hold action?
-            - all pow lines
-            - comms sabatagued
-            - extraction and smoke
-            - rescure pilot
-            - no subs for captain marchikno
+    * all c4 cache interactions but first we rebuild the cache mechanic.
+        - blow c4 cache new lines: fire in the hole. change to hold action?
+        - c4 hold action. 3.2.1. boom. frenchv ersion for scout
+        - new line? i see a big ass cache. take what you need then lets blow it.
+    - all pow lines
+    - extraction and smoke
+    - no subs for captain marchikno
 
 NEW LINES TO ADD: 
 - extraction. lets get the hell out of here as youre holding the action
-- c4 hold action. 3.2.1. boom. frenchv ersion for scout
 - interaction between scout and marcinko so players dont think its a bug if there was nothing
-- - new line: i see a big ass cache. take what you need then lets blow it.
 
 
 BUGS FROM LATEST PLAYTHROUGH:
@@ -65,6 +62,7 @@ TO DO MASTER LIST:
         - if people think there is too much talking then have an option to reduce it for SP/MP
         - mission fail if friendly fire
         - see if smoke can be detected in area marker instead of player
+        - if players use radio trackers start to simulate radio direction finding of the enemy. then you add hand signals module.
 
 
 TOUGH BUGS:

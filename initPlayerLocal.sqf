@@ -678,8 +678,13 @@ pilot addAction [
     "<t color='#FFFF00'>""Who are you?""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPilot2", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpilot1", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	params ["_target", "_caller", "_actionID", "_args"];
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["askpilot1", "askpilot1Scout"] select (_caller == _scout); 
+    [_convo, [_caller, _target]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }     
+    ];
 	}, 
     nil, 
     8, 
@@ -694,8 +699,13 @@ pilot addAction [
     "<t color='#FFFF00'>""Are you hurt?""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPilot3", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpilot2", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	params ["_target", "_caller", "_actionID", "_args"];
+    _scout = missionNamespace getVariable ["scout", objNull];   
+	private _convo = ["askpilot2", "askpilot2Scout"] select (_caller == _scout); 
+    [_convo, [_caller, _target]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }     
+    ];
 	}, 
     nil, 
     8, 
@@ -710,8 +720,13 @@ pilot addAction [
     "<t color='#FFFF00'>""What was your mission?""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPilot4", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpilot3", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	params ["_target", "_caller", "_actionID", "_args"];
+    _scout = missionNamespace getVariable ["scout", objNull];   
+	private _convo = ["askpilot3", "askpilot3Scout"] select (_caller == _scout); 
+    [_convo, [_caller, _target]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }     
+    ];
 	}, 
     nil, 
     8, 
@@ -1071,3 +1086,11 @@ Marcinko addAction [
     "ActionDebrief", //ActionDebrief
 	4
 ];
+
+
+/*
+    initPlayerLocal.sqf
+    Sets up Place + Detonate holdActions for food/weapon caches
+    Works in SP & MP, safe for respawn
+*/
+

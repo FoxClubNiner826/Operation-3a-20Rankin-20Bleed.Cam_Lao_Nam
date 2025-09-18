@@ -181,11 +181,13 @@ player addAction [
 //      HOLD ACTION FOR WEAPON CACHE BOMB       //
 //                                              //
 //////////////////////////////////////////////////
-//bomb for weapon cache. Although normally you dont want non player object addactions here in OPR, this is needed because if a player uses the hold action
-//it is removed from their action menu. If they die it will remember they used the hold action and wouldnt be able to use it again. Changing the hold
-//action to repeat wont work cause there is an addaction nested in the hold action and they could repeatedly add the addaction to the obhect. Thus if we 
-//place the hold action in OPR then the player will get the option to use it again regardless of death. And because of the remove action command in init
-//duplicates of the hold action wont be a problem.
+/* 
+bomb for weapon cache. Although normally you dont want non-player object addactions here in OPR, this is needed because if a player uses the hold action
+it is removed from their action menu. If they die it will remember they used the hold action and wouldnt be able to use it again. Changing the hold
+action to repeat wont work cause there is an addaction nested in the hold action and they could repeatedly add the addaction to the obhect. Thus if we 
+place the hold action in OPR then the player will get the option to use it again regardless of death. And because of the remove action command in init
+duplicates of the hold action wont be a problem.
+*/
 
 if (!isNil "weaponcache") then {
 [

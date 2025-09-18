@@ -192,10 +192,11 @@ private _conditionC4 = {
 ] call BIS_fnc_holdActionAdd;
 
 
-// if players are spotted  by patrol 1-3. This one is tricky because player could be split up at this point. I need a convo for subs when they are together
-// and when they are split. because when they are split I need to do a radio or groupChat message. I need to decide if I want to use groupChat or sideChat.
-// groupChat will be most like vanilla arma. sideChat would make more sense for the time period. Ultimatley teams tried to stay off the radio, so I have 
-// changed this to not do radio and will do a check for distance.
+/* if players are spotted  by patrol 1-3. This one is tricky because player could be split up at this point. I need a convo for subs when they are together
+and when they are split. because when they are split I need to do a radio or groupChat message. I need to decide if I want to use groupChat or sideChat.
+groupChat will be most like vanilla arma. sideChat would make more sense for the time period. Ultimatley teams tried to stay off the radio, so I have 
+changed this to not do radio and will do a check for distance.
+*/
 
 _scout = missionNamespace getVariable ["scout", objNull];   
 _leader = leader playergroup;   
@@ -353,4 +354,66 @@ sleep 15;
 [pilot, "PATH"] remoteExec ["enableai", 0, true]; 
  
 };
+
+
+// when the player or scout asks the pilot questions
+private _convo = ["askpilot1", "askpilot1Scout"] select (_caller == _scout); 
+_scout = missionNamespace getVariable ["scout", objNull]; 
+[_convo, [_caller, pilot]] remoteExec [ 
+    "FoxClub_fnc_Conversation",     
+    allPlayers select { _x distance _caller <= 100 }     
+];
+
+
+/* when the pilot is back at base. I want the leader to speak to the pilot, if the leader is not in the heli (died at extraction or was left behind)
+then the scout will speak. Otherwise a random human then random AI.
+*/
+
+_scout   = missionNamespace getVariable ["scout", objNull];   
+_leader  = leader playergroup;
+private _units = (units playergroup) select { alive _x && vehicle _x == extractHeli && _x != pilot };
+private _speaker = objNull;
+
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _units) then {
+        _speaker = _scout;
+    } else {
+        private _humans = _units select { isPlayer _x };
+        if (count _humans > 0) then {
+            _speaker = selectRandom _humans;
+        } else {
+            _speaker = selectRandom _units;
+        };
+    };
+};
+
+private _convo = ["pilotpasstask", "pilotpasstaskScout"] select (_speaker == _scout);
+
+[_convo, [pilot, _speaker]] remoteExec [
+    "FoxClub_fnc_Conversation",
+    allPlayers select { _x distance _speaker <= 100 }
+];
+
+
+/* when the gunboat is destroyed. I want the killer to say something whether its the scout or not. Im not sure i need the radio broadcast 
+because irl they wouldnt do it. the only reason I did it in the first place was so if the group was separated in MP other players would know 
+that it happened. but players can just do that themselves. SP is the priority 
+*/
+
+this addEventHandler ["Killed", {
+ params ["_unit", "_killer", "_instigator", "_useEffects"];
+_scout   = missionNamespace getVariable ["scout", objNull];
+private _convo = ["gunboatpass", "gunboatpassScout"] select (_killer == _scout);
+
+[_convo, [_killer]] remoteExec [
+    "FoxClub_fnc_Conversation", 
+    allPlayers select {_x distance _killer <= 100}];
+
+missionNamespace setvariable ["gunboatDestroyed", true, true];
+
+}];
+
+
 
