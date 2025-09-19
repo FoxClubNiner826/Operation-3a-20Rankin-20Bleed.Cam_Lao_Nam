@@ -70,9 +70,9 @@ override_vn_sam_masteraudioarray = compile preprocessFileLineNumbers "override_v
 
 // removes addaction from dead bodies. this makes sure there are no duplicate addactions on players too
 player addEventHandler ["Killed", {
-    removeAllActions (_this select 0); //not removing detonate addaction. maybe cause its nested in hold action? intermittant
-	removeAllActions weaponcache;
-	removeAllActions foodcache;
+    removeAllActions (_this select 0); //not removing detonate addaction. maybe cause its nested in hold action? intermittant.
+	removeAllActions weaponcache; //now its not removing holdaction. also intermittant
+	removeAllActions foodcache; //now its not removing holdaction. also intermittant
 }];
 
 
@@ -907,18 +907,44 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Gunboat’s finished!", "answer"]
 		]
 	],
+	["cachebombPlace",
+		[
+			[0,"Placing charge!", "answer"]
+		]
+	],
+	["cachebombPlaceScout",
+		[
+			[0,"I put charge now!", "answer"]
+		]
+	],
 	["cachebombset",
 		[
 			[0,"Charge set!", "answer"]
 		]
 	],
+	["cachebombsetScout",
+		[
+			[0,"Charge ready!", "answer"]
+		]
+	],
+	["cachebombCount",
+		[
+			[0,"Three, two, one...", "answer"]
+		]
+	],
+	["cachebombCountScout",
+		[
+			[0,"Ba, hai, một... (Three, two, one...)", "answer"]
+		]
+	],
 	["cachepass",
 		[
-			[0,"", "answer", 0, {
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Cache is history!";
-				}
-			]
+			[0,"Cache is history!", "answer"]
+		]
+	],
+	["cachepassScout",
+		[
+			[0,"Cache finished!", "answer"]
 		]
 	],
 	["sampass",

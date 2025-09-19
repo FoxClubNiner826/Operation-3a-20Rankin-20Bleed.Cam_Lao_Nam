@@ -197,14 +197,43 @@ if (!isNil "weaponcache") then {
 	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
 	"_this distance _target < 3", //condition
 	"true", //condition progress
-	{}, //code on start
+	{
+		params ["_target", "_caller", "_actionID", "_args"];
+		_scout   = missionNamespace getVariable ["scout", objNull];
+		private _convo = ["cachebombPlace", "cachebombPlaceScout"] select (_caller == _scout);
+		[_convo, [_caller]] remoteExec [
+			"FoxClub_fnc_Conversation", 
+			allPlayers select {_x distance _caller <= 100}];
+	}, //code on start
 	{}, // code every tick
 	{
-		["cachebombset", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
-			
-			player addAction [
-			"<t color='#FF0000'>Detonate Weapons Cache</t>", 
-			{
+		params ["_target", "_caller", "_actionID", "_args"];
+		_scout   = missionNamespace getVariable ["scout", objNull];
+		private _convo = ["cachebombset", "cachebombsetScout"] select (_caller == _scout);
+		[_convo, [_caller]] remoteExec [
+			"FoxClub_fnc_Conversation", 
+			allPlayers select {_x distance _caller <= 100}];
+		// holdAction
+		[
+		player,
+		"<t color='#FF0000'>Detonate Weapons Cache</t>",
+		"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+		"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+		"_this distance weaponcache < 60", //condition
+		"true", //condition progress
+		{
+			params ["_target", "_caller", "_actionID", "_args"];
+			_scout   = missionNamespace getVariable ["scout", objNull];
+			private _convo = ["cachebombCount", "cachebombCountScout"] select (_caller == _scout);
+			[_convo, [_caller]] remoteExec [
+				"FoxClub_fnc_Conversation", 
+				allPlayers select {_x distance _caller <= 100}];	
+		}, //code on start
+		{}, // code every tick
+		{	
+			params ["_target", "_caller", "_actionID", "_args"];
+			_scout   = missionNamespace getVariable ["scout", objNull];
+			private _convo = ["cachepass", "cachepassScout"] select (_caller == _scout);
 			missionNamespace setVariable ["weaponsCacheDestroyed", true, true];	
 			"M_Mo_82mm_AT_LG" createVehicle (getPos weaponcache);
 			sleep 1;
@@ -212,20 +241,22 @@ if (!isNil "weaponcache") then {
 			deletevehicle ammo_crate2;
 			deletevehicle ammo_crate3;
 			deletevehicle shelter1;
-			params ["_target", "_caller", "_actionID", "_args"];
 			sleep 1;
-			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && missionNamespace getvariable ["foodCacheDestroyed", false]) then {
-				["cachepass", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
-				};
-			}, 
-			nil, 
-			8, 
-			false, 
-			true,
-			"",
-			"_this distance weaponcache < 60"
-			];
-
+			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && 
+				missionNamespace getvariable ["foodCacheDestroyed", false]) then {
+					[_convo, [_caller]] remoteExec [
+						"FoxClub_fnc_Conversation", 
+						allPlayers select {_x distance _caller <= 100}];
+				};	
+		}, // code on finish
+		{}, // code on interuption
+		[], //arguements
+		3, //duration
+		8, //order from top
+		true, //remove on finish
+		false, //show if unconcious
+		false //show in middle of screen
+		] call BIS_fnc_holdActionAdd;
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -244,7 +275,7 @@ if (!isNil "weaponcache") then {
 //                                              //
 //////////////////////////////////////////////////
 
-if (!isNil "foodcache") then {
+if (!isNil "foodcache") then { // have to do the nil check because you would get an error. cant remember why.
 [
 	foodcache,
 	"<t color='#FFFF00'>Place C-4 Plastic Explosive</t>",
@@ -252,14 +283,43 @@ if (!isNil "foodcache") then {
 	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
 	"_this distance _target < 3", //condition
 	"true", //condition progress
-	{}, //code on start
+	{
+		params ["_target", "_caller", "_actionID", "_args"];
+		_scout   = missionNamespace getVariable ["scout", objNull];
+		private _convo = ["cachebombPlace", "cachebombPlaceScout"] select (_caller == _scout);
+		[_convo, [_caller]] remoteExec [
+			"FoxClub_fnc_Conversation", 
+			allPlayers select {_x distance _caller <= 100}];
+	}, //code on start
 	{}, // code every tick
 	{
-		["cachebombset", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
-			
-			player addAction [
-			"<t color='#FF0000'>Detonate Food Cache</t>", 
-			{
+		params ["_target", "_caller", "_actionID", "_args"];
+		_scout   = missionNamespace getVariable ["scout", objNull];
+		private _convo = ["cachebombset", "cachebombsetScout"] select (_caller == _scout);
+		[_convo, [_caller]] remoteExec [
+			"FoxClub_fnc_Conversation", 
+			allPlayers select {_x distance _caller <= 100}];
+		// holdAction
+		[
+		player,
+		"<t color='#FF0000'>Detonate Food Cache</t>",
+		"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+		"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+		"_this distance foodcache < 60", //condition
+		"true", //condition progress
+		{
+			params ["_target", "_caller", "_actionID", "_args"];
+			_scout   = missionNamespace getVariable ["scout", objNull];
+			private _convo = ["cachebombCount", "cachebombCountScout"] select (_caller == _scout);
+			[_convo, [_caller]] remoteExec [
+				"FoxClub_fnc_Conversation", 
+				allPlayers select {_x distance _caller <= 100}];	
+		}, //code on start
+		{}, // code every tick
+		{	
+			params ["_target", "_caller", "_actionID", "_args"];
+			_scout   = missionNamespace getVariable ["scout", objNull];
+			private _convo = ["cachepass", "cachepassScout"] select (_caller == _scout);
 			missionNamespace setVariable ["foodCacheDestroyed", true, true];
 			"M_Mo_82mm_AT_LG" createVehicle (getPos foodcache);
 			sleep 1;
@@ -272,20 +332,22 @@ if (!isNil "foodcache") then {
 			deletevehicle food8;
 			deletevehicle food9;
 			deletevehicle food10;
-			params ["_target", "_caller", "_actionID", "_args"];
 			sleep 1;
-			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && missionNamespace getvariable ["foodCacheDestroyed", false]) then {
-				["cachepass", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
-				};
-			}, 
-			nil, 
-			8, 
-			false, 
-			true,
-			"",
-			"_this distance foodcache < 60"
-			];
-		
+			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && 
+				missionNamespace getvariable ["foodCacheDestroyed", false]) then {
+					[_convo, [_caller]] remoteExec [
+						"FoxClub_fnc_Conversation", 
+						allPlayers select {_x distance _caller <= 100}];
+				};	
+		}, // code on finish
+		{}, // code on interuption
+		[], //arguements
+		3, //duration
+		8, //order from top
+		true, //remove on finish
+		false, //show if unconcious
+		false //show in middle of screen
+		] call BIS_fnc_holdActionAdd;	
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements

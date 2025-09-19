@@ -304,3 +304,59 @@ sleep 15;
 			]
 		]
 	]
+
+// old holdaction 
+/*
+if (!isNil "foodcache") then {
+[
+	foodcache,
+	"<t color='#FFFF00'>Place C-4 Plastic Explosive</t>",
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+	"_this distance _target < 3", //condition
+	"true", //condition progress
+	{}, //code on start
+	{}, // code every tick
+	{
+		["cachebombset", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+			
+			player addAction [
+			"<t color='#FF0000'>Detonate Food Cache</t>", 
+			{
+			missionNamespace setVariable ["foodCacheDestroyed", true, true];
+			"M_Mo_82mm_AT_LG" createVehicle (getPos foodcache);
+			sleep 1;
+			deletevehicle foodcache;
+			deletevehicle food1;
+			deletevehicle food4;
+			deletevehicle food5;
+			deletevehicle food6;
+			deletevehicle food7;
+			deletevehicle food8;
+			deletevehicle food9;
+			deletevehicle food10;
+			params ["_target", "_caller", "_actionID", "_args"];
+			sleep 1;
+			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && missionNamespace getvariable ["foodCacheDestroyed", false]) then {
+				["cachepass", [_caller]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+				};
+			}, 
+			nil, 
+			8, 
+			false, 
+			true,
+			"",
+			"_this distance foodcache < 60"
+			];
+		
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	3, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+] call BIS_fnc_holdActionAdd;
+};
+*/

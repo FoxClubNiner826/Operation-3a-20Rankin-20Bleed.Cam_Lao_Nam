@@ -1,7 +1,7 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements
-    * all c4 cache interactions but first we rebuild the cache mechanic.
+    * all c4 cache interactions but first we rebuild the cache mechanic. going to have to ask for help.
         - blow c4 cache new lines: fire in the hole. change to hold action?
         - c4 hold action. 3.2.1. boom. frenchv ersion for scout
         - new line? i see a big ass cache. take what you need then lets blow it.
@@ -32,6 +32,7 @@ DEDICATED SERVER TESTING:
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
+        - cache bombs sometimes have duplicates. i need to find a better way to remove them. learn action ids.
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
