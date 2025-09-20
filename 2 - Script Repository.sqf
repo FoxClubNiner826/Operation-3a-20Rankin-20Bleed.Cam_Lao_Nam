@@ -360,3 +360,40 @@ if (!isNil "foodcache") then {
 ] call BIS_fnc_holdActionAdd;
 };
 */
+
+,
+	["entertunnel",
+		[
+			[0, "", "answer", 0, {
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Oh shit... We've got a rat hole here. A big one too by the looks of it.";
+				}
+			]
+		]
+	],
+	["scoutentertunnel",
+		[
+			[0, "", "answer", 0, {
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Big rat hole. Be quiet. Many V.C.";
+				}
+			]
+		]
+	]
+
+thisList spawn {
+
+_firstUnit = _this#0;
+_scout = missionNamespace getVariable ["scout", objNull];
+
+if (_firstUnit == _scout) then {
+
+["scoutentertunnel", [_firstUnit]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _firstUnit <= 100}];
+
+} else {
+
+["entertunnel", [_firstUnit]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _firstUnit <= 100}];
+
+};
+
+};

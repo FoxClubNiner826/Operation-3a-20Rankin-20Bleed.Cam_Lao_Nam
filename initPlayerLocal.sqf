@@ -52,6 +52,25 @@ if (!isNil "mg2" && {player isEqualTo mg2}) then {
 
 //////////////////////////////////////////////////
 //                                              //
+//         REMOVE HOLDACTIONS ON DEATH          //
+//                                              //
+//////////////////////////////////////////////////
+
+// removes addaction from dead bodies. this makes sure there are no duplicate addactions on players too
+player addEventHandler ["Killed", {
+    removeAllActions (_this select 0); //not removing detonate addaction. maybe cause its nested in hold action? intermittant.
+	//missionNamespace getvariable ["weaponCacheActionID", false]
+    [weaponcache, missionNamespace getvariable ["weaponCacheActionID", false]] call BIS_fnc_holdActionRemove;
+    [foodcache, missionNamespace getvariable ["foodCacheActionID", false]] call BIS_fnc_holdActionRemove;
+    //[weaponcache, _weaponCacheActionID] call BIS_fnc_holdActionRemove;
+	//[foodcache, _foodCacheActionID] call BIS_fnc_holdActionRemove;
+	//removeAllActions weaponcache; //now its not removing holdaction. also intermittant
+	//removeAllActions foodcache; //now its not removing holdaction. also intermittant
+}];
+
+
+//////////////////////////////////////////////////
+//                                              //
 //             SEAL BOSS QUESTIONS              //
 //                                              //
 //////////////////////////////////////////////////

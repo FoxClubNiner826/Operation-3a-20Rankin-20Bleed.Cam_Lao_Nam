@@ -1,11 +1,7 @@
 TO DO UP NEXT:
 
-- update subtitles in entire mission to include if scout says them with if statements
-    * all c4 cache interactions but first we rebuild the cache mechanic. going to have to ask for help.
-        - blow c4 cache new lines: fire in the hole. change to hold action?
-        - c4 hold action. 3.2.1. boom. frenchv ersion for scout
-        - new line? i see a big ass cache. take what you need then lets blow it.
-    - all pow lines
+- update subtitles in entire mission to include if scout says them with if statements 
+    * all pow lines - just did entering the tunnel
     - extraction and smoke
     - no subs for captain marchikno
 
@@ -15,10 +11,6 @@ NEW LINES TO ADD:
 
 
 BUGS FROM LATEST PLAYTHROUGH:
-- Figure out how to proceed with the downed pilot task
-    - option 1: make the sam invincible so that the pilot always gets downed.
-    - option 2: allow the pilot to be saved a figure a way to deletehim without it messing up anything.
-    - option 3: ???
 
 
 DEDICATED SERVER TESTING:
@@ -32,11 +24,11 @@ DEDICATED SERVER TESTING:
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
-        - cache bombs sometimes have duplicates. i need to find a better way to remove them. learn action ids.
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
     MEDIUM PRIORITY:
+        - add a killed EH that checks if the general is in his car and TPs him out so players can still progress.
         - figure out how you want AI multiplayer to function in your misison:
             - option 1: disable AI. simple?
             - option 2: leave as is but if players leave AI on and dont take group leader then itll be jank.
@@ -44,7 +36,7 @@ TO DO MASTER LIST:
                 does he get control back?) or some solution that always passes AI to a player
         - there is a locker in lumphat that keeps clipping into the buildings.
         - floating objects in bulding when they are destroyed. can you  write script to search for items in a marker and delete all items? might be easier.
-        - literally last thing you do maybe because the misisons is always evolving but you need to recheck how the mission performance are working.
+        - literally last thing you do maybe because the misisons is always evolving but you need to recheck how the mission performance ratings are working.
             some stuff might have broken.
             - i added a failure state for proceed to infil spot
         - picture pass for continuity since there have been changes. includes making pics for death/victory screens
@@ -53,6 +45,7 @@ TO DO MASTER LIST:
         - add game master slot
         - beginning jeep needs to move foruther away from players
     LOW PRIORITY:
+        - the sam site targets player which could lead to the pilot not getting shot down. needs more testing to see how often that would happen.
         - if you put on an enemy back pack you get to know if you are being tracked and what the state of things are
         - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
         - disable the squad radio cahtter. Keep for now testing because it does help during that. Chance that this breaks something though.
@@ -100,6 +93,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- reworked the plant bombs on cache mechanic. changed to holdAction and uses actionIDs to remove duplicates. added more convo lines.
 - changed sabatague icon to destroy and change holdAction from CBA to script.
 - reworked how the downed pilot is shot down and added the possibility that the players can destroy the samsite before it can shoot down the plane.
 - figured out why control z wasnt working

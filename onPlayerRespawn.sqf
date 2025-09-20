@@ -2,7 +2,7 @@
     File: onPlayerRespawn.sqf
     Author: FoxClubNiner
     Description:
-        Runs on player respawn.
+        Runs on player respawn. This event script will also fire at the beginning of a mission if respawnOnStart is 0 or 1
 */
 
 //////////////////////////////////////////////////
@@ -190,7 +190,7 @@ duplicates of the hold action wont be a problem.
 */
 
 if (!isNil "weaponcache") then {
-[
+_weaponCacheActionID = [
 	weaponcache,
 	"<t color='#FFFF00'>Place C-4 Plastic Explosive</t>",
 	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
@@ -266,6 +266,7 @@ if (!isNil "weaponcache") then {
 	false, //show if unconcious
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
+missionNamespace setVariable ["weaponCacheActionID", _weaponCacheActionID];
 };
 
 
@@ -275,8 +276,8 @@ if (!isNil "weaponcache") then {
 //                                              //
 //////////////////////////////////////////////////
 
-if (!isNil "foodcache") then { // have to do the nil check because you would get an error. cant remember why.
-[
+if (!isNil "foodcache") then { // have to do the nil check because you would get an error since this runs on respawn and the foodcache might not be alive.
+_foodCacheActionID = [
 	foodcache,
 	"<t color='#FFFF00'>Place C-4 Plastic Explosive</t>",
 	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
@@ -357,4 +358,5 @@ if (!isNil "foodcache") then { // have to do the nil check because you would get
 	false, //show if unconcious
 	false //show in middle of screen
 ] call BIS_fnc_holdActionAdd;
+missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 };

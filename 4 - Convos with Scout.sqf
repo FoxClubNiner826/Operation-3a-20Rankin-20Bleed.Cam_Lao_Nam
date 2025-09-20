@@ -416,4 +416,54 @@ missionNamespace setvariable ["gunboatDestroyed", true, true];
 }];
 
 
+// when the players enter the trigger area of the cache. I want the first unit in the area to speak. whether its the scout or not. no responders needed.
+thisList spawn {
 
+_firstUnit = _this#0; 
+_scout   = missionNamespace getVariable ["scout", objNull]; 
+private _convo = ["seesWeaponCache", "seesWeaponCacheScout"] select (_firstUnit == _scout); 
+ 
+[_convo, [_firstUnit]] remoteExec [ 
+    "FoxClub_fnc_Conversation",  
+    allPlayers select {_x distance _firstUnit <= 100}];
+
+};
+
+
+// when players enter the rat hole. leader then scout then random player. responders opposite speaker unless random then no responder.
+_scout   = missionNamespace getVariable ["scout", objNull];   
+_leader  = leader playergroup;
+private _units = units playergroup inAreaArray pilot_joins_group;
+
+private _speaker = objNull;
+private _responder = objNull;
+
+// --- Pick Speaker ---
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _units) then {
+        _speaker = _scout;
+    } else {
+        _speaker = selectRandom _units;
+    };
+};
+
+// --- Pick Responder ---
+if (_speaker == _leader && {_scout in _units}) then {
+    _responder = _scout;
+} else {
+    if (_speaker == _scout && {_leader in _units}) then {
+        _responder = _leader;
+    };
+    // No responder if neither Leader nor Scout
+};
+
+// --- Convo selection ---
+private _convo = ["entertunnel", "scoutentertunnel"] select (_speaker == _scout);
+
+// --- Execute Conversation ---
+[_convo, [_speaker, _responder]] remoteExec [
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _speaker <= 100 }    
+];

@@ -64,20 +64,6 @@ override_vn_sam_masteraudioarray = compile preprocessFileLineNumbers "override_v
 
 //////////////////////////////////////////////////
 //                                              //
-//          REMOVE ADDACTION ON DEATH           //
-//                                              //
-//////////////////////////////////////////////////
-
-// removes addaction from dead bodies. this makes sure there are no duplicate addactions on players too
-player addEventHandler ["Killed", {
-    removeAllActions (_this select 0); //not removing detonate addaction. maybe cause its nested in hold action? intermittant.
-	removeAllActions weaponcache; //now its not removing holdaction. also intermittant
-	removeAllActions foodcache; //now its not removing holdaction. also intermittant
-}];
-
-
-//////////////////////////////////////////////////
-//                                              //
 //   STOP FLOATING OBJECTS ON DESTROYED HUTS    //
 //                                              //
 //////////////////////////////////////////////////
@@ -777,6 +763,16 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Nothing here. Only junk.", "answer"]
 		]
 	],
+	["commsSeen",
+		[
+			[0, "There’s their comms. Tower and juice box.", "answer"]
+		]
+	],
+	["commsSeenScout",
+		[
+			[0, "This voice for Hanoi. I cut now.", "answer"]
+		]
+	],
 	["commsdestroy",
 		[
 			[0, "Kill their voice, kill their fight.", "answer"]
@@ -904,7 +900,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["gunboatpassScout",
 		[
-			[0,"Gunboat’s finished!", "answer"]
+			[0,"Gunboat finished!", "answer"]
 		]
 	],
 	["cachebombPlace",
@@ -949,11 +945,32 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["sampass",
 		[
-			[0,"", "answer", 0, {
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "The SAM site has been neutralized!";
-				}
-			]
+			[0,"The SAM site has been neutralized!", "answer"]
+		]
+	],
+	["sampassScout",
+		[
+			[0,"SAM finished!", "answer"]
+		]
+	],
+	["seesWeaponCache",
+		[
+			[0,"Weapons cache over here! Take what you need then let's blow it!", "answer"]
+		]
+	],
+	["seesWeaponCacheScout",
+		[
+			[0,"Many gun here. Maybe we use.", "answer"]
+		]
+	],
+	["seesfoodCache",
+		[
+			[0,"Food cache over here! Cut their stomach, cut their fight.", "answer"]
+		]
+	],
+	["seesfoodCacheScout",
+		[
+			[0,"We find food. No food, they weak.", "answer"]
 		]
 	],
 	["seestunnel",
@@ -963,25 +980,19 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scoutseestunnel",
 		[
-			[0,"I see rat hole! Check for traps or you be very sad.", "answer"]
+			[0,"I see rat hole! Check trap or you be very sad.", "answer"]
 		]
 	],
 	["entertunnel",
 		[
-			[0, "", "answer", 0, {
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Oh shit... We've got a rat hole here. A big one too by the looks of it.";
-				}
-			]
+			[0,"Oh shit... We've got a rat hole here. A big one too by the looks of it.", "answer"],
+			[1,"Be quiet. Many enemy.", "answer"]
 		]
 	],
 	["scoutentertunnel",
 		[
-			[0, "", "answer", 0, {
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Big rat hole. Be quiet. Many V.C.";
-				}
-			]
+			[0,"Big rat hole. Be quiet. Many enemy.", "answer"],
+			[1,"Oh shit... A big one too by the looks of it.", "answer"]
 		]
 	],
 	["seespow",
