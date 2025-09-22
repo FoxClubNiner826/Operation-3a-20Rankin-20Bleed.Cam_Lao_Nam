@@ -1251,3 +1251,10 @@ if (alive _randomUnitInGroup && _randomUnitInGroup == scout) then {
         allPlayers select { _x distance _randomUnitInGroup <= 100 }
     ]
 };
+
+if (get variable) then {
+    sleep 5;
+    // code
+} else {
+    // same code minus the sleep
+};

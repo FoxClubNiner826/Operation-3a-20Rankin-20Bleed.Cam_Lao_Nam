@@ -1,7 +1,7 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements 
-    * all pow lines - just did entering the tunnel
+    * all pow lines - working on a bug that happens when you switch units at telephone.
     - extraction and smoke
     - no subs for captain marchikno
 
@@ -57,6 +57,7 @@ TO DO MASTER LIST:
         - mission fail if friendly fire
         - see if smoke can be detected in area marker instead of player
         - if players use radio trackers start to simulate radio direction finding of the enemy. then you add hand signals module.
+        - if players rush to untie POW it can sound jank.
 
 
 TOUGH BUGS:

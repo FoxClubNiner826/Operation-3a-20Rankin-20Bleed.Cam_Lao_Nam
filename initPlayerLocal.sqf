@@ -767,15 +767,20 @@ pow addAction [
     "<t color='#FFFF00'>""Who are you?""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPOW1", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpow1", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	params ["_target", "_caller", "_actionID", "_args"];
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["askpow1", "askpow1Scout"] select (_caller == _scout); 
+    [_convo, [_caller, _target]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }
+        ];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW1", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW1", 
 	4 
 ];
 
@@ -783,15 +788,20 @@ pow addAction [
     "<t color='#FFFF00'>""What happened?""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPOW2", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpow2", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	params ["_target", "_caller", "_actionID", "_args"];
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["askpow2", "askpow2Scout"] select (_caller == _scout); 
+    [_convo, [_caller, _target]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }
+        ];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW2", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW2", 
 	4 
 ];
 
@@ -799,15 +809,20 @@ pow addAction [
     "<t color='#FFFF00'>""Been here long?""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPOW3", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpow3", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	params ["_target", "_caller", "_actionID", "_args"];
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["askpow3", "askpow3Scout"] select (_caller == _scout); 
+    [_convo, [_caller, _target]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }
+        ];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW3", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW3", 
 	4 
 ];
 
@@ -815,15 +830,20 @@ pow addAction [
     "<t color='#FFFF00'>""How was it?""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPOW4", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpow4", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	params ["_target", "_caller", "_actionID", "_args"];
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["askpow4", "askpow4Scout"] select (_caller == _scout); 
+    [_convo, [_caller, _target]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }
+        ];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW4", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW4", 
 	4 
 ];
 
@@ -831,15 +851,20 @@ pow addAction [
     "<t color='#FFFF00'>""Your leg...""</t>", 
     {
 	missionNamespace setVariable ["ActionTalkToPOW5", false, true];
-	params ["_target", "_caller", "_actionID", "_args"];    
-	["askpow5", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	params ["_target", "_caller", "_actionID", "_args"];
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["askpow5", "askpow5Scout"] select (_caller == _scout); 
+    [_convo, [_caller, _target]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }
+        ];
 	}, 
     nil, 
     8, 
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW5", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW5", 
 	4 
 ];
 

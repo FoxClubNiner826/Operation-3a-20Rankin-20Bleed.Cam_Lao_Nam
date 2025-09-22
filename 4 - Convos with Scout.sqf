@@ -430,10 +430,14 @@ private _convo = ["seesWeaponCache", "seesWeaponCacheScout"] select (_firstUnit 
 };
 
 
-// when players enter the rat hole. leader then scout then random player. responders opposite speaker unless random then no responder.
+/* As it sits right now, the player cannot bring AI with them into the tunnel. This means having a responder in SP is pointless. In MP there is a small 
+chance that two or three players could enter at once though. Therefor, when players enter the rat hole, leader then scout then random player. 
+Responders opposite speaker unless random then no responder.
+*/
+
 _scout   = missionNamespace getVariable ["scout", objNull];   
 _leader  = leader playergroup;
-private _units = units playergroup inAreaArray pilot_joins_group;
+private _units = units playergroup inAreaArray enterTunnel;
 
 private _speaker = objNull;
 private _responder = objNull;

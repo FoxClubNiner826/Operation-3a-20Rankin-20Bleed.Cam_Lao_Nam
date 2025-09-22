@@ -397,3 +397,6 @@ if (_firstUnit == _scout) then {
 };
 
 };
+
+//
+!(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW5

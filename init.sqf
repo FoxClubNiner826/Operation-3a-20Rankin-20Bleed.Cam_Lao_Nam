@@ -841,7 +841,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["askpilot1Scout",
 		[
-			[0,"Name, airman. Say.", "question"],
+			[0,"Say name, G.I.", "question"],
 			[1,"I'm Captain Mike Reynolds. I'm with the 615th Tactical Fighter Squadron. And I'm glad as hell to see you. Was starting to think I was a dead man.", "answer"]
 		]
 	],
@@ -1012,7 +1012,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Goddamn, your leg’s messed up... Here hold still, I’ll get those off you. Think you can walk on your own?", "answer"],
 			[0,"I think so but I can't move very fast.", "answer"],
 			[1,"Okay, stay put while I clear the rest of this tunnel. See that field phone on the desk over there? When it’s safe, I'm gonna call you on that from the topside.", "answer"],
-			[0,"Sure thing, please hurry. Charlie is everywhere.", "answer"]
+			[0,"Sure thing, please hurry. They're everywhere.", "answer"]
 		]
 	],
 	["scoutuntiepow",
@@ -1037,19 +1037,49 @@ foxclub_var_conversations = createHashMapFromArray [
 	["askpow3",
 		[
 			[0,"How long have you been held here, and what have they been doing to you?", "answer"],
-			[1,"I'm not sure how long but it feels like months. They interrogate me sometimes, trying to get information on US operations. The rest of the time, they keep me in chains and in the dark.", "answer"]
+			[1,"I'm not sure how long but it feels like months. They interrogate me sometimes, trying to get information on us. The rest of the time, they keep me in chains and in the dark.", "answer"]
 		]
 	],
 	["askpow4",
 		[
 			[0,"Have they been treating you alright? Any other prisoners here?", "answer"],
-			[1,"They’ve been rough. Not much food or water. I’m not sure if there are others; they kept me isolated most of the time. Sometimes I hear voices, but never see anyone.", "answer"]
+			[1,"They’ve been rough. Not much food or water. I’m not sure if there are others. They kept me isolated most of the time. Sometimes I hear other voices, but never see anyone.", "answer"]
 		]
 	],
 	["askpow5",
 		[
 			[0,"How'd you get that leg wound? Looks like it's been giving you trouble for a while.", "answer"],
-			[1,"I picked it up three weeks back, trying to escape. Stepped on a punji stick and twisted my leg bad. They just patched me up quick, no real treatment. It's been aching and swollen ever since. I can barely limp along and it just keeps getting worse.", "answer"]
+			[1,"I picked it up three weeks back, trying to escape. Stepped on a punji stick and punctured my leg bad. They just patched me up quick, no real treatment. It's been aching and swollen ever since. I can barely limp along and it just keeps getting worse.", "answer"]
+		]
+	],
+	["askpow1Scout",
+		[
+			[0,"Say name G.I.", "answer"],
+			[1,"Mark Davis, Specialist Fourth Class. I run supplies.", "answer"]
+		]
+	],
+	["askpow2Scout",
+		[
+			[0,"How you get here?", "answer"],
+			[1,"We were on a supply run when we were ambushed. My unit was overrun, and I got captured. They dragged me here and kept me underground, barely fed.", "answer"]
+		]
+	],
+	["askpow3Scout",
+		[
+			[0,"How long you here?", "answer"],
+			[1,"I'm not sure how long but it feels like months. They interrogate me sometimes, trying to get information on us. The rest of the time, they keep me in chains and in the dark.", "answer"]
+		]
+	],
+	["askpow4Scout",
+		[
+			[0,"More G.I. here?", "answer"],
+			[1,"I’m not sure if there are others. They kept me isolated most of the time. Sometimes I hear other voices, but never see anyone.", "answer"]
+		]
+	],
+	["askpow5Scout",
+		[
+			[0,"You leg very bad.", "answer"],
+			[1,"I picked it up three weeks back, trying to escape. Stepped on a punji stick and punctured my leg bad. They just patched me up quick, no real treatment. It's been aching and swollen ever since. I can barely limp along and it just keeps getting worse.", "answer"]
 		]
 	],
 	["callPOW",
@@ -1067,8 +1097,8 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["POWexits",
 		[
-			[1,"Goddamn my eyes. Gimmie a second, it hurts.", "answer"],
-			[0,"Be quick. We gotta get you out of here ASAP and into some real medical care. Stay close, follow my lead.", "answer"]
+			[1,"Goddamn it, my eyes. Gimmie a second, it hurts.", "answer"],
+			[0,"We gotta get you out of here ASAP and into some real medical care. Stay close, follow my lead.", "answer"]
 		]
 	],
 	["scoutcallPOW",
@@ -1092,7 +1122,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["scoutPOWexits",
 		[
 			[1,"Goddamn my eyes. Gimmie a second, it hurts.", "answer"],
-			[0,"Don't be baby. I know pain, no more complain. Follow me.", "answer"]
+			[0,"Don't be baby. I know pain, no more complain. You follow.", "answer"]
 		]
 	],
 	["heal1",
