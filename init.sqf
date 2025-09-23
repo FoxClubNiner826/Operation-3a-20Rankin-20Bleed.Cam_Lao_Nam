@@ -1108,12 +1108,7 @@ foxclub_var_conversations = createHashMapFromArray [
 				}
 			],
 			[0,"Okay G.I., you come up now.", "answer"],
-			[1,"Who is this? ... Is this a trick?", "answer", 0, { 
-				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
-				}
-			],
-			[0,"No trick G.I., you come now or we go forever!", "answer"],
-			[1,"Okay, okay. I'm coming right now. Don't leave without me. I hope this isn't a ruse...", "answer", 0, { 
+			[1,"I'm coming right now. Don't leave without me.", "answer", 0, { 
 				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
 				}
 			]

@@ -57,7 +57,7 @@ TO DO MASTER LIST:
         - mission fail if friendly fire
         - see if smoke can be detected in area marker instead of player
         - if players use radio trackers start to simulate radio direction finding of the enemy. then you add hand signals module.
-        - if players rush to untie POW it can sound jank.
+        - if players switch to another unit after getting near the POW. Error, unknown variable.
 
 
 TOUGH BUGS:

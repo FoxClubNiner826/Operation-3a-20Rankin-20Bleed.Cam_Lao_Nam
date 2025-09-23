@@ -400,3 +400,42 @@ if (_firstUnit == _scout) then {
 
 //
 !(_this in [scout]) && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW5
+
+//
+player addAction [
+    "<t color='#FFFF00'>Call POW</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+    missionNamespace setVariable ["ActionCallPOW", false, true];
+	_scout = missionNamespace getVariable ["scout", objNull];
+
+	if (_caller == _scout) then {
+		["scoutcallPOW", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+	} else {
+		["callPOW", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+	};
+
+	sleep 20;
+	POW setPosATL (getPosATL ExitSpot);
+	sleep 1;
+
+	if (_caller == _scout) then {
+		["scoutPOWexits", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+	} else {
+		["POWexits", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+	};
+	
+	sleep 9;
+	[POW] join (group player);
+	sleep 1; //needed for setcaptive
+	POW setCaptive false;
+	sleep 1; //possible needed for path command to work
+	POW enableai "PATH";
+    }, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "_this distance fieldtelephone < 4 && ActionCallPOW && alive pow"
+];
