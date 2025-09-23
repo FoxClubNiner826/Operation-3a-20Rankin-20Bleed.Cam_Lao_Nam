@@ -1,7 +1,7 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements 
-    * all pow lines - working on a bug that happens when you switch units at telephone.
+    * all pow lines - working on a bug that happens when you switch units at telephone. fixed. go over params again.
     - extraction and smoke
     - no subs for captain marchikno
 
@@ -9,6 +9,15 @@ NEW LINES TO ADD:
 - extraction. lets get the hell out of here as youre holding the action
 - interaction between scout and marcinko so players dont think its a bug if there was nothing
 
+TO LEARN:
+- add extensions to vscode
+    - function auto add. check your discord.
+- how to use rpt files
+    - you would ctrl f your diag line, such as "First Unit"
+    - A good general one is "error in" which will pick up all the SQF errors so you can read them at leisure.
+        But if you're not using diag_log already then they're probably at the bottom.
+    - As I restart scenarios a lot for test purpose, I always try to find "Starting mission" to check for script error since the mission began
+    - you can also use a watcher extension that will follow the lowest line in the file as they are created
 
 BUGS FROM LATEST PLAYTHROUGH:
 

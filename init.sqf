@@ -763,6 +763,46 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Nothing here. Only junk.", "answer"]
 		]
 	],
+	["LumphatSearched",
+		[
+			[0, "Time to pack it in, this place is tapped. Move out!", "answer"]
+		]
+	],
+	["scoutLumphatSearched",
+		[
+			[0, "This place empty, like old rice bowl.", "answer"]
+		]
+	],
+	["foundDone1",
+		[
+			[0, "One step ahead of you, Charlie.", "answer"]
+		]
+	],
+	["foundDone2",
+		[
+			[0, "Hell, we beat ’em to the punch.", "answer"]
+		]
+	],
+	["foundDone3",
+		[
+			[0, "They’re planning for a fight that’s already over.", "answer"]
+		]
+	],
+	["scoutfounddone1",
+		[
+			[0, "They make map. We walk it yesterday.", "answer"]
+		]
+	],
+	["scoutfounddone2",
+		[
+			[0, "They late. We done already.", "answer"]
+		]
+	],
+	["scoutfounddone3",
+		[
+			[0, "They write paper, we already kill.", "answer"]
+		]
+	],
 	["commsSeen",
 		[
 			[0, "There’s their comms. Tower and juice box.", "answer"]
@@ -1155,58 +1195,6 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Every step is agony. I don’t know how much longer I can keep this up.", "answer"]
 		]
 	],
-	["powpassconvo",
-		[
-			[0,"Warrant Officer, we've got wounded on board. Need medical ASAP.", "answer"],
-			[1,"Certainly, P.O.", "answer", 0, {
-				sleep 5;
-				playsound "talkradio"; 
-				ranger sideChat "Ranger, Hawk. We've got wounded on board, needing immediate medical attention. Over.";
-				sleep 6;
-				playsound "talkradio";
-				HQRadio sideChat "Hawk, Ranger. Copy that. Medical team is on standby, ready for your arrival. Out.";
-				}
-			]
-		]
-	],
-	["powpassconvo2",
-		[
-			[0,"Thank you so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
-			[1,"Don't mention it, pal. We’re all on the same team. Rest up and take care.", "answer"]
-		]
-	],
-	["playersseeprison",
-		[
-			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
-			[1,"It looks smaller from up here but somehow seems bigger. Must hold hundreds of prisoners.", "answer"]
-		]
-	],
-	["scoutseesprison",
-		[
-			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
-			[1,"This is very sad place. I stay far away.", "answer"]
-		]
-	],
-	["playersseeprisonPOW",
-		[
-			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
-			[1,"I can practically smell it from here. I wonder what it's like on the inside?", "answer"],
-			[2,"For how they treated me, I don't give a fuck about them... I hope it's worse than the shit they put me through.", "answer"]
-		]
-	],
-	["scoutseesprisonPOW",
-		[
-			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
-			[1,"Fuck every last one of them for what they did to me. For all I care they can go to hell.", "answer"],
-			[2,"Many there not belong. I know this true. You suffer one person. They suffer thousands.", "answer"]
-		]
-	],
-	["nosmokeconvo",
-		[
-			[0,"You boys were supposed to smoke the LZ! What happened? It’s a damn miracle I found it on the first pass!", "answer"],
-			[1,"No excuse, Warrant Officer. We’ll lock it down next time.", "answer"]
-		]
-	],
 	["extract",
 		[
 			[0, "", "answer", 3, { 
@@ -1317,6 +1305,43 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
+	["smokedeny",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Ranger. Affirmative, you are at the LZ with us. Over."; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. Copy. Stay clear for touchdown. Out.";
+				}
+			]
+		]
+	],
+	["scoutsmokedeny",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Ranger, we no have smoke. You land now."; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. Copy. Stay clear for touchdown. Out.";
+				}
+			]
+		]
+	],
+	["smokeRequest2",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. We don't see any smoke. Is this you? I think we have visual.";
+				}
+			]
+		]
+	],
 	["leftbehind",
 		[
 			[0,"", "answer", 3, { 
@@ -1343,6 +1368,63 @@ foxclub_var_conversations = createHashMapFromArray [
         		HQRadio sideChat "Hawk, Ranger. Copy that. Safe return.";
 				}
 			]
+		]
+	],
+	["powpassconvo",
+		[
+			[0,"Warrant Officer, we've got wounded on board. Need medical ASAP.", "answer"],
+			[1,"Certainly, P.O.", "answer", 0, {
+				sleep 5;
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. We've got wounded on board, needing immediate medical attention. Over.";
+				sleep 6;
+				playsound "talkradio";
+				HQRadio sideChat "Hawk, Ranger. Copy that. Medical team is on standby, ready for your arrival. Out.";
+				}
+			]
+		]
+	],
+	["powpassconvo2",
+		[
+			[0,"Thank you so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
+			[1,"Don't mention it, pal. We’re all on the same team. Rest up and take care.", "answer"]
+		]
+	],
+	["playersseeprison",
+		[
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[1,"It looks smaller from up here but somehow seems bigger. Must hold hundreds of prisoners.", "answer"]
+		]
+	],
+	["scoutseesprison",
+		[
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[1,"This is very sad place. I stay far away.", "answer"]
+		]
+	],
+	["playersseeprisonPOW",
+		[
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[1,"I can practically smell it from here. I wonder what it's like on the inside?", "answer"],
+			[2,"For how they treated me, I don't give a fuck about them... I hope it's worse than the shit they put me through.", "answer"]
+		]
+	],
+	["scoutseesprisonPOW",
+		[
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
+			[1,"Fuck every last one of them for what they did to me. For all I care they can go to hell.", "answer"],
+			[2,"Many there not belong. I know this true. You suffer one person. They suffer thousands.", "answer"]
+		]
+	],
+	["nosmokeconvo",
+		[
+			[0,"You boys were supposed to smoke the LZ! What happened? It’s a damn miracle I found it on the first pass!", "answer"],
+			[1,"No excuse, Warrant Officer. We’ll lock it down next time.", "answer"]
+		]
+	],
+	["debriefArea",
+		[
+			[0,"Welcome back, gentlemen.", "answer"]
 		]
 	],
 	["10",
@@ -1565,88 +1647,6 @@ foxclub_var_conversations = createHashMapFromArray [
 				["0", false , true, true, true] remoteExec ["VN_fnc_endMission"];
 				}
 			]
-		]
-	],
-	["debriefArea",
-		[
-			[0,"Welcome back, gentlemen.", "answer"]
-		]
-	],
-	["smokedeny",
-		[
-			[0, "", "answer", 0, { 
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Rankin, Ranger. Affirmative, you are at the LZ with us. Over."; 
-				}
-			],
-			[1,"", "answer", 0, { 
-				playsound "talkradio"; 
-				ranger sideChat "Ranger, Rankin. Copy. Stay clear for touchdown. Out.";
-				}
-			]
-		]
-	],
-	["scoutsmokedeny",
-		[
-			[0, "", "answer", 0, { 
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Ranger, we no have smoke. You land now."; 
-				}
-			],
-			[1,"", "answer", 0, { 
-				playsound "talkradio"; 
-				ranger sideChat "Ranger, Rankin. Copy. Stay clear for touchdown. Out.";
-				}
-			]
-		]
-	],
-	["smokeRequest2",
-		[
-			[0,"", "answer", 0, { 
-				playsound "talkradio"; 
-				ranger sideChat "Ranger, Rankin. We don't see any smoke. Is this you? I think we have visual.";
-				}
-			]
-		]
-	],
-	["LumphatSearched",
-		[
-			[0, "Time to pack it in, this place is tapped. Move out!", "answer"]
-		]
-	],
-	["scoutLumphatSearched",
-		[
-			[0, "This place empty, like old rice bowl.", "answer"]
-		]
-	],
-	["foundDone1",
-		[
-			[0, "One step ahead of you, Charlie.", "answer"]
-		]
-	],
-	["foundDone2",
-		[
-			[0, "Hell, we beat ’em to the punch.", "answer"]
-		]
-	],
-	["foundDone3",
-		[
-			[0, "They’re planning for a fight that’s already over.", "answer"]
-		]
-	],
-	["scoutfounddone1",
-		[
-			[0, "They make map. We walk it yesterday.", "answer"]
-		]
-	],
-	["scoutfounddone2",
-		[
-			[0, "They late. We done already.", "answer"]
-		]
-	],
-	["scoutfounddone3",
-		[
-			[0, "They write paper, we already kill.", "answer"]
 		]
 	]
 ];
