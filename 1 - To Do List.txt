@@ -1,8 +1,7 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements 
-    * all pow lines - working on a bug that happens when you switch units at telephone. fixed. go over params again.
-    - extraction and smoke
+    * - extraction and smoke
     - no subs for captain marchikno
 
 NEW LINES TO ADD: 
@@ -33,6 +32,7 @@ DEDICATED SERVER TESTING:
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
+        - helicopter tried to land at cache. didnt seems to care about the ai there. did shoot at them but why land?
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)

@@ -877,13 +877,13 @@ pow addAction [
 
 // creates infinite smoke
 params ["_player", "_didJIP"];
-// Check if SmokeThrown is not initialized
+// Adds EH to player if smokeThrown doesn't exist.
 if (isNil "SmokeThrown") then {
     _player addEventHandler ["FiredMan", {
         params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
 
-        // Check if SmokeThrown is already set
-        if (!isNil "SmokeThrown") exitWith {
+        // Removes EH if smokeThrown is defined.
+        if (missionNamespace getVariable ["SmokeThrown", false] || missionNamespace getVariable ["smokeFailed", false]) exitWith {
             _unit removeEventHandler [_thisEvent, _thisEventHandler];
         };
 
