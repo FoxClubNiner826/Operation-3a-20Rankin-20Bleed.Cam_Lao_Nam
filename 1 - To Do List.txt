@@ -32,7 +32,16 @@ DEDICATED SERVER TESTING:
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
-        - helicopter tried to land at cache. didnt seems to care about the ai there. did shoot at them but why land?
+        - Find a solution: Heli will leave LZ and land far away if an object is on the coordinate position.
+            - Calling the landing outside of 5 meters from the coordinates seems safe.
+            - So far all objects on the LZ will trigger the pilot to land elsewhere, no matter how small or flat. Except helipads.
+            - The function seems to constantly monitor for obstructions. I can run under at the last moment then it will fly off.
+                - Tried to use an invisible helipad but didnt help.
+                - Going to try some ideas I posted in discord. If that doesn't work consult pig's code for helis.
+                - I don't think that monitoring the LZ and moving the LZ will work because in testing it dosen't seem responsive enough. Still better
+                    than nothing as a fail safe though. At this point the easiest would be to give player feedback. Have pilot tell the players to
+                    clear the LZ if they are within 5 meters of the landing point. Also do a trigger for the former.
+
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
