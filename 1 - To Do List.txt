@@ -41,6 +41,10 @@ TO DO MASTER LIST:
                 - I don't think that monitoring the LZ and moving the LZ will work because in testing it dosen't seem responsive enough. Still better
                     than nothing as a fail safe though. At this point the easiest would be to give player feedback. Have pilot tell the players to
                     clear the LZ if they are within 5 meters of the landing point. Also do a trigger for the former.
+                - I've been testing the landAt command. The nice thing is it seems like it will force a landing if something blocks its path but 
+                    it wont process the command successfully if the path is blocked on execution. Maybe I could do a continual check to wait until
+                    the path is clear then execute the command. After that we should be clear.
+                - Progress is okay so far. figure out how to keep engine on. add convo for blocked LZ. adjust sleep time to give players more time.
 
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
