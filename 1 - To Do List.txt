@@ -1,5 +1,8 @@
 TO DO UP NEXT:
 
+- working on extract heli landing
+    - make the condition be tied to return value.
+
 - update subtitles in entire mission to include if scout says them with if statements 
     * - extraction and smoke
     - no subs for captain marchikno
@@ -32,6 +35,8 @@ DEDICATED SERVER TESTING:
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
+        - go through all triggers before the infil spot and look for deletevehicle. need to move these to the infil spot because if players choose skip to
+            infil then those objects wont be deleted.
         - Find a solution: Heli will leave LZ and land far away if an object is on the coordinate position.
             - Calling the landing outside of 5 meters from the coordinates seems safe.
             - So far all objects on the LZ will trigger the pilot to land elsewhere, no matter how small or flat. Except helipads.
@@ -45,7 +50,11 @@ TO DO MASTER LIST:
                     it wont process the command successfully if the path is blocked on execution. Maybe I could do a continual check to wait until
                     the path is clear then execute the command. After that we should be clear.
                 - Progress is okay so far. figure out how to keep engine on. add convo for blocked LZ. adjust sleep time to give players more time.
-
+                    - changed the condition for landing to check the return value. If false then moves the helipad 5 meters any direction until landing.
+                        - had to do it this way cause apparently even a explosion decal will block a landing.
+                - have the heli landing fine. now to get it to base.
+        - I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
+            but not the SAM?
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)

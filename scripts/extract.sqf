@@ -6,28 +6,40 @@
 */
 
 [] spawn {
-	_heli = ExtractHeli_1;
-	_helipadPos = ExtractHelipad;
-	_clearRadius = 5;
+	private _heli = ExtractHeli;
+	private _helipad = ExtractHelipad;   // invisible helipad object
+	private _clearRadius = 5;
 
-	// Loop until landing zone is clear
 	while {true} do {
-		_objectsNearby = ExtractHelipad nearEntities [["Man", "Tank"], _clearRadius];
+		private _objectsNearby = _helipad nearEntities [["Man", "Tank", "Car", "StaticWeapon"], _clearRadius];
+		private _heliCanLand = _heli landAt [_helipad, "GetIn"];
 
-		if (count _objectsNearby == 0) then {
-			_heli landAt [_helipadPos, "Land"];
+		if (_heliCanLand) then {
+			_heli landAt [getPos _helipad, "GetIn", 9999];
 			systemChat "The extraction helicopter is landing!";
 			break; // exit loop once landing command issued
 		} else {
+			// report blocking units
 			private _names = _objectsNearby apply {
 				getText (configFile >> "CfgVehicles" >> typeOf _x >> "displayName")
 			};
 			systemChat format ["The LZ is blocked by: %1", _names joinString ", "];
+
+			// move helipad 5m in random direction
+			private _dir = random 360;
+			private _pos = getPos _helipad;
+			private _newPos = [
+				(_pos select 0) + 5 * cos _dir,
+				(_pos select 1) + 5 * sin _dir,
+				_pos select 2
+			];
+			_helipad setPos _newPos;
 		};
 
-		sleep 1; // wait 1 second before checking again
+		sleep 1;
 	};
 };
+
 
     
 /*
