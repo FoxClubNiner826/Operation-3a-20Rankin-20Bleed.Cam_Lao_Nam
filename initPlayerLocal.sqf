@@ -982,14 +982,21 @@ if (isNil "SmokeThrown") then {
 	{}, //code on start
 	{}, // code every tick
 	{
-	_group = ExtractHeliGroup;  
-    _markerName = "returnToBase";   
-    _waypointPosition = getMarkerPos _markerName;  
-    _wp1 = _group addWaypoint [_waypointPosition, 0]; 
-    _wp1 setWaypointType "MOVE"; 
-    _wp2 = _group addWaypoint [_waypointPosition, 0]; 
-    _wp2 setWaypointType "SCRIPTED";
-    _wp2 setWaypointScript "A3\functions_f\waypoints\fn_wpLand.sqf";
+        [] spawn {
+        ExtractHeli landAt [ExtractHelipad, "None"];
+        _group = ExtractHeliGroup;  
+        _markerName = "returnToBase";   
+        _waypointPosition = getMarkerPos _markerName;  
+        _wp1 = _group addWaypoint [_waypointPosition, 0]; 
+        _wp1 setWaypointType "MOVE";  
+        _group setCurrentWaypoint _wp1;
+        _wp1 setWaypointStatements [
+			"true",
+			"(vehicle this) flyInHeight 500;"  // loiter at ~80m AGL
+		];
+        sleep 120;
+        ExtractHeli landAt [baseHelipad, "Land"];
+        };
         //missionNamespace setVariable ["RTBAction", false, true]; //old style
 		//missionNamespace setVariable ["ChopperRTB", true, true];
 	}, // code on finish

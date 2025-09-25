@@ -53,6 +53,7 @@ TO DO MASTER LIST:
                     - changed the condition for landing to check the return value. If false then moves the helipad 5 meters any direction until landing.
                         - had to do it this way cause apparently even a explosion decal will block a landing.
                 - have the heli landing fine. now to get it to base.
+                - got it going back to base now. need to do more play testing with fly height and clean up unused stuff in the editor.
         - I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
             but not the SAM?
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
