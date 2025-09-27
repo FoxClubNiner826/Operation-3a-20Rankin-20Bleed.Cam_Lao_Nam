@@ -295,7 +295,7 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 	{}, // code every tick
 	{
 		missionNamespace setVariable ["ExtractAction", false, true];
-		missionNamespace setVariable ["RTBAction", true, true];
+		// missionNamespace setVariable ["RTBAction", true, true];
 		{[_x,"ALL"] remoteExec ["disableAI",0,true];} forEach crew samlauncher;
 		_scout = missionNamespace getVariable ["scout", objNull];
 		params ["_target", "_caller", "_actionID", "_args"];
@@ -305,13 +305,11 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 			["extract", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
 		//sleep 60; // use to set how long it takes for the heli to come
-		_group = ExtractHeliGroup; 
-		_markerName = "loiterSpot"; 
-		_waypointPosition = getMarkerPos _markerName;
-		_waypoint = _group addWaypoint [_waypointPosition, 0];
-		_waypoint setWaypointType "LOITER";
-		_waypoint setWaypointLoiterRadius 100; 
-		_waypoint setWaypointLoiterType "CIRCLE_L";
+		_loiterPosition = getMarkerPos "loiterSpot";
+		_wp1 = ExtractHeliGroup addWaypoint [_loiterPosition, 0];
+		_wp1 setWaypointType "LOITER";
+		_wp1 setWaypointLoiterRadius 100; 
+		_wp1 setWaypointLoiterType "CIRCLE";
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements

@@ -1,15 +1,11 @@
 TO DO UP NEXT:
-
-- working on extract heli landing
-    - make the condition be tied to return value.
+- test in MP the new condition for RTB and how arma deals with repawns if a player dies then the heli takes off.
 
 - update subtitles in entire mission to include if scout says them with if statements 
-    * - extraction and smoke
-    - no subs for captain marchikno
+    * extraction. lets get the hell out of here as youre holding the action
+    - powpassconvo is next up.
+    - interaction between scout and marcinko so players dont think its a bug if there was nothing
 
-NEW LINES TO ADD: 
-- extraction. lets get the hell out of here as youre holding the action
-- interaction between scout and marcinko so players dont think its a bug if there was nothing
 
 TO LEARN:
 - add extensions to vscode
@@ -20,6 +16,7 @@ TO LEARN:
         But if you're not using diag_log already then they're probably at the bottom.
     - As I restart scenarios a lot for test purpose, I always try to find "Starting mission" to check for script error since the mission began
     - you can also use a watcher extension that will follow the lowest line in the file as they are created
+    
 
 BUGS FROM LATEST PLAYTHROUGH:
 
@@ -37,23 +34,6 @@ TO DO MASTER LIST:
     HIGH PRIORITY:
         - go through all triggers before the infil spot and look for deletevehicle. need to move these to the infil spot because if players choose skip to
             infil then those objects wont be deleted.
-        - Find a solution: Heli will leave LZ and land far away if an object is on the coordinate position.
-            - Calling the landing outside of 5 meters from the coordinates seems safe.
-            - So far all objects on the LZ will trigger the pilot to land elsewhere, no matter how small or flat. Except helipads.
-            - The function seems to constantly monitor for obstructions. I can run under at the last moment then it will fly off.
-                - Tried to use an invisible helipad but didnt help.
-                - Going to try some ideas I posted in discord. If that doesn't work consult pig's code for helis.
-                - I don't think that monitoring the LZ and moving the LZ will work because in testing it dosen't seem responsive enough. Still better
-                    than nothing as a fail safe though. At this point the easiest would be to give player feedback. Have pilot tell the players to
-                    clear the LZ if they are within 5 meters of the landing point. Also do a trigger for the former.
-                - I've been testing the landAt command. The nice thing is it seems like it will force a landing if something blocks its path but 
-                    it wont process the command successfully if the path is blocked on execution. Maybe I could do a continual check to wait until
-                    the path is clear then execute the command. After that we should be clear.
-                - Progress is okay so far. figure out how to keep engine on. add convo for blocked LZ. adjust sleep time to give players more time.
-                    - changed the condition for landing to check the return value. If false then moves the helipad 5 meters any direction until landing.
-                        - had to do it this way cause apparently even a explosion decal will block a landing.
-                - have the heli landing fine. now to get it to base.
-                - got it going back to base now. need to do more play testing with fly height and clean up unused stuff in the editor.
         - I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
             but not the SAM?
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
@@ -126,6 +106,26 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- Reworked the heli extraction for the third time. This is the best one yet: 
+    Find a solution: Heli will leave LZ and land far away if an object is on the coordinate position.
+        - Calling the landing outside of 5 meters from the coordinates seems safe.
+        - So far all objects on the LZ will trigger the pilot to land elsewhere, no matter how small or flat. Except helipads.
+        - The function seems to constantly monitor for obstructions. I can run under at the last moment then it will fly off.
+            - Tried to use an invisible helipad but didnt help.
+            - Going to try some ideas I posted in discord. If that doesn't work consult pig's code for helis.
+            - I don't think that monitoring the LZ and moving the LZ will work because in testing it dosen't seem responsive enough. Still better
+                than nothing as a fail safe though. At this point the easiest would be to give player feedback. Have pilot tell the players to
+                clear the LZ if they are within 5 meters of the landing point. Also do a trigger for the former.
+            - I've been testing the landAt command. The nice thing is it seems like it will force a landing if something blocks its path but 
+                it wont process the command successfully if the path is blocked on execution. Maybe I could do a continual check to wait until
+                the path is clear then execute the command. After that we should be clear.
+            - Progress is okay so far. figure out how to keep engine on. add convo for blocked LZ. adjust sleep time to give players more time.
+                - changed the condition for landing to check the return value. If false then moves the helipad 5 meters any direction until landing.
+                    - had to do it this way cause apparently even a explosion decal will block a landing.
+            - have the heli landing fine. now to get it to base.
+            - got it going back to base now. need to do more play testing with fly height and clean up unused stuff in the editor.
+            - I added convos if the lz was blocked and unblocked. polished code and tried to get it to break. I think its as good as it is gonna
+                be at my current skill level.
 - reworked the plant bombs on cache mechanic. changed to holdAction and uses actionIDs to remove duplicates. added more convo lines.
 - changed sabatague icon to destroy and change holdAction from CBA to script.
 - reworked how the downed pilot is shot down and added the possibility that the players can destroy the samsite before it can shoot down the plane.

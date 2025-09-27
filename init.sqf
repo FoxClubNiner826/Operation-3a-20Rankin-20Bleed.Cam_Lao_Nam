@@ -1213,7 +1213,7 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0, "", "answer", 3, { 
 				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Rankin, Covey. We need helicopter. You come now, OK?"; 
+				_this#0 sideChat "Rankin, Covey. We need bird. You come now!"; 
 				}
 			],
 			[1,"", "answer", 0, { 
@@ -1328,7 +1328,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			],
 			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
-				ranger sideChat "Ranger, Rankin. Copy. Stay clear for touchdown. Out.";
+				ranger sideChat "Ranger, Rankin. Copy. Stay clear for touch down. Out.";
 				}
 			]
 		]
@@ -1342,11 +1342,29 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
+	["lzBlocked",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Rankin. Clear the LZ so we can touch down!";
+				}
+			]
+		]
+	],
+	["lzNoLongerBlocked",
+		[
+			[0,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Coming in hot, stand clear.";
+				}
+			]
+		]
+	],
 	["leftbehind",
 		[
 			[0,"", "answer", 3, { 
 				playsound "talkradio"; 
-				ranger sideChat "Ranger, Hawk. The ref has called overtime. We must leave the stadium. Over.";
+				ranger sideChat "Ranger, Hawk. The ref has called overtime. We must leave the stadium. Over. (Code for man left behind.)";
 				}
 			],
 			[1,"", "answer", 0, { 

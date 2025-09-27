@@ -471,3 +471,9 @@ private _convo = ["entertunnel", "scoutentertunnel"] select (_speaker == _scout)
     "FoxClub_fnc_Conversation",    
     allPlayers select { _x distance _speaker <= 100 }    
 ];
+
+/* as the extraction helicopter is about to take off. I want the leader of the group to say it whether or not it is the scout. no need for a random
+because all players must be inside, therefore there must be a leader present.
+*/
+ 
+

@@ -439,3 +439,15 @@ player addAction [
     "", 
     "_this distance fieldtelephone < 4 && ActionCallPOW && alive pow"
 ];
+
+//_group = ExtractHeliGroup;
+//_extractionPosition = getMarkerPos "extractionSpot";  
+_loiterPosition = getMarkerPos "loiterSpot";
+
+//_wp1 = ExtractHeliGroup addWaypoint [_extractionPosition, 0];
+//_wp1 setWaypointType "MOVE";
+
+_wp2 = ExtractHeliGroup addWaypoint [_loiterPosition, 0];
+_wp2 setWaypointType "LOITER";
+_wp2 setWaypointLoiterRadius 100; 
+_wp2 setWaypointLoiterType "CIRCLE";

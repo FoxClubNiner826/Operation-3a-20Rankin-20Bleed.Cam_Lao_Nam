@@ -977,28 +977,23 @@ if (isNil "SmokeThrown") then {
 	"<t color='#FFFF00'>Return to Base</t>",
 	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
 	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
-	"RTBAction && (allPlayers - crew extractheli) isEqualTo []", //condition, use this for any player in boat in the init field _this in (crew _target)
+	"((allPlayers select {alive _x}) - crew ExtractHeli) isEqualTo []", //condition, all alive players in the helicopter.
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick
 	{
         [] spawn {
-        ExtractHeli landAt [ExtractHelipad, "None"];
-        _group = ExtractHeliGroup;  
-        _markerName = "returnToBase";   
-        _waypointPosition = getMarkerPos _markerName;  
-        _wp1 = _group addWaypoint [_waypointPosition, 0]; 
-        _wp1 setWaypointType "MOVE";  
-        _group setCurrentWaypoint _wp1;
-        _wp1 setWaypointStatements [
-			"true",
-			"(vehicle this) flyInHeight 500;"  // loiter at ~80m AGL
-		];
-        sleep 120;
-        ExtractHeli landAt [baseHelipad, "Land"];
-        };
-        //missionNamespace setVariable ["RTBAction", false, true]; //old style
-		//missionNamespace setVariable ["ChopperRTB", true, true];
+            ExtractHeli landAt [ExtractHelipad, "None"]; // lets the heli take off
+            ExtractHeli flyInHeight 80; // goes to height then moves to base. Doesnt look smooth.
+            _group = ExtractHeliGroup;  
+            _markerName = "returnToBase";   
+            _waypointPosition = getMarkerPos _markerName;  
+            _wp1 = _group addWaypoint [_waypointPosition, 0]; 
+            _wp1 setWaypointType "MOVE";  
+            _group setCurrentWaypoint _wp1; // forces heli to move
+            sleep 60; // lets heli take off before giving another landing
+            ExtractHeli landAt [baseHelipad, "Land"]; // if there was no sleep the engine will turn off and heli wont take off.
+		};
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements

@@ -33,9 +33,6 @@ missionNamespace setVariable ["ActionTalkToPOW5", true, true];
 missionNamespace setVariable ["ActionDebrief", false, true]; // Allows mission debrief
 missionNamespace setVariable ["holdActionAttemptCount", 0]; // Counter for attempts for searchable items in Lumphat.
 
-
-ExtractAction = false; //might not be needed anymore
-RTBAction = false; //might not be needed anymore
 ActionEndMission = false; //might not be needed anymore
 
 
