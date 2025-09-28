@@ -473,7 +473,17 @@ private _convo = ["entertunnel", "scoutentertunnel"] select (_speaker == _scout)
 ];
 
 /* as the extraction helicopter is about to take off. I want the leader of the group to say it whether or not it is the scout. no need for a random
-because all players must be inside, therefore there must be a leader present.
+because all players must be inside, therefore there must be a leader present. Caller
 */
  
+ private _convo = ["goGoGo", "goGoGoScout"] select (_caller == _scout);
+
+[_convo, [_caller]] remoteExec [
+    "FoxClub_fnc_Conversation",    
+    allPlayers select { _x distance _caller <= 100 }    
+];
+
+/* If units are left behind then check all the units in the helicopter. The leader will speak first, then the scout, then a random player
+then a random AI.
+*/
 

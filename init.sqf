@@ -1232,7 +1232,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			],
 			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
-				covey sideChat "Ranger, Rankin. Copy. Let's do this one quick-like. Over.";
+				covey sideChat "Ranger, Rankin. Copy. Clear the LZ, let's do this one quick-like. Over.";
 				}
 			]
 		]
@@ -1246,7 +1246,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			],
 			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
-				covey sideChat "Ranger, Rankin. Copy. Let's do this one quick-like. Over.";
+				covey sideChat "Ranger, Rankin. Copy. Clear the LZ, let's do this one quick-like. Over.";
 				}
 			]
 		]
@@ -1346,7 +1346,7 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
-				ranger sideChat "Ranger, Rankin. Clear the LZ so we can touch down!";
+				ranger sideChat "Ranger, Rankin. I repeat, clear the LZ so we can touch down!";
 				}
 			]
 		]
@@ -1355,9 +1355,19 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
-				ranger sideChat "Coming in hot, stand clear.";
+				ranger sideChat "Ranger, Rankin. Coming in hot, stand clear.";
 				}
 			]
+		]
+	],
+	["goGoGo",
+		[
+			[0,"All aboard Ranger. Get us the hell out of here.", "answer"]
+		]
+	],
+	["goGoGoScout",
+		[
+			[0,"We all aboard. Go fast!", "answer"]
 		]
 	],
 	["leftbehind",

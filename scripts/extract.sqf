@@ -18,15 +18,16 @@
 			_heli landAt [getPos _helipad, "GetIn", 9999];
 			if (!(missionNamespace getVariable ["delaySystemChat", false])) then {sleep 10;}; // lets convo finish if lz wasnt blocked.
 			if (missionNamespace getVariable ["delaySystemChat", false]) then {
-				["lzNoLongerBlocked", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+				["lzNoLongerBlocked", [ranger]] call FoxClub_fnc_Conversation;
+
 			};
 			sleep 1;
-			systemChat "Stay clear! The extraction helicopter is landing!";
+			systemChat "Stay clear! Ranger is landing at the LZ!";
 			break; // exit loop once landing command issued
 		} else {
-			if (!(missionNamespace getVariable ["delaySystemChat", false])) then {sleep 10;};
+			if (!(missionNamespace getVariable ["delaySystemChat", false])) then {sleep 13;};
 			// report blocking units
-			["lzBlocked", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+			["lzBlocked", [ranger]] call FoxClub_fnc_Conversation;
 			sleep 1;
 			private _names = _objectsNearby apply {
 				if (_x isKindOf "Man" && isPlayer _x) then {
@@ -35,7 +36,11 @@
 					getText (configFile >> "CfgVehicles" >> typeOf _x >> "displayName")
 				};
 			};
-			systemChat format ["The LZ is blocked by: %1", _names joinString ", "];
+			if (_names isEqualTo []) then {
+				systemChat "The LZ is blocked! Ranger is choosing a new LZ.";
+			} else {
+				systemChat ("The LZ is blocked by: " + (_names joinString ", ") + ". Ranger is choosing a new LZ.");
+			};
 			// move helipad 5m in random direction
 			private _dir = random 360;
 			private _pos = getPos _helipad;

@@ -1,9 +1,7 @@
 TO DO UP NEXT:
-- test in MP the new condition for RTB and how arma deals with repawns if a player dies then the heli takes off.
 
 - update subtitles in entire mission to include if scout says them with if statements 
-    * extraction. lets get the hell out of here as youre holding the action
-    - powpassconvo is next up.
+    * leftbehind is next up.
     - interaction between scout and marcinko so players dont think its a bug if there was nothing
 
 
@@ -16,7 +14,8 @@ TO LEARN:
         But if you're not using diag_log already then they're probably at the bottom.
     - As I restart scenarios a lot for test purpose, I always try to find "Starting mission" to check for script error since the mission began
     - you can also use a watcher extension that will follow the lowest line in the file as they are created
-    
+- how to create a mission with hemtt. consult ace discord.
+
 
 BUGS FROM LATEST PLAYTHROUGH:
 
@@ -39,6 +38,9 @@ TO DO MASTER LIST:
         - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
         learn the program and workflow)
         - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
+        - rework deleting obj from inside huts when they are destroyed
+            - try deleting nearby objects
+            - try deleting objects in a mask area.
     MEDIUM PRIORITY:
         - add a killed EH that checks if the general is in his car and TPs him out so players can still progress.
         - figure out how you want AI multiplayer to function in your misison:
@@ -47,7 +49,6 @@ TO DO MASTER LIST:
             - option 3: use select leader and leader changed EH to avoid AI taking control of the AI (what happens if slot one dies and respoawns
                 does he get control back?) or some solution that always passes AI to a player
         - there is a locker in lumphat that keeps clipping into the buildings.
-        - floating objects in bulding when they are destroyed. can you  write script to search for items in a marker and delete all items? might be easier.
         - literally last thing you do maybe because the misisons is always evolving but you need to recheck how the mission performance ratings are working.
             some stuff might have broken.
             - i added a failure state for proceed to infil spot
@@ -70,6 +71,8 @@ TO DO MASTER LIST:
         - see if smoke can be detected in area marker instead of player
         - if players use radio trackers start to simulate radio direction finding of the enemy. then you add hand signals module.
         - if players switch to another unit after getting near the POW. Error, unknown variable.
+        - I have this condition, which fires if all alive players are in a helicopter: Is there a way to filter out downed players though? 
+            I want it to fire even if there is downed player outside the heli (apparently they count as alive)
 
 
 TOUGH BUGS:
@@ -106,6 +109,10 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Reworked new condition for RTB and how arma deals with repawns if a player dies then the heli takes off.
+    - The condition correctly checks to make sure all players are in the heli, minus downed players. 
+    - Players dead and at the respawn screen can spawn back into the heli.
+    - Injured, dead, or downed players will not block the heicopter from leaving.
 - Reworked the heli extraction for the third time. This is the best one yet: 
     Find a solution: Heli will leave LZ and land far away if an object is on the coordinate position.
         - Calling the landing outside of 5 meters from the coordinates seems safe.
@@ -126,7 +133,10 @@ FINISHED:
             - got it going back to base now. need to do more play testing with fly height and clean up unused stuff in the editor.
             - I added convos if the lz was blocked and unblocked. polished code and tried to get it to break. I think its as good as it is gonna
                 be at my current skill level.
+                - polished lz blocked systemChat to account for more situations.
 - reworked the plant bombs on cache mechanic. changed to holdAction and uses actionIDs to remove duplicates. added more convo lines.
+    - can break it by blow up cache with rockets.
+    - tested various situations with death a respawn and multiple players placing them.
 - changed sabatague icon to destroy and change holdAction from CBA to script.
 - reworked how the downed pilot is shot down and added the possibility that the players can destroy the samsite before it can shoot down the plane.
 - figured out why control z wasnt working

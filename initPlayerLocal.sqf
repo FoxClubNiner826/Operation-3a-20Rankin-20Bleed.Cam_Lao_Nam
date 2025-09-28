@@ -972,16 +972,31 @@ if (isNil "SmokeThrown") then {
 //                                              //
 //////////////////////////////////////////////////
 
+private _conditionExtract = {
+    ((allPlayers select { alive _x && lifeState _x != "INCAPACITATED" }) - crew ExtractHeli) isEqualTo []
+    && { missionNamespace getVariable ["actionReturnToBase", false] }
+};
+
 [
 	extractheli,
 	"<t color='#FFFF00'>Return to Base</t>",
 	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
 	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
-	"((allPlayers select {alive _x}) - crew ExtractHeli) isEqualTo []", //condition, all alive players in the helicopter.
+	toString _conditionExtract, //condition, all alive players in the helicopter.
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick
 	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        _scout   = missionNamespace getVariable ["scout", objNull]; 
+        private _convo = ["goGoGo", "goGoGoScout"] select (_caller == _scout);
+        missionNamespace setVariable ["actionReturnToBase", false, true];
+        
+        [_convo, [_caller]] remoteExec [
+            "FoxClub_fnc_Conversation",    
+            allPlayers select { _x distance _caller <= 100 }    
+        ];
+
         [] spawn {
             ExtractHeli landAt [ExtractHelipad, "None"]; // lets the heli take off
             ExtractHeli flyInHeight 80; // goes to height then moves to base. Doesnt look smooth.
