@@ -973,8 +973,7 @@ if (isNil "SmokeThrown") then {
 //////////////////////////////////////////////////
 
 private _conditionExtract = {
-    ((allPlayers select { alive _x && lifeState _x != "INCAPACITATED" }) - crew ExtractHeli) isEqualTo []
-    && { missionNamespace getVariable ["actionReturnToBase", false] }
+    missionNamespace getVariable ["actionReturnToBase", false]
 };
 
 [

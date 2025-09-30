@@ -451,3 +451,16 @@ _wp2 = ExtractHeliGroup addWaypoint [_loiterPosition, 0];
 _wp2 setWaypointType "LOITER";
 _wp2 setWaypointLoiterRadius 100; 
 _wp2 setWaypointLoiterType "CIRCLE";
+
+
+/* old style heli RTB holdaction condition:
+Reworked new condition for RTB and how arma deals with repawns if a player dies then the heli takes off.
+    - The condition correctly checks to make sure all players are in the heli, minus downed players. 
+    - Players dead and at the respawn screen can spawn back into the heli.
+    - Injured, dead, or downed players will not block the heicopter from leaving.
+*/
+
+private _conditionExtract = {
+    ((allPlayers select { alive _x && lifeState _x != "INCAPACITATED" }) - crew ExtractHeli) isEqualTo []
+    && { missionNamespace getVariable ["actionReturnToBase", false] }
+};

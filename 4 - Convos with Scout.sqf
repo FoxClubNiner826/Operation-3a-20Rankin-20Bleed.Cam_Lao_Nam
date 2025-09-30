@@ -484,7 +484,25 @@ because all players must be inside, therefore there must be a leader present. Ca
 ];
 
 /* If any units are left behind (player or ai, including the pow or pilot) then check all the units in the helicopter. The leader will 
-speak first, then the scout, then a random player then a random AI.
+speak first, then the scout, then a random player then a random AI. There will be a systemChat message of who was left behind.
+
+
+Conditon for extraction failure. This condition as a whole is true if:
+
+The trigger is active,
+The extraction helicopter is inside the trigger,
+AND there is at least one alive required unit (player, POW, or pilot) outside the helicopter.
+
+So basically: "The heli is at the extraction zone, but not everyone who’s supposed to get on board has actually boarded."
+This includes downed players. If a player is downed and outside the heli the trigger fires and the tasks fails because the 
+players didn't bring everyone with them.
 */
 
-/* I need to make a design decision for the extraction sequence. Should I let players be able to leave others behind.
+this && 
+extractheli in thislist &&
+(
+    (units playerGroup)
+    + (if ((missionNamespace getVariable ["powFound", false]) && {!isNull pow} && {alive pow}) then {[pow]} else {[]})
+    + (if ((missionNamespace getVariable ["pilotEjected", false]) && {!isNull pilot} && {alive pilot}) then {[pilot]} else {[]})
+) findIf { alive _x && !(_x in extractheli) } != -1
+
