@@ -483,7 +483,8 @@ because all players must be inside, therefore there must be a leader present. Ca
     allPlayers select { _x distance _caller <= 100 }    
 ];
 
-/* If units are left behind then check all the units in the helicopter. The leader will speak first, then the scout, then a random player
-then a random AI.
+/* If any units are left behind (player or ai, including the pow or pilot) then check all the units in the helicopter. The leader will 
+speak first, then the scout, then a random player then a random AI.
 */
 
+/* I need to make a design decision for the extraction sequence. Should I let players be able to leave others behind.

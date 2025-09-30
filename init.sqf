@@ -1370,11 +1370,35 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"We all aboard. Go fast!", "answer"]
 		]
 	],
+	["menLeftBehind",
+		[
+			[0,"God fucking damnit! We left them behind..", "answer"]
+		]
+	],
+	["menLeftBehindScout",
+		[
+			[0,"Brothers still down there…", "answer"]
+		]
+	],
 	["leftbehind",
 		[
 			[0,"", "answer", 3, { 
 				playsound "talkradio"; 
 				ranger sideChat "Ranger, Hawk. The ref has called overtime. We must leave the stadium. Over. (Code for man left behind.)";
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Ranger. Understood. Out.";
+				}
+			]
+		]
+	],
+	["leftbehindScout",
+		[
+			[0,"", "answer", 3, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. Game still playing. We leave. Over. (Code for man left behind.)";
 				}
 			],
 			[1,"", "answer", 0, { 
