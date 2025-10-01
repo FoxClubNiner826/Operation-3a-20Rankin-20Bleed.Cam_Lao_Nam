@@ -464,3 +464,15 @@ private _conditionExtract = {
     ((allPlayers select { alive _x && lifeState _x != "INCAPACITATED" }) - crew ExtractHeli) isEqualTo []
     && { missionNamespace getVariable ["actionReturnToBase", false] }
 };
+
+// old extract heli condiiton 
+this && units west findIf {isPlayer _x && alive _x && !(_x in extractheli)} == -1;
+
+// old extraction fail conditon:
+this && 
+extractheli in thislist &&
+(
+    (units playerGroup)
+    + (if ((missionNamespace getVariable ["powFound", false]) && {!isNull pow} && {alive pow}) then {[pow]} else {[]})
+    + (if ((missionNamespace getVariable ["pilotEjected", false]) && {!isNull pilot} && {alive pilot}) then {[pilot]} else {[]})
+) findIf { alive _x && !(_x in extractheli) } != -1

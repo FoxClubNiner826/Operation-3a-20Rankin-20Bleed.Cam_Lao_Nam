@@ -483,9 +483,57 @@ because all players must be inside, therefore there must be a leader present. Ca
     allPlayers select { _x distance _caller <= 100 }    
 ];
 
+
+//////////////////////////////////////////////////
+//                                              //
+//             EXTRACTION PASSED                //
+//                                              //
+//////////////////////////////////////////////////
+
 /* If any units are left behind (player or ai, including the pow or pilot) then check all the units in the helicopter. The leader will 
 speak first, then the scout, then a random player then a random AI. There will be a systemChat message of who was left behind.
 
+//////////////////////////////////////////////////
+//                 CONDITION                    //
+//////////////////////////////////////////////////
+
+All players are alive and not downed and in the helicopter.
+*/
+
+this && 
+extractHeli in thisList &&
+units playerGroup findIf { alive _x && !(_x in extractHeli) } == -1;
+
+//////////////////////////////////////////////////
+//                 ACTIVATION                   //
+//////////////////////////////////////////////////
+
+// Start convo
+missionNamespace setVariable ["extractTaskSucceeded", true, true];
+
+[]spawn {  
+    if (triggerActivated smokeFailTrigger) then {  
+        ["nosmokeconvo", [ranger, leader player]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance extractheli <= 100}];   
+        sleep 8;  
+        ["extractpass", [ranger, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance extractheli <= 100}];   
+    } else {  
+        ["extractpass", [ranger, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance extractheli <= 100}];   
+    };  
+};
+
+
+//////////////////////////////////////////////////
+//                                              //
+//             EXTRACTION FAILED                //
+//                                              //
+//////////////////////////////////////////////////
+
+/* If any units are left behind (player or ai, including the pow or pilot) then check all the units in the helicopter. The leader will 
+speak first, then the scout, then a random player then a random AI. There will be a systemChat message of who was left behind.
+
+//////////////////////////////////////////////////
+//                 CONDITION                    //
+//////////////////////////////////////////////////
 
 Conditon for extraction failure. This condition as a whole is true if:
 
@@ -498,11 +546,56 @@ This includes downed players. If a player is downed and outside the heli the tri
 players didn't bring everyone with them.
 */
 
-this && 
+this &&
 extractheli in thislist &&
-(
-    (units playerGroup)
-    + (if ((missionNamespace getVariable ["powFound", false]) && {!isNull pow} && {alive pow}) then {[pow]} else {[]})
-    + (if ((missionNamespace getVariable ["pilotEjected", false]) && {!isNull pilot} && {alive pilot}) then {[pilot]} else {[]})
-) findIf { alive _x && !(_x in extractheli) } != -1
+(units playerGroup) findIf { alive _x && !(_x in extractheli) } != -1
+
+//////////////////////////////////////////////////
+//                 ACTIVATION                   //
+//////////////////////////////////////////////////
+
+// Activation field of the trigger. Lists the units left behind in the AO:
+// Get all alive units in the player group that are still outside the helicopter
+_scout   = missionNamespace getVariable ["scout", objNull];   
+_leader  = leader playerGroup;
+
+// Get all alive units in the helicopter
+private _units = units playerGroup select { alive _x && _x in extractheli };
+
+private _speaker = objNull;
+private _responder = objNull;
+
+// --- Pick Speaker ---
+if (_leader in _units) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _units) then {
+        _speaker = _scout;
+    } else {
+        _speaker = selectRandom _units;
+    };
+};
+
+// --- Pick Responder ---
+if (_speaker == _leader && {_scout in _units}) then {
+    _responder = _scout;
+} else {
+    if (_speaker == _scout && {_leader in _units}) then {
+        _responder = _leader;
+    };
+    // No responder if neither Leader nor Scout
+};
+
+// --- Convo selection ---
+private _convo = ["menLeftBehind", "menLeftBehindScout"] select (_speaker == _scout);
+
+// --- Execute Conversation ---
+[_convo, [_speaker, _responder]] remoteExec [
+    "FoxClub_fnc_Conversation",
+    allPlayers select { _x distance _speaker <= 100 }
+];
+
+
+
+// This is the condition for the trigger to pass the extract task:
 
