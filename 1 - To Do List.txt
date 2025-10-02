@@ -2,6 +2,7 @@ TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements 
     * leftbehind is next up.
+        Extract fail is ready for testing. but the extract pass trigger then you can test both at the same time.
     - convo if pilot or pow die
     - interaction between scout and marcinko so players dont think its a bug if there was nothing
 
