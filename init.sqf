@@ -897,42 +897,6 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"I was on a CAS run, hitting enemy positions for our ground guys. Took fire, probably a ZPU, and turned back. Nav gear and radio were knocked out, so I had to go visual. Spotted the SAM trail just in time.", "answer"]
 		]
 	],
-	["pilotSeesHeli",
-		[
-			[0,"Hell yes! Get me on that bird!", "answer"]
-		]
-	],
-	["powSeesHeli",
-		[
-			[0,"Thank God for that beautiful bird... Please let it be real.", "answer"]
-		]
-	],
-	["pilotpassconvo",
-		[
-			[0,"Warrant Officer, I'm Captain Mike Reynolds, can you notify the 615th Tactical Fighter Squadron of my status?", "answer"],
-			[1,"Roger that, Captain.", "answer", 0, {
-				sleep 5;
-				playsound "talkradio"; 
-				ranger sideChat "Ranger, Hawk. I have a Captain Mike Reynolds onboard. He wishes the 615th Tactical Fighter Squadron be updated on his status. Over.";
-				sleep 6;
-				playsound "talkradio";
-				HQRadio sideChat "Hawk, Ranger. Copy, We'll inform the 615th. Out.";
-				}
-			]
-		]
-	],
-	["pilotpasstask",
-		[
-			[0,"Thank God for y'all. The guys on the ground are counting on me for support. Now I can get back up there and do my job.", "answer"],
-			[1,"You just got shot down and you’re already itching to get back up there?! Damn, you’re a certifiable badass.", "answer"]
-		]
-	],
-	["pilotpasstaskScout",
-		[
-			[0,"Thank God for y'all. The guys on the ground are counting on me for support. Now I can get back up there and do my job.", "answer"],
-			[1,"You number one brave man!", "answer"]
-		]
-	],
 	["gunboatpass",
 		[
 			[0,"Gunboat’s toast!", "answer"]
@@ -1223,32 +1187,23 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokeconfirm",
+	["smoke",
 		[
-			[0, "", "answer", 0, { 
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Rankin, Ranger. Affirmative, you are cleared for touchdown. Over."; 
-				}
-			],
-			[1,"", "answer", 0, { 
+			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
-				covey sideChat "Ranger, Rankin. Copy. Clear the LZ, let's do this one quick-like. Over.";
+				ranger sideChat "Ranger, Rankin. Requesting smoke pop. Over.";
 				}
 			]
 		]
 	],
-	["scoutsmokeconfirm",
+	["pilotSeesHeli",
 		[
-			[0, "", "answer", 0, { 
-				if (player != (_this#0)) then { playsound "talkradio"; };  
-				_this#0 sideChat "Rankin, Covey. You see smoke. You land now!"; 
-				}
-			],
-			[1,"", "answer", 0, { 
-				playsound "talkradio"; 
-				covey sideChat "Ranger, Rankin. Copy. Clear the LZ, let's do this one quick-like. Over.";
-				}
-			]
+			[0,"Hell yes! Get me on that bird!", "answer"]
+		]
+	],
+	["powSeesHeli",
+		[
+			[0,"Thank God for that beautiful bird... Please let it be real.", "answer"]
 		]
 	],
 	["smokegrape",
@@ -1296,11 +1251,39 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smoke",
+	["smokeconfirm",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Ranger. Affirmative, you are cleared for touchdown. Over."; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				covey sideChat "Ranger, Rankin. Copy. Clear the LZ, let's do this one quick-like. Over.";
+				}
+			]
+		]
+	],
+	["scoutsmokeconfirm",
+		[
+			[0, "", "answer", 0, { 
+				if (player != (_this#0)) then { playsound "talkradio"; };  
+				_this#0 sideChat "Rankin, Covey. You see smoke. You land now!"; 
+				}
+			],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				covey sideChat "Ranger, Rankin. Copy. Clear the LZ, let's do this one quick-like. Over.";
+				}
+			]
+		]
+	],
+	["smokeRequest2",
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
-				ranger sideChat "Ranger, Rankin. Requesting smoke pop. Over.";
+				ranger sideChat "Ranger, Rankin. We don't see any smoke. Is this you? I think we have visual.";
 				}
 			]
 		]
@@ -1333,15 +1316,6 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokeRequest2",
-		[
-			[0,"", "answer", 0, { 
-				playsound "talkradio"; 
-				ranger sideChat "Ranger, Rankin. We don't see any smoke. Is this you? I think we have visual.";
-				}
-			]
-		]
-	],
 	["lzBlocked",
 		[
 			[0,"", "answer", 0, { 
@@ -1362,12 +1336,46 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["goGoGo",
 		[
-			[0,"All aboard Ranger. Get us the hell out of here.", "answer"]
+			[0,"Ranger, Get us the hell out of here!", "answer"],
+			[1,"My pleasure.", "answer"]
 		]
 	],
 	["goGoGoScout",
 		[
-			[0,"We all aboard. Go fast!", "answer"]
+			[0,"Ranger, go fast!", "answer"],
+			[1,"My pleasure.", "answer"]
+		]
+	],
+	["extractpass",
+		[
+			[0, "Ranger, we have everyone accounted for!", "answer"],
+			[1, "Copy that Rankin.", "answer"],
+			[1,"", "answer", 0, { 
+				playsound "talkradio";  
+        		ranger sideChat "Ranger, Hawk. Rankin has been extracted. We are RTB. Over."; 
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
+        		HQRadio sideChat "Hawk, Ranger. Copy that. Safe return.";
+				}
+			]
+		]
+	],
+	["extractpassScout",
+		[
+			[0, "All here, Ranger!", "answer"],
+			[1, "Copy that Rankin.", "answer"],
+			[1,"", "answer", 0, { 
+				playsound "talkradio";  
+        		ranger sideChat "Ranger, Hawk. Rankin has been extracted. We are RTB. Over."; 
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
+        		HQRadio sideChat "Hawk, Ranger. Copy that. Safe return.";
+				}
+			]
 		]
 	],
 	["menLeftBehind",
@@ -1375,7 +1383,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"God fucking damnit! We left them behind...", "answer", 3],
 			[0,"Warrant Officer, we have friendlies still in the AO. Relay to HQ.", "answer"],
 			[1,"You got it.", "answer"],
-			[1,"", "answer", 3, { 
+			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
 				ranger sideChat "Ranger, Hawk. The ref has called overtime. Leaving the stadium. Over.";
 				}
@@ -1392,7 +1400,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Brothers still down there...", "answer", 3],
 			[0,"Pilot, men still out there. You tell HQ.", "answer"],
 			[1,"You got it.", "answer"],
-			[1,"", "answer", 3, { 
+			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
 				ranger sideChat "Ranger, Hawk. The ref has called overtime. Leaving the stadium. Over.";
 				}
@@ -1404,66 +1412,76 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["leftbehind",
-		[
-			[0,"", "answer", 3, { 
-				playsound "talkradio"; 
-				ranger sideChat "Ranger, Hawk. The ref has called overtime. We must leave the stadium. Over. (Code for man left behind.)";
-				}
-			],
-			[1,"", "answer", 0, { 
-				playsound "talkradio"; 
-				HQRadio sideChat "Hawk, Ranger. Understood. Out.";
-				}
-			]
-		]
-	],
-	["leftbehindScout",
-		[
-			[0,"", "answer", 3, { 
-				playsound "talkradio"; 
-				ranger sideChat "Ranger, Hawk. Game still playing. We leave. Over. (Code for man left behind.)";
-				}
-			],
-			[1,"", "answer", 0, { 
-				playsound "talkradio"; 
-				HQRadio sideChat "Hawk, Ranger. Understood. Out.";
-				}
-			]
-		]
-	],
-	["extractpass",
-		[
-			[0,"", "answer", 3, { 
-				playsound "talkradio";  
-        		ranger sideChat "Ranger, Hawk. Rankin has been exfiltrated. We are RTB. Over."; 
-				}
-			],
-			[1,"", "answer", 0, { 
-				playsound "talkradio"; 
-        		HQRadio sideChat "Hawk, Ranger. Copy that. Safe return.";
-				}
-			]
-		]
-	],
 	["powpassconvo",
 		[
-			[0,"Warrant Officer, we've got wounded on board. Need medical ASAP.", "answer"],
-			[1,"Certainly, P.O.", "answer", 0, {
-				sleep 5;
+			[0,"Warrant Officer, we've a wounded POW on board. Need medical ASAP.", "answer"],
+			[1,"You got it.", "answer"],
+			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
-				ranger sideChat "Ranger, Hawk. We've got wounded on board, needing immediate medical attention. Over.";
-				sleep 6;
-				playsound "talkradio";
+				ranger sideChat "Ranger, Hawk. We've got a wounded POW on board needing immediate medical attention. Over.";
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
 				HQRadio sideChat "Hawk, Ranger. Copy that. Medical team is on standby, ready for your arrival. Out.";
 				}
-			]
+			],
+			[3,"Thank ya'll so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
+			[0,"Don't mention it, pal. We’re all on the same team. Rest up and take care.", "answer"]
 		]
 	],
-	["powpassconvo2",
+	["powpassconvoScout",
 		[
-			[0,"Thank you so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
-			[1,"Don't mention it, pal. We’re all on the same team. Rest up and take care.", "answer"]
+			[0,"Pilot, we need doctor soon for him.", "answer"],
+			[1,"You got it.", "answer"],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. We've got a wounded POW on board needing immediate medical attention. Over.";
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Ranger. Copy that. Medical team is on standby, ready for your arrival. Out.";
+				}
+			],
+			[3,"Thank ya'll so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
+			[0,"You welcome, we on same team.", "answer"]
+		]
+	],
+	["pilotpassconvo",
+		[
+			[3,"Warrant Officer, I'm Captain Mike Reynolds, can you notify the 615th Tactical Fighter Squadron of my status?", "answer"],
+			[1,"Roger that, Captain.", "answer"],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. I have a Captain Mike Reynolds onboard. He wishes the 615th Tactical Fighter Squadron be updated on his status. Over.";
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Ranger. Copy, We'll inform the 615th. Out.";
+				}
+			],
+			[3,"Thank God for y'all. The guys on the ground are counting on me for support. Now I can get back up there and do my job.", "answer"],
+			[0,"You just got shot down and you’re already itching to get back up there?! Damn, you’re a certifiable badass.", "answer"]
+		]
+	],
+	["pilotpassconvoScout",
+		[
+			[3,"Warrant Officer, I'm Captain Mike Reynolds, can you notify the 615th Tactical Fighter Squadron of my status?", "answer"],
+			[1,"Roger that, Captain.", "answer"],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. I have a Captain Mike Reynolds onboard. He wishes the 615th Tactical Fighter Squadron be updated on his status. Over.";
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Ranger. Copy, We'll inform the 615th. Out.";
+				}
+			],
+			[3,"Thank God for y'all. The guys on the ground are counting on me for support. Now I can get back up there and do my job.", "answer"],
+			[0,"You number one brave man!", "answer"]
 		]
 	],
 	["playersseeprison",
@@ -1490,12 +1508,6 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
 			[1,"Fuck every last one of them for what they did to me. For all I care they can go to hell.", "answer"],
 			[2,"Many there not belong. I know this true. You suffer one person. They suffer thousands.", "answer"]
-		]
-	],
-	["nosmokeconvo",
-		[
-			[0,"You boys were supposed to smoke the LZ! What happened? It’s a damn miracle I found it on the first pass!", "answer"],
-			[1,"No excuse, Warrant Officer. We’ll lock it down next time.", "answer"]
 		]
 	],
 	["debriefArea",

@@ -505,18 +505,37 @@ units playerGroup findIf { alive _x && !(_x in extractHeli) } == -1;
 //                 ACTIVATION                   //
 //////////////////////////////////////////////////
 
-// Start convo
+/* 
+Convo priority: All units in the heli: Leader, scout, random player. The unit will speak to the pilot. Then the pilot will radio HQ.
+*/
+
 missionNamespace setVariable ["extractTaskSucceeded", true, true];
 
-[]spawn {  
-    if (triggerActivated smokeFailTrigger) then {  
-        ["nosmokeconvo", [ranger, leader player]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance extractheli <= 100}];   
-        sleep 8;  
-        ["extractpass", [ranger, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance extractheli <= 100}];   
-    } else {  
-        ["extractpass", [ranger, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance extractheli <= 100}];   
-    };  
+_scout   = missionNamespace getVariable ["scout", objNull];   
+_leader  = leader playerGroup;
+
+// --- Pick speaker from units aboard ---
+private _aboard = units playerGroup select { alive _x && _x in extractheli };
+private _speaker = objNull;
+
+if (_leader in _aboard) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _aboard) then {
+        _speaker = _scout;
+    } else {
+        private _players = _aboard select { isPlayer _x };
+        _speaker = selectRandom _players;   // guaranteed to exist
+    };
 };
+
+// --- Start conversation ---
+private _convo = ["extractpass", "extractpassScout"] select (_speaker == _scout);
+[_convo, [_speaker, ranger, HQRadio]] remoteExec [
+    "FoxClub_fnc_Conversation",
+    allPlayers select { _x distance _speaker <= 100 }
+];  
+
 
 
 //////////////////////////////////////////////////
@@ -547,7 +566,7 @@ extractheli in thislist &&
 //                 ACTIVATION                   //
 //////////////////////////////////////////////////
 
-/* Convo priority: Leader, scout, random player. Then a systemChat to tell who is outside the heli. The unit will speak to himself
+/* Convo priority: All units in the heli: Leader, scout, random player. Then a systemChat to tell who is outside the heli. The unit will speak to himself
 then tell the pilot to radio HQ and tell them the bad news since the pilot radio works better.
 */
 
@@ -583,3 +602,91 @@ if (!(_leftBehind isEqualTo [])) then {
     private _msg = format ["Men were left behind in the AO: %1", _names joinString ", "];
     [_msg] remoteExec ["systemChat", 0]; 
 };
+
+
+//////////////////////////////////////////////////
+//                                              //
+//             POW IN HELI CONVO                //
+//                                              //
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+//                 CONDITION                    //
+//////////////////////////////////////////////////
+
+this && 
+extractheli in thislist &&
+pow in extractheli
+
+//////////////////////////////////////////////////
+//                 ACTIVATION                   //
+//////////////////////////////////////////////////
+
+_scout   = missionNamespace getVariable ["scout", objNull];   
+_leader  = leader playerGroup;
+
+// --- Pick speaker from units aboard ---
+private _aboard = units playerGroup select { alive _x && _x in extractheli };
+private _speaker = objNull;
+
+if (_leader in _aboard) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _aboard) then {
+        _speaker = _scout;
+    } else {
+        private _players = _aboard select { isPlayer _x };
+        _speaker = selectRandom _players;   // guaranteed to exist
+    };
+};
+
+// --- Start conversation ---
+private _convo = ["powpassconvo", "powpassconvoScout"] select (_speaker == _scout);
+[_convo, [_speaker, ranger, HQRadio, pow]] remoteExec [
+    "FoxClub_fnc_Conversation",
+    allPlayers select { _x distance _speaker <= 100 }
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//             PILOT IN HELI CONVO              //
+//                                              //
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+//                 CONDITION                    //
+//////////////////////////////////////////////////
+
+this && 
+extractheli in thislist &&
+pilot in extractheli
+
+//////////////////////////////////////////////////
+//                 ACTIVATION                   //
+//////////////////////////////////////////////////
+
+_scout   = missionNamespace getVariable ["scout", objNull];   
+_leader  = leader playerGroup;
+
+// --- Pick speaker from units aboard ---
+private _aboard = units playerGroup select { alive _x && _x in extractheli };
+private _speaker = objNull;
+
+if (_leader in _aboard) then {
+    _speaker = _leader;
+} else {
+    if (_scout in _aboard) then {
+        _speaker = _scout;
+    } else {
+        private _players = _aboard select { isPlayer _x };
+        _speaker = selectRandom _players;   // guaranteed to exist
+    };
+};
+
+// --- Start conversation ---
+private _convo = ["powpassconvo", "powpassconvoScout"] select (_speaker == _scout);
+[_convo, [_speaker, ranger, HQRadio, pilot]] remoteExec [
+    "FoxClub_fnc_Conversation",
+    allPlayers select { _x distance _speaker <= 100 }
+];

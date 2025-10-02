@@ -991,7 +991,7 @@ private _conditionExtract = {
         private _convo = ["goGoGo", "goGoGoScout"] select (_caller == _scout);
         missionNamespace setVariable ["actionReturnToBase", false, true];
         
-        [_convo, [_caller]] remoteExec [
+        [_convo, [_caller, ranger]] remoteExec [
             "FoxClub_fnc_Conversation",    
             allPlayers select { _x distance _caller <= 100 }    
         ];
@@ -1041,7 +1041,7 @@ Marcinko addAction [
         private _stabPassed = missionNamespace getVariable ["stabPassed",false];
         private _powDied = missionNamespace getVariable ["powDied",false];
         private _pilotDied = missionNamespace getVariable ["pilotDied",false];
-        private _menLeftBehind = missionNamespace getVariable ["menLeftBehind",false];
+        private _menLeftBehind = missionNamespace getVariable ["extractTaskFailed",false];
 
     if (_scout == _caller) then {
 

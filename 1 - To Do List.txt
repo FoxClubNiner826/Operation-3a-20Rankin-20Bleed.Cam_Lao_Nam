@@ -1,20 +1,13 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements 
-    * leftbehind is next up.
-        Extract fail is ready for testing. but the extract pass trigger then you can test both at the same time.
+    * powpassconvo, pilotpassconvo is next up.
+        - got the condition and activation working but the convo is long. make one trigger instead with or pilot/pow,
+            then in activation make and if statement for either or and then a statement for both for a condensed convo.
+        
     - convo if pilot or pow die
     - interaction between scout and marcinko so players dont think its a bug if there was nothing
 
-I need to make a design decision for the extraction sequence. Should I let players be able to leave others behind? 
-    I have decided that because it is possible for the helicopter to be destroyed that players need to have the agency to decide when 
-        it takes off. If they leave any players or AI behind then they will get a fail for the extract task. I dont want the helicopter to be 
-        invincible. The benefeits of it being vuneralble are it's more realistic, leads to more varied gameplay at the LZ, and more player 
-        excitement since there is a failure state.
-    The helicopter will be a one way trip because it will add more scripting complexity without much upside. I can always change if play
-        tests show that it would be beneficial.
-    - The condition for RTB will be set to a variable.
-    - There will be a failure state for extract task.
 
 TO LEARN:
 - add extensions to vscode
@@ -120,7 +113,16 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
-
+- Reworked the extraction sequence:
+    I need to make a design decision for the extraction sequence. Should I let players be able to leave others behind? 
+        I have decided that because it is possible for the helicopter to be destroyed that players need to have the agency to decide when 
+            it takes off. If they leave any players or AI behind then they will get a fail for the extract task. I dont want the helicopter to be 
+            invincible. The benefeits of it being vuneralble are it's more realistic, leads to more varied gameplay at the LZ, and more player 
+            excitement since there is a failure state.
+        The helicopter will be a one way trip because otherwise, it will add more scripting complexity without much upside. I can always change if play
+            tests show that it would be beneficial.
+        - The condition for RTB will be set to a variable.
+        - There will be a failure state for extract task.
 - Reworked the heli extraction for the third time. This is the best one yet: 
     Find a solution: Heli will leave LZ and land far away if an object is on the coordinate position.
         - Calling the landing outside of 5 meters from the coordinates seems safe.
