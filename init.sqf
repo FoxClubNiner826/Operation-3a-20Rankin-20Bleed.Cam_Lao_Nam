@@ -1522,12 +1522,23 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"You welcome, we on same team.", "answer"]
 		]
 	],
+	["seePrisonDefault",
+		[
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
+			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"]
+		]
+	],
+	["seePrisonDefaultScout",
+		[
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
+			[1,"This is very sad place. Stay far away.", "answer"]
+		]
+	],
 	["seePrison",
 		[
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
-			[2,"This is very sad place. Stay far away.", "answer"],
-			[0,"Alright boys, last stop. Head to the beach and let's debrief with the Captain.", "answer"]
+			[2,"This is very sad place. Stay far away.", "answer"]
 		]
 	],
 	["seePrisonScout",
@@ -1543,7 +1554,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
 			[2,"For how they treated me, I don't give a fuck... Hell, I hope it's worse than the shit they put me through.", "answer"],
-			[1,"Alright boys, last stop. Head to the beach and let's debrief with the Captain.", "answer"]
+			[3,"Many there not belong. I know. You suffer one person. They suffer thousands.", "answer"]
 		]
 	],
 	["seePrisonScoutPOW",
@@ -1551,13 +1562,42 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
 			[2,"For how they treated me, I don't give a fuck... Hell, I hope it's worse than the shit they put me through.", "answer"],
-			[3,"Many there not belong. I know. You suffer one person. They suffer thousands.", "answer"],
-			[1,"Alright boys, last stop. Head to the beach and let's debrief with the Captain.", "answer"]
+			[3,"Many there not belong. I know. You suffer one person. They suffer thousands.", "answer"]
+		]
+	],
+	["heliAtBase",
+		[
+			[0,"Alright boys, last stop. Head to the beach and let's debrief with the Captain.", "answer"]
+		]
+	],
+	["heliAtBaseScout",
+		[
+			[0,"We back. Now talk to Captain.", "answer"]
 		]
 	],
 	["debriefArea",
 		[
 			[0,"Welcome back, gentlemen.", "answer"]
+		]
+	],
+	["powDead",
+		[
+			[0,"Goddammit, the POW is down!", "answer"]
+		]
+	],
+	["powDeadScout",
+		[
+			[0,"We loose POW!", "answer"]
+		]
+	],
+	["pilotDead",
+		[
+			[0,"Goddammit, the pilot is down!", "answer"]
+		]
+	],
+	["pilotDeadScout",
+		[
+			[0,"We loose pilot!", "answer"]
 		]
 	],
 	["10",
@@ -1673,7 +1713,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout10",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"You took out that filthy commie rat bastard son of a bitch! You destroyed all evidence of our involvement! You must have taken out every target of opportunity in the entire AO!", "answer"],
 			[1,"You disrupted enemy operations so badly that they'll be reeling for months. You've all earned the title of true warriors! You're gonna be banging boom-boom girls on R&R till the cows come home! Outstanding job. Dismissed!", "answer", 0, {
 				sleep 5;
@@ -1684,7 +1724,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout9",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"You took out that commie rat bastard and covered our tracks like pros! On top of that, you managed to handle some additional objectives that weren’t even on the list. Outstanding work! Hit the showers, and I’ll catch you guys at the bar later. Dismissed!", "answer", 0, {
 				sleep 5;
 				["9", true , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1694,7 +1734,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout8",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"You took out that commie bastard and cleaned up all traces of our involvement. You nailed the primary mission objective, and that’s exactly what we needed. Well done, gentlemen. Your country owes you a great deal. Dismissed!", "answer", 0, {
 				sleep 5;
 				["8", true , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1704,7 +1744,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout7",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"You took out the bastard, and you did a solid job disrupting their operations by hitting some additional targets. However, leaving evidence of our involvement is a serious breach. It’s unacceptable, but I’ll see if I can work some magic with the top brass, considering the extra effort you put in. Dismissed!", "answer", 0, {
 				sleep 5;
 				["7", true , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1714,7 +1754,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout6",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"You took out the bastard, but unfortunately, you left evidence of our involvement behind. While eliminating the General was crucial, the fact that our tracks are exposed could spell trouble, especially if the enemy can prove our involvement. This isn’t going to sit well with the top brass. Dismissed!", "answer", 0, {
 				sleep 5;
 				["6", true , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1724,7 +1764,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout5",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"I'm sorry you couldn't nail the slippery bastard, but you did a solid job covering our tracks. Textbook work. On the bright side, you managed to disrupt enemy operations by hitting some additional targets, and that’s not going unnoticed. Good effort. Dismissed!", "answer", 0, {
 				sleep 5;
 				["5", true , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1734,7 +1774,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout4",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"I'm sorry you couldn't nail the slippery bastard. However, you did a commendable job covering our tracks. I’ll be hoping for better results on your next mission. Dismissed.", "answer", 0, {
 				sleep 5;
 				["4", true , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1744,7 +1784,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout3",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"It’s regrettable you missed the target, and worse, you left evidence of our involvement. What am I supposed to tell the top brass? The only small consolation is that you did manage to disrupt enemy operations. Get your shit squared away. Dismissed!", "answer", 0, {
 				sleep 5;
 				["3", false , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1754,7 +1794,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout2",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"Look, it’s regrettable enough that you missed the target, but what’s worse is you left evidence of our involvement. This mission is FUBAR because of you and your lack of discipline. Get out of my sight. Dismissed!", "answer", 0, {
 				sleep 5;
 				["2", false , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1764,7 +1804,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout1",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. I expected better from supposed professionals like you. This mission was a complete cluster-fuck and a critical failure. You should be ashamed. You’ll be cleaning latrines for the rest of your tour. Dismissed!", "answer", 0, {
 				sleep 5;
 				["1", false , true, true, true] remoteExec ["VN_fnc_endMission"];
@@ -1774,7 +1814,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["scout0",
 		[
-			[0,"Ready for debrief, sir.", "answer"],
+			[0,"We finish, Captain.", "answer"],
 			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. And you left team members behind in the enemy AO. You might as well have signed their death warrants. Fully expect an immediate courtmartial. Surrender your gear right now. MPs, lock 'em up!", "answer", 0, {
 				sleep 5;
 				["0", false , true, true, true] remoteExec ["VN_fnc_endMission"];

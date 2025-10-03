@@ -1,22 +1,10 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements 
-    * playersseeprison is next up.
-          
-    - convo if pilot or pow die
-    - interaction between scout and marcinko so players dont think its a bug if there was nothing
-
-
-TO LEARN:
-- add extensions to vscode
-    - function auto add. check your discord.
-- how to use rpt files
-    - you would ctrl f your diag line, such as "First Unit"
-    - A good general one is "error in" which will pick up all the SQF errors so you can read them at leisure.
-        But if you're not using diag_log already then they're probably at the bottom.
-    - As I restart scenarios a lot for test purpose, I always try to find "Starting mission" to check for script error since the mission began
-    - you can also use a watcher extension that will follow the lowest line in the file as they are created
-- how to create a mission with hemtt. consult ace discord.
+    * convo if pilot or pow die
+        - working on pow first
+            - wrote the code. put in trigger and test it.
+    - interaction between scout and marcinko at mission start, so players dont think its a bug if there was nothing
 
 
 BUGS FROM LATEST PLAYTHROUGH:
@@ -54,12 +42,15 @@ TO DO MASTER LIST:
         - literally last thing you do maybe because the misisons is always evolving but you need to recheck how the mission performance ratings are working.
             some stuff might have broken.
             - i added a failure state for proceed to infil spot
+            - I decided to not have performance ratings for players but I like the flavor text
+            - I reworked the extract task which can now be failed so I might need to add that as a primary objective.
         - picture pass for continuity since there have been changes. includes making pics for death/victory screens
         - fill out the prison with prisoners, equipment etc and put hide on it until extract
         - add achievements. (perfect mission, 0/10 mission, never spotted, etc)
         - add game master slot
         - beginning jeep needs to move foruther away from players
     LOW PRIORITY:
+        - Any code with _responder might have unit talking to itself. take a look better.
         - the sam site targets player which could lead to the pilot not getting shot down. needs more testing to see how often that would happen.
         - if you put on an enemy back pack you get to know if you are being tracked and what the state of things are
         - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
@@ -243,3 +234,15 @@ If the patrols see the boat because it was destroyed then general flees after 60
 - work on new search for intel system.
 - add subtitle for when all intel has been found. "looks like weve picked this place dry"
 - added scout versions of quips in lumphat search task
+
+
+TO LEARN:
+- add extensions to vscode
+    - function auto add. check your discord.
+- how to use rpt files
+    - you would ctrl f your diag line, such as "First Unit"
+    - A good general one is "error in" which will pick up all the SQF errors so you can read them at leisure.
+        But if you're not using diag_log already then they're probably at the bottom.
+    - As I restart scenarios a lot for test purpose, I always try to find "Starting mission" to check for script error since the mission began
+    - you can also use a watcher extension that will follow the lowest line in the file as they are created
+- how to create a mission with hemtt. consult ace discord.
