@@ -1,10 +1,8 @@
 TO DO UP NEXT:
 
 - update subtitles in entire mission to include if scout says them with if statements 
-    * powpassconvo, pilotpassconvo is next up.
-        - got the condition and activation working but the convo is long. make one trigger instead with or pilot/pow,
-            then in activation make and if statement for either or and then a statement for both for a condensed convo.
-        
+    * playersseeprison is next up.
+          
     - convo if pilot or pow die
     - interaction between scout and marcinko so players dont think its a bug if there was nothing
 

@@ -1349,7 +1349,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["extractpass",
 		[
 			[0, "Ranger, we have everyone accounted for!", "answer"],
-			[1, "Copy that Rankin.", "answer"],
+			[1, "Copy that, Rankin.", "answer"],
 			[1,"", "answer", 0, { 
 				playsound "talkradio";  
         		ranger sideChat "Ranger, Hawk. Rankin has been extracted. We are RTB. Over."; 
@@ -1364,8 +1364,8 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["extractpassScout",
 		[
-			[0, "All here, Ranger!", "answer"],
-			[1, "Copy that Rankin.", "answer"],
+			[0, "Pilot, all here!", "answer"],
+			[1, "Copy that, Rankin.", "answer"],
 			[1,"", "answer", 0, { 
 				playsound "talkradio";  
         		ranger sideChat "Ranger, Hawk. Rankin has been extracted. We are RTB. Over."; 
@@ -1381,7 +1381,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	["menLeftBehind",
 		[
 			[0,"God fucking damnit! We left them behind...", "answer", 3],
-			[0,"Warrant Officer, we have friendlies still in the AO. Relay to HQ.", "answer"],
+			[0,"Ranger, we have friendlies still in the AO. Relay to HQ.", "answer"],
 			[1,"You got it.", "answer"],
 			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1414,7 +1414,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["powpassconvo",
 		[
-			[0,"Warrant Officer, we've a wounded POW on board. Need medical ASAP.", "answer"],
+			[0,"Ranger, we've a wounded POW on board. Need medical ASAP.", "answer"],
 			[1,"You got it.", "answer"],
 			[1,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1427,7 +1427,7 @@ foxclub_var_conversations = createHashMapFromArray [
 				}
 			],
 			[3,"Thank ya'll so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
-			[0,"Don't mention it, pal. We’re all on the same team. Rest up and take care.", "answer"]
+			[0,"Don't mention it. We’re all on the same team. Rest up and take care.", "answer"]
 		]
 	],
 	["powpassconvoScout",
@@ -1484,30 +1484,75 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"You number one brave man!", "answer"]
 		]
 	],
-	["playersseeprison",
+	["powAndPilot",
 		[
-			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
-			[1,"It looks smaller from up here but somehow seems bigger. Must hold hundreds of prisoners.", "answer"]
+			[0,"Ranger, we picked up two survivors in the AO. Have medical ready.", "answer"],
+			[1,"You got it.", "answer"],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. We've two pickups on board needing immediate medical attention. Over.";
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Ranger. Copy that. Medical team is on standby, ready for your arrival. Out.";
+				}
+			],
+			[3,"Thank ya'll so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
+			[4,"Thank God for y'all. The guys on the ground are counting on me for support. Now I can get back up there and do my job.", "answer"],
+			[0,"Don't mention it. We’re all on the same team. Rest up and take care.", "answer"]
 		]
 	],
-	["scoutseesprison",
+	["powAndPilotScout",
 		[
-			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
-			[1,"This is very sad place. I stay far away.", "answer"]
+			[0,"Pilot, we have two more soldier. Need doctor.", "answer"],
+			[1,"You got it.", "answer"],
+			[1,"", "answer", 0, { 
+				playsound "talkradio"; 
+				ranger sideChat "Ranger, Hawk. We've two pickups on board needing immediate medical attention. Over.";
+				}
+			],
+			[2,"", "answer", 0, { 
+				playsound "talkradio"; 
+				HQRadio sideChat "Hawk, Ranger. Copy that. Medical team is on standby, ready for your arrival. Out.";
+				}
+			],
+			[3,"Thank ya'll so much. I didn’t think I’d make it out. You’ve done more for me than I can ever repay.", "answer"],
+			[4,"Thank God for y'all. The guys on the ground are counting on me for support. Now I can get back up there and do my job.", "answer"],
+			[0,"You welcome, we on same team.", "answer"]
 		]
 	],
-	["playersseeprisonPOW",
+	["seePrison",
 		[
-			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
-			[1,"I can practically smell it from here. I wonder what it's like on the inside?", "answer"],
-			[2,"For how they treated me, I don't give a fuck about them... I hope it's worse than the shit they put me through.", "answer"]
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
+			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
+			[2,"This is very sad place. Stay far away.", "answer"],
+			[0,"Alright boys, last stop. Head to the beach and let's debrief with the Captain.", "answer"]
 		]
 	],
-	["scoutseesprisonPOW",
+	["seePrisonScout",
 		[
-			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison —hell of a sight from the air.", "answer"],
-			[1,"Fuck every last one of them for what they did to me. For all I care they can go to hell.", "answer"],
-			[2,"Many there not belong. I know this true. You suffer one person. They suffer thousands.", "answer"]
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
+			[1,"This is very sad place. Stay far away.", "answer"],
+			[2,"The place is huge. Must hold hundreds of prisoners.", "answer"],
+			[1,"We go debrief with the Captain, now.", "answer"]
+		]
+	],
+	["seePrisonPOW",
+		[
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
+			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
+			[2,"For how they treated me, I don't give a fuck... Hell, I hope it's worse than the shit they put me through.", "answer"],
+			[1,"Alright boys, last stop. Head to the beach and let's debrief with the Captain.", "answer"]
+		]
+	],
+	["seePrisonScoutPOW",
+		[
+			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
+			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
+			[2,"For how they treated me, I don't give a fuck... Hell, I hope it's worse than the shit they put me through.", "answer"],
+			[3,"Many there not belong. I know. You suffer one person. They suffer thousands.", "answer"],
+			[1,"Alright boys, last stop. Head to the beach and let's debrief with the Captain.", "answer"]
 		]
 	],
 	["debriefArea",
