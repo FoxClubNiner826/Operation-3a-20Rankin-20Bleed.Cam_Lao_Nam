@@ -957,49 +957,53 @@ private _convo = ["heliAtBase", "heliAtBaseScout"] select (_speaker == _scout);
 */
 
 // POW death event handler
-_pow = missionNamespace getVariable ["pow", objNull];
-_pilot = missionNamespace getVariable ["pilot", objNull];
-_scout = missionNamespace getVariable ["scout", objNull];
-_leader = leader playerGroup;
-_speaker = objNull;
-
-_pow addEventHandler ["Killed", {
-    params ["_deadUnit", "_killer", "_instigator"];
+pow addEventHandler ["Killed", {
+	params ["_unit", "_killer", "_instigator", "_useEffects"];
+    _pilot = missionNamespace getVariable ["pilot", objNull];
+    _scout = missionNamespace getVariable ["scout", objNull];
+    _leader = leader playerGroup;
     
-    // Get nearby units in playergroup
-    _nearbyUnits = units playerGroup select {(_x distance _deadUnit) <= 100};
-
-    // Filter out the dead POW
-    _nearbyUnits = _nearbyUnits - [_deadUnit, _pilot];
-
+    private _speaker = objNull;
+    private _nearbyUnits = units playerGroup select {(_x distance _unit) <= 100};
+    
+    _nearbyUnits = _nearbyUnits - [_unit];
+    
+    if (!isNull _pilot) then {
+        _nearbyUnits = _nearbyUnits - [_pilot];
+    };
+    
     if ((!isNull _leader) && (_leader in _nearbyUnits)) then {
-        _speaker = _leader;
+            _speaker = _leader;
     } else {
         if ((!isNull _scout) && (_scout in _nearbyUnits)) then {
-            _speaker = _scout;
+                _speaker = _scout;
         } else {
-            // Get players in the group
-            _playerUnits = _nearbyUnits select {alive _x && player _x};
+            private _playerUnits = _nearbyUnits select {alive _x && isPlayer _x};
             if (count _playerUnits > 0) then {
                 _speaker = selectRandom _playerUnits;
             } else {
-                // fallback to AI
-                _aiUnits = _nearbyUnits select {alive _x && !player _x};
+                private _aiUnits = _nearbyUnits select {alive _x && !isPlayer _x};
                 if (count _aiUnits > 0) then {
                     _speaker = selectRandom _aiUnits;
                 };
-            };
+            };    
         };
     };
-
     private _convo = ["powDead", "powDeadScout"] select (_speaker == _scout);
-    
     [_convo, [_speaker]] remoteExec [
         "FoxClub_fnc_Conversation",
         allPlayers select { _x distance _speaker <= 100 }
-];
-}];
+    ];
 
+    if (!isNull _instigator) then {
+        if (isPlayer _instigator) then {
+            _killerName = name _instigator;
+        } else {
+            _killerName = displayName _instigator;
+        };
+    };
+    systemChat format ["POW was killed by: %1", _killerName];
+}];
 
 
 

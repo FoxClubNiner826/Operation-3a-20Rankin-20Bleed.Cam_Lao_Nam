@@ -4,6 +4,7 @@ TO DO UP NEXT:
     * convo if pilot or pow die
         - working on pow first
             - wrote the code. put in trigger and test it.
+            - refined code. now test it with an enemy killing the pow.
     - interaction between scout and marcinko at mission start, so players dont think its a bug if there was nothing
 
 
