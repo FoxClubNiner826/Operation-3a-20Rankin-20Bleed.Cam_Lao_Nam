@@ -293,6 +293,12 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Alright, Carson. Let’s see what you’ve got.", "question"]
 		]
 	],
+	["question9",
+		[
+			[0,"New faces, same jungle. Maybe this time we all come back.", "question"],
+			[1,"You've been vetted Thay, we're glad to have you.", "answer"]
+		]
+	],
 	["looksharp1",
 		[
 			[0, "Secure your gear and get serious. Time to focus, everyone.", "answer"],

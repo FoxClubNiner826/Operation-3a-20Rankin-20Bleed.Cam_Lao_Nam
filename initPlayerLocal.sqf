@@ -89,7 +89,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko1 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
+    "!(_this in [scout]) && ActionTalkToMarcinko1 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
 	4 //radius of addadction
 ];
 
@@ -131,7 +131,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko3 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
+    "!(_this in [scout]) && ActionTalkToMarcinko3 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
 
@@ -149,7 +149,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko4 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
+    "!(_this in [scout]) && ActionTalkToMarcinko4 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
 
@@ -167,7 +167,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko5 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
+    "!(_this in [scout]) && ActionTalkToMarcinko5 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
 	4 
 ];
 
@@ -185,7 +185,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko6 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
+    "!(_this in [scout]) && ActionTalkToMarcinko6 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
 
@@ -203,7 +203,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "ActionTalkToMarcinko7 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
+    "!(_this in [scout]) && ActionTalkToMarcinko7 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
 	4 
 ];
 
@@ -222,6 +222,25 @@ scout addAction [
     true, 
     "", 
     "_target != _this && ActionTalkToCarson && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
+	4
+];
+
+// Question 9
+_scout  = missionNamespace getVariable ["scout", objNull];
+Marcinko addAction [
+    "<t color='#FFFF00'>""I ready, Captain.""</t>", 
+    { 
+	missionNamespace setVariable ["ActionTalkToMarcinko9", false, true];
+    
+	params ["_target", "_caller", "_actionID", "_args"]; 
+	["question9", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "_this in [scout] && ActionTalkToMarcinko9 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
 

@@ -18,6 +18,7 @@ missionNamespace setVariable ["ActionTalkToMarcinko4", true, true];
 missionNamespace setVariable ["ActionTalkToMarcinko5", true, true];
 missionNamespace setVariable ["ActionTalkToMarcinko6", true, true];
 missionNamespace setVariable ["ActionTalkToMarcinko7", true, true];
+missionNamespace setVariable ["ActionTalkToMarcinko9", true, true]; // Scout can ask one question to Captain.
 missionNamespace setVariable ["ActionTalkToCarson", false, true];
 missionNamespace setVariable ["ActionCallPOW", false, true];
 missionNamespace setVariable ["speakersloop", true, true];

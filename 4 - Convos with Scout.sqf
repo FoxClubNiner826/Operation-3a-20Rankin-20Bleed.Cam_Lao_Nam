@@ -943,8 +943,11 @@ private _convo = ["heliAtBase", "heliAtBaseScout"] select (_speaker == _scout);
 ];
 
 
-/* When the POW dies
-*/
+//////////////////////////////////////////////////
+//                                              //
+//                  POW DEATH                   //
+//                                              //
+//////////////////////////////////////////////////
 
 /*
     Triggered when POW dies.
@@ -959,51 +962,154 @@ private _convo = ["heliAtBase", "heliAtBaseScout"] select (_speaker == _scout);
 // POW death event handler
 pow addEventHandler ["Killed", {
 	params ["_unit", "_killer", "_instigator", "_useEffects"];
-    _pilot = missionNamespace getVariable ["pilot", objNull];
-    _scout = missionNamespace getVariable ["scout", objNull];
-    _leader = leader playerGroup;
-    
-    private _speaker = objNull;
-    private _nearbyUnits = units playerGroup select {(_x distance _unit) <= 100};
-    
-    _nearbyUnits = _nearbyUnits - [_unit];
-    
-    if (!isNull _pilot) then {
-        _nearbyUnits = _nearbyUnits - [_pilot];
-    };
-    
-    if ((!isNull _leader) && (_leader in _nearbyUnits)) then {
-            _speaker = _leader;
-    } else {
-        if ((!isNull _scout) && (_scout in _nearbyUnits)) then {
-                _speaker = _scout;
-        } else {
-            private _playerUnits = _nearbyUnits select {alive _x && isPlayer _x};
-            if (count _playerUnits > 0) then {
-                _speaker = selectRandom _playerUnits;
-            } else {
-                private _aiUnits = _nearbyUnits select {alive _x && !isPlayer _x};
-                if (count _aiUnits > 0) then {
-                    _speaker = selectRandom _aiUnits;
-                };
-            };    
-        };
-    };
-    private _convo = ["powDead", "powDeadScout"] select (_speaker == _scout);
-    [_convo, [_speaker]] remoteExec [
-        "FoxClub_fnc_Conversation",
-        allPlayers select { _x distance _speaker <= 100 }
-    ];
 
-    if (!isNull _instigator) then {
-        if (isPlayer _instigator) then {
-            _killerName = name _instigator;
-        } else {
-            _killerName = displayName _instigator;
-        };
-    };
-    systemChat format ["POW was killed by: %1", _killerName];
+	// Run the rest in a scheduled environment (allows sleep)
+	[_unit, _killer, _instigator] spawn {
+		params ["_unit", "_killer", "_instigator"];
+
+		private _pilot  = missionNamespace getVariable ["pilot", objNull];
+		private _scout  = missionNamespace getVariable ["scout", objNull];
+		private _leader = leader playerGroup;
+
+		private _speaker = objNull;
+		private _nearbyUnits = units playerGroup select {(_x distance _unit) <= 100};
+		_nearbyUnits = _nearbyUnits - [_unit];
+		
+		if (!isNull _pilot) then {
+			_nearbyUnits = _nearbyUnits - [_pilot];
+		};
+		
+		if ((!isNull _leader) && {_leader in _nearbyUnits}) then {
+			_speaker = _leader;
+		} else {
+			if ((!isNull _scout) && {_scout in _nearbyUnits}) then {
+				_speaker = _scout;
+			} else {
+				private _playerUnits = _nearbyUnits select {alive _x && isPlayer _x};
+				if (count _playerUnits > 0) then {
+					_speaker = selectRandom _playerUnits;
+				} else {
+					private _aiUnits = _nearbyUnits select {alive _x && !isPlayer _x};
+					if (count _aiUnits > 0) then {
+						_speaker = selectRandom _aiUnits;
+					};
+				};
+			};
+		};
+
+		private _convo = ["powDead", "powDeadScout"] select (_speaker == _scout);
+		[_convo, [_speaker]] remoteExec [
+			"FoxClub_fnc_Conversation",
+			allPlayers select { _x distance _speaker <= 100 }
+		];
+
+		sleep 1; // wait for convo before showing killer info
+
+		private _killerName = "Unknown";
+		private _killerSideName = "";
+
+		if (!isNull _instigator) then {
+			private _killerSide = side _instigator;
+
+			// --- If killer is on WEST side, show actual unit name ---
+			if (_killerSide == west) then {
+				_killerName = name _instigator; // shows player name or AI's setIdentity name
+			} else {
+				// --- For other sides, show readable class name ---
+				_killerName = getText (configFile >> "CfgVehicles" >> typeOf _instigator >> "displayName");
+			};
+
+			// --- Determine side label ---
+			switch (_killerSide) do {
+				case west: { _killerSideName = "(Rankin)"; };
+				case east: { _killerSideName = "(PAVN)"; };
+				case independent: { _killerSideName = "(ARVN)"; };
+				case civilian: { _killerSideName = "(Civilian)"; };
+				default { _killerSideName = ""; };
+			};
+		};
+
+		systemChat format ["The POW was killed by: %1 %2", _killerName, _killerSideName];
+	};
 }];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//                PILOT DEATH                   //
+//                                              //
+//////////////////////////////////////////////////
+
+pilot addEventHandler ["Killed", {
+	params ["_unit", "_killer", "_instigator", "_useEffects"];
+
+	[_unit, _killer, _instigator] spawn {
+		params ["_unit", "_killer", "_instigator"];
+
+		private _pow  = missionNamespace getVariable ["pow", objNull];
+		private _scout  = missionNamespace getVariable ["scout", objNull];
+		private _leader = leader playerGroup;
+
+		private _speaker = objNull;
+		private _nearbyUnits = units playerGroup select {(_x distance _unit) <= 100};
+		_nearbyUnits = _nearbyUnits - [_unit];
+		
+		if (!isNull _pow) then {
+			_nearbyUnits = _nearbyUnits - [_pow];
+		};
+		
+		if ((!isNull _leader) && {_leader in _nearbyUnits}) then {
+			_speaker = _leader;
+		} else {
+			if ((!isNull _scout) && {_scout in _nearbyUnits}) then {
+				_speaker = _scout;
+			} else {
+				private _playerUnits = _nearbyUnits select {alive _x && isPlayer _x};
+				if (count _playerUnits > 0) then {
+					_speaker = selectRandom _playerUnits;
+				} else {
+					private _aiUnits = _nearbyUnits select {alive _x && !isPlayer _x};
+					if (count _aiUnits > 0) then {
+						_speaker = selectRandom _aiUnits;
+					};
+				};
+			};
+		};
+
+		private _convo = ["pilotDead", "pilotDeadScout"] select (_speaker == _scout);
+		[_convo, [_speaker]] remoteExec [
+			"FoxClub_fnc_Conversation",
+			allPlayers select { _x distance _speaker <= 100 }
+		];
+
+		sleep 1; 
+
+		private _killerName = "Unknown";
+		private _killerSideName = "";
+
+		if (!isNull _instigator) then {
+			private _killerSide = side _instigator;
+
+			if (_killerSide == west) then {
+				_killerName = name _instigator; 
+			} else {
+				_killerName = getText (configFile >> "CfgVehicles" >> typeOf _instigator >> "displayName");
+			};
+
+			switch (_killerSide) do {
+				case west: { _killerSideName = "(Rankin)"; };
+				case east: { _killerSideName = "(PAVN)"; };
+				case independent: { _killerSideName = "(ARVN)"; };
+				case civilian: { _killerSideName = "(Civilian)"; };
+				default { _killerSideName = ""; };
+			};
+		};
+
+		systemChat format ["The pilot was killed by: %1 %2", _killerName, _killerSideName];
+	};
+}];
+
+
 
 
 
