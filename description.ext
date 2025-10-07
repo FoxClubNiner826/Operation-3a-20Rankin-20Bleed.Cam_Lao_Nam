@@ -13,6 +13,7 @@ class CfgFunctions
             class intelNotFound {};
             class intelSearch {};
             class intelAlreadyDone {};
+            class heliRTB {};
         };
     };
 };

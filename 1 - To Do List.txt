@@ -1,9 +1,6 @@
 TO DO UP NEXT:
 
-- put a sleep in the systemchat for the left behind message to play after the convo, just like you did with the pow death.
 - bug in SP only i think but not verified. when switching units with U the smoke LZ task wont complete.
-
-BUGS FROM LATEST PLAYTHROUGH:
 
 
 DEDICATED SERVER TESTING:
@@ -13,6 +10,9 @@ DEDICATED SERVER TESTING:
 - test infil convo for working on dedicated server.
 - Test if players still have holdAction after respawn. there is some question as to if they persist.
 - Test if skip to infil needs to be remoteexeced. weather and time might not change. you can copy some code from radiohq.sqf
+
+
+BUGS FROM LATEST PLAYTHROUGH:
 
 
 TO DO MASTER LIST:
@@ -98,6 +98,9 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- Fixed: put a sleep in the systemchat for the left behind message to play after the convo, just like you did with the pow death.
+- Fixed: rtb holdaction doesnt work in MP dedicated server.
+- Fixed: rtb holdaction can be viewed from outside the heli
 - Updated subtitles in entire mission to include if scout says them with if statements and other methods.
     - This should help with multiplayer. If the scout ever becomes the leader of the player group he will have his own lines.
     - There are many context sensitive spots where the scout can now say his own lines (ex: holdActions)

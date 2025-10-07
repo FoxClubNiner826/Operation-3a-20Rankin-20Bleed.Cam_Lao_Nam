@@ -992,7 +992,8 @@ if (isNil "SmokeThrown") then {
 //////////////////////////////////////////////////
 
 private _conditionExtract = {
-    missionNamespace getVariable ["actionReturnToBase", false]
+    missionNamespace getVariable ["actionReturnToBase", false] &&
+    _this in crew extractHeli
 };
 
 [
@@ -1014,7 +1015,7 @@ private _conditionExtract = {
             "FoxClub_fnc_Conversation",    
             allPlayers select { _x distance _caller <= 100 }    
         ];
-
+        /*
         [] spawn {
             ExtractHeli landAt [ExtractHelipad, "None"]; // lets the heli take off
             ExtractHeli flyInHeight 80; // goes to height then moves to base. Doesnt look smooth.
@@ -1027,6 +1028,8 @@ private _conditionExtract = {
             sleep 60; // lets heli take off before giving another landing
             ExtractHeli landAt [baseHelipad, "Land"]; // if there was no sleep the engine will turn off and heli wont take off.
 		};
+        */
+        remoteExec ["FoxClub_fnc_heliRTB", extractHeli];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
