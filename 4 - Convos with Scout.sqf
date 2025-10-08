@@ -1110,9 +1110,16 @@ pilot addEventHandler ["Killed", {
 }];
 
 
+// list of objects to be deleted:
 
+deleteVehicle heli_1;
+deleteVehicle jeep;
+deleteVehicle mp2;
+deleteVehicle mp1;
+trg_convo_cove
+deletevehicle intro2_trg;
 
-
+allow
 
 
 

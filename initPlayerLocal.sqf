@@ -894,11 +894,9 @@ pow addAction [
 //                                              //
 //////////////////////////////////////////////////
 
-// creates infinite smoke
-params ["_player", "_didJIP"];
 // Adds EH to player if smokeThrown doesn't exist.
 if (isNil "SmokeThrown") then {
-    _player addEventHandler ["FiredMan", {
+    player addEventHandler ["FiredMan", {
         params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
 
         // Removes EH if smokeThrown is defined.

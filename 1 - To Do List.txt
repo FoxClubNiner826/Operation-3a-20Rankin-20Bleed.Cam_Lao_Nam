@@ -1,7 +1,7 @@
 TO DO UP NEXT:
 
-- bug in SP only i think but not verified. when switching units with U the smoke LZ task wont complete.
-
+- go through all triggers before the infil spot and look for deletevehicle. need to move these to the infil spot because if players choose skip to
+            infil then those objects wont be deleted.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -10,58 +10,75 @@ DEDICATED SERVER TESTING:
 - test infil convo for working on dedicated server.
 - Test if players still have holdAction after respawn. there is some question as to if they persist.
 - Test if skip to infil needs to be remoteexeced. weather and time might not change. you can copy some code from radiohq.sqf
-
+- the sam site targets player which could lead to the pilot not getting shot down. needs more testing to see how often that would happen.
+- Any code with _responder might have unit talking to itself. take a look during playtesting.       
 
 BUGS FROM LATEST PLAYTHROUGH:
 
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
-        - go through all triggers before the infil spot and look for deletevehicle. need to move these to the infil spot because if players choose skip to
-            infil then those objects wont be deleted.
         - I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
             but not the SAM?
-        - entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
-        learn the program and workflow)
-        - record voice actors (litterally the last thing youll do, even after the medium/low priority stuff)
         - rework deleting obj from inside huts when they are destroyed
             - try deleting nearby objects
             - try deleting objects in a mask area.
     MEDIUM PRIORITY:
-        - add a killed EH that checks if the general is in his car and TPs him out so players can still progress.
-        - figure out how you want AI multiplayer to function in your misison:
-            - option 1: disable AI. simple?
-            - option 2: leave as is but if players leave AI on and dont take group leader then itll be jank.
-            - option 3: use select leader and leader changed EH to avoid AI taking control of the AI (what happens if slot one dies and respoawns
-                does he get control back?) or some solution that always passes AI to a player
-        - there is a locker in lumphat that keeps clipping into the buildings.
-        - literally last thing you do maybe because the misisons is always evolving but you need to recheck how the mission performance ratings are working.
-            some stuff might have broken.
+        - Design: Players must use a holdAction on a unit in order to proceed. However the way ARMA works is if that unit is in a vehicle 
+            that explodes they disappear. Solution? Add a killed EH that checks if the unit is in his vehicle and TPs him out so players 
+            can still progress.
+        - Design: Using AI in a MP Scenario. First you need to find out if group leader is tossed to AI, another player, or not at all
+            upon the death of the group leader. Then take a look at some options.
+            - option 1: disable AI entirley for MP.
+            - option 2: leave as is but if players leave AI on and dont take group leader then itll be jank. Thats on them I think.
+            - option 3: If group leader does get passed then use select leader and leader changed EH to avoid AI taking control of the 
+                AI or some solution that always passes AI to a player.
+        - There is a locker in lumphat that keeps clipping into the buildings.
+        - Design: Change how smoke the LZ task completes, because an edge case could happen where a player is standing outside of the marker
+            but throws the grenade into the LZ correctly but fails the task anyway because they were outside when they threw it.
+            - Currently: checks if the unit is in a marker.
+            - Change to: check if the projectile is x distance away from the LZ.
+        - Add game master slot. I think this is needed for the milsim community and could help promote the mission.
+        - Intro jeep needs to move out of sight from players. Delete it after players leave or use dynamic object.
+    LOW PRIORITY:
+        - NPC polish: Adds to immersion at the cost of much dev time:
+            - have npc walk to end of pier and salute as boat drives away.
+            - have npcs welcome you back at mission end
+            - have pilots, pow, downed pilot exit heli at missons end
+            - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
+            - fill out the prison with prisoners, equipment etc and put hide on it until extract
+        - Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
+        - Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
             - i added a failure state for proceed to infil spot
             - I decided to not have performance ratings for players but I like the flavor text
             - I reworked the extract task which can now be failed so I might need to add that as a primary objective.
-        - picture pass for continuity since there have been changes. includes making pics for death/victory screens
-        - fill out the prison with prisoners, equipment etc and put hide on it until extract
-        - add achievements. (perfect mission, 0/10 mission, never spotted, etc)
-        - add game master slot
-        - beginning jeep needs to move foruther away from players
-    LOW PRIORITY:
-        - Any code with _responder might have unit talking to itself. take a look better.
-        - the sam site targets player which could lead to the pilot not getting shot down. needs more testing to see how often that would happen.
-        - if you put on an enemy back pack you get to know if you are being tracked and what the state of things are
-        - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
-        - disable the squad radio cahtter. Keep for now testing because it does help during that. Chance that this breaks something though.
-        - adjust extract heli height cause its glitching
-        - have pilots, pow, downed pilot exit heli at missons end
-        - have npcs welcome you back at mission end
-        - have npc walk to end of pier and salute as boat drives away.
-        - if people think there is too much talking then have an option to reduce it for SP/MP
-        - mission fail if friendly fire
-        - see if smoke can be detected in area marker instead of player
-        - if players use radio trackers start to simulate radio direction finding of the enemy. then you add hand signals module.
-        - if players switch to another unit after getting near the POW. Error, unknown variable.
-        - I have this condition, which fires if all alive players are in a helicopter: Is there a way to filter out downed players though? 
-            I want it to fire even if there is downed player outside the heli (apparently they count as alive)
+        - Update all needed pictures in the mission from tasks to victory/death screens. This should be near the last thing you do
+            because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
+        - Entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
+            learn the program and workflow)
+        - Record voice actors (literally the last thing you do), gives plenty of time to refine dialog.
+    
+    IDEA GRAVEYARD:
+        - Design: Add achievements; Perfect mission, never spotted, rescued NPC. I think this is a neat idea but it will add a bunch of
+            scope to a project already struggling to find completion. Reevaluate later if you wish.
+        - Design: Try to incourage the hand signal module by punishing players using their radios. 
+            Send trackers after them if they use it too much. I like this idea but it will add too much scope to the mission.
+            Perhaps in the future for another mission or if I ever finish this one with time to spare.
+            - This simulates the ability of the enemy to use radio direction finding.
+        - Design: Mission fails if friendly fire threshold is reached. I don't think I need to do this.
+            - If anyone plays this mission almost certainly they know each other. Let social acceptance guide player behavior here.
+            - Players punished by accidental friendly fire can feel can feel like it's unfair or unfun rule.
+        - Design: Disable the squad radio chatter. It is vanilla ARMA sounds so it breaks immersion for me. But if I do this then it could
+            hamper important game feedback for single players would want AI. Unfortunantley I think we need to keep it unless playtesting
+            proves otherwise.
+        - Design: If you put on an enemy back pack you get to know if you are being tracked and whatever other info/things could be
+            a boon to players. I think this is a neat idea that could play into having an indiginous unit in the group but as it sits 
+            right now I don't see the value it can add mechanic wise.
+                - Idea: Lets players know if they are currently tracked. 
+    ABANDONED STUFF:
+        - When the heli flys to base it follows the tree line and tilts back and forth and isn't smooth. I've tried a bunch of commands,
+            but nothing seems to stop it. Unless I find someone expert at this or I stumble on a solution it is a wasteful time sink.
+
 
 
 TOUGH BUGS:
@@ -98,6 +115,11 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Design decision: Problem: Switching units in SP will not let the player access holdAction, EH, and whatever else is tied to `player`.
+    - After some research I decided that the time/effort required to make it work is not worth it for such an edge case scenario.
+        - If feedback/playtesting warrants otherwise I can look back into it. Consult the link which supposedly adds EH to all units.
+            https://cbateam.github.io/CBA_A3/docs/files/xeh/fnc_addClassEventHandler-sqf.html
+            https://cbateam.github.io/CBA_A3/docs/files/events/fnc_addPlayerEventHandler-sqf.html
 - Fixed: put a sleep in the systemchat for the left behind message to play after the convo, just like you did with the pow death.
 - Fixed: rtb holdaction doesnt work in MP dedicated server.
 - Fixed: rtb holdaction can be viewed from outside the heli
