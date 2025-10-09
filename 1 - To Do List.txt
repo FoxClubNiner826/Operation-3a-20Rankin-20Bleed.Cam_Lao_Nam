@@ -1,7 +1,8 @@
 TO DO UP NEXT:
 
-- go through all triggers before the infil spot and look for deletevehicle. need to move these to the infil spot because if players choose skip to
-            infil then those objects wont be deleted.
+- I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
+            but not the SAM?
+
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -18,8 +19,6 @@ BUGS FROM LATEST PLAYTHROUGH:
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
-        - I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
-            but not the SAM?
         - rework deleting obj from inside huts when they are destroyed
             - try deleting nearby objects
             - try deleting objects in a mask area.
@@ -56,6 +55,7 @@ TO DO MASTER LIST:
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
         - Entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
             learn the program and workflow)
+        - Adjustments to arsenal, inventories, and unit class (RTO, medic, etc).
         - Record voice actors (literally the last thing you do), gives plenty of time to refine dialog.
     
     IDEA GRAVEYARD:
@@ -115,6 +115,8 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Polish: Went through all triggers and AI before the infil spot and delete them once players get there for performance. Works if players 
+    get there nornamally or with skip to infil.
 Design decision: Problem: Switching units in SP will not let the player access holdAction, EH, and whatever else is tied to `player`.
     - After some research I decided that the time/effort required to make it work is not worth it for such an edge case scenario.
         - If feedback/playtesting warrants otherwise I can look back into it. Consult the link which supposedly adds EH to all units.

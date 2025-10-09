@@ -1110,16 +1110,58 @@ pilot addEventHandler ["Killed", {
 }];
 
 
-// list of objects to be deleted:
+// list of objects to be deleted at the ingress point:
+deleteVehicle getinstab;
+deleteVehicle heli_1; // prop at base
+deleteVehicle jeep; // prop at base
+deleteVehicle mp2; // ai at base
+deleteVehicle mp1; // ai at base
+deletevehicle trg_convo_cove; // trigger near base
+deletevehicle intro2_trg; // trigger near base
+deletevehicle trg_wrongway_1; // trigger near base
+missionNamespace setVariable ["actionBriefing", false, true]; // turns off captain intro questions
+deletevehicle trg_remove_naval_patrol; // trigger near cove
 
-deleteVehicle heli_1;
-deleteVehicle jeep;
-deleteVehicle mp2;
-deleteVehicle mp1;
-trg_convo_cove
-deletevehicle intro2_trg;
+{
+    deleteVehicle _x;
+} forEach units patrolboatgroup;
+deleteVehicle patrolboat;
 
-allow
+deleteVehicle trg_wrongway_3;
+deleteVehicle trg_wrongway_2;
+deleteVehicle wait_pass;
+deleteVehicle wait_fail;
+deleteVehicle trg_patrolboat_dead;
+deleteVehicle task0;
+deleteVehicle scubatime;
+
+{
+    deleteVehicle _x;
+} forEach units ambushpatrol;
+
+deleteVehicle trg_ambush;
+
+{
+    deleteVehicle _x;
+} forEach units sampanPatrol1;
+deleteVehicle sampanPatrolBoat1;
+deleteVehicle sampanPatrolBoat2;
+
+{
+    deleteVehicle _x;
+} forEach units sampanPatrol2;
+deleteVehicle sampanPatrolBoat3;
+deleteVehicle sampanPatrolBoat4;
+deleteVehicle sampanPatrolBoat5;
+
+
+{
+    deleteVehicle _x;
+} forEach units sampanPatrol3;
+deleteVehicle sampanPatrolBoat6;
+
+
+
 
 
 

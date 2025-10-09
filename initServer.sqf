@@ -34,6 +34,7 @@ missionNamespace setVariable ["ActionTalkToPOW5", true, true];
 missionNamespace setVariable ["ActionDebrief", false, true]; // Allows mission debrief
 missionNamespace setVariable ["holdActionAttemptCount", 0]; // Counter for attempts for searchable items in Lumphat.
 missionNamespace setVariable ["actionReturnToBase", true, true]; // Allows RTB holdAction at mission start.
+missionNamespace setVariable ["actionBriefing", true, true]; // turns on captain intro questions
 
 ActionEndMission = false; //might not be needed anymore
 
