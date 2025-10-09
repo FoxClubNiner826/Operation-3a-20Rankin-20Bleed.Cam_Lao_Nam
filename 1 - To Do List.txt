@@ -1,8 +1,8 @@
 TO DO UP NEXT:
 
-- I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
-            but not the SAM?
-
+- rework deleting obj from inside huts when they are destroyed
+            - try deleting nearby objects
+            - try deleting objects in a mask area.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -12,16 +12,16 @@ DEDICATED SERVER TESTING:
 - Test if players still have holdAction after respawn. there is some question as to if they persist.
 - Test if skip to infil needs to be remoteexeced. weather and time might not change. you can copy some code from radiohq.sqf
 - the sam site targets player which could lead to the pilot not getting shot down. needs more testing to see how often that would happen.
-- Any code with _responder might have unit talking to itself. take a look during playtesting.       
+- Any code with _responder might have unit talking to itself. take a look during playtesting.
+- If during testing notifications are overlaping each other at the infil spot then consider disabling the notifications for the several tasks 
+    and try to use this to create a single notification of "many tasks created" https://community.bistudio.com/wiki/BIS_fnc_showNotification      
 
 BUGS FROM LATEST PLAYTHROUGH:
 
 
 TO DO MASTER LIST:
     HIGH PRIORITY:
-        - rework deleting obj from inside huts when they are destroyed
-            - try deleting nearby objects
-            - try deleting objects in a mask area.
+        
     MEDIUM PRIORITY:
         - Design: Players must use a holdAction on a unit in order to proceed. However the way ARMA works is if that unit is in a vehicle 
             that explodes they disappear. Solution? Add a killed EH that checks if the unit is in his vehicle and TPs him out so players 
@@ -78,6 +78,10 @@ TO DO MASTER LIST:
     ABANDONED STUFF:
         - When the heli flys to base it follows the tree line and tilts back and forth and isn't smooth. I've tried a bunch of commands,
             but nothing seems to stop it. Unless I find someone expert at this or I stumble on a solution it is a wasteful time sink.
+        - Design: I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
+            but not the SAM? I decided not to pursue this because it will add too much time to change the code and have to do more rewriting 
+            of it for little payoff of polish. This is a great learning experience on why it is better to make designs in the early part of 
+            the mission. The idea here is to have that aspect solidified so that you don't loose time reworking systems or rewriting code. 
 
 
 

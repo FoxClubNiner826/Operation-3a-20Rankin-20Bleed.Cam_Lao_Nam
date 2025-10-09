@@ -67,7 +67,7 @@ override_vn_sam_masteraudioarray = compile preprocessFileLineNumbers "override_v
 //   STOP FLOATING OBJECTS ON DESTROYED HUTS    //
 //                                              //
 //////////////////////////////////////////////////
-/*
+/* [7809,9098]
 myBuilding = ((nearestObjects [getpos chair1,["Land_vn_hut_02"],20])#0);
 myBuilding2 = ((nearestObjects [getpos hut_table2,["Land_vn_hut_07"],20])#0);
 myBuilding3 = ((nearestObjects [getpos hut3_wire1,["Land_vn_hut_06"],20])#0);
