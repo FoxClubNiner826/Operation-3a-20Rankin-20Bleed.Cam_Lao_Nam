@@ -1160,6 +1160,39 @@ deleteVehicle sampanPatrolBoat5;
 } forEach units sampanPatrol3;
 deleteVehicle sampanPatrolBoat6;
 
+//new EH, needs to filter out players and ai.
+addMissionEventHandler ["BuildingChanged", {
+	params ["_from", "_to", "_isRuin"];
+
+	if (_isRuin) then {
+
+		// Classes to exclude from deletion
+		private _excludeClasses = ["Land_vn_hut_01_ruin", "Land_vn_hut_02_ruin", "Land_vn_hut_03_ruin", "Land_vn_hut_04_ruin", "#destructioneffects", "#explosion"];
+
+		private _nearObjs = _from nearObjects 10;
+
+		private _toDelete = [];
+		private _skipped  = [];
+
+		{
+			if (!(_excludeClasses find typeOf _x > -1)) then {
+				_toDelete pushBack _x;
+			} else {
+				_skipped pushBack _x;
+			};
+		} forEach _nearObjs;
+
+		// Log all at once
+		diag_log format ["Deleting objects: %1", _toDelete];
+		diag_log format ["Skipped objects (excluded class): %1", _skipped];
+
+		// Actually delete
+		{ deleteVehicle _x; } forEach _toDelete;
+
+	};
+}];
+
+
 
 
 
