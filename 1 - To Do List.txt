@@ -1,8 +1,11 @@
 TO DO UP NEXT:
 
 - rework deleting obj from inside huts when they are destroyed
-            - try deleting nearby objects
-            - try deleting objects in a mask area.
+    - I have got the EH to fire and even to grab nearby objects and delete them. I even added in the script to spare players and vehicles 
+        but in testing there is a problem. It turns out the EH is inconsistant. With certain weapons it will not fire. So I cannot use this 
+        EH as a solution to my floating object problem.
+        - Next thing to try is to place your own hut and make them invincible. Either that or try to grab them somehow and turn off damage. 
+            There is some question as to if this is possible with terrain objects though.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.

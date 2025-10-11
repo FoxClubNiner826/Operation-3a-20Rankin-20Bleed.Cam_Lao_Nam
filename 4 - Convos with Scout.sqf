@@ -1160,7 +1160,7 @@ deleteVehicle sampanPatrolBoat5;
 } forEach units sampanPatrol3;
 deleteVehicle sampanPatrolBoat6;
 
-//new EH, needs to filter out players and ai.
+//new EH, needs to filter out players and ai. and vics.
 addMissionEventHandler ["BuildingChanged", {
 	params ["_from", "_to", "_isRuin"];
 
