@@ -1,11 +1,21 @@
 TO DO UP NEXT:
 
-- rework deleting obj from inside huts when they are destroyed
-    - I have got the EH to fire and even to grab nearby objects and delete them. I even added in the script to spare players and vehicles 
-        but in testing there is a problem. It turns out the EH is inconsistant. With certain weapons it will not fire. So I cannot use this 
-        EH as a solution to my floating object problem.
-        - Next thing to try is to place your own hut and make them invincible. Either that or try to grab them somehow and turn off damage. 
-            There is some question as to if this is possible with terrain objects though.
+- Design: Using AI in a MP Scenario. First you need to find out if group leader is tossed to AI, another player, or not at all
+            upon the death of the group leader. Then take a look at some options.
+            - option 1: disable AI entirley for MP.
+            - option 2: leave as is but if players leave AI on and dont take group leader then itll be jank. Thats on them I think.
+            - option 3: If group leader does get passed then use select leader and leader changed EH to avoid AI taking control of the 
+                AI or some solution that always passes AI to a player.
+    Playtesting:
+        - With the groupleader as a player and AI in the mission
+            - Seems like leader player is always the group leader. I've died a bunch and it hasn't transfered to anyone else.
+        - With the groupleader as an AI and player and AI in the mission.
+            - The players dont get control of the AI because the AI groupleader does. You basically can't play like this cause you can't 
+                control the AI. So you would turn off AI at mission start unless someone is playing the group leader.
+Tomorrow: Test what happens if players diable AI, do not take the commander (group leader), and meet the pilot. I wonder if he will join the group
+    and if anyone will have control over him?
+
+    adjust file cabinet a little lower in radio hut.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -26,22 +36,11 @@ TO DO MASTER LIST:
     HIGH PRIORITY:
         
     MEDIUM PRIORITY:
-        - Design: Players must use a holdAction on a unit in order to proceed. However the way ARMA works is if that unit is in a vehicle 
-            that explodes they disappear. Solution? Add a killed EH that checks if the unit is in his vehicle and TPs him out so players 
-            can still progress.
-        - Design: Using AI in a MP Scenario. First you need to find out if group leader is tossed to AI, another player, or not at all
-            upon the death of the group leader. Then take a look at some options.
-            - option 1: disable AI entirley for MP.
-            - option 2: leave as is but if players leave AI on and dont take group leader then itll be jank. Thats on them I think.
-            - option 3: If group leader does get passed then use select leader and leader changed EH to avoid AI taking control of the 
-                AI or some solution that always passes AI to a player.
-        - There is a locker in lumphat that keeps clipping into the buildings.
         - Design: Change how smoke the LZ task completes, because an edge case could happen where a player is standing outside of the marker
             but throws the grenade into the LZ correctly but fails the task anyway because they were outside when they threw it.
             - Currently: checks if the unit is in a marker.
             - Change to: check if the projectile is x distance away from the LZ.
         - Add game master slot. I think this is needed for the milsim community and could help promote the mission.
-        - Intro jeep needs to move out of sight from players. Delete it after players leave or use dynamic object.
     LOW PRIORITY:
         - NPC polish: Adds to immersion at the cost of much dev time:
             - have npc walk to end of pier and salute as boat drives away.
@@ -89,6 +88,10 @@ TO DO MASTER LIST:
 
 
 TOUGH BUGS:
+Bug: It seem's as if you cannout spawn on another player if they have previously died. You can select them but you get red warning 
+    that you can't spawn on a dead player.
+        - This is inconsistant. Now it's letting me spawn on players again.
+            - And now it's not again. Perhaps there is a timer when you repawn that prevents someone spawning on you?
 - try addvehicle command to no kick players out of vehicle (not verified since waypoints rework of helicopter extraction)
 - scout wont get in the stab
 - couldnt access arsenal at cache one time.
@@ -122,6 +125,28 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- Design Decision: Players must use a holdAction on a the general in order to proceed. However the way ARMA works is if that unit is in a vehicle 
+    that explodes they disappear. That would mean the players can't complete that task. I will go with option 2.
+        Option 1: Add a killed EH that checks if the unit is in his vehicle and TPs him out so players can do the action on the body.
+        Option 2: I like that the corpse can't be recovered. It wouldn't break the mission since I redesigned it. 
+            And might add a nice layer of challenge for players to only disable the vehicle.
+                I will add some player feedback if this event occurs.
+                    - Add an EH that check if the general was in the car and if he was then fail the task and have a convo play for the Killer.
+Polish: - Intro jeep moves out of sight from players. Delete it after player get to infil.
+Polish: - There is a locker in lumphat that keeps clipping into the buildings.
+            I disabled simulation of the object and disabled damage. I have a theory that it was getting destroyed and that the death animation
+                is similar to houses and the generator where the animation lowers it into the ground, only in this case not fully (bug).
+- Reworked: deleting obj from inside huts when they are destroyed or else they float.
+    - I have got the EH to fire and even to grab nearby objects and delete them. I even added in the script to spare players and vehicles 
+        but in testing there is a problem. It turns out the EH is inconsistant. With certain weapons it will not fire. So I cannot use this 
+        EH as a solution to my floating object problem.
+        - Next thing to try is to place your own hut and make them invincible. Either that or try to grab them somehow and turn off damage. 
+            There is some question as to if this is possible with terrain objects though.
+            - I was able to grab the terrain objects with a command and turn damage off for them. It sucks that the mission will loose some
+                immersion by not seeing burning buildings, but it is way more immersion breaking to see floating objects after a hut has
+                been burned down. Now to test in MP. 
+                - Placed it in initServer and had to remoteExec it for it to work.
+                    - Advice from Hypoxic: Put the code in initPlayerLocal instead and don't remoteExec.
 Polish: Went through all triggers and AI before the infil spot and delete them once players get there for performance. Works if players 
     get there nornamally or with skip to infil.
 Design decision: Problem: Switching units in SP will not let the player access holdAction, EH, and whatever else is tied to `player`.

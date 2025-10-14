@@ -1192,6 +1192,26 @@ addMissionEventHandler ["BuildingChanged", {
 	};
 }];
 
+// EH when officer dies in the getaway car.
+
+this addEventHandler ["Killed", {
+	params ["_unit", "_killer", "_instigator", "_useEffects"];
+
+    _officer = missionNamespace getVariable ["officer", objNull];
+    _scout  = missionNamespace getVariable ["scout", objNull];
+
+	if (!isNull _officer && _officer in _unit) then {
+        private _convo = ["hvtExploded", "hvtExplodedScout"] select (_killer == _scout);
+		[_convo, [_killer]] remoteExec [
+			"FoxClub_fnc_Conversation",
+			allPlayers select { _x distance _killer <= 100 }
+		];
+
+		missionNamespace setVariable ["hvtExploded", true, true];
+	};
+}];
+
+
 
 
 

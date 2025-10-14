@@ -71,6 +71,17 @@ player addEventHandler ["Killed", {
 
 //////////////////////////////////////////////////
 //                                              //
+//           TURN OFF DAMAGE TO HUTS            //
+//                                              //
+//////////////////////////////////////////////////
+// Or you will get floating objects when they are destroyed
+
+{
+    _x allowDamage false;
+} forEach (nearestTerrainObjects [[7809,9098], ["HOUSE"], 80]);
+
+//////////////////////////////////////////////////
+//                                              //
 //             SEAL BOSS QUESTIONS              //
 //                                              //
 //////////////////////////////////////////////////
