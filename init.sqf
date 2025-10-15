@@ -761,7 +761,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["meetScout",
 		[
-			[0,"Holy shit, I thought you were one of them! I almost put you dowm! Where are we?", "answer"],
+			[0,"Holy shit, I thought you were one of them! I almost put you down! Where are we?", "answer"],
 			[1,"We in Cambodia.", "answer"],
 			[0,"Cambodia?! This is a hell of a situation to be in.", "answer"],
 			[1,"Danger here. You follow now.", "answer"]

@@ -1,58 +1,6 @@
 TO DO UP NEXT:
 
-Summary of the group leader mechanic that I've learned so far.
-1. There will always be a group leader whether it is AI or human. If only one person starts the mission in MP, they are the leader.
-    - The leader wont change with JIP players.
-    - The leader wont change with death.
-        - Might change if respawn is disbled.
-    - The leader can change if the leader exits the mission. Unsure of priority for units.
-        - They cannot get it back by rejoining.
-2. The group leader is defined in the editor.
-    - The order you add units to the leader is the same as the order that appears in the editor.
-        - When testing with two apps open I can't get the local host to be the leader. I wonder if this would change on a dedicated server.
-            - The local host is always the leader unless scout or demo is chosen.
-
-Potential issues:
-- If the leader leaves the game after AI has been added with `join group` then that AI becomes group leader.
-
-I'm not sure I really care about how the order is chosen. My main concerns is the mission breaking if the AI becomes the leader.
-So let's see if we can solve that with a EH.
-
-
-- Design: Using AI in a MP Scenario. First you need to find out if group leader is tossed to AI, another player, or not at all
-            upon the death of the group leader. Then take a look at some options.
-            - option 1: disable AI entirley for MP.
-            - option 2: leave as is but if players leave AI on and dont take group leader then itll be jank. Thats on them I think.
-            - option 3: If group leader does get passed then use select leader and leader changed EH to avoid AI taking control of the 
-                AI or some solution that always passes AI to a player.
-    Playtesting:
-        - With the groupleader as a player and AI in the mission
-            - Seems like leader player is always the group leader. I've died a bunch and it hasn't transfered to anyone else.
-        - With the groupleader as an AI and player and AI in the mission.
-            - The players dont get control of the AI because the AI groupleader does. You basically can't play like this cause you can't 
-                control the AI. So you would turn off AI at mission start unless someone is playing the group leader.
-        - The game will assign a human as leader if the group leader unit is not chosen at the lobby (AI or human)
-            - The order appears to coincide with the order that units are formed into the group in the editor.
-                - In testing I could not get the scout to become the group leader presumably because he was the last unit added. This means
-                    he could never become group leader unless he is the only one playing.
-                    - I presumed wrong. Even though the scout is the second unit added to the group, I haven't yet been able to get him 
-                        to be leader.
-                - The order can change based on JIP. For example, I could start the game with just the scout and no other AI or humans. Then,
-                    have another human join after the mission has started. Even though any other unit is technically higher up on the priority 
-                    list than the scout, the scout will remain the group leader because he was assigned it at mission start. What this tells 
-                    me is that I can count on the group leader being rather static,
-            - If there is only a single player and no AI, then that person will be group leader.
-                - In testing with the pilot the group seems to not exist until you meet the pilot, then the group is created then the 
-                    pilot is added. I say this because usually you can see yourself as part of a group with the bar at the bottom left.
-                    But if only one person spawns in then there is no bar until you meet the pilot.
-                    - Using the command 'leader playergroup', I can see that in this situation the leader is already defined. It is just
-                        the UI that gets updated when a single player meets the pilot.
-            - If the group leader leaves the game:
-                - convo is printed twice
-                - group leader is apparently tossed to another player (haven't met the pilot yet)
-                - After adding the pilot to the group, if the group leader leaves then the pilot becomes the group leader
-                    - If that player returns, the pilot is still the group leader
- 
+write a script that looks for AI leaders on mission start and then gives the leader to a human.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -65,6 +13,10 @@ DEDICATED SERVER TESTING:
 - Any code with _responder might have unit talking to itself. take a look during playtesting.
 - If during testing notifications are overlaping each other at the infil spot then consider disabling the notifications for the several tasks 
     and try to use this to create a single notification of "many tasks created" https://community.bistudio.com/wiki/BIS_fnc_showNotification      
+- There is some question to how leadership is changed when a leader disconnects. To test it properly we need to setup the laptop and have two
+    clients. See if you are able to get the scout to be the group leader with 2 clients connected. He is supposed to be 2nd because of editor
+    order but I never could get it to work with local host + client testing. I have added an EH that should reassign leader to a human if
+    the AI is ever given leader.
 
 BUGS FROM LATEST PLAYTHROUGH:
 
@@ -163,6 +115,54 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- Design Decision: I will allow AI to be used in MP. I added a EH that will detect if AI is the leader and give it back to players.
+Summary of the group leader mechanic that I've learned so far.
+1. There will always be a group leader whether it is AI or human. If only one person starts the mission in MP, they are the leader.
+    - The leader wont change with JIP players.
+        - Unless the editor placed leader comes into the mission.
+    - The leader wont change with death.
+        - Might change if respawn is disbled.
+    - The leader can change if the leader exits the mission. Unsure of priority for units.
+        - They cannot get it back by rejoining.
+2. The group leader is defined in the editor.
+    - The order you add units to the leader is the same as the order that appears in the lobby and group bar UI (editor order is alphabetical).
+        - When testing with two apps open I can't get the local host to be the leader. I wonder if this would change on a dedicated server.
+            - The local host is always the leader unless scout or demo is chosen.
+
+- Design: Using AI in a MP Scenario. First you need to find out if group leader is tossed to AI, another player, or not at all
+            upon the death of the group leader. Then take a look at some options. I choose option 2. Maybe I can write a script that looks
+            for AI leaders on mission start and then gives the leader to a human.
+            - option 1: disable AI entirley for MP.
+            - option 2: leave as is but if players leave AI on and dont take group leader then itll be jank. Thats on them I think.
+            - option 3: If group leader does get passed then use select leader and leader changed EH to avoid AI taking control of the 
+                AI or some solution that always passes AI to a player.
+    Playtesting:
+        - With the groupleader as a player and AI in the mission
+            - Seems like leader player is always the group leader. I've died a bunch and it hasn't transfered to anyone else.
+        - With the groupleader as an AI and player and AI in the mission.
+            - The players dont get control of the AI because the AI groupleader does. You basically can't play like this cause you can't 
+                control the AI. So you would turn off AI at mission start unless someone is playing the group leader.
+        - The game will assign a human as leader if the group leader unit is not chosen at the lobby (AI or human)
+            - The order appears to coincide with the order that units are formed into the group in the editor.
+                - In testing I could not get the scout to become the group leader presumably because he was the last unit added. This means
+                    he could never become group leader unless he is the only one playing.
+                    - I presumed wrong. Even though the scout is the second unit added to the group, I haven't yet been able to get him 
+                        to be leader.
+                - The order can change based on JIP. For example, I could start the game with just the scout and no other AI or humans. Then,
+                    have another human join after the mission has started. Even though any other unit is technically higher up on the priority 
+                    list than the scout, the scout will remain the group leader because he was assigned it at mission start. What this tells 
+                    me is that I can count on the group leader being rather static,
+            - If there is only a single player and no AI, then that person will be group leader.
+                - In testing with the pilot the group seems to not exist until you meet the pilot, then the group is created then the 
+                    pilot is added. I say this because usually you can see yourself as part of a group with the bar at the bottom left.
+                    But if only one person spawns in then there is no bar until you meet the pilot.
+                    - Using the command 'leader playergroup', I can see that in this situation the leader is already defined. It is just
+                        the UI that gets updated when a single player meets the pilot.
+            - If the group leader leaves the game:
+                - convo is printed twice
+                - group leader is apparently tossed to another player (haven't met the pilot yet)
+                - After adding the pilot to the group, if the group leader leaves then the pilot becomes the group leader
+                    - If that player returns, the pilot is still the group leader
 - Polish: adjust file cabinet a little lower in radio hut.
 - Design Decision: Players must use a holdAction on a the general in order to proceed. However the way ARMA works is if that unit is in a vehicle 
     that explodes they disappear. That would mean the players can't complete that task. I will go with option 2.

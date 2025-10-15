@@ -1212,6 +1212,73 @@ this addEventHandler ["Killed", {
 }];
 
 
+[] spawn {
+    sleep 3;
+
+    private _group = playergroup;
+
+    // --- Event Handler: reacts instantly when leadership changes
+    _group addEventHandler ["LeaderChanged", {
+        params ["_group", "_newLeader"];
+
+        // If new leader is AI, fix it immediately
+        if (!isPlayer _newLeader) then {
+            private _humans = (units _group) select { isPlayer _x };
+
+            if (_humans isNotEqualTo []) then {
+                private _orderedUnits = units _group;
+                private _firstHuman = objNull;
+
+                {
+                    if (_x in _humans) exitWith { _firstHuman = _x; };
+                } forEach _orderedUnits;
+
+                if (!isNull _firstHuman) then {
+                    // Assign that human as leader globally
+                    [_group, _firstHuman] remoteExec ["selectLeader", 0, true];
+
+                    systemChat format [
+                        "AI tried to take command! Reassigned leader to %1 (slot index %2)",
+                        name _firstHuman,
+                        _orderedUnits find _firstHuman
+                    ];
+                };
+            } else {
+                systemChat "No human leader available — waiting for a player to take command.";
+            };
+        };
+    }];
+
+    // --- Watchdog: checks periodically to ensure AI never stays leader
+    [] spawn {
+        private _group = playergroup;
+        while {true} do {
+            sleep 10;
+            private _leader = leader _group;
+
+            if (!isPlayer _leader) then {
+                private _humans = (units _group) select { isPlayer _x && alive _x };
+                if (_humans isNotEqualTo []) then {
+                    private _orderedUnits = units _group;
+                    private _firstHuman = objNull;
+
+                    {
+                        if (_x in _humans) exitWith { _firstHuman = _x; };
+                    } forEach _orderedUnits;
+
+                    if (!isNull _firstHuman) then {
+                        [_group, _firstHuman] remoteExec ["selectLeader", 0, true];
+                        systemChat format [
+                            "Watchdog reassigned leader to %1 (index %2)",
+                            name _firstHuman,
+                            _orderedUnits find _firstHuman
+                        ];
+                    };
+                };
+            };
+        };
+    };
+};
 
 
 
