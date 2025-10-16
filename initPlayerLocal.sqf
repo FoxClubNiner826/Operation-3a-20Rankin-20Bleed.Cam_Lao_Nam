@@ -80,6 +80,37 @@ player addEventHandler ["Killed", {
     _x allowDamage false;
 } forEach (nearestTerrainObjects [[7809,9098], ["HOUSE"], 80]);
 
+
+//////////////////////////////////////////////////
+//                                              //
+//          LET PLAYERS SELECT LEADER           //
+//                                              //
+//////////////////////////////////////////////////
+
+map addAction [
+    "<t color='#FFFF00'>Take command of AI</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+    
+    playergroup selectLeader _caller;
+
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["takingCommand", "takingCommandScout"] select (_caller == _scout); 
+    [_convo, [_caller]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }
+        ];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    "", 
+	4 
+];
+
+
 //////////////////////////////////////////////////
 //                                              //
 //             SEAL BOSS QUESTIONS              //

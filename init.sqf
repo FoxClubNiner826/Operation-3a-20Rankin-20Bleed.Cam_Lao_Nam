@@ -126,6 +126,16 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Damn, something serious is happening. Give 'em hell!", "answer"]
 		]
 	],
+	["takingCommand",
+		[
+			[0,"I'm in command now!", "answer"]
+		]
+	],
+	["takingCommandScout",
+		[
+			[0,"I command now!", "answer"]
+		]
+	],
 	["question1",
 		[
 			[0,"Could this be a trap?", "question"],

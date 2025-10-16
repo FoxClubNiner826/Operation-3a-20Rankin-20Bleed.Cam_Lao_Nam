@@ -2,6 +2,10 @@ TO DO UP NEXT:
 
 write a script that looks for AI leaders on mission start and then gives the leader to a human.
 
+let players choose to be the AI leader with the map easle at the arsenal.
+
+- in diary.sqf have the parent folder say OP: Rankin Bleed. that opens mission options and field manual.
+
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
 - mercinko should have no questions left. but the way its scripted looks like they still will be there.

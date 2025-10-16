@@ -118,6 +118,15 @@ Above: Ho Chi Minh Trail flows through Laos and Cambodia into South Vietnam.
 
 player createDiarySubject ["Historical","Field Manual"];
 
+player createDiarySubject ["Parameters","Mission Options"];
+
+player createDiaryRecord ["Parameters", ["Mission Options", 
+"<br/>Mission Options:<br/><br/>
+
+Multiplayer only: You can change who is the group leader (who controls the AI) by interacting with the map stand next to the arsenal.<br/><br/>
+
+" ]];
+
 player createDiaryRecord ["Historical", ["Phu Quoc Prison", 
 "<br/>Phu Quoc POW camp, known as Phu Quoc Prison or Coconut Tree Prison, was the largest POW camp in South Vietnam during the Vietnam War. 
 Located on Phu Quoc Island in the Gulf of Thailand, the camp housed tens of thousands of North Vietnamese soldiers and Viet Cong fighters under 
