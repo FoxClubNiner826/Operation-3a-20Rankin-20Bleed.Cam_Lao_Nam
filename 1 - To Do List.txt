@@ -1,10 +1,15 @@
 TO DO UP NEXT:
 
 write a script that looks for AI leaders on mission start and then gives the leader to a human.
+    - check for a on player connected EH. If not its not a big deal since players can use the map board to change leader.
 
 let players choose to be the AI leader with the map easle at the arsenal.
+    - A situation can occure if players choose to take AI with them. If the leader leaves then the AI will take that players spot.
+        This means that the AI is the leader and that no one can control them. The leader changed EH that I have designed to fix when
+        AI takes over only works if no AI is taken. In that case the unit no longer exists so the leader must be changed, so the EH fires then.
+        - I am using a player disconnected EH to check if the leader of the group is AI then I will assign a leader to a human.
+            - The condition is not resolving. Try adding a sleep before the if statement. Consider removing the if Statement.
 
-- in diary.sqf have the parent folder say OP: Rankin Bleed. that opens mission options and field manual.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.

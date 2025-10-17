@@ -87,12 +87,17 @@ player addEventHandler ["Killed", {
 //                                              //
 //////////////////////////////////////////////////
 
+private _conditionLeader = {
+    player != leader playerGroup
+};
+
 map addAction [
     "<t color='#FFFF00'>Take command of AI</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
     
-    playergroup selectLeader _caller;
+    //playergroup selectLeader _caller;
+    [playergroup, _caller] remoteExec ["selectLeader", 0];
 
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["takingCommand", "takingCommandScout"] select (_caller == _scout); 
@@ -106,7 +111,7 @@ map addAction [
     false, 
     true, 
     "", 
-    "", 
+    toString _conditionLeader, 
 	4 
 ];
 
