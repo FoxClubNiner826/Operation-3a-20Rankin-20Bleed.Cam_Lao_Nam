@@ -370,7 +370,7 @@ while {true} do {
                     ]] remoteExec ["systemChat", 0];
 
                     // Log to RPT
-                    diag_log format ["[LeaderChange] %1 (%2) was given command of %3. Leadership reassigned to %4 (%5) (index %6).",
+                    diag_log format ["[LeaderChange] %1 (%2) was given command of %3. Leadership has been reassigned to %4 (%5) (index %6).",
                         _aiName,
                         _aiRole,
                         groupId _group,
@@ -397,6 +397,7 @@ while {true} do {
     }];
 };
 
+
 ////////////////////////////////////////////////////
 //                                                //
 //  MAKES HUMAN LEADER IF LEADER DISCONNECTS      //
@@ -405,13 +406,13 @@ while {true} do {
 
 addMissionEventHandler ["PlayerDisconnected", {
 	params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
-["A player has left"] remoteExec ["systemChat", 0];
 
+[] spawn {
+    sleep 1;
     if (!isPlayer (leader playerGroup)) then {
-["AI is the leader"] remoteExec ["systemChat", 0];
 private _group = playergroup;
-        private _aiName = name _newLeader;
-        private _aiRole = getText (configFile >> "CfgVehicles" >> typeOf _newLeader >> "displayName");
+        private _aiName = name leader playerGroup;
+        private _aiRole = getText (configFile >> "CfgVehicles" >> typeOf leader playerGroup >> "displayName");
 
         private _humans = (units _group) select { isPlayer _x };
 
@@ -433,7 +434,7 @@ private _group = playergroup;
                 [_group, _firstHuman] remoteExec ["selectLeader", 0, true];
 
                 // Broadcast systemChat
-                [format["%1 (%2) was given command of %3. Leadership has been reassigned to %4 (%5) (index %6).",
+                [format["%1 (%2) was the leader and has disconnected. Leadership has been reassigned to %4 (%5) (index %6).",
                     _aiName,
                     _aiRole,
                     groupId _group,
@@ -443,7 +444,7 @@ private _group = playergroup;
                 ]] remoteExec ["systemChat", 0];
 
                 // Log to RPT
-                diag_log format ["[LeaderChange] %1 (%2) was given command of %3. Leadership reassigned to %4 (%5) (index %6).",
+                diag_log format ["[LeaderChange] %1 (%2) was the leader and has disconnected. Leadership has been reassigned to %4 (%5) (index %6).",
                     _aiName,
                     _aiRole,
                     groupId _group,
@@ -467,4 +468,75 @@ private _group = playergroup;
             ];
         };
     };
+};
 }];
+
+
+////////////////////////////////////////////////////
+//                                                //
+//  MAKES HUMAN LEADER IF AI IS LEADER AT START   //
+//                                                //
+////////////////////////////////////////////////////
+
+[] spawn {
+    sleep 1;
+    if (!isPlayer (leader playerGroup)) then {
+private _group = playergroup;
+        private _aiName = name leader playerGroup;
+        private _aiRole = getText (configFile >> "CfgVehicles" >> typeOf leader playerGroup >> "displayName");
+
+        private _humans = (units _group) select { isPlayer _x };
+
+        if (_humans isNotEqualTo []) then {
+
+            private _orderedUnits = units _group;
+            private _firstHuman = objNull;
+
+            {
+                if (_x in _humans) exitWith { _firstHuman = _x; };
+            } forEach _orderedUnits;
+
+            if (!isNull _firstHuman) then {
+
+                private _humanName = name _firstHuman;
+                private _humanRole = getText (configFile >> "CfgVehicles" >> typeOf _firstHuman >> "displayName");
+
+                // Assign human as leader
+                [_group, _firstHuman] remoteExec ["selectLeader", 0, true];
+
+                // Broadcast systemChat
+                [format["%1 (%2) (AI) was the leader. Leadership has been reassigned to %4 (%5) (index %6).",
+                    _aiName,
+                    _aiRole,
+                    groupId _group,
+                    _humanName,
+                    _humanRole,
+                    _orderedUnits find _firstHuman
+                ]] remoteExec ["systemChat", 0];
+
+                // Log to RPT
+                diag_log format ["[LeaderChange] %1 (%2) (AI) was the leader. Leadership has been reassigned to %4 (%5) (index %6).",
+                    _aiName,
+                    _aiRole,
+                    groupId _group,
+                    _humanName,
+                    _humanRole,
+                    _orderedUnits find _firstHuman
+                ];
+            };
+
+        } else {
+            [format["No human players available. %1 (%2) is now the leader of %3.",
+                _aiName,
+                _aiRole,
+                groupId _group
+            ]] remoteExec ["systemChat", 0];
+
+            diag_log format ["[LeaderChange] No human players available. %1 (%2) is now the leader of %3.",
+                _aiName,
+                _aiRole,
+                groupId _group
+            ];
+        };
+    };
+};

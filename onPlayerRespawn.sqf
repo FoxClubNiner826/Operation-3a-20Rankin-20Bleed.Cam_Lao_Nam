@@ -329,7 +329,7 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 
 [
 	player,
-	"<t color='#FFFF00'>Confirm Smoke Color (Bird Cleared to Land)</t>",
+	"<t color='#FFFF00'>Confirm Smoke Color (Ranger Cleared to Land)</t>",
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //idle icon 
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //progress icon
 	"ActionConfirmSmoke", //condition
@@ -365,7 +365,7 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 
 [
 	player,
-	"<t color='#FFFF00'>Confirm LZ (Bird Cleared to Land)</t>",
+	"<t color='#FFFF00'>Confirm LZ (Ranger Cleared to Land)</t>",
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //idle icon 
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //progress icon
 	"denyConfirmSmoke", //condition

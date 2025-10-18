@@ -1,14 +1,11 @@
 TO DO UP NEXT:
 
-write a script that looks for AI leaders on mission start and then gives the leader to a human.
-    - check for a on player connected EH. If not its not a big deal since players can use the map board to change leader.
-
-let players choose to be the AI leader with the map easle at the arsenal.
-    - A situation can occure if players choose to take AI with them. If the leader leaves then the AI will take that players spot.
-        This means that the AI is the leader and that no one can control them. The leader changed EH that I have designed to fix when
-        AI takes over only works if no AI is taken. In that case the unit no longer exists so the leader must be changed, so the EH fires then.
-        - I am using a player disconnected EH to check if the leader of the group is AI then I will assign a leader to a human.
-            - The condition is not resolving. Try adding a sleep before the if statement. Consider removing the if Statement.
+- Design: Change how smoke the LZ task completes, because an edge case could happen where a player is standing outside of the marker
+            but throws the grenade into the LZ correctly but fails the task anyway because they were outside when they threw it.
+            - Currently: checks if the unit is in a marker.
+            - Change to: check if the projectile is x distance away from the LZ.
+                - Used a new EH that checks to see when the smoke is fired and within the area
+    - Now I need to convert the old EH to the new one.
 
 
 DEDICATED SERVER TESTING:
@@ -34,10 +31,6 @@ TO DO MASTER LIST:
     HIGH PRIORITY:
         
     MEDIUM PRIORITY:
-        - Design: Change how smoke the LZ task completes, because an edge case could happen where a player is standing outside of the marker
-            but throws the grenade into the LZ correctly but fails the task anyway because they were outside when they threw it.
-            - Currently: checks if the unit is in a marker.
-            - Change to: check if the projectile is x distance away from the LZ.
         - Add game master slot. I think this is needed for the milsim community and could help promote the mission.
     LOW PRIORITY:
         - NPC polish: Adds to immersion at the cost of much dev time:
@@ -124,7 +117,18 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
-- Design Decision: I will allow AI to be used in MP. I added a EH that will detect if AI is the leader and give it back to players.
+Design Decision: write a script that looks for AI leaders on mission start and then gives the leader to a human.
+    - check for a on player connected EH. If not its not a big deal since players can use the map board to change leader.
+        - modified the script for the leader changed EH an run this at start. works so far.
+Design Decision: let players choose to be the AI leader with the map easle at the arsenal.
+    - A situation can occure if players choose to take AI with them. If the leader leaves then the AI will take that players spot.
+        This means that the AI is the leader and that no one can control them. The leader changed EH that I have designed to fix when
+        AI takes over only works if no AI is taken. In that case the unit no longer exists so the leader must be changed, so the EH fires then.
+        - I am using a player disconnected EH to check if the leader of the group is AI then I will assign a leader to a human.
+            - The condition is not resolving. Try adding a sleep before the if statement. Consider removing the if Statement.
+                - The sleep fixed it. It's like there was a delay where the server though that the leader was a human still even after they
+                    disconnected.
+Design Decision: I will allow AI to be used in MP. I added a EH that will detect if AI is the leader and give it back to players.
 Summary of the group leader mechanic that I've learned so far.
 1. There will always be a group leader whether it is AI or human. If only one person starts the mission in MP, they are the leader.
     - The leader wont change with JIP players.
@@ -137,7 +141,6 @@ Summary of the group leader mechanic that I've learned so far.
     - The order you add units to the leader is the same as the order that appears in the lobby and group bar UI (editor order is alphabetical).
         - When testing with two apps open I can't get the local host to be the leader. I wonder if this would change on a dedicated server.
             - The local host is always the leader unless scout or demo is chosen.
-
 - Design: Using AI in a MP Scenario. First you need to find out if group leader is tossed to AI, another player, or not at all
             upon the death of the group leader. Then take a look at some options. I choose option 2. Maybe I can write a script that looks
             for AI leaders on mission start and then gives the leader to a human.

@@ -1214,10 +1214,115 @@ Marcinko addAction [
 	4
 ];
 
+player addEventHandler ["FiredMan", {
+    params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
 
-/*
-    initPlayerLocal.sqf
-    Sets up Place + Detonate holdActions for food/weapon caches
-    Works in SP & MP, safe for respawn
-*/
+    // Removes EH if task is completed or failed.
+        if (missionNamespace getVariable ["SmokeThrown", false] || missionNamespace getVariable ["smokeFailed", false]) exitWith {
+            _unit removeEventHandler [_thisEvent, _thisEventHandler];
+        };
 
+    // If purple smoke thrown
+    if (_magazine == "vn_m18_purple_mag") then {
+        
+        // Add an Explode handler to the projectile
+        _projectile addEventHandler ["Explode", {
+            params ["_proj", "_pos", "_vel"];
+            
+            // Check if the projectile exploded inside the marker
+            if (_proj inArea "Grenade_Marker") then {
+                systemChat "fired"; 
+            };
+        }];
+    };
+}];
+
+
+
+// Creates EH on mission start.
+if (isNil "SmokeThrown") then {
+    player addEventHandler ["FiredMan", {
+        params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
+
+        // Removes EH if smokeThrown is defined.
+        if (missionNamespace getVariable ["SmokeThrown", false] || missionNamespace getVariable ["smokeFailed", false]) exitWith {
+            _unit removeEventHandler [_thisEvent, _thisEventHandler];
+        };
+
+        // Handle each type of smoke grenade
+        if ("vn_m18_purple_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
+            [_projectile] spawn {
+                params ["_thrownSmoke"];
+                waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
+                if !(_thrownSmoke inArea "Grenade_Marker") exitWith {};
+                _smokeEmitter = "SmokeShellPurple_Infinite" createVehicle getPos _thrownSmoke;
+            };
+            missionNamespace setVariable ["SmokeThrown", true, true];
+            [] spawn {
+                sleep 20;
+				["smokegrape", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+                missionNamespace setVariable ["ActionConfirmSmoke", true, true];
+            };
+        };
+
+        if ("vn_m18_red_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
+            [_projectile] spawn {
+                params ["_thrownSmoke"];
+                waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
+                if !(_thrownSmoke inArea "Grenade_Marker") exitWith {};
+                _smokeEmitter = "SmokeShellRed_Infinite" createVehicle getPos _thrownSmoke;
+            };
+            missionNamespace setVariable ["SmokeThrown", true, true];
+            [] spawn {
+                sleep 20;
+                ["smokecherry", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+                missionNamespace setVariable ["ActionConfirmSmoke", true, true];
+            };
+        };
+
+        if ("vn_m18_yellow_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
+            [_projectile] spawn {
+                params ["_thrownSmoke"];
+                waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
+                if !(_thrownSmoke inArea "Grenade_Marker") exitWith {};
+                _smokeEmitter = "SmokeShellYellow_Infinite" createVehicle getPos _thrownSmoke;
+            };
+            missionNamespace setVariable ["SmokeThrown", true, true];
+            [] spawn {
+                sleep 20;
+                ["smokelemon", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+                missionNamespace setVariable ["ActionConfirmSmoke", true, true];
+            };
+        };
+
+        if ("vn_m18_green_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
+            [_projectile] spawn {
+                params ["_thrownSmoke"];
+                waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
+                if !(_thrownSmoke inArea "Grenade_Marker") exitWith {};
+                _smokeEmitter = "SmokeShellGreen_Infinite" createVehicle getPos _thrownSmoke;
+            };
+            missionNamespace setVariable ["SmokeThrown", true, true];
+            [] spawn {
+                sleep 20;
+                ["smokelime", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+                missionNamespace setVariable ["ActionConfirmSmoke", true, true];
+            };
+        };
+
+        if ("vn_m18_white_mag" in _magazine && _unit inArea "Grenade_Marker" && missionNamespace getVariable ["ExtractConvo", false]) then {
+            [_projectile] spawn {
+                params ["_thrownSmoke"];
+                waitUntil {uiSleep 1; abs (speed _thrownSmoke) == 0};
+                if !(_thrownSmoke inArea "Grenade_Marker") exitWith {};
+                _smokeEmitter = "SmokeShell_Infinite" createVehicle getPos _thrownSmoke;
+            };
+            missionNamespace setVariable ["SmokeThrown", true, true];
+            [] spawn {
+                sleep 20;
+                ["smokecream", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+				missionNamespace setVariable ["ActionConfirmSmoke", true, true];
+            };
+        };
+    }];
+};
