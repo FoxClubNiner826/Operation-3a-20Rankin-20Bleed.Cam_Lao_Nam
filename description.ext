@@ -94,38 +94,6 @@ class CfgIdentities
     };
 }; 
 
-class CfgSentences
-{
-	class StagingArea
-	{
-		class MarcinkoLines
-		{
-			file = "kb\Marcinko.bikb";
-            #include "kb\Marcinko.bikb"
-		};
-		class PlayerQuestions
-		{
-			file = "kb\PlayerQuestions.bikb";
-            #include "kb\PlayerQuestions.bikb"
-		};
-		class MPBanter
-		{
-			file = "kb\MPBanter.bikb";
-            #include "kb\MPBanter.bikb"
-		};
-		class MPBanter2
-		{
-			file = "kb\MPBanter2.bikb";
-            #include "kb\MPBanter2.bikb"
-		};
-		class MPBanter3
-		{
-			file = "kb\MPBanter3.bikb";
-            #include "kb\MPBanter3.bikb"
-		};
-	};
-};
-
 class CfgDebriefing
 {
     class 10
