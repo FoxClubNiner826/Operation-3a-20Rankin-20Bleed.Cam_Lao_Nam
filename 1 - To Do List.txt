@@ -1,12 +1,6 @@
 TO DO UP NEXT:
 
-- Design: Change how smoke the LZ task completes, because an edge case could happen where a player is standing outside of the marker
-            but throws the grenade into the LZ correctly but fails the task anyway because they were outside when they threw it.
-            - Currently: checks if the unit is in a marker.
-            - Change to: check if the projectile is x distance away from the LZ.
-                - Used a new EH that checks to see when the smoke is fired and within the area
-    - Now I need to convert the old EH to the new one.
-
+- Add game master slot. I think this is needed for the milsim community and could help promote the mission.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -31,7 +25,7 @@ TO DO MASTER LIST:
     HIGH PRIORITY:
         
     MEDIUM PRIORITY:
-        - Add game master slot. I think this is needed for the milsim community and could help promote the mission.
+    
     LOW PRIORITY:
         - NPC polish: Adds to immersion at the cost of much dev time:
             - have npc walk to end of pier and salute as boat drives away.
@@ -117,6 +111,17 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Fixed: on singleplayer death, infinite switching to player leadership.
+    - Added a condition to the code to only run in Multiplayer
+Rework: Change how smoke the LZ task completes, because an edge case could happen where a player is standing outside of the marker
+            but throws the grenade into the LZ correctly but fails the task anyway because they were outside when they threw it.
+            - Currently: checks if the unit is in a marker.
+            - Change to: check if the projectile is in the marker area.
+                - Use a new EH that checks to see when the smoke is fired and within the area
+    - Now I need to convert the old EH to the new one.
+        - Explored the hitSurface EH. It won't work with grenades.
+        - Converted to new EH which is a combo of FiredMan and Explode. This works better because it tracks to make sure the smoke is in
+            the LZ.
 Design Decision: write a script that looks for AI leaders on mission start and then gives the leader to a human.
     - check for a on player connected EH. If not its not a big deal since players can use the map board to change leader.
         - modified the script for the leader changed EH an run this at start. works so far.

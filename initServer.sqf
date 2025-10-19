@@ -321,6 +321,7 @@ while {true} do {
 };
 
 
+if (isMultiplayer) then {
 ////////////////////////////////////////////////////
 //                                                //
 //  MAKES HUMAN LEADER IF LEADER IS CHAGED TO AI  //
@@ -540,3 +541,5 @@ private _group = playergroup;
         };
     };
 };
+};
+

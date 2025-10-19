@@ -1149,7 +1149,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokeglime",
+	["smokelime",
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
