@@ -298,12 +298,16 @@ Marcinko addAction [
 //                                              //
 //////////////////////////////////////////////////
 
+private _conditionInfil = {
+    isNil "skipToInfil" && (((allPlayers select { !(side _x isEqualTo sideLogic) }) - (crew ptboat)) isEqualTo [])
+};
+
 [
 	ptboat,
 	"<t color='#FFFF00'>Skip to the Infiltration Point</t>",
 	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
 	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
-	"isNil 'skipToInfil' && (allPlayers - crew ptboat) isEqualTo []", //condition, use this for any player in boat in the init field _this in (crew _target)
+	toString _conditionInfil, //condition, use this for any player in boat in the init field _this in (crew _target)
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick

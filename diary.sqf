@@ -121,10 +121,8 @@ player createDiarySubject ["Historical","Field Manual"];
 player createDiarySubject ["Parameters","Mission Options"];
 
 player createDiaryRecord ["Parameters", ["Mission Options", 
-"<br/>Mission Options:<br/><br/>
-
-Multiplayer only: You can change who is the group leader (who controls the AI) by interacting with the map stand next to the arsenal.<br/><br/>
-
+"<br/>1. You can change who is the group leader (who controls the AI) by interacting with the map stand next to the arsenal. (Multiplayer Only)<br/><br/>
+2. Zeus (Game Master) is availble in singleplayer and multiplayer. In multiplayer you can access it by selecting the virtual entity slot in the lobby or by logging in as a server admin.
 " ]];
 
 player createDiaryRecord ["Historical", ["Phu Quoc Prison", 

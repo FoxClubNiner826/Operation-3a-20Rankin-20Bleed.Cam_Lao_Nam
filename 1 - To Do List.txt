@@ -1,6 +1,32 @@
 TO DO UP NEXT:
 
 - Add game master slot. I think this is needed for the milsim community and could help promote the mission.
+    - I think that some communities would prefer a controlable unit so they can talk to players with teamspeak acre or tfar.
+        I will still add a virtual one because its easy and maybe others will prefer it.
+        - If you do a playable unit, civilian would probably be the least to interfear with code, but you would still have to filter
+            it out on some conditions.
+    - How to add a virtual entity zeus slot on the lobby screen for multiplayer.
+        - place virtual zeus. systems > logic entities > zeus
+            - give it a variable name, check box playable, write role description.
+        - place game master module. systems > modules > zeus > game master
+            - in owner field write the variable name of virtual zeus, check box, forced interface.
+    - Zeus behavior
+        - Can have admin logged and virtual entity zeus at the same time
+        - logic entity counts as a player (allplayers, isplayer, etc)
+        - logic entity zeus is not attached to the camera, therefore zeus can enter trigger areas with condition: any player present
+            without it triggering and messing up the mission.
+
+- Do a quick pass and see how much code this will break.
+    - search triggers in editor (93 triggers)
+        - current trigger: Removes "Skip to Infill". Starts convo. Silences Marcinko. Deletes triggers.
+        - modified triggers:
+            - Completes task "Get in STAB".
+
+    - control f allplayers and isplayer in the .sqf's (nothing obvious stands out). Also search all action conditions.
+        initPlayerLocal - allplayers/isplayer (no issue),
+        onplayerrespawn - allplayers/isplayer (no issue),
+        init - allplayers/isplayer (no issue),
+        initserver - might not be an issue unless arma gives leader of group to zeus virtual entity.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -111,6 +137,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Polish: add player note under mission options that zeus is available in singleplayer, adminlogged, and virtual
 Fixed: on singleplayer death, infinite switching to player leadership.
     - Added a condition to the code to only run in Multiplayer
 Rework: Change how smoke the LZ task completes, because an edge case could happen where a player is standing outside of the marker

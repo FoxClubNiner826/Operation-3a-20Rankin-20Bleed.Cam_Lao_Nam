@@ -1252,11 +1252,4 @@ if (alive _randomUnitInGroup && _randomUnitInGroup == scout) then {
     ]
 };
 
-if (get variable) then {
-    sleep 5;
-    // code
-} else {
-    // same code minus the sleep
-};
-
-if (true) then {1} else {2};
+isNil 'skipToInfil' && (allPlayers - crew ptboat) isEqualTo []
