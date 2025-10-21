@@ -1,11 +1,16 @@
 TO DO UP NEXT:
+ 
+- NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
+    - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
+    - have the staging area be busier when players get back to simulate time of day change
+        - add some troops doing pt
+        - add a civilian cycle patrol
+        - add a mechanic working on the truck
+    - have pilots, pow, downed pilot exit heli at missons end
+    - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
+    - fill out the prison with prisoners, equipment etc and put hide on it until extract
 
-- NPC polish: Adds to immersion at the cost of much dev time:
-            - have npc walk to end of pier and salute as boat drives away.
-            - have npcs welcome you back at mission end
-            - have pilots, pow, downed pilot exit heli at missons end
-            - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
-            - fill out the prison with prisoners, equipment etc and put hide on it until extract
+deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.

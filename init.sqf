@@ -195,8 +195,20 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["question9",
 		[
-			[0,"New faces, same jungle. Maybe this time we all come back.", "question"],
+			[0,"New soldier but same jungle. Maybe this time all come back.", "question"],
 			[1,"You've been vetted Thay, we're glad to have you.", "answer"]
+		]
+	],
+	["salute",
+		[
+			[0, "You know the drill. In and out, quiet and quick. Good luck boys.", "answer"],
+			[1, "Luck’s for the green, Captain. We’ve got training.", "answer"]
+		]
+	],
+	["saluteScout",
+		[
+			[0, "You know the drill. In and out, quiet and quick. Good luck boys.", "answer"],
+			[1, "I know jugle boss, I am hunter.", "answer"]
 		]
 	],
 	["looksharp1",
