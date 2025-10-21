@@ -88,7 +88,7 @@ player addEventHandler ["Killed", {
 //////////////////////////////////////////////////
 
 private _conditionLeader = {
-    player != leader playerGroup
+    ( player in units playerGroup && player != leader playerGroup )
 };
 
 map addAction [
@@ -136,7 +136,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && ActionTalkToMarcinko1 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
+    "!(_this in [scout]) && ActionTalkToMarcinko1 && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && (player in units playerGroup)", //makes action available: ActionTalkToMarcinko1 && AllowActionTalk
 	4 //radius of addadction
 ];
 
@@ -160,7 +160,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && ActionTalkToMarcinko2 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
+    "!(_this in [scout]) && ActionTalkToMarcinko2 && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && (player in units playerGroup)", 
 	4 
 ];
 
@@ -178,7 +178,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && ActionTalkToMarcinko3 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
+    "!(_this in [scout]) && ActionTalkToMarcinko3 && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && (player in units playerGroup)",
 	4
 ];
 
@@ -196,7 +196,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && ActionTalkToMarcinko4 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
+    "!(_this in [scout]) && ActionTalkToMarcinko4 && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && (player in units playerGroup)",
 	4
 ];
 
@@ -214,7 +214,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && ActionTalkToMarcinko5 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
+    "!(_this in [scout]) && ActionTalkToMarcinko5 && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && (player in units playerGroup)", 
 	4 
 ];
 
@@ -232,7 +232,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && ActionTalkToMarcinko6 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
+    "!(_this in [scout]) && ActionTalkToMarcinko6 && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && (player in units playerGroup)",
 	4
 ];
 
@@ -250,7 +250,7 @@ Marcinko addAction [
     false, 
     true, 
     "", 
-    "!(_this in [scout]) && ActionTalkToMarcinko7 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])", 
+    "!(_this in [scout]) && ActionTalkToMarcinko7 && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && (player in units playerGroup)", 
 	4 
 ];
 
@@ -268,7 +268,7 @@ scout addAction [
     false, 
     true, 
     "", 
-    "_target != _this && ActionTalkToCarson && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
+    "_target != _this && ActionTalkToCarson && !(_originalTarget getVariable ['foxclub_var_isTalking',false]) && (player in units playerGroup)",
 	4
 ];
 
@@ -299,7 +299,8 @@ Marcinko addAction [
 //////////////////////////////////////////////////
 
 private _conditionInfil = {
-    isNil "skipToInfil" && (((allPlayers select { !(side _x isEqualTo sideLogic) }) - (crew ptboat)) isEqualTo [])
+    isNil "skipToInfil" && 
+	((units playerGroup findIf { isPlayer _x && !(_x in crew ptboat) }) == -1)
 };
 
 [
@@ -780,7 +781,7 @@ pilot addAction [
     false, 
     true, 
     "", 
-    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot2", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot2 && (player in units playerGroup)", 
 	4 
 ];
 
@@ -801,7 +802,7 @@ pilot addAction [
     false, 
     true, 
     "", 
-    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot3", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot3 && (player in units playerGroup)", 
 	4 
 ];
 
@@ -822,7 +823,7 @@ pilot addAction [
     false, 
     true, 
     "", 
-    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot4", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPilot4 && (player in units playerGroup)", 
 	4 
 ];
 
@@ -850,7 +851,7 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW1", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW1 && (player in units playerGroup)", 
 	4 
 ];
 
@@ -871,7 +872,7 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW2", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW2 && (player in units playerGroup)", 
 	4 
 ];
 
@@ -892,7 +893,7 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW3", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW3 && (player in units playerGroup)", 
 	4 
 ];
 
@@ -913,7 +914,7 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW4", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW4 && (player in units playerGroup)", 
 	4 
 ];
 
@@ -934,7 +935,7 @@ pow addAction [
     false, 
     true, 
     "", 
-    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW5", 
+    "!(_originalTarget getVariable ['foxclub_var_isTalking',false]) && ActionTalkToPOW5 && (player in units playerGroup)", 
 	4 
 ];
 
@@ -1253,6 +1254,6 @@ Marcinko addAction [
     false,
     true,
     "",
-    "ActionDebrief", //ActionDebrief
+    "ActionDebrief && (player in units playerGroup)", //ActionDebrief
 	4
 ];

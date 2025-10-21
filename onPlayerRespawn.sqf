@@ -16,7 +16,7 @@
 	"<t color='#FFFF00'>Radio Headquarters</t>",
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //idle icon 
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //progress icon
-	"ActionCallHQ", //condition
+	"ActionCallHQ && (player in units playerGroup)", //condition
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick
@@ -289,7 +289,7 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 	"<t color='#FFFF00'>Radio for Extraction</t>",
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //idle icon 
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //progress icon
-	"ExtractAction", //condition
+	"ExtractAction && (player in units playerGroup)", //condition
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick
@@ -332,7 +332,7 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 	"<t color='#FFFF00'>Confirm Smoke Color (Ranger Cleared to Land)</t>",
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //idle icon 
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //progress icon
-	"ActionConfirmSmoke", //condition
+	"ActionConfirmSmoke && (player in units playerGroup)", //condition
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick
@@ -368,7 +368,7 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 	"<t color='#FFFF00'>Confirm LZ (Ranger Cleared to Land)</t>",
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //idle icon 
 	"a3\missions_f_oldman\data\img\holdactions\holdaction_talk_ca.paa", //progress icon
-	"denyConfirmSmoke", //condition
+	"denyConfirmSmoke && (player in units playerGroup)", //condition
 	"true", //condition progress
 	{}, //code on start
 	{}, // code every tick

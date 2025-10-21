@@ -1,32 +1,11 @@
 TO DO UP NEXT:
 
-- Add game master slot. I think this is needed for the milsim community and could help promote the mission.
-    - I think that some communities would prefer a controlable unit so they can talk to players with teamspeak acre or tfar.
-        I will still add a virtual one because its easy and maybe others will prefer it.
-        - If you do a playable unit, civilian would probably be the least to interfear with code, but you would still have to filter
-            it out on some conditions.
-    - How to add a virtual entity zeus slot on the lobby screen for multiplayer.
-        - place virtual zeus. systems > logic entities > zeus
-            - give it a variable name, check box playable, write role description.
-        - place game master module. systems > modules > zeus > game master
-            - in owner field write the variable name of virtual zeus, check box, forced interface.
-    - Zeus behavior
-        - Can have admin logged and virtual entity zeus at the same time
-        - logic entity counts as a player (allplayers, isplayer, etc)
-        - logic entity zeus is not attached to the camera, therefore zeus can enter trigger areas with condition: any player present
-            without it triggering and messing up the mission.
-
-- Do a quick pass and see how much code this will break.
-    - search triggers in editor (93 triggers)
-        - current trigger: Removes "Skip to Infill". Starts convo. Silences Marcinko. Deletes triggers.
-        - modified triggers:
-            - Completes task "Get in STAB".
-
-    - control f allplayers and isplayer in the .sqf's (nothing obvious stands out). Also search all action conditions.
-        initPlayerLocal - allplayers/isplayer (no issue),
-        onplayerrespawn - allplayers/isplayer (no issue),
-        init - allplayers/isplayer (no issue),
-        initserver - might not be an issue unless arma gives leader of group to zeus virtual entity.
+- NPC polish: Adds to immersion at the cost of much dev time:
+            - have npc walk to end of pier and salute as boat drives away.
+            - have npcs welcome you back at mission end
+            - have pilots, pow, downed pilot exit heli at missons end
+            - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
+            - fill out the prison with prisoners, equipment etc and put hide on it until extract
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -53,13 +32,8 @@ TO DO MASTER LIST:
     MEDIUM PRIORITY:
     
     LOW PRIORITY:
-        - NPC polish: Adds to immersion at the cost of much dev time:
-            - have npc walk to end of pier and salute as boat drives away.
-            - have npcs welcome you back at mission end
-            - have pilots, pow, downed pilot exit heli at missons end
-            - BIS_fnc_ambientAnimCombat and another function that does idle stuff in start area.
-            - fill out the prison with prisoners, equipment etc and put hide on it until extract
         - Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
+            - maybe in the function add a variable that will exit with that turns it off. though that would block everything.
         - Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
             - i added a failure state for proceed to infil spot
             - I decided to not have performance ratings for players but I like the flavor text
@@ -68,6 +42,7 @@ TO DO MASTER LIST:
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
         - Entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
             learn the program and workflow)
+        - polish: remove unused actions for performance.
         - Adjustments to arsenal, inventories, and unit classes to match decription (RTO, medic, etc). I think that the variable name might 
             also show up in the U menu when switching units in singleplayer.
         - Record voice actors (literally the last thing you do), gives plenty of time to refine dialog.
@@ -137,6 +112,36 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Design Decision: Add game master slot. I think this is needed for the milsim community and could help promote the mission for multiplayer. Right now I've only added 
+    a virtual slot because it's cleaner and will result in less bugs. I did however write new condition code that should allow me to 
+    add a playable zeus in the future (Make it a civilian and it's own group) to help prevent bugs.
+    - I think that some communities would prefer a controlable unit so they can talk to players with teamspeak acre or tfar.
+    - How to add a virtual entity zeus slot on the lobby screen for multiplayer.
+        - place virtual zeus. systems > logic entities > zeus
+            - give it a variable name, check box playable, write role description.
+        - place game master module. systems > modules > zeus > game master
+            - in owner field write the variable name of virtual zeus, check box, forced interface.
+    - Zeus behavior
+        - Can have admin logged and virtual entity zeus at the same time
+        - logic entity counts as a player (allplayers, isplayer, etc)
+        - logic entity zeus is not attached to the camera, therefore zeus can enter trigger areas with condition: any player present
+            without it triggering and messing up the mission.
+    - Do a quick pass and see how much code this will break. (Turns out not much, that's obvious anyways)
+        - search triggers in editor (93 triggers)
+            - current trigger: all triggers checked for entity or play zeus issues and there are no more obvious issues.
+            - modified triggers:
+                - Completes task "Get in STAB".
+        - control f allplayers and isplayer in the .sqf's (nothing obvious stands out). Also search all action conditions.
+            initPlayerLocal - allplayers/isplayer (no issue),
+                - modified conditions:
+                    - skip to infil - made sure all players in playergroup in the boat
+                    - take control of leader - made sure player has to be in playergroup
+                    - all convo addaction - made sure player has to be in playergroup
+            onplayerrespawn - allplayers/isplayer (no issue), added condition to holdactions that are attached to players only 
+                and left the others.
+            init - allplayers/isplayer (no issue), no conditions to check
+            initserver - might not be an issue unless arma gives leader of group to zeus virtual entity.
+                - no actions in here, nothing to modify
 Polish: add player note under mission options that zeus is available in singleplayer, adminlogged, and virtual
 Fixed: on singleplayer death, infinite switching to player leadership.
     - Added a condition to the code to only run in Multiplayer
