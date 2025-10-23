@@ -1,18 +1,27 @@
 TO DO UP NEXT:
- 
+// for the prison convo trigger
+this &&  
+extractheli in thislist
+
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
     - Completed: fill out the prison with prisoners, equipment etc and put hide on it until extract prison convo.
         - Turned off simulation on the props and enabled dynamic simulation for units in area.
     - have the staging area be busier when players get back to simulate time of day change
-        - add some troops doing pt
-            - found some with polpox viewer. just need to do an EH so they continue the loop
+        Completed: add some troops doing pt
         Completed: add a civilian cycle patrol
         Completed: add a military cycle patrol
         Completed: add mechanics working on the truck
+        - add some troops lounging in the beach chairs and sitting on the ground.
     - have pilots, pow, downed pilot exit heli at missons end
 
-deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
+- deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
+Arma ideas
+1. Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. Then in the function itself you can have the playmove and then animation name and also a cancel animation. Maybe mirror how say3d works in the function. Should be the same.
+2. Change the distance on the remoteexec for the starting banter back to normal. If it's overcrowded with subtitles in play testing then delete the custom chat index. That way the sound still plays but not the custom chat.
+3. There might be a way to exit with the function if a variable is true. That would turn all dialog off. I wonder if there could be an index that could be passed that would allow me to define if the dialog is mandatory or optional.
+I could pass the index and have an exit with fire based on the variable sent. Default could be mandatory and instead just one variable would modify it to be optional.
+4. I wonder if that climbing animation could be used to make it look like the pow pulls himself up out of the tunnel.
 
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
