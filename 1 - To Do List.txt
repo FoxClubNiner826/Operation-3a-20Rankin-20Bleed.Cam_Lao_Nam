@@ -2,6 +2,7 @@ TO DO UP NEXT:
 // for the prison convo trigger
 this &&  
 extractheli in thislist
+// set pow back to captive and place all the actors back
 
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.

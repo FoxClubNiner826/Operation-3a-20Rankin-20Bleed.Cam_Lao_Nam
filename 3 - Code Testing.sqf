@@ -1253,3 +1253,32 @@ if (alive _randomUnitInGroup && _randomUnitInGroup == scout) then {
 };
 
 isNil 'skipToInfil' && (allPlayers - crew ptboat) isEqualTo []
+
+
+
+if (pow in extractheli && !(pilot in extractheli)) then {
+    [pow] join ambulanceGroup;
+    pow assignAsCargo ambulance;
+    [pow] orderGetIn true;
+    waituntil {pow in ambulance};
+    missionNamespace setvariable ["ambulanceMove", true, true];
+};
+
+if (pilot in extractheli && !(pow in extractheli)) then {
+    [pilot] join ambulanceGroup;
+    pilot assignAsCargo ambulance;
+    [pilot] orderGetIn true;
+    waituntil {pilot in ambulance};
+    missionNamespace setvariable ["ambulanceMove", true, true];
+};
+
+if (pow in extractheli && pilot in extractheli) then {
+    [pow] join ambulanceGroup;
+    pow assignAsCargo ambulance;
+    [pow] orderGetIn true;
+    [pilot] join ambulanceGroup;
+    pilot assignAsCargo ambulance;
+    [pilot] orderGetIn true;
+    waituntil {pow in ambulance && pilot in ambulance};
+    missionNamespace setvariable ["ambulanceMove", true, true];
+};
