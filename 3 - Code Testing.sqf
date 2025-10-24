@@ -1282,3 +1282,38 @@ if (pow in extractheli && pilot in extractheli) then {
     waituntil {pow in ambulance && pilot in ambulance};
     missionNamespace setvariable ["ambulanceMove", true, true];
 };
+
+
+[7050.49,4301.54,0]
+[7103.78,4238.36,0]
+[7075.68,4182.71,0]
+
+[] spawn {
+//sleep 40;
+extractHeliGroup leaveVehicle extractHeli;
+extractHeliGroup setBehaviourstrong "CARELESS";
+extractHeliGroup setSpeedMode "LIMITED";
+
+extractHeliGroup addWaypoint [[7050.49,4301.54,0], -1, 1];
+extractHeliGroup addWaypoint [[7103.78,4238.36,0], -1, 2];
+extractHeliGroup addWaypoint [[7075.68,4182.71,0], -1, 3];
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 1;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 2;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 3;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 3;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 3;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 3;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 3;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 3;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+sleep 3;
+extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+};

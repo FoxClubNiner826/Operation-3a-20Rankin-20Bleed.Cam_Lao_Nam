@@ -2,7 +2,9 @@ TO DO UP NEXT:
 // for the prison convo trigger
 this &&  
 extractheli in thislist
-// set pow back to captive and place all the actors back
+
+Design: Have the extraction pilots exit the heli after it spins down.
+    - I have most of the code working for this, just need to figure out the waypoints so they walk on the road.
 
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
@@ -14,7 +16,8 @@ extractheli in thislist
         Completed: add a military cycle patrol
         Completed: add mechanics working on the truck
         - add some troops lounging in the beach chairs and sitting on the ground.
-    - have pilots, pow, downed pilot exit heli at missons end
+
+    
 
 - deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
 Arma ideas
@@ -64,6 +67,10 @@ TO DO MASTER LIST:
             also show up in the U menu when switching units in singleplayer.
         - Record voice actors (literally the last thing you do), gives plenty of time to refine dialog.
     
+    POLISH:
+        - When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
+        - Add a convo that tells the pow/pilot that the ambulance is waiting for them.
+
     IDEA GRAVEYARD:
         - Design: Add achievements; Perfect mission, never spotted, rescued NPC. I think this is a neat idea but it will add a bunch of
             scope to a project already struggling to find completion. Reevaluate later if you wish.
@@ -129,6 +136,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Design: Have pow and downed pilot exit heli at base and get in ambulance.
 Design Decision: Add game master slot. I think this is needed for the milsim community and could help promote the mission for multiplayer. Right now I've only added 
     a virtual slot because it's cleaner and will result in less bugs. I did however write new condition code that should allow me to 
     add a playable zeus in the future (Make it a civilian and it's own group) to help prevent bugs.
