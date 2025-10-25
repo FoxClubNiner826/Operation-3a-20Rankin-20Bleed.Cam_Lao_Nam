@@ -1,10 +1,11 @@
 TO DO UP NEXT:
-// for the prison convo trigger
+// for the prison convo trigger, move pow and pilot back. make pow tied up.
 this &&  
 extractheli in thislist
 
 Design: Have the extraction pilots exit the heli after it spins down.
-    - I have most of the code working for this, just need to figure out the waypoints so they walk on the road.
+    - I've got the waypoints working, I just need to redo the waitUntil condition so that it is only waitng for the pilots to exit 
+        and won't care if a player is in it.
 
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
@@ -16,10 +17,10 @@ Design: Have the extraction pilots exit the heli after it spins down.
         Completed: add a military cycle patrol
         Completed: add mechanics working on the truck
         - add some troops lounging in the beach chairs and sitting on the ground.
-
     
 
 - deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
+
 Arma ideas
 1. Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. Then in the function itself you can have the playmove and then animation name and also a cancel animation. Maybe mirror how say3d works in the function. Should be the same.
 2. Change the distance on the remoteexec for the starting banter back to normal. If it's overcrowded with subtitles in play testing then delete the custom chat index. That way the sound still plays but not the custom chat.
@@ -136,7 +137,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
-Design: Have pow and downed pilot exit heli at base and get in ambulance.
+Design: Have pow and downed pilot exit heli at base and get in ambulance. Tested in MP as well.
 Design Decision: Add game master slot. I think this is needed for the milsim community and could help promote the mission for multiplayer. Right now I've only added 
     a virtual slot because it's cleaner and will result in less bugs. I did however write new condition code that should allow me to 
     add a playable zeus in the future (Make it a civilian and it's own group) to help prevent bugs.

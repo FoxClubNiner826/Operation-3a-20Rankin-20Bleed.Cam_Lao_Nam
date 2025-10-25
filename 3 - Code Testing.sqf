@@ -1284,36 +1284,54 @@ if (pow in extractheli && pilot in extractheli) then {
 };
 
 
-[7050.49,4301.54,0]
-[7103.78,4238.36,0]
-[7075.68,4182.71,0]
+[] spawn { 
+ 
+sleep 39; 
+{ 
+ removeHeadgear _x; 
+} forEach units extractHeliGroup; 
+sleep 1; 
+ 
+extractHeliGroup leaveVehicle extractHeli; 
+extractHeliGroup setBehaviourstrong "CARELESS"; 
+extractHeliGroup setSpeedMode "LIMITED"; 
+ 
+waitUntil {(crew extractHeli) isEqualTo []}; 
+sleep 5; 
+ 
+extractHeliGroup addWaypoint [[7062.49,4292.03,0], -1, 4, "FirstRoad"]; 
+[extractHeliGroup, 4] setWaypointType "MOVE"; 
+ 
+extractHeliGroup addWaypoint [[7103.78,4238.36,0], -1, 5, "MiddleRoad"]; 
+[extractHeliGroup, 5] setWaypointType "MOVE"; 
+ 
+extractHeliGroup addWaypoint [[7075.68,4182.71,0], -1, 6, "LastRoad"]; 
+[extractHeliGroup, 6] setWaypointType "MOVE"; 
+  
+};
 
-[] spawn {
-//sleep 40;
-extractHeliGroup leaveVehicle extractHeli;
-extractHeliGroup setBehaviourstrong "CARELESS";
-extractHeliGroup setSpeedMode "LIMITED";
-
-extractHeliGroup addWaypoint [[7050.49,4301.54,0], -1, 1];
-extractHeliGroup addWaypoint [[7103.78,4238.36,0], -1, 2];
-extractHeliGroup addWaypoint [[7075.68,4182.71,0], -1, 3];
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 1;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 2;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 3;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 3;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 3;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 3;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 3;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 3;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
-sleep 3;
-extractHeliGroup setCurrentWaypoint [extractHeliGroup, 1];
+[] spawn { 
+ 
+sleep 39; 
+{ 
+ removeHeadgear _x; 
+} forEach units testGroup; 
+sleep 1; 
+ 
+testGroup leaveVehicle testHeli; 
+testGroup setBehaviourstrong "CARELESS"; 
+testGroup setSpeedMode "LIMITED"; 
+ 
+waitUntil {(crew testHeli) isEqualTo []}; 
+sleep 1; 
+ 
+testGroup addWaypoint [[7062.49,4292.03,0], -1, 1, "FirstRoad"]; 
+[testGroup, 1] setWaypointType "MOVE"; 
+ 
+testGroup addWaypoint [[7103.78,4238.36,0], -1, 2, "MiddleRoad"]; 
+[testGroup, 2] setWaypointType "MOVE"; 
+ 
+testGroup addWaypoint [[7075.68,4182.71,0], -1, 3, "LastRoad"]; 
+[testGroup, 3] setWaypointType "MOVE"; 
+  
 };
