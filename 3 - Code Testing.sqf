@@ -1296,42 +1296,16 @@ extractHeliGroup leaveVehicle extractHeli;
 extractHeliGroup setBehaviourstrong "CARELESS"; 
 extractHeliGroup setSpeedMode "LIMITED"; 
  
-waitUntil {(crew extractHeli) isEqualTo []}; 
-sleep 5; 
+waitUntil {units extractHeliGroup findIf { _x in extractHeli } == -1}; 
+sleep 1; 
  
 extractHeliGroup addWaypoint [[7062.49,4292.03,0], -1, 4, "FirstRoad"]; 
-[extractHeliGroup, 4] setWaypointType "MOVE"; 
+[extractHeliGroup, 4] setWaypointType "MOVE"; //supposedly addwaypoint defaults to move but this is more readable.
  
 extractHeliGroup addWaypoint [[7103.78,4238.36,0], -1, 5, "MiddleRoad"]; 
 [extractHeliGroup, 5] setWaypointType "MOVE"; 
  
 extractHeliGroup addWaypoint [[7075.68,4182.71,0], -1, 6, "LastRoad"]; 
 [extractHeliGroup, 6] setWaypointType "MOVE"; 
-  
-};
-
-[] spawn { 
- 
-sleep 39; 
-{ 
- removeHeadgear _x; 
-} forEach units testGroup; 
-sleep 1; 
- 
-testGroup leaveVehicle testHeli; 
-testGroup setBehaviourstrong "CARELESS"; 
-testGroup setSpeedMode "LIMITED"; 
- 
-waitUntil {(crew testHeli) isEqualTo []}; 
-sleep 1; 
- 
-testGroup addWaypoint [[7062.49,4292.03,0], -1, 1, "FirstRoad"]; 
-[testGroup, 1] setWaypointType "MOVE"; 
- 
-testGroup addWaypoint [[7103.78,4238.36,0], -1, 2, "MiddleRoad"]; 
-[testGroup, 2] setWaypointType "MOVE"; 
- 
-testGroup addWaypoint [[7075.68,4182.71,0], -1, 3, "LastRoad"]; 
-[testGroup, 3] setWaypointType "MOVE"; 
   
 };

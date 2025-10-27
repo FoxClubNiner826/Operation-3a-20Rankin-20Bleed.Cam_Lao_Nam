@@ -1,11 +1,7 @@
 TO DO UP NEXT:
-// for the prison convo trigger, move pow and pilot back. make pow tied up.
+// for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 this &&  
-extractheli in thislist
-
-Design: Have the extraction pilots exit the heli after it spins down.
-    - I've got the waypoints working, I just need to redo the waitUntil condition so that it is only waitng for the pilots to exit 
-        and won't care if a player is in it.
+extractheli in thislist 
 
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
@@ -137,6 +133,8 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Design: Have the extraction pilots exit the heli after it spins down. Tested in MP.
+    - I've got the waypoints working and the new waitUntil condition so that it only fires when all heli crew exits.
 Design: Have pow and downed pilot exit heli at base and get in ambulance. Tested in MP as well.
 Design Decision: Add game master slot. I think this is needed for the milsim community and could help promote the mission for multiplayer. Right now I've only added 
     a virtual slot because it's cleaner and will result in less bugs. I did however write new condition code that should allow me to 
