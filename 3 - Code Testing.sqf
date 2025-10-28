@@ -1309,3 +1309,109 @@ extractHeliGroup addWaypoint [[7075.68,4182.71,0], -1, 6, "LastRoad"];
 [extractHeliGroup, 6] setWaypointType "MOVE"; 
   
 };
+
+// How to make a unit play an idle animation in a chair
+// Okay, I *think* I have an actual workflow now that doesn't take forever.
+// 1. Use Polpox Artwork Mod; so you don't have to do trial and error positioning from the debug console.
+// 2. Copy the sit animation from the animation viewer and play the animation in the editor.
+// 3. Now you can position the unit precisely over the chair as you like.
+// 4. Start the game, open the debug console, and grab some coordinates:
+
+getPos sitUnit4; // get the unit's position in the world
+[situnit4, beachTable] call BIS_fnc_vectorDirAndUpRelative; // get the object rotation axis values.
+
+// 5. Go back to the editor. In `init.sqf`, place your commands and values (place it in a server only trigger leads to more consistant placement):
+
+sitUnit4 switchMove "HubSittingChairUA_idle2"; // play the idle sitting animation
+sitUnit4 setPos [7105.6,4265.25,-0.125195]; // positions the unit over the chair
+situnit4 attachTo [beachTable]; // attach to chair so that engine doesn't move it away (collision issue)
+situnit4 setVectorDirAndUp [[0.895294,-0.12485,0.427622],[-0.418435,0.0936603,0.903405]]; // rotates the unit on the chosen axis values
+
+// 6. Tested in SP and MP, and so far so good.
+
+// Said units
+[sitUnit1, "HubSittingChairUA_move1"] remoteExec ["switchMove", 0];
+sitUnit1 setPos [7106.21,4263.12,-0.130786]; 
+situnit1 attachTo [beachTable];
+situnit1 setVectorDirAndUp [[0.921097,-0.0558925,0.385301],[-0.387132,-0.0263705,0.921647]];
+
+sitUnit1 addEventHandler ["AnimDone", { 
+	params ["_unit", "_anim"];
+
+	if (!alive _unit) exitWith {
+		_unit removeEventHandler [_thisEvent, _thisEventHandler];
+	};
+
+	[_unit, _anim] spawn { 
+		params ["_unit", "_anim"]; 
+		sleep 5; 
+		if (alive _unit) then {
+			[_unit, "HubSittingChairUA_move1"] remoteExec ["switchMove", 0];
+		};   
+	};
+}];
+
+[sitUnit4, "HubSittingChairUC_move1"] remoteExec ["switchMove", 0];
+sitUnit4 setPos [7105.56,4265.2,-0.250104]; 
+sitUnit4 attachTo [beachTable];
+sitUnit4 setVectorDirAndUp [[0.934886,-0.132127,0.329441],[-0.31527,0.117314,0.941723]];
+
+sitUnit4 addEventHandler ["AnimDone", { 
+	params ["_unit", "_anim"]; 
+
+	if (!alive _unit) exitWith {
+		_unit removeEventHandler [_thisEvent, _thisEventHandler];
+	};
+
+	[_unit, _anim] spawn { 
+		params ["_unit", "_anim"]; 
+		sleep 5; 
+		if (alive _unit) then {
+			[_unit, "HubSittingChairUC_move1"] remoteExec ["switchMove", 0];
+		};   
+	}; 
+}];
+
+[sitUnit2, "HubSittingChairB_move1"] remoteExec ["switchMove", 0];
+sitUnit2 setPos [7097.29,4270.65,-0.0696521]; 
+sitUnit2 attachTo [beachTable];
+sitUnit2 setVectorDirAndUp [[0.837171,-0.511276,0.194271],[-0.155992,0.117245,0.980775]];
+
+sitUnit2 addEventHandler ["AnimDone", { 
+	params ["_unit", "_anim"]; 
+
+	if (!alive _unit) exitWith {
+		_unit removeEventHandler [_thisEvent, _thisEventHandler];
+	};
+
+	[_unit, _anim] spawn { 
+		params ["_unit", "_anim"]; 
+		sleep 5; 
+		if (alive _unit) then {
+			[_unit, "HubSittingChairB_move1"] remoteExec ["switchMove", 0];
+		};   
+	}; 
+}];
+
+[sitUnit5, "HubSittingChairA_idle3"] remoteExec ["switchMove", 0];
+sitUnit5 setPos [7117.45,4245.98,-0.17016]; 
+sitUnit5 attachTo [beachTable];
+sitUnit5 setVectorDirAndUp [[0.873453,-0.139163,0.466598],[-0.44218,0.174504,0.879787]];
+
+sitUnit5 addEventHandler ["AnimDone", { 
+	params ["_unit", "_anim"]; 
+
+	if (!alive _unit) exitWith {
+		_unit removeEventHandler [_thisEvent, _thisEventHandler];
+	};
+
+	[_unit, _anim] spawn { 
+		params ["_unit", "_anim"]; 
+		sleep 5; 
+		if (alive _unit) then {
+			[_unit, "HubSittingChairA_idle3"] remoteExec ["switchMove", 0];
+		};   
+	}; 
+}];
+
+
