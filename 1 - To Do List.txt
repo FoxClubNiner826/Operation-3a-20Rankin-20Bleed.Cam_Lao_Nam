@@ -13,6 +13,27 @@ extractheli in thislist
         Completed: add a military cycle patrol
         Completed: add mechanics working on the truck
         - add some troops lounging in the beach chairs and sitting on the ground.
+            - Since it seems to matter where the code is ran, take it out of init.sqf and place it in a server only trigger.
+                First test this way seemed to go well as far as clipping and animation EH wise.
+                    - continue to refine tomorrow.
+
+Okay, I *think* I have an actual workflow now that doesn't take forever.
+1. Use Polpox Artwork Mod; so you don't have to do trial and error positioning from the debug console.
+2. Copy the sit animation from the animation viewer and play the animation in the editor.
+3. Now you can position the unit precisely over the chair as you like.
+4. Start the game, open the debug console, and grab some coordinates:
+```sqf
+getPos sitUnit4; // get the unit's position in the world
+[situnit4, beachTable] call BIS_fnc_vectorDirAndUpRelative; // get the object rotation axis values.
+```
+5. Go back to the editor. In `init.sqf`, place your commands and values:
+```sqf
+sitUnit4 switchMove "HubSittingChairUA_idle2"; // play the idle sitting animation
+sitUnit4 setPos [7105.6,4265.25,-0.125195]; // positions the unit over the chair
+situnit4 attachTo [beachTable]; // attach to chair so that engine doesn't move it away (collision issue)
+situnit4 setVectorDirAndUp [[0.895294,-0.12485,0.427622],[-0.418435,0.0936603,0.903405]]; // rotates the unit on the chosen axis values
+```
+6. Tested in SP and MP, and so far so good.
     
 
 - deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
