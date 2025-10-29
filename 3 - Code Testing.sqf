@@ -1414,4 +1414,21 @@ sitUnit5 addEventHandler ["AnimDone", {
 	}; 
 }];
 
+sitUnit3 playmove "AmovPsitMstpSnonWnonDnon_ground";
+sitUnit3 disableAI "ANIM";
+InBaseMoves_repairVehiclePne
 
+mechanic1 switchMove "InBaseMoves_repairVehiclePne";
+mechanic1 switchMove ["InBaseMoves_repairVehiclePne", 0, 0];
+mechanic1 playMove "InBaseMoves_repairVehiclePne";
+mechanic1 lookAt brokenTruck;
+
+mechanic1 setDir 223.174; mechanic1 setDir 223.174;
+
+mechanic1 setVectorDirAndUp [[-0.757396,-0.652955,0],[0,0,1]];
+
+[[-0.757396,-0.652955,0],[0,0,1]]
+
+[7084.48,4263.34,0.000338554]
+
+Acts_hubTalk_scratchHead1

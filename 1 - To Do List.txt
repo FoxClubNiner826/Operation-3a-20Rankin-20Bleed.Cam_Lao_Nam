@@ -13,7 +13,7 @@ triggerActivated trg_heliRTB;
 this &&
 triggerActivated trg_heliRTB;
 
-Current TASK: testing units in chairs. and unit that sits on beach.
+Current TASK: add mechanics working on the truck
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
     - Completed: fill out the prison with prisoners, equipment etc and put hide on it until extract prison convo.
@@ -23,18 +23,19 @@ Current TASK: testing units in chairs. and unit that sits on beach.
         Completed: add some troops doing pt
         Completed: add a civilian cycle patrol
         Completed: add a military cycle patrol
-        Completed: add mechanics working on the truck
+        - add mechanics working on the truck
+            - I've got the animation looping with the EH pretty good. unit move order placement might need modified.
+                I still need to test this in MP.
         - add some troops lounging in the beach chairs and sitting on the ground.
             - tested in MP and looking good execpt there is an issue with the EH. It fires multiple times so the unit jutters before playing the
-                animaiton.
+                animaiton. Gonna have to DM leopard on this one.
             
     - Get marcinko event working when players return from mission.
         - needs polish, current animaiton look weird without a rifle.
+        - I found a wave animation that might work
     - Have outpost helicopter spin up as players approach
         - placed and needs testing
     - Have 2 cobra fly over players as they walk to marcinko for debrief
-    - have mechanics working on the truck
-        - works okay but the engine is moving them away from the truck because of collision. maybe use the commands from the sitting units
     
 
 - deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
