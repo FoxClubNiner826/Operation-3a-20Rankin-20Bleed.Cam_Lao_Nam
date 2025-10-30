@@ -13,19 +13,16 @@ triggerActivated trg_heliRTB;
 this &&
 triggerActivated trg_heliRTB;
 
-Current TASK: mechanics on truck are added. see what it looks like from the heli in 3rd person. if it looks weird then adjust.
+Current TASK: Have 2 cobra fly over players as they walk to marcinko for debrief
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
     - Completed: fill out the prison with prisoners, equipment etc and put hide on it until extract prison convo.
         - Turned off simulation on the props and enabled dynamic simulation for units in area.
     - have the staging area be busier when players get back to simulate time of day change
-        - the patrols look okay but try to separate the groups so they arent so evenly spaced.
+        Completed: Created some civilian and military NPC patrols to walk the road to make it look alive.
         Completed: add some troops doing pt
-        Completed: add a civilian cycle patrol
-        Completed: add a military cycle patrol
-        - add mechanics working on the truck
-            - I've got the animation looping with the EH pretty good. unit move order placement might need modified.
-                I still need to test this in MP.
+        Completed: add mechanics working on the truck. I added 2 mechanics that cycle between animations. One crosses the street prior to 
+            working on the truck.
         - add some troops lounging in the beach chairs and sitting on the ground.
             - tested in MP and looking good execpt there is an issue with the EH. It fires multiple times so the unit jutters before playing the
                 animaiton. Gonna have to DM leopard on this one.
@@ -33,9 +30,9 @@ Current TASK: mechanics on truck are added. see what it looks like from the heli
     - Get marcinko event working when players return from mission.
         - needs polish, current animaiton look weird without a rifle.
         - I found a wave animation that might work
-    - Have outpost helicopter spin up as players approach
-        - placed and needs testing
+    - Completed: Have outpost helicopter spin up as players approach
     - Have 2 cobra fly over players as they walk to marcinko for debrief
+        - Need to adjust timing to make it roughly 65 seconds after helicopter lands. Audio issue with them spawning at same time. try two triggers.
     
 
 - deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
