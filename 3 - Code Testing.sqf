@@ -1414,21 +1414,90 @@ sitUnit5 addEventHandler ["AnimDone", {
 	}; 
 }];
 
-sitUnit3 playmove "AmovPsitMstpSnonWnonDnon_ground";
-sitUnit3 disableAI "ANIM";
-InBaseMoves_repairVehiclePne
-
-mechanic1 switchMove "InBaseMoves_repairVehiclePne";
-mechanic1 switchMove ["InBaseMoves_repairVehiclePne", 0, 0];
+// mechanic walk across street and starts repair on truck
+mechanic1 setVectorDirAndUp [[-0.757396,-0.652955,0],[0,0,1]];
+mechanic1 switchMove ["InBaseMoves_repairVehiclePne", 0, 0]; 
 mechanic1 playMove "InBaseMoves_repairVehiclePne";
-mechanic1 lookAt brokenTruck;
 
-mechanic1 setDir 223.174; mechanic1 setDir 223.174;
+mechanic1 addEventHandler ["AnimDone", {
+ params ["_unit", "_anim"];
+ systemChat "firedMain";
+ if (_anim == "Acts_hubTalk_scratchHead1") then {
+  _unit switchMove ["InBaseMoves_repairVehiclePne", 0, 0];
+  _unit playMove "InBaseMoves_repairVehiclePne";
+  systemChat "firedProne";
+ };  
+ if (_anim == "InBaseMoves_repairVehiclePne") then {
+  _unit switchMove ["Acts_hubTalk_scratchHead1", 0, 0];
+  _unit playMove "Acts_hubTalk_scratchHead1";
+  systemChat "firedScratch";
+ };
+}];
+
+
+// mechanic 2 works on wheel of truck
+mechanic2 switchMove "InBaseMoves_repairVehicleKnl"; 
+mechanic2 playMove "InBaseMoves_repairVehicleKnl";
+mechanic2 setPos [7082.31,4257.55,0.00253987];
+mechanic2 attachTo [beachTable]; 
+mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
+
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
+
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0];
+mechanic2 setPos [7082.31,4257.55,0.00253987];
+mechanic2 attachTo [beachTable]; 
+mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
+
+
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
+
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0];
+mechanic2 setPos [7082.31,4257.55,0.00253987];
+mechanic2 attachTo [beachTable]; 
+mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
+
+[testUnit, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
+[testUnit, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0];
+testUnit setPos [7082.31,4257.55,0.00253987];
+testUnit attachTo [beachTable]; 
+testUnit setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
+
+
+mechanic2 switchMove "InBaseMoves_repairVehicleKnl"; 
+mechanic2 playMove "InBaseMoves_repairVehicleKnl";
+mechanic2 setPos [7082.31,4257.55,0.00253987];
+mechanic2 attachTo [beachTable]; 
+mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
+
+systemChat "firedScratch";
 
 mechanic1 setVectorDirAndUp [[-0.757396,-0.652955,0],[0,0,1]];
+mechanic1 switchMove ["InBaseMoves_repairVehiclePne", 0, 0]; 
+mechanic1 playMove "InBaseMoves_repairVehiclePne";
 
-[[-0.757396,-0.652955,0],[0,0,1]]
+//
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0]; 
+[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0]; 
+mechanic2 setPos [7082.31,4257.55,0.00253987]; 
+mechanic2 attachTo [beachTable];  
+mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
 
-[7084.48,4263.34,0.000338554]
+mechanic2 addEventHandler ["AnimDone", {
+    params ["_unit", "_anim"];
+    systemChat "firedMain";
 
-Acts_hubTalk_scratchHead1
+    if (_anim == "Acts_hubTalk_scratchHead1") then {
+        systemChat "firedRepair";
+        [_unit, ["InBaseMoves_repairVehicleKnl", 0, 0]] remoteExec ["switchMove", 0]; 
+        [_unit, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0];
+    };  
+    if (_anim == "InBaseMoves_repairVehicleKnl") then {
+        systemChat "firedScratch";
+        [_unit, ["Acts_hubTalk_scratchHead1", 0, 0]] remoteExec ["switchMove", 0]; 
+        [_unit, "Acts_hubTalk_scratchHead1"] remoteExec ["playMove", 0];
+    };
+}];
