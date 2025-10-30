@@ -13,11 +13,16 @@ triggerActivated trg_heliRTB;
 this &&
 triggerActivated trg_heliRTB;
 
-Current TASK: Have 2 cobra fly over players as they walk to marcinko for debrief
+Current TASK:  
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
     - Completed: fill out the prison with prisoners, equipment etc and put hide on it until extract prison convo.
-        - Turned off simulation on the props and enabled dynamic simulation for units in area.
+        - Turned off simulation on the props and enabled dynamic simulation for units in area. The hide module helps with performance!
+            You cannot do a Skip waypoint and unhide module with the same trigger! This is because you have to choose either sync or skip
+            property. You can't have a trigger do both.
+    - Completed: Have outpost helicopter spin up as players approach
+    - Completed: Have 2 cobra fly over players as they walk to marcinko for debrief
+        - Fly over takes about 124 seconds to reach the island.
     - have the staging area be busier when players get back to simulate time of day change
         Completed: Created some civilian and military NPC patrols to walk the road to make it look alive.
         Completed: add some troops doing pt
@@ -25,14 +30,13 @@ Current TASK: Have 2 cobra fly over players as they walk to marcinko for debrief
             working on the truck.
         - add some troops lounging in the beach chairs and sitting on the ground.
             - tested in MP and looking good execpt there is an issue with the EH. It fires multiple times so the unit jutters before playing the
-                animaiton. Gonna have to DM leopard on this one.
-            
+                animaiton. Gonna have to DM leopard on this one. actually retest with animationdone EH cause the mechanic animaition only fires once.
+    - Have a boat leave the dock when players get to the beach.
+        - boats drive weird, post on scripting discord.      
     - Get marcinko event working when players return from mission.
         - needs polish, current animaiton look weird without a rifle.
         - I found a wave animation that might work
-    - Completed: Have outpost helicopter spin up as players approach
-    - Have 2 cobra fly over players as they walk to marcinko for debrief
-        - Need to adjust timing to make it roughly 65 seconds after helicopter lands. Audio issue with them spawning at same time. try two triggers.
+    
     
 
 - deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
@@ -83,6 +87,7 @@ TO DO MASTER LIST:
         - Adjustments to arsenal, inventories, and unit classes to match decription (RTO, medic, etc). I think that the variable name might 
             also show up in the U menu when switching units in singleplayer.
         - Record voice actors (literally the last thing you do), gives plenty of time to refine dialog.
+        - remove all mod dependencies.
     
     POLISH:
         - When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
