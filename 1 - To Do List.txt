@@ -13,7 +13,7 @@ triggerActivated trg_heliRTB;
 this &&
 triggerActivated trg_heliRTB;
 
-Current TASK:  
+Current TASK: continue working on wave animation for marcinko. boot without polpox to test if it can be used.
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
     - Completed: fill out the prison with prisoners, equipment etc and put hide on it until extract prison convo.
@@ -23,16 +23,18 @@ Current TASK:
     - Completed: Have outpost helicopter spin up as players approach
     - Completed: Have 2 cobra fly over players as they walk to marcinko for debrief
         - Fly over takes about 124 seconds to reach the island.
-    - have the staging area be busier when players get back to simulate time of day change
+    - Completed: Have 2 guards at the building with animations
+        - tried to make them switchable animations but couldn't get them to flow without resetting. looked glitchy.
+    - CompletedISH: have the staging area be busier when players get back to simulate time of day change
         Completed: Created some civilian and military NPC patrols to walk the road to make it look alive.
         Completed: add some troops doing pt
         Completed: add mechanics working on the truck. I added 2 mechanics that cycle between animations. One crosses the street prior to 
             working on the truck.
         - add some troops lounging in the beach chairs and sitting on the ground.
             - tested in MP and looking good execpt there is an issue with the EH. It fires multiple times so the unit jutters before playing the
-                animaiton. Gonna have to DM leopard on this one. actually retest with animationdone EH cause the mechanic animaition only fires once.
-    - Have a boat leave the dock when players get to the beach.
-        - boats drive weird, post on scripting discord.      
+                animaiton. Gave a shout out to leopard on this one. The issue seems worse in MP.
+    - Completed: Have a boat leave the dock when players get to the beach.
+        - Used a unit capture command to get it to drive straight but it lacks sound effects. Consider adding some during the sfx pass.
     - Get marcinko event working when players return from mission.
         - needs polish, current animaiton look weird without a rifle.
         - I found a wave animation that might work

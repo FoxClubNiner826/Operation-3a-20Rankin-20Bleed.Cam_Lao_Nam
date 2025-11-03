@@ -1434,52 +1434,7 @@ mechanic1 addEventHandler ["AnimDone", {
  };
 }];
 
-
-// mechanic 2 works on wheel of truck
-mechanic2 switchMove "InBaseMoves_repairVehicleKnl"; 
-mechanic2 playMove "InBaseMoves_repairVehicleKnl";
-mechanic2 setPos [7082.31,4257.55,0.00253987];
-mechanic2 attachTo [beachTable]; 
-mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
-
-[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
-[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
-
-[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
-[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0];
-mechanic2 setPos [7082.31,4257.55,0.00253987];
-mechanic2 attachTo [beachTable]; 
-mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
-
-
-[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
-
-[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
-[mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0];
-mechanic2 setPos [7082.31,4257.55,0.00253987];
-mechanic2 attachTo [beachTable]; 
-mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
-
-[testUnit, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0];
-[testUnit, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0];
-testUnit setPos [7082.31,4257.55,0.00253987];
-testUnit attachTo [beachTable]; 
-testUnit setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
-
-
-mechanic2 switchMove "InBaseMoves_repairVehicleKnl"; 
-mechanic2 playMove "InBaseMoves_repairVehicleKnl";
-mechanic2 setPos [7082.31,4257.55,0.00253987];
-mechanic2 attachTo [beachTable]; 
-mechanic2 setVectorDirAndUp [[-0.566752,0.823889,0],[0,0,1]];
-
-systemChat "firedScratch";
-
-mechanic1 setVectorDirAndUp [[-0.757396,-0.652955,0],[0,0,1]];
-mechanic1 switchMove ["InBaseMoves_repairVehiclePne", 0, 0]; 
-mechanic1 playMove "InBaseMoves_repairVehiclePne";
-
-//
+// mechanic 2 works on the wheel of the truck
 [mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["switchMove", 0]; 
 [mechanic2, "InBaseMoves_repairVehicleKnl"] remoteExec ["playMove", 0]; 
 mechanic2 setPos [7082.31,4257.55,0.00253987]; 
@@ -1501,3 +1456,6 @@ mechanic2 addEventHandler ["AnimDone", {
         [_unit, "Acts_hubTalk_scratchHead1"] remoteExec ["playMove", 0];
     };
 }];
+
+// guard 1 stands at building 
+Acts_hubTalk_waveHand3
