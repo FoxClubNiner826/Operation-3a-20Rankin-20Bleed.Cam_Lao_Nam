@@ -14,6 +14,7 @@ class CfgFunctions
             class intelSearch {};
             class intelAlreadyDone {};
             class heliRTB {};
+            class loopAnimation {};
         };
     };
 };

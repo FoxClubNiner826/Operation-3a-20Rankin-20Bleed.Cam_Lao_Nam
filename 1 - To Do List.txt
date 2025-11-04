@@ -13,7 +13,8 @@ triggerActivated trg_heliRTB;
 this &&
 triggerActivated trg_heliRTB;
 
-Current TASK: continue working on wave animation for marcinko. boot without polpox to test if it can be used.
+Current TASK: Test the marcinko last trigger area for bugs then test the whole RTB sequence for bugs. Have the player shout hey 
+    captain when players enter the trigger area. will need a scout version too.
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
     - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
     - Completed: fill out the prison with prisoners, equipment etc and put hide on it until extract prison convo.
@@ -35,9 +36,8 @@ Current TASK: continue working on wave animation for marcinko. boot without polp
                 animaiton. Gave a shout out to leopard on this one. The issue seems worse in MP.
     - Completed: Have a boat leave the dock when players get to the beach.
         - Used a unit capture command to get it to drive straight but it lacks sound effects. Consider adding some during the sfx pass.
-    - Get marcinko event working when players return from mission.
-        - needs polish, current animaiton look weird without a rifle.
-        - I found a wave animation that might work
+    - Completed: Get marcinko event working when players return from mission.
+        - I found a wave animation that might work but it's only for polpox mod.
     
     
 
