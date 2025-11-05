@@ -1457,5 +1457,25 @@ mechanic2 addEventHandler ["AnimDone", {
     };
 }];
 
-// guard 1 stands at building 
-Acts_hubTalk_waveHand3
+if (local sitUnit5) then {
+[sitUnit5, "HubSittingChairA_idle3"] remoteExec ["switchMove", 0]; 
+sitUnit5 setPos [7117.45,4245.98,-0.17016];  
+sitUnit5 attachTo [beachTable]; 
+sitUnit5 setVectorDirAndUp [[0.873453,-0.139163,0.466598],[-0.44218,0.174504,0.879787]]; 
+ 
+sitUnit5 addEventHandler ["AnimDone", {  
+ params ["_unit", "_anim"];  
+ 
+ if (!alive _unit) exitWith { 
+  _unit removeEventHandler [_thisEvent, _thisEventHandler]; 
+ }; 
+ 
+ [_unit, _anim] spawn {  
+  params ["_unit", "_anim"];  
+  sleep 5;  
+  if (alive _unit) then { 
+   [_unit, "HubSittingChairA_idle3"] remoteExec ["switchMove", 0]; 
+  };    
+ };  
+}];
+};

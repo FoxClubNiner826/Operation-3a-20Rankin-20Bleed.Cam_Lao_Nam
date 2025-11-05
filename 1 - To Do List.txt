@@ -13,6 +13,9 @@ triggerActivated trg_heliRTB;
 this &&
 triggerActivated trg_heliRTB;
 
+The current version I have made from Leopards function works pretty good. It only fires once per cycle. The jitter is caused from the sleep 
+I added. So try to figure I way to have the animation pause between cycles somehow.
+
 Current TASK: Test the marcinko last trigger area for bugs then test the whole RTB sequence for bugs. Have the player shout hey 
     captain when players enter the trigger area. will need a scout version too.
 - NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
