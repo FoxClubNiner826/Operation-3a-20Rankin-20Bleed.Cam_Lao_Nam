@@ -1479,3 +1479,149 @@ sitUnit5 addEventHandler ["AnimDone", {
  };  
 }];
 };
+
+//old sitting version
+[sitUnit1, "HubSittingChairUA_move1"] remoteExec ["switchMove", 0]; 
+sitUnit1 setPos [7106.21,4263.12,-0.130786];  
+situnit1 attachTo [beachTable]; 
+situnit1 setVectorDirAndUp [[0.921097,-0.0558925,0.385301],[-0.387132,-0.0263705,0.921647]]; 
+ 
+sitUnit1 addEventHandler ["AnimDone", {  
+ params ["_unit", "_anim"]; 
+ 
+ if (!alive _unit) exitWith { 
+  _unit removeEventHandler [_thisEvent, _thisEventHandler]; 
+ }; 
+ 
+ [_unit, _anim] spawn {  
+  params ["_unit", "_anim"];  
+  sleep 5;  
+  if (alive _unit) then { 
+   [_unit, "HubSittingChairUA_move1"] remoteExec ["switchMove", 0]; 
+  };    
+ }; 
+}]; 
+
+[sitUnit5, "HubSittingChairA_idle3"] remoteExec ["switchMove", 0];  
+sitUnit5 setPos [7117.45,4245.98,-0.17016];   
+sitUnit5 attachTo [beachTable];  
+sitUnit5 setVectorDirAndUp [[0.873453,-0.139163,0.466598],[-0.44218,0.174504,0.879787]];  
+  
+sitUnit5 addEventHandler ["AnimDone", {   
+ params ["_unit", "_anim"];   
+  
+ if (!alive _unit) exitWith {  
+  _unit removeEventHandler [_thisEvent, _thisEventHandler];  
+ };  
+  
+ [_unit, _anim] spawn {   
+  params ["_unit", "_anim"];   
+  sleep 5;   
+  if (alive _unit) then {  
+   [_unit, "HubSittingChairA_idle3"] remoteExec ["switchMove", 0];  
+  };     
+ };   
+}];
+
+[sitUnit4, "HubSittingChairUC_move1"] remoteExec ["switchMove", 0]; 
+sitUnit4 setPos [7105.56,4265.2,-0.250104];  
+sitUnit4 attachTo [beachTable]; 
+sitUnit4 setVectorDirAndUp [[0.934886,-0.132127,0.329441],[-0.31527,0.117314,0.941723]]; 
+ 
+sitUnit4 addEventHandler ["AnimDone", {  
+ params ["_unit", "_anim"];  
+ 
+ if (!alive _unit) exitWith { 
+  _unit removeEventHandler [_thisEvent, _thisEventHandler]; 
+ }; 
+ 
+ [_unit, _anim] spawn {  
+  params ["_unit", "_anim"];  
+  sleep 5;  
+  if (alive _unit) then { 
+   [_unit, "HubSittingChairUC_move1"] remoteExec ["switchMove", 0]; 
+  };    
+ };  
+}];
+
+[sitUnit2, "HubSittingChairB_move1"] remoteExec ["switchMove", 0]; 
+sitUnit2 setPos [7097.29,4270.65,-0.0696521];  
+sitUnit2 attachTo [beachTable]; 
+sitUnit2 setVectorDirAndUp [[0.837171,-0.511276,0.194271],[-0.155992,0.117245,0.980775]]; 
+ 
+sitUnit2 addEventHandler ["AnimDone", {  
+ params ["_unit", "_anim"];  
+ 
+ if (!alive _unit) exitWith { 
+  _unit removeEventHandler [_thisEvent, _thisEventHandler]; 
+ }; 
+ 
+ [_unit, _anim] spawn {  
+  params ["_unit", "_anim"];  
+  sleep 5;  
+  if (alive _unit) then { 
+   [_unit, "HubSittingChairB_move1"] remoteExec ["switchMove", 0]; 
+  };    
+ };  
+}];
+
+mechanic1 setVectorDirAndUp [[-0.757396,-0.652955,0],[0,0,1]];
+mechanic1 switchMove ["InBaseMoves_repairVehiclePne", 0, 0]; 
+mechanic1 playMove "InBaseMoves_repairVehiclePne";
+
+mechanic1 addEventHandler ["AnimDone", {
+ params ["_unit", "_anim"];
+ if (_anim == "Acts_hubTalk_scratchHead1") then {
+  _unit switchMove ["InBaseMoves_repairVehiclePne", 0, 0];
+  _unit playMove "InBaseMoves_repairVehiclePne";
+ };  
+ if (_anim == "InBaseMoves_repairVehiclePne") then {
+  _unit switchMove ["Acts_hubTalk_scratchHead1", 0, 0];
+  _unit playMove "Acts_hubTalk_scratchHead1";
+ };
+}];
+
+[] spawn {
+
+ptunit1 playMove "AmovPercMstpSnonWnonDnon_exercisePushup";
+
+ptunit1 addEventHandler ["AnimStateChanged", {
+ params ["_unit", "_anim"];
+ 
+ [_unit, _anim] spawn {
+  params ["_unit", "_anim"];
+  sleep 5;
+  _unit playMove "AmovPercMstpSnonWnonDnon_exercisePushup";  
+ };
+}];
+
+sleep 0.5;
+
+ptunit2 playMove "AmovPercMstpSnonWnonDnon_exercisePushup";
+
+ptunit2 addEventHandler ["AnimStateChanged", {
+ params ["_unit", "_anim"];
+ 
+ [_unit, _anim] spawn {
+  params ["_unit", "_anim"];
+  sleep 5;
+  _unit playMove "AmovPercMstpSnonWnonDnon_exercisePushup";  
+ };
+}];
+
+sleep 0.6;
+
+ptunit3 playMove "AmovPercMstpSnonWnonDnon_exercisePushup";
+
+ptunit3 addEventHandler ["AnimStateChanged", {
+ params ["_unit", "_anim"];
+ 
+ [_unit, _anim] spawn {
+  params ["_unit", "_anim"];
+  sleep 5;
+  _unit playMove "AmovPercMstpSnonWnonDnon_exercisePushup";  
+ };
+}];
+
+};
+
