@@ -7,5 +7,5 @@
 
 ["mpbanter4", [MP2, MP3]] remoteExec [
 	"FoxClub_fnc_Conversation", 
-	allPlayers select {_x distance MP2 <= 50}
+	allPlayers select {_x distance MP2 <= 100}
 ];

@@ -1581,6 +1581,82 @@ mechanic1 addEventHandler ["AnimDone", {
  };
 }];
 
+
+// staging area optimizations
+// Outpost
+{ 
+    outpostHeli deleteVehicleCrew _x 
+} forEach crew outpostHeli;
+
+deleteVehicle outpostHeli;
+
+{
+    deleteVehicle _x;
+} forEach units outpostGroup1;
+
+{
+    deleteVehicle _x;
+} forEach units outpostGroup2;
+
+// Prison
+{ 
+    prisonJeep deleteVehicleCrew _x 
+} forEach crew prisonJeep;
+
+deleteVehicle prisonJeep;
+
+{
+    deleteVehicle _x;
+} forEach units prisonGroup2;
+
+{
+    deleteVehicle _x;
+} forEach units prisonGroup3;
+
+{
+    deleteVehicle _x;
+} forEach units prisonerGroup1;
+
+{
+    deleteVehicle _x;
+} forEach units prisonerGroup2;
+
+{
+    deleteVehicle _x;
+} forEach units prisonerGroup3;
+
+{
+    deleteVehicle _x;
+} forEach units prisonerGroup4;
+
+{
+    deleteVehicle _x;
+} forEach units prisonerGroup5;
+
+//delete this at infil, no longer needed 
+deleteVehicle tsk_undeteced_infilFailed;
+deleteVehicle tsk_hvt_infilFailed;
+deleteVehicle tsk_stab_infilFailed;
+deleteVehicle tsk_exfil_infilFailed;
+deleteVehicle tsk_search_infilFailed;
+deleteVehicle tsk_undeteced_infilFailed_stealthed;
+deleteVehicle tsk_hvt_infilFailed_stealthed;
+deleteVehicle tsk_STAB_infilFailed_stealthed;
+deleteVehicle tsk_exfil_infilFailed_stealthed;
+deleteVehicle tsk_search_infilFailed_stealthed;
+
+deleteVehicle trg_undeteced_infilFailed;
+deleteVehicle trg_hvt_infilFailed;
+deleteVehicle trg_stab_infilFailed;
+deleteVehicle trg_exfil_infilFailed;
+deleteVehicle trg_search_infilFailed;
+deleteVehicle trg_undeteced_infilFailed_stealthed;
+deleteVehicle trg_hvt_infilFailed_stealthed;
+deleteVehicle trg_STAB_infilFailed_stealthed;
+deleteVehicle trg_exfil_infilFailed_stealthed;
+deleteVehicle trg_search_infilFailed_stealthed;
+
+
 [] spawn {
 
 ptunit1 playMove "AmovPercMstpSnonWnonDnon_exercisePushup";
@@ -1625,3 +1701,7 @@ ptunit3 addEventHandler ["AnimStateChanged", {
 
 };
 
+
+this switchMove ["HubBriefing_lookAround2", 0, 0];
+
+marcinko switchMove ["", 0, 0];

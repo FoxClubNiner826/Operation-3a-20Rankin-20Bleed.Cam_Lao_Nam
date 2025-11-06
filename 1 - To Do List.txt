@@ -13,56 +13,24 @@ triggerActivated trg_heliRTB;
 this &&
 triggerActivated trg_heliRTB;
 
-The current version I have made from Leopards function works pretty good. It only fires once per cycle. The jitter is caused from the sleep 
-I added. So try to figure I way to have the animation pause between cycles somehow.
-    - tried to use spawn and sleep, uiSleep, and waitUntil but they all make jitter.
-        - next we try adding a longer idle animation. 
-            - this works, tried a bunch of ways. The smoothest (althought not perfect) is the first syntax for switchMove. 
-                - next we try all the idles in the move set and if they all work then we build a randomizer of the move sets.
-                    - they all work, build the randomizer and test in MP
-                        - Completed: randomized the 4 sitting units and tested in MP
-                        - test mechanic 1 and 2 in MP now that you changed the second animation
-                        - finish building pushup NPCs
-                            - I got it working with the test unit. Time to add it to the NPCs
 
-Current TASK: Test the marcinko last trigger area for bugs then test the whole RTB sequence for bugs. Have the player shout hey 
-    captain when players enter the trigger area. will need a scout version too.
-- NPC polish: Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
-    - try to find the source of the frame hitch. Move NPCs to other part of map and see if that helps
-    - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
-    - Completed: fill out the prison with prisoners, equipment etc and put hide on it until extract prison convo.
-        - Turned off simulation on the props and enabled dynamic simulation for units in area. The hide module helps with performance!
-            You cannot do a Skip waypoint and unhide module with the same trigger! This is because you have to choose either sync or skip
-            property. You can't have a trigger do both.
-    - Completed: Have outpost helicopter spin up as players approach
-    - Completed: Have 2 cobra fly over players as they walk to marcinko for debrief
-        - Fly over takes about 124 seconds to reach the island.
-    - Completed: Have 2 guards at the building with animations
-        - tried to make them switchable animations but couldn't get them to flow without resetting. looked glitchy.
-    - Completed: have the staging area be busier when players get back to simulate time of day change
-        Completed: Created some civilian and military NPC patrols to walk the road to make it look alive.
-        Completed: add some troops doing pt
-        Completed: add mechanics working on the truck. I added 2 mechanics that cycle between animations. One crosses the street prior to 
-            working on the truck.
-        Completed: add some troops lounging in the beach chairs and sitting on the ground.
-            - tested in MP and looking good execpt there is an issue with the EH. It fires multiple times so the unit jutters before playing the
-                animaiton. Gave a shout out to leopard on this one. The issue seems worse in MP.
-    - Completed: Have a boat leave the dock when players get to the beach.
-        - Used a unit capture command to get it to drive straight but it lacks sound effects. Consider adding some during the sfx pass.
-    - Completed: Get marcinko event working when players return from mission.
-        - no wave animation in default game can be found.
+
+Current TASK: Test the whole RTB sequence for bugs. Have the player shout hey captain when players enter the trigger area. will need a scout version too.
+
+- pushup units are in sync despite sleeps. try uiSleep instead.
+    - added Uisleep
+        - didn't seem to do anyting.
+        - works fine when testing from ADT and when the trigger is set to true. Gonna have to try it like normal from the chopper.
+            - try doing a remoteExec of the animations and see what that does.
+- helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP
+    - confirmed. it seems to me that its flys different in SP than MP.
+        - removed the flyInHeight to see what happens
+            - nothing happened. I think the flyInHeight isnt doing anything in MP despite being remoteexeced.
+- prison convo didn't happen
+    - Might have something to do with me taking command of the AI from the client as the scout?
+        - seems so since its works with the server as the leader.
+   
     
-    
-
-- deleted unneeded triggers when player gets to infil. talking about all the backup triggers if players miss the infil spot.
-
-Arma ideas
-1. Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. Then in the function itself you can have the playmove and then animation name and also a cancel animation. Maybe mirror how say3d works in the function. Should be the same.
-2. Change the distance on the remoteexec for the starting banter back to normal. If it's overcrowded with subtitles in play testing then delete the custom chat index. That way the sound still plays but not the custom chat.
-3. There might be a way to exit with the function if a variable is true. That would turn all dialog off. I wonder if there could be an index that could be passed that would allow me to define if the dialog is mandatory or optional.
-I could pass the index and have an exit with fire based on the variable sent. Default could be mandatory and instead just one variable would modify it to be optional.
-4. I wonder if that climbing animation could be used to make it look like the pow pulls himself up out of the tunnel.
-
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
 - mercinko should have no questions left. but the way its scripted looks like they still will be there.
@@ -79,6 +47,7 @@ DEDICATED SERVER TESTING:
     order but I never could get it to work with local host + client testing. I have added an EH that should reassign leader to a human if
     the AI is ever given leader.
 
+
 BUGS FROM LATEST PLAYTHROUGH:
 
 
@@ -90,6 +59,10 @@ TO DO MASTER LIST:
     LOW PRIORITY:
         - Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
             - maybe in the function add a variable that will exit with that turns it off. though that would block everything.
+                - I can achieve this by spilting the functions. Have one for priority convo and one for not. Do a exitWith check for a variable
+                    for the non priority function. Players can send the variable from the map stand at mission start.
+                - Another option is to send an additional index that marks the convo as priorty and somehow bypasses a variable check. 
+                    Will have to post on discord about this one.
         - Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
             - i added a failure state for proceed to infil spot
             - I decided to not have performance ratings for players but I like the flavor text
@@ -107,6 +80,12 @@ TO DO MASTER LIST:
     POLISH:
         - When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
         - Add a convo that tells the pow/pilot that the ambulance is waiting for them.
+        - If mission start is overcrowded with subtitles in play testing then delete the custom chat index for subtitles. 
+            That way the sound still plays but not the custom chat.
+        - See if it's possible to add climbing animation to the POW as he exits the tunnel.
+        - Add all NPCs is staging area to the exclusion list for blufor speech chatter/banter. This is at the very end of polish so that 
+            you don't have to keep updating it since the amount of NPCs could change. Possible to just remove the feature entirley?
+
 
     IDEA GRAVEYARD:
         - Design: Add achievements; Perfect mission, never spotted, rescued NPC. I think this is a neat idea but it will add a bunch of
@@ -131,8 +110,12 @@ TO DO MASTER LIST:
         - Design: I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
             but not the SAM? I decided not to pursue this because it will add too much time to change the code and have to do more rewriting 
             of it for little payoff of polish. This is a great learning experience on why it is better to make designs in the early part of 
-            the mission. The idea here is to have that aspect solidified so that you don't loose time reworking systems or rewriting code. 
-
+            the mission. The idea here is to have that aspect solidified so that you don't loose time reworking systems or rewriting code.
+        - Function Rework: Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. 
+            Then in the function itself you can have the playmove and then animation name and also a cancel animation. 
+            Maybe mirror how say3d works in the function. Should be the same.
+                - Through much testing it is clear that there is no one size fits all approach to animations. Some animations seemingly 
+                    only work with certain commands and the same reguarding the EH for them. It's a mess and not worth pursuing.
 
 
 TOUGH BUGS:
@@ -173,6 +156,50 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Fixed: marcinko crawls on the client when walking to give a salute.
+    - Needed to remoteExec the animation from within the trigger.
+Polish (NPCs): Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.
+    - Completed: try to find the source of the frame hitch. Move NPCs to other part of map and see if that helps.
+        - By using the hide module it seems that the frame hitch is due to something in Staging Area. I suspect it to be the large number of units
+            So I will add some deleteVehicle optimizations to try to get rid of it. If that doesn't work then reduce the number of NPCs.
+                - They helped but even if I deleted all objects in the staging are there is still a tiny stutter, but much better. It's the 
+                    end off the mission and if a stutter is the cost of NPCs immersion then I will pay that price and continue to look for 
+                    more optimization.
+    - Completed: have Captain walk to end of pier and salute as boat drives away. I am advised to use switchMove/playMoveNow instead of BIS_fnc_ambientAnimCombat.
+    - Completed: fill out the prison with prisoners, equipment etc and put hide on it until extract prison convo.
+        - Turned off simulation on the props and enabled dynamic simulation for units in area. The hide module helps with performance!
+            You cannot do a Skip waypoint and unhide module with the same trigger! This is because you have to choose either sync or skip
+            property. You can't have a trigger do both.
+    - Completed: Have outpost helicopter spin up as players approach
+    - Completed: Have 2 cobra fly over players as they walk to marcinko for debrief
+        - Fly over takes about 124 seconds to reach the island.
+    - Completed: Have 2 guards at the building with animations
+        - tried to make them switchable animations but couldn't get them to flow without resetting. looked glitchy.
+    - Completed: have the staging area be busier when players get back to simulate time of day change
+        Completed: Created some civilian and military NPC patrols to walk the road to make it look alive.
+        Completed: add some troops doing pt
+        Completed: add mechanics working on the truck. I added 2 mechanics that cycle between animations. One crosses the street prior to 
+            working on the truck.
+        Completed: add some troops lounging in the beach chairs and sitting on the ground.
+            - tested in MP and looking good execpt there is an issue with the EH. It fires multiple times so the unit jutters before playing the
+                animaiton. Gave a shout out to leopard on this one. The issue seems worse in MP.
+    - Completed: Have a boat leave the dock when players get to the beach.
+        - Used a unit capture command to get it to drive straight but it lacks sound effects. Consider adding some during the sfx pass.
+    - Completed: Get marcinko event working when players return from mission.
+        - no wave animation in default game can be found.
+Completed: Rework (EH animation looping):The current version I have made from Leopards function works pretty good. It only fires once per cycle. 
+    The jitter is caused from the sleep I added. So try to figure I way to have the animation pause between cycles somehow.
+    - tried to use spawn and sleep, uiSleep, and waitUntil but they all make jitter.
+        - next we try adding a longer idle animation. 
+            - this works, tried a bunch of ways. The smoothest (althought not perfect) is the first syntax for switchMove. 
+                - next we try all the idles in the move set and if they all work then we build a randomizer of the move sets.
+                    - they all work, build the randomizer and test in MP
+                        - Completed: randomized the 4 sitting units and tested in MP
+                        - test mechanic 1 and 2 in MP now that you changed the second animation
+                        - finish building pushup NPCs
+                            - I got it working with the test unit. Time to add it to the NPCs
+                                - added to all NPCs
+Optimization: - deleted unneeded triggers/tasks when player gets to infil. talking about all the backup triggers if players miss the infil spot.
 Design: Have the extraction pilots exit the heli after it spins down. Tested in MP.
     - I've got the waypoints working and the new waitUntil condition so that it only fires when all heli crew exits.
 Design: Have pow and downed pilot exit heli at base and get in ambulance. Tested in MP as well.

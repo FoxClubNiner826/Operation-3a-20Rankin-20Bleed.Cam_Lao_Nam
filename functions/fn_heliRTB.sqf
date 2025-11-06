@@ -7,7 +7,7 @@
 
 [] spawn {
             ExtractHeli landAt [ExtractHelipad, "None"]; // lets the heli take off
-            ExtractHeli flyInHeight 80; // goes to height then moves to base. Doesnt look smooth.
+            //ExtractHeli flyInHeight 80; // goes to height then moves to base. Doesnt look smooth.
             _group = ExtractHeliGroup;  
             _markerName = "returnToBase";   
             _waypointPosition = getMarkerPos _markerName;  
