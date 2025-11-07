@@ -17,18 +17,28 @@ triggerActivated trg_heliRTB;
 
 Current TASK: Test the whole RTB sequence for bugs. Have the player shout hey captain when players enter the trigger area. will need a scout version too.
 
-- pushup units are in sync despite sleeps. try uiSleep instead.
+Fixed: pushup units are in sync despite sleeps. try uiSleep instead.
     - added Uisleep
         - didn't seem to do anyting.
         - works fine when testing from ADT and when the trigger is set to true. Gonna have to try it like normal from the chopper.
             - try doing a remoteExec of the animations and see what that does.
+            - setup a test trigger and see if it works this way
+                - It does so what is different with the other trigger; it's the show/hide modules
+                    - they disable simulation, so  even though the sleeps are there they already have the code in queue when shown.
+                    - works better now that I separated the hide from the function but it's still glitchy on the client only. 
+                        - try to remoteexec it
+                        - units on client aren't playing the idle animation in between loops
+                    - the units end up moving a little so spread them out and use setdir instead of lookat.
+                        - done
 - helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP
     - confirmed. it seems to me that its flys different in SP than MP.
         - removed the flyInHeight to see what happens
             - nothing happened. I think the flyInHeight isnt doing anything in MP despite being remoteexeced.
+            - The helicopter flys smooth on the server/local host but not on the client
 - prison convo didn't happen
     - Might have something to do with me taking command of the AI from the client as the scout?
         - seems so since its works with the server as the leader.
+        - if the leader is scout, case 1 fires but nobody speaks
    
     
 DEDICATED SERVER TESTING:
@@ -156,6 +166,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+
 Fixed: marcinko crawls on the client when walking to give a salute.
     - Needed to remoteExec the animation from within the trigger.
 Polish (NPCs): Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.

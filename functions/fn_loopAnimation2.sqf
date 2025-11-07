@@ -18,12 +18,17 @@ if (_anim != "") then
         params ["_unit", "_anim"]; 
         if (alive _unit) then {
 			if (_anim == "HubStandingUA_idle2") then {
-				_unit switchMove ["AmovPercMstpSnonWnonDnon_exercisePushup", 0, 0, false]; 
+			["pushups"] remoteExec ["systemChat", 0];
+				//_unit switchMove ["AmovPercMstpSnonWnonDnon_exercisePushup", 0, 0, false];
+				[testUnit, ["AmovPercMstpSnonWnonDnon_exercisePushup", 0, 0, false]] remoteExec ["switchMove", 0]; 
 			};   
 			if (_anim == "AmovPercMstpSnonWnonDnon_exercisePushup") then {
-				_unit switchMove ["HubStandingUA_idle2", .8, 0, false];
+			["idle"] remoteExec ["systemChat", 0];
+				//_unit switchMove ["HubStandingUA_idle2", .8, 0, false];
+				[_unit, ["HubStandingUA_idle2", 0.8, 0, false]] remoteExec ["switchMove", 0];
+				//[_unit, "HubStandingUA_idle2"] remoteExec ["playMove", 0];  
 			};
-        };
+		};
     }];
 };
 

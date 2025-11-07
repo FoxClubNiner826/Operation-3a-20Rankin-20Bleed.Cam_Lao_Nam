@@ -1657,51 +1657,116 @@ deleteVehicle trg_exfil_infilFailed_stealthed;
 deleteVehicle trg_search_infilFailed_stealthed;
 
 
-[] spawn {
 
-ptunit1 playMove "AmovPercMstpSnonWnonDnon_exercisePushup";
-
-ptunit1 addEventHandler ["AnimStateChanged", {
- params ["_unit", "_anim"];
- 
- [_unit, _anim] spawn {
-  params ["_unit", "_anim"];
-  sleep 5;
-  _unit playMove "AmovPercMstpSnonWnonDnon_exercisePushup";  
- };
-}];
-
-sleep 0.5;
-
-ptunit2 playMove "AmovPercMstpSnonWnonDnon_exercisePushup";
-
-ptunit2 addEventHandler ["AnimStateChanged", {
- params ["_unit", "_anim"];
- 
- [_unit, _anim] spawn {
-  params ["_unit", "_anim"];
-  sleep 5;
-  _unit playMove "AmovPercMstpSnonWnonDnon_exercisePushup";  
- };
-}];
-
-sleep 0.6;
-
-ptunit3 playMove "AmovPercMstpSnonWnonDnon_exercisePushup";
-
-ptunit3 addEventHandler ["AnimStateChanged", {
- params ["_unit", "_anim"];
- 
- [_unit, _anim] spawn {
-  params ["_unit", "_anim"];
-  sleep 5;
-  _unit playMove "AmovPercMstpSnonWnonDnon_exercisePushup";  
- };
-}];
-
-};
 
 
 this switchMove ["HubBriefing_lookAround2", 0, 0];
 
 marcinko switchMove ["", 0, 0];
+
+switch (true) do { 
+    case (leader playerGroup in extractheli && scout in extractheli && pow in extractheli): {
+        ["case1"] remoteExec ["systemChat", 0];
+        _scout = missionNamespace getVariable ["scout", objNull]; 
+        _pilot = missionNamespace getVariable ["pilot", objNull]; 
+        _pow   = missionNamespace getVariable ["pow", objNull]; 
+        _leader = leader playergroup; 
+ 
+        private _aboard = (crew extractHeli) select { alive _x && _x in units playerGroup }; 
+ 
+        private _eligible = _aboard select { !(_x in [_scout, _pilot, _pow]) }; 
+ 
+        if (count _eligible > 0) then { 
+            private _speaker = selectRandom _eligible; 
+        } else { 
+            private _speaker = objNull;  
+        }; 
+ 
+        if (alive _leader && _leader != _scout && vehicle _leader == extractheli) then {   
+            ["seePrisonPOW", [ranger, _leader, _pow, _scout]] remoteExec [ 
+                "FoxClub_fnc_Conversation", 
+                allPlayers select { _x distance _leader <= 100 } 
+            ]; 
+        } else { 
+            if (alive _scout && _leader == _scout && vehicle _scout == extractheli) then {   
+                ["seePrisonScoutPOW", [ranger, _speaker, _pow, _scout]] remoteExec [  
+                    "FoxClub_fnc_Conversation",  
+                    allPlayers select { _x distance _speaker <= 100 }  
+                ];   
+            }  
+        }; 
+    }; 
+    case (leader playerGroup in extractheli && scout in extractheli): {
+        ["case2"] remoteExec ["systemChat", 0];
+        _scout = missionNamespace getVariable ["scout", objNull]; 
+        _pilot = missionNamespace getVariable ["pilot", objNull]; 
+        _pow   = missionNamespace getVariable ["pow", objNull]; 
+        _leader = leader playergroup; 
+ 
+        private _aboard = (crew extractHeli) select { alive _x && _x in units playerGroup }; 
+ 
+        private _eligible = _aboard select { !(_x in [_scout, _pilot, _pow]) }; 
+ 
+        if (count _eligible > 0) then { 
+            private _speaker = selectRandom _eligible; 
+        } else { 
+            private _speaker = objNull;  
+        }; 
+ 
+        if (alive _leader && _leader != _scout && vehicle _leader == extractheli) then {   
+            ["seePrison", [ranger, _leader, _scout]] remoteExec [ 
+                "FoxClub_fnc_Conversation", 
+                allPlayers select { _x distance _leader <= 100 } 
+            ]; 
+        } else { 
+            if (alive _scout && _leader == _scout && vehicle _scout == extractheli) then {   
+                ["seePrisonScout", [ranger, _scout, _speaker]] remoteExec [  
+                    "FoxClub_fnc_Conversation",  
+                    allPlayers select { _x distance _speaker <= 100 }  
+                ];   
+            }  
+        }; 
+    }; 
+    default {
+        ["defaultCase"] remoteExec ["systemChat", 0];
+        _scout   = missionNamespace getVariable ["scout", objNull];    
+        _leader  = leader playerGroup; 
+ 
+        private _aboard = units playerGroup select { alive _x && _x in extractheli }; 
+        private _speaker = objNull; 
+ 
+        if (_leader in _aboard && _leader != _scout) then { 
+            _speaker = _leader; 
+        } else { 
+            if (_scout in _aboard) then { 
+                _speaker = _scout; 
+            } else { 
+                private _players = _aboard select { isPlayer _x }; 
+                _speaker = selectRandom _players;  
+            }; 
+        }; 
+ 
+        private _convo = ["seePrisonDefault", "seePrisonDefaultScout"] select (_speaker == _scout); 
+        [_convo, [ranger, _speaker]] remoteExec [ 
+            "FoxClub_fnc_Conversation", 
+            allPlayers select { _x distance _speaker <= 100 } 
+        ]; 
+    }; 
+};
+
+[] spawn {
+[ptunit1, "AmovPercMstpSnonWnonDnon_exercisePushup"] remoteExec ["foxClub_fnc_loopAnimation2", 0];
+Sleep 3;
+[ptunit2, "AmovPercMstpSnonWnonDnon_exercisePushup"] remoteExec ["foxClub_fnc_loopAnimation2", 0];
+Sleep 1;
+[ptunit3, "AmovPercMstpSnonWnonDnon_exercisePushup"] remoteExec ["foxClub_fnc_loopAnimation2", 0];
+};
+
+
+[] spawn {
+[ptunit1, "AmovPercMstpSnonWnonDnon_exercisePushup"] call foxClub_fnc_loopAnimation2;
+Sleep 3;
+[ptunit2, "AmovPercMstpSnonWnonDnon_exercisePushup"] call foxClub_fnc_loopAnimation2;
+Sleep 1;
+[ptunit3, "AmovPercMstpSnonWnonDnon_exercisePushup"] call foxClub_fnc_loopAnimation2;
+};
