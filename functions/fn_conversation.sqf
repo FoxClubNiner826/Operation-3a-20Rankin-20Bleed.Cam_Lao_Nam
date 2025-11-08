@@ -6,7 +6,9 @@
         removes it so it can’t repeat until exhausted, and broadcasts it with FoxClub_fnc_Conversation.
 */
 
-params ["_convo", "_speakers"];
+params ["_convo", "_speakers", ["_mandatory", false]];
+
+if (missionNamespace getVariable ["minimizeChatter", false] && !_mandatory) exitwith {};
 
 {
 	_x setVariable ["foxclub_var_isTalking",true];

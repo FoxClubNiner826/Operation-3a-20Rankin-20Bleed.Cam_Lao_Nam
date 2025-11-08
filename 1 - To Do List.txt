@@ -15,31 +15,13 @@ triggerActivated trg_heliRTB;
 
 
 
-Current TASK: Test the whole RTB sequence for bugs. Have the player shout hey captain when players enter the trigger area. will need a scout version too.
+Current TASK: Test the whole RTB sequence for bugs in MP
 
-Fixed: pushup units are in sync despite sleeps. try uiSleep instead.
-    - added Uisleep
-        - didn't seem to do anyting.
-        - works fine when testing from ADT and when the trigger is set to true. Gonna have to try it like normal from the chopper.
-            - try doing a remoteExec of the animations and see what that does.
-            - setup a test trigger and see if it works this way
-                - It does so what is different with the other trigger; it's the show/hide modules
-                    - they disable simulation, so  even though the sleeps are there they already have the code in queue when shown.
-                    - works better now that I separated the hide from the function but it's still glitchy on the client only. 
-                        - try to remoteexec it
-                        - units on client aren't playing the idle animation in between loops
-                    - the units end up moving a little so spread them out and use setdir instead of lookat.
-                        - done
 - helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP
     - confirmed. it seems to me that its flys different in SP than MP.
         - removed the flyInHeight to see what happens
             - nothing happened. I think the flyInHeight isnt doing anything in MP despite being remoteexeced.
             - The helicopter flys smooth on the server/local host but not on the client
-- prison convo didn't happen
-    - Might have something to do with me taking command of the AI from the client as the scout?
-        - seems so since its works with the server as the leader.
-        - if the leader is scout, case 1 fires but nobody speaks
-   
     
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -73,6 +55,7 @@ TO DO MASTER LIST:
                     for the non priority function. Players can send the variable from the map stand at mission start.
                 - Another option is to send an additional index that marks the convo as priorty and somehow bypasses a variable check. 
                     Will have to post on discord about this one.
+            - Built the function already, just need to figure out if there are more or less mandatory convos and go through them all.
         - Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
             - i added a failure state for proceed to infil spot
             - I decided to not have performance ratings for players but I like the flavor text
@@ -95,6 +78,7 @@ TO DO MASTER LIST:
         - See if it's possible to add climbing animation to the POW as he exits the tunnel.
         - Add all NPCs is staging area to the exclusion list for blufor speech chatter/banter. This is at the very end of polish so that 
             you don't have to keep updating it since the amount of NPCs could change. Possible to just remove the feature entirley?
+        - trg_convo_cove; If the scout is the leader then he will end up speaking to himself.
 
 
     IDEA GRAVEYARD:
@@ -166,7 +150,34 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
-
+Fixed: prison convo didn't happen
+    - Might have something to do with me taking command of the AI from the client as the scout?
+        - seems so since its works with the command as the leader.
+            - try turning AI off and see if scout as leader at mission start is working. If it still doesn't work then that suggests that 
+                the code in the switch is the issue. I suspect this to be the case because I was able to get the default case to work by only 
+                having the scout in the helicopter.
+            - another thing to try is to switch to scout as leader and see if the beginning convos work. If they do that suggests that the 
+                process of moving leadership around is not the issue.
+                - The line worked, even though he responed to himself. perhaps cause the scout was the only unit in the boat. Moving leadership 
+                    probably not the issue. test as scout as leader.
+        - if the leader is scout, case 1 fires but nobody speaks
+        - The issue was from the code within switch. I had to define speaker as a variable first because it was getting deleted in the scope 
+            it was in. I went through and tested all cases/default and they all work now (so far)
+Fixed: pushup units are in sync despite sleeps. try uiSleep instead.
+    - added Uisleep
+        - didn't seem to do anyting.
+        - works fine when testing from ADT and when the trigger is set to true. Gonna have to try it like normal from the chopper.
+            - try doing a remoteExec of the animations and see what that does.
+            - setup a test trigger and see if it works this way
+                - It does so what is different with the other trigger; it's the show/hide modules
+                    - they disable simulation, so  even though the sleeps are there they already have the code in queue when shown.
+                    - works better now that I separated the hide from the function but it's still glitchy on the client only. 
+                        - after much trial and error I abandoned the EH approach because it was causing floaty animations. 
+                            I switched to a while loop with sleeps instead. Seems to work better with only one instance of floaty animation 
+                                after much testing.
+                        - units on client aren't playing the idle animation in between loops
+                    - the units end up moving a little so spread them out and use setdir instead of lookat.
+                        - ended up using a combo of setDir and disableAI path to keep them in place.
 Fixed: marcinko crawls on the client when walking to give a salute.
     - Needed to remoteExec the animation from within the trigger.
 Polish (NPCs): Adds to immersion but be wary of time sink. If you aren't making progress then just make it good enough or abandon the idea.

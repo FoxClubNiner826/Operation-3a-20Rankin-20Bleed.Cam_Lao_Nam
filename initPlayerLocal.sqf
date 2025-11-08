@@ -118,6 +118,74 @@ map addAction [
 
 //////////////////////////////////////////////////
 //                                              //
+//          LET PLAYERS MINIMIZE BANTER         //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionBanterOff = {
+    ( !(missionNamespace getVariable ["minimizeChatter", false]) )
+};
+
+map addAction [
+    "<t color='#FFFF00'>Turn Off Squad Banter</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+    ["Squad Banter is Off."] remoteExec ["systemChat", 0];
+	missionNamespace setVariable ["minimizeChatter", true, true];
+
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["minimizeChatter", "minimizeChatterScout"] select (_caller == _scout); 
+    [_convo, [_caller], true] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }
+        ];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionBanterOff, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//          LET PLAYERS RESTORE BANTER         //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionBanterOn = {
+    ( missionNamespace getVariable ["minimizeChatter", false] )
+};
+
+map addAction [
+    "<t color='#FFFF00'>Turn On Squad Banter</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+    ["Squad Banter is On."] remoteExec ["systemChat", 0];
+	missionNamespace setVariable ["minimizeChatter", false, true];
+
+    _scout = missionNamespace getVariable ["scout", objNull];    
+	private _convo = ["restoreChatter", "restoreChatterScout"] select (_caller == _scout); 
+    [_convo, [_caller]] remoteExec [ 
+        "FoxClub_fnc_Conversation",     
+        allPlayers select { _x distance _caller <= 100 }
+        ];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionBanterOn, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
 //             SEAL BOSS QUESTIONS              //
 //                                              //
 //////////////////////////////////////////////////

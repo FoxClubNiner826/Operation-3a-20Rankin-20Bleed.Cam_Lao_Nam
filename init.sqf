@@ -136,6 +136,26 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"I command now!", "answer"]
 		]
 	],
+	["minimizeChatter",
+		[
+			[0,"Keep it tight. Not a sound.", "answer"]
+		]
+	],
+	["minimizeChatterScout",
+		[
+			[0,"Quiet like the grave.", "answer"]
+		]
+	],
+	["restoreChatter",
+		[
+			[0,"Back to normal ops. Keep comms light.", "answer"]
+		]
+	],
+	["restoreChatterScout",
+		[
+			[0,"No more ghost.", "answer"]
+		]
+	],
 	["question1",
 		[
 			[0,"Could this be a trap?", "question"],
@@ -1473,8 +1493,7 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"This is very sad place. Stay far away.", "answer"],
-			[2,"The place is huge. Must hold hundreds of prisoners.", "answer"],
-			[1,"We go debrief with the Captain, now.", "answer"]
+			[2,"The place is huge. Must hold hundreds of prisoners.", "answer"]
 		]
 	],
 	["seePrisonPOW",
@@ -1755,40 +1774,4 @@ foxclub_var_conversations = createHashMapFromArray [
 
 
 
-
-/*
-sitUnit1 switchMove "HubSittingChairUA_move1";
-sitUnit1 setPos [7106.23,4263.27,-0.152803];
-situnit1 attachTo [beachTable];
-sleep 1;
-situnit1 setVectorDirAndUp [[0.895529,0.13333,0.424561],[-0.418933,-0.0691671,0.905379]];
-
-sitUnit1 addEventHandler ["AnimStateChanged", {
- params ["_unit", "_anim"];
- 
- [_unit, _anim] spawn {
-  params ["_unit", "_anim"];
-	hint "fired!";
-  sleep 5;
-  _unit switchMove "HubSittingChairUA_move1";  
- };
-}];
-
-/*
-sitUnit4 switchMove "HubSittingChairUA_idle2";
-sitUnit4 setPos [7105.6,4265.25,-0.125195];
-situnit4 attachTo [beachTable];
-sleep 1;
-situnit4 setVectorDirAndUp [[0.895294,-0.12485,0.427622],[-0.418435,0.0936603,0.903405]];
-
-sitUnit4 addEventHandler ["AnimStateChanged", {
- params ["_unit", "_anim"];
- 
- [_unit, _anim] spawn {
-  params ["_unit", "_anim"];
-  hint "fired!";
-  sleep 5;
-  _unit switchMove "HubSittingChairUA_idle2";  
- };
-}];
 
