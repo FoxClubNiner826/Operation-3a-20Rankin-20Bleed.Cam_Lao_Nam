@@ -96,9 +96,8 @@ map addAction [
     {
 	params ["_target", "_caller", "_actionID", "_args"];
     
-    //playergroup selectLeader _caller;
     [playergroup, _caller] remoteExec ["selectLeader", 0];
-
+	[ format ["%1 has chosen to be group leader", name _caller] ] remoteExec ["systemChat", 0];
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["takingCommand", "takingCommandScout"] select (_caller == _scout); 
     [_convo, [_caller]] remoteExec [ 
@@ -130,8 +129,8 @@ map addAction [
     "<t color='#FFFF00'>Turn Off Squad Banter</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-    ["Squad Banter is Off."] remoteExec ["systemChat", 0];
-	missionNamespace setVariable ["minimizeChatter", true, true];
+    systemChat "Squad Banter: Off";
+	missionNamespace setVariable ["minimizeChatter", true];
 
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["minimizeChatter", "minimizeChatterScout"] select (_caller == _scout); 
@@ -164,8 +163,8 @@ map addAction [
     "<t color='#FFFF00'>Turn On Squad Banter</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-    ["Squad Banter is On."] remoteExec ["systemChat", 0];
-	missionNamespace setVariable ["minimizeChatter", false, true];
+	systemChat "Squad Banter: On";
+	missionNamespace setVariable ["minimizeChatter", false];
 
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["restoreChatter", "restoreChatterScout"] select (_caller == _scout); 
@@ -180,6 +179,60 @@ map addAction [
     true, 
     "", 
     toString _conditionBanterOn, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//        LET PLAYERS TURN OFF SUBTITLES        //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionSubtitlesOff = {
+    ( !(missionNamespace getVariable ["subtitlesOff", false]) )
+};
+
+map addAction [
+    "<t color='#FFFF00'>Turn Off Subtitles</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+	systemChat "Subtitles: Off";
+	missionNamespace setVariable ["subtitlesOff", true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionSubtitlesOff, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//        LET PLAYERS TURN ON SUBTITLES         //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionSubtitlesOn = {
+    ( missionNamespace getVariable ["subtitlesOff", false] )
+};
+
+map addAction [
+    "<t color='#FFFF00'>Turn On Subtitles</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+	systemChat "Subtitles: On";
+	missionNamespace setVariable ["subtitlesOff", false];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionSubtitlesOn, 
 	4 
 ];
 

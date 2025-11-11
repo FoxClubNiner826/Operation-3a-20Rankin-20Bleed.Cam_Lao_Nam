@@ -15,9 +15,22 @@ triggerActivated trg_heliRTB;
 
 
 
-Current TASK: Test the whole RTB sequence for bugs in MP
+Current TASK: go through all lines and adjust the function call for all mandatory lines.
+- Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
+            - maybe in the function add a variable that will exit with that turns it off. though that would block everything.
+                - I can achieve this by spilting the functions. Have one for priority convo and one for not. Do a exitWith check for a variable
+                    for the non priority function. Players can send the variable from the map stand at mission start.
+                - Another option is to send an additional index that marks the convo as priorty and somehow bypasses a variable check. 
+                    Will have to post on discord about this one.
+            - Built the function already, just need to figure out if there are more or less mandatory convos and go through them all.
+    - I have modified the function so that subtitles only play within a certain distance to the player. Also any client can:
+        - disable subtitles
+        - reduce squad banter
+
 
 - helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP
+    - try adjusting the waypoint to have a height value.
+    - to steamline the testing process, setup a test helicopter with the same code as the current one.
     - confirmed. it seems to me that its flys different in SP than MP.
         - removed the flyInHeight to see what happens
             - nothing happened. I think the flyInHeight isnt doing anything in MP despite being remoteexeced.
@@ -49,17 +62,11 @@ TO DO MASTER LIST:
     MEDIUM PRIORITY:
     
     LOW PRIORITY:
-        - Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
-            - maybe in the function add a variable that will exit with that turns it off. though that would block everything.
-                - I can achieve this by spilting the functions. Have one for priority convo and one for not. Do a exitWith check for a variable
-                    for the non priority function. Players can send the variable from the map stand at mission start.
-                - Another option is to send an additional index that marks the convo as priorty and somehow bypasses a variable check. 
-                    Will have to post on discord about this one.
-            - Built the function already, just need to figure out if there are more or less mandatory convos and go through them all.
         - Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
             - i added a failure state for proceed to infil spot
             - I decided to not have performance ratings for players but I like the flavor text
             - I reworked the extract task which can now be failed so I might need to add that as a primary objective.
+        - see if an grenade explode EH is worth putting for the cache task.
         - Update all needed pictures in the mission from tasks to victory/death screens. This should be near the last thing you do
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
         - Entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 

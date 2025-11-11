@@ -2,8 +2,7 @@
     File: fn_conversation.sqf
     Author: NikkoJT (Built for FoxClubNiner by NikkoJT of Arma Discord - Scripting Channel)
     Description:
-        Determines if the caller is the Scout or not then picks a random voice line from the pool, 
-        removes it so it can’t repeat until exhausted, and broadcasts it with FoxClub_fnc_Conversation.
+        Plays a conversation with audio and text and broadcasts it with FoxClub_fnc_Conversation.
 */
 
 params ["_convo", "_speakers", ["_mandatory", false]];
@@ -22,7 +21,12 @@ private _conversationData = foxclub_var_conversations get _convo;
     if !(alive _speaker) then { break };
 	_speakers spawn _customCode;
 	private _sound = _speaker say3D _sound;
-	_speaker customChat [FOX_DialogueChannel, _text];
+	//_speaker customChat [FOX_DialogueChannel, _text];
+	if (!(missionNamespace getVariable ["subtitlesOff", false])) then {
+		if (player distance _speaker < 50) then {
+			_speaker customChat [FOX_DialogueChannel, _text];
+		};
+	};
 	_speaker setRandomLip true;
 	waitUntil {isNull _sound};
 	_speaker setRandomLip false;
