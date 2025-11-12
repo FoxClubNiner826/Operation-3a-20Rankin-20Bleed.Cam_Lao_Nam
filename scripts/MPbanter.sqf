@@ -7,21 +7,21 @@
 
 // Define the random code blocks
 MPBanter1 = { 
-	["mpbanter1", [MP2, MP1]] remoteExec [
+	["mpbanter1", [MP2, MP1], true] remoteExec [
         "FoxClub_fnc_Conversation", 
         allPlayers select {_x distance MP2 <= 100}
     ]; 	
 };
 
 MPBanter2 = {
-    ["mpbanter2", [MP2, MP1]] remoteExec [
+    ["mpbanter2", [MP2, MP1], true] remoteExec [
         "FoxClub_fnc_Conversation", 
         allPlayers select {_x distance MP2 <= 100}
     ];
 };
 
 MPBanter3 = {
-    ["mpbanter3", [MP2, MP1]] remoteExec [
+    ["mpbanter3", [MP2, MP1], true] remoteExec [
         "FoxClub_fnc_Conversation", 
         allPlayers select {_x distance MP2 <= 100}
     ];

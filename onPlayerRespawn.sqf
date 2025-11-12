@@ -24,9 +24,9 @@
 		params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action
 		missionNamespace setVariable ["ActionCallHQ", false, true];
 		if (_caller == missionNamespace getVariable ["scout", objNull]) then {
-			["radiohqScout", [_caller, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+			["radiohqScout", [_caller, HQRadio], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		} else {
-			["radiohq1", [_caller, HQRadio]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+			["radiohq1", [_caller, HQRadio], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
 	}, // code on finish
 	{}, // code on interuption
@@ -246,9 +246,9 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 		_scout = missionNamespace getVariable ["scout", objNull];
 
 		if (_caller == _scout) then {
-		["scoutcallPOW", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		["scoutcallPOW", [_caller, pow], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		} else {
-		["callPOW", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		["callPOW", [_caller, pow], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
 
 		sleep 20;
@@ -256,9 +256,9 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 		sleep 1;
 
 		if (_caller == _scout) then {
-		["scoutPOWexits", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		["scoutPOWexits", [_caller, pow], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		} else {
-		["POWexits", [_caller, pow]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+		["POWexits", [_caller, pow], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
 
 		sleep 9;
@@ -300,9 +300,9 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 		_scout = missionNamespace getVariable ["scout", objNull];
 		params ["_target", "_caller", "_actionID", "_args"];
 		if (_caller == _scout) then {
-			["scoutextract", [_scout, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
+			["scoutextract", [_scout, covey], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
 		} else {
-			["extract", [_caller, covey]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+			["extract", [_caller, covey], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
 		//sleep 60; // use to set how long it takes for the heli to come
 		_loiterPosition = getMarkerPos "loiterSpot";
@@ -341,9 +341,9 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 		_scout = missionNamespace getVariable ["scout", objNull];
 		params ["_target", "_caller", "_actionID", "_args"];
 		if (_caller == _scout) then {
-			["scoutsmokeconfirm", [_scout, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
+			["scoutsmokeconfirm", [_scout, ranger], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
 		} else {
-			["smokeconfirm", [_caller, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+			["smokeconfirm", [_caller, ranger], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
 		["scripts\extract.sqf"] remoteExec ["execVM"];
 	}, // code on finish
@@ -377,9 +377,9 @@ missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 		_scout = missionNamespace getVariable ["scout", objNull];
 		params ["_target", "_caller", "_actionID", "_args"];
 		if (_caller == _scout) then {
-			["scoutsmokedeny", [_scout, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
+			["scoutsmokedeny", [_scout, ranger], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];
 		} else {
-			["smokedeny", [_caller, ranger]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
+			["smokedeny", [_caller, ranger], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 		};
 		["scripts\extract.sqf"] remoteExec ["execVM"];
 	}, // code on finish

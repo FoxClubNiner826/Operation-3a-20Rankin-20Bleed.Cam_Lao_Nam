@@ -18,7 +18,7 @@
 			_heli landAt [getPos _helipad, "GetIn", 9999];
 			if (!(missionNamespace getVariable ["delaySystemChat", false])) then {sleep 10;}; // lets convo finish if lz wasnt blocked.
 			if (missionNamespace getVariable ["delaySystemChat", false]) then {
-				["lzNoLongerBlocked", [ranger]] call FoxClub_fnc_Conversation;
+				["lzNoLongerBlocked", [ranger], true] call FoxClub_fnc_Conversation;
 
 			};
 			sleep 1;
@@ -27,7 +27,7 @@
 		} else {
 			if (!(missionNamespace getVariable ["delaySystemChat", false])) then {sleep 13;};
 			// report blocking units
-			["lzBlocked", [ranger]] call FoxClub_fnc_Conversation;
+			["lzBlocked", [ranger], true] call FoxClub_fnc_Conversation;
 			sleep 1;
 			private _names = _objectsNearby apply {
 				if (_x isKindOf "Man" && isPlayer _x) then {

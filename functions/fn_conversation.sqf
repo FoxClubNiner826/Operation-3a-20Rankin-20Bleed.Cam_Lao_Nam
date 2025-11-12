@@ -23,7 +23,7 @@ private _conversationData = foxclub_var_conversations get _convo;
 	private _sound = _speaker say3D _sound;
 	//_speaker customChat [FOX_DialogueChannel, _text];
 	if (!(missionNamespace getVariable ["subtitlesOff", false])) then {
-		if (player distance _speaker < 50) then {
+		if (player distance _speaker < 40) then {
 			_speaker customChat [FOX_DialogueChannel, _text];
 		};
 	};

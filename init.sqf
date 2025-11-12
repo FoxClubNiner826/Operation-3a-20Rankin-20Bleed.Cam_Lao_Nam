@@ -71,17 +71,17 @@ override_vn_sam_masteraudioarray = compile preprocessFileLineNumbers "override_v
 // 111 optional lines. 126 mandatory lines. 237 total.
 
 foxclub_var_conversations = createHashMapFromArray [
-	["intro1", // 1
+	["intro1", // 1 done
 		[
 			[0, "Good morning gentlemen. There's an arsenal right there if you want to adjust your equipment. I'll be over here if you have any last minute questions.", "answer"]
 		]
 	],
-	["intro2", // 2
+	["intro2", // 2 d
 		[
 			[0,"What's on your mind P.O.?", "answer"]
 		]
 	],
-	["mpbanter1", // 3
+	["mpbanter1", // 3 d
 		[
 			[0,"Hop in, Lee.", "answer"],
 			[1,"Thank God. Get me to the latrine. That chow's tearing me up!", "answer"],
@@ -89,7 +89,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"No promises, Byrd. Step on it.", "answer"]
 		]
 	],
-	["mpbanter2", // 4
+	["mpbanter2", // 4 d
 		[
 			[0,"You wouldn’t believe it. I caught a rat in the mess hall.", "answer"],
 			[1,"Seriously? I thought they’d fixed that problem.", "answer"],
@@ -97,7 +97,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"I’ll take my chances. Had enough C-rations to last me a lifetime.", "answer"]
 		]
 	],
-	["mpbanter3", // 5
+	["mpbanter3", // 5 d
 		[
 			[0,"We just chased down an escaped prisoner!", "answer"],
 			[1,"No way! How'd that go down?", "answer"],
@@ -105,7 +105,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Sounds like a real mess. Just another day in paradise, right?", "answer"]
 		]
 	],
-	["mpbanter4", // 6
+	["mpbanter4", // 6 d
 		[
 			[0,"What’s this? You two lounging around while you’re supposed to be on patrol?", "answer"],
 			[1,"Just catching a break. Did you read the Stripes yesterday? Westmoreland thinks we've almost licked the VC!", "answer"],
@@ -113,64 +113,64 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Understood. Come on, Anderson. Let's go.", "answer"]
 		]
 	],
-	["mpbanter5_1", // 7
+	["mpbanter5_1", // 7 d
 		[
 			[0,"Big stuff must be going down. Hope you boys come back in one piece!", "answer"]
 		]
 	],
-	["mpbanter5_2", // 8
+	["mpbanter5_2", // 8 d
 		[
 			[0,"Looks like yall're in for a wild ride. Keep your heads down!", "answer"]
 		]
 	],
-	["mpbanter5_3", // 9
+	["mpbanter5_3", // 9 d
 		[
 			[0,"Damn, something serious is happening. Give 'em hell!", "answer"]
 		]
 	],
-	["takingCommand", // 10
+	["takingCommand", 
 		[
 			[0,"I'm in command now!", "answer"]
 		]
 	],
-	["takingCommandScout", // 11
+	["takingCommandScout",  
 		[
 			[0,"I command now!", "answer"]
 		]
 	],
-	["minimizeChatter", // 12
+	["minimizeChatter", 
 		[
 			[0,"Keep it tight. Not a sound.", "answer"]
 		]
 	],
-	["minimizeChatterScout", // 13
+	["minimizeChatterScout", 
 		[
 			[0,"Quiet like the grave.", "answer"]
 		]
 	],
-	["restoreChatter", // 14
+	["restoreChatter", 
 		[
 			[0,"Back to normal ops. Keep comms light.", "answer"]
 		]
 	],
-	["restoreChatterScout", // 15
+	["restoreChatterScout", 
 		[
 			[0,"No more ghost.", "answer"]
 		]
 	],
-	["question1", // 16
+	["question1", // 16 d
 		[
 			[0,"Could this be a trap?", "question"],
 			[1,"It’s possible. But if the guys at the farm gave it the green light, they must believe it’s legitimate. Otherwise, we wouldn’t be getting orders from higher-ups.", "answer"]
 		]
 	],
-	["question2", // 17
+	["question2", // 17 d
 		[
 			[0,"Do we really need a Kit Carson? How can we trust him?", "question"],
 			[1,"As I mentioned in the briefing, he’s been vetted by the Marines. He’s seen combat and performed better than some of our own. If you have concerns, go talk to him yourself.", "answer"]
 		]
 	],
-	["question3", // 18
+	["question3", // 18 d
 		[
 			[0,"If this General is in Lumphat right, why don’t we just blow the place to pieces with an Arclight?", "question"],
 			[1,"We can’t be certain he’s there. We need to confirm his location and get a solid kill before taking any action. Besides, it’s illegal to use an Arclight in Cambodia. Higher-ups fear escalation.", "answer"],
@@ -178,7 +178,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Exactly. That’s why you need to make damn sure to destroy the STAB, P.O.", "answer"]
 		]
 	],
-	["question4", // 19
+	["question4", // 19 d 
 		[
 			[0,"I’m curious—why can’t we insert with a bird if we’re extracting with one?", "question"],
 			[1,"There are a few reasons. First, helicopters are noisy and could blow our cover. Second, what if it gets shot down on the way in—", "answer"],
@@ -186,13 +186,13 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Everything is a calculated risk. The operation planners have weighed these risks carefully and done what they can to minimize them.", "answer"]
 		]
 	],
-	["question5", // 20
+	["question5", // 20 d 
 		[
 			[0,"Can you tell me more about General Tan?", "question"],
 			[1,"General Tan has been a key figure with the PAVN for quite a while—longer than we’ve been in Vietnam. He fought against the French before us and has played a crucial role in building and maintaining the Ho Chi Minh Trail. That’s likely why he’s there now—ensuring everything on the trail is running smoothly.", "answer"]
 		]
 	],
-	["question6", // 21
+	["question6", // 21 d 
 		[
 			[0,"If we get the chance, should we try to capture him? A goddamn General is worth more alive than dead!", "question"],
 			[1,"Don’t even think about it. Look, P.O., he’s a fanatic. He’s fully committed to this communist bullshit. He’s not going to surrender easily. This guy will either put a bullet in you or take one himself. Understand?", "answer"],
@@ -200,13 +200,13 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Fuckin’ rat commies, indeed.", "answer"]
 		]
 	],
-	["question7", // 22
+	["question7", // 22 d 
 		[
 			[0,"How reliable is this intel?", "question"],
 			[1,"The prisoner who provided it is locked up in the prison just North of us. It’s solid and credible, or the top brass wouldn’t have signed off on the mission.", "answer"]
 		]
 	],
-	["question8", // 23
+	["question8", // 23 d 
 		[
 			[0,"What’s your story, pal?", "question"],
 			[1,"I come from 2nd Battalion, 9th Marine Regiment, 3rd Marine Division. Fight many battles, hills and more. I know combat very well. I fight in tough places and make many missions. I here to do job and help you. You need anything, I can do.", "answer"],
@@ -215,19 +215,19 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Alright, Carson. Let’s see what you’ve got.", "question"]
 		]
 	],
-	["question9", // 24
+	["question9", // 24 d 
 		[
 			[0,"New soldier but same jungle. Maybe this time all come back.", "question"],
 			[1,"You've been vetted Thay, we're glad to have you.", "answer"]
 		]
 	],
-	["salute", // 25
+	["salute", // 25 d 
 		[
 			[0, "You know the drill. In and out, quiet and quick. Good luck boys.", "answer"],
 			[1, "Luck’s for the green, Captain. We’ve got training.", "answer"]
 		]
 	],
-	["saluteScout", // 26
+	["saluteScout", // 26 d 
 		[
 			[0, "You know the drill. In and out, quiet and quick. Good luck boys.", "answer"],
 			[1, "I know jugle boss, I am hunter.", "answer"]
@@ -289,7 +289,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1, "You got it Thay.", "answer"]
 		]
 	],
-	["radiohq1", // 27
+	["radiohq1", // 27 d 
 		[
 			[0, "", "answer", 3, { 
 				if (player != (_this#0)) then { playsound "talkradio"; }; 
@@ -307,7 +307,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["radiohqScout", // 28
+	["radiohqScout", // 28 d 
 		[
 			[0, "", "answer", 3, { 
 				if (player != (_this#0)) then { playsound "talkradio"; }; 
@@ -431,7 +431,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1, "Sharp and ready.", "answer"]
 		]
 	],
-	["infill", // 29
+	["infill", // 29 d 
 		[
 			[0, "", "answer", 5, { 
 				if (player != (_this#0)) then { playsound "talkradio"; }; 
@@ -525,7 +525,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "Shit! Kill enemy fast!", "answer"]
 		]
 	],
-	["generalfled", // 30
+	["generalfled", // 30 d 
 		[
 			[0, "", "answer", 3, {
 				playsound "talkradio";
@@ -539,7 +539,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["speakers1", // 31
+	["speakers1", // 31 d 
 		[
 			[0, "American soldier, you far from home. No one come to save you. Commander leave you to die in jungle. Surrender now, we treat you good. Fight, and you die.", "answer", 0, { 
 				speakers say3D ["answer", 200]; 
@@ -547,7 +547,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["speakers2", // 32
+	["speakers2", // 32 d 
 		[
 			[0, "Your friend already dead. You surrounded, no hope. Why fight for lost cause? War already lost. Your leader lie to you. Drop weapon, you live.", "answer", 0, { 
 				speakers say3D ["answer", 200];  
@@ -555,7 +555,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["speakers3", // 33
+	["speakers3", // 33 d 
 		[
 			[0, "American, listen good. Jungle belong to us. We watch every step, see every move. You not safe here. Surrender now, or you family cry for you forever.", "answer", 0, { 
 				speakers say3D ["answer", 200]; 
@@ -583,7 +583,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0, "You choose wrong side. Now you die here.", "answer"]
 		]
 	],
-	["bingo", // 34
+	["bingo", // 34 d 
 		[
 			[0, "Bingo!", "answer", 1],
 			[0, "", "answer", 3, { 
@@ -598,7 +598,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["bingoScout", // 35
+	["bingoScout", // 35 d 
 		[
 			[0, "Voilà!", "answer", 1],
 			[0, "", "answer", 3, { 
@@ -795,7 +795,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1, "That pilot’s in serious trouble without our help.", "answer"]
 		]
 	],
-	["meet", // 36
+	["meet", // 36 d 
 		[
 			[0,"Friendly! Friendly! Over here! Where are we?", "answer"],
 			[1,"You’re smack in the middle of bumfuck Cambodia.", "answer"],
@@ -803,7 +803,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Stay sharp and follow my lead.", "answer"]
 		]
 	],
-	["meetScout", // 37
+	["meetScout", // 37 d 
 		[
 			[0,"Holy shit, I thought you were one of them! I almost put you down! Where are we?", "answer"],
 			[1,"We in Cambodia.", "answer"],
@@ -811,37 +811,37 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Danger here. You follow now.", "answer"]
 		]
 	],
-	["askpilot1", // 38
+	["askpilot1", // 38 d 
 		[
 			[0,"Who are you, airman?", "question"],
 			[1,"I'm Captain Mike Reynolds. I'm with the 615th Tactical Fighter Squadron. And I'm glad as hell to see you. Was starting to think I was a dead man.", "answer"]
 		]
 	],
-	["askpilot2", // 39
+	["askpilot2", // 39 d 
 		[
 			[0,"How’s your condition, Captain? Any injuries we need to address right now?", "question"],
 			[1,"My back feels funny but it's not painful—damndest thing. Let's just get the hell out of here, I'll worry about the rest later.", "answer"]
 		]
 	],
-	["askpilot3", // 40
+	["askpilot3", // 40 d 
 		[
 			[0,"What was your mission?", "question"],
 			[1,"I was on a CAS run, hitting enemy positions for our ground guys. Took fire, probably a ZPU, and turned back. Nav gear and radio were knocked out, so I had to go visual. Spotted the SAM trail just in time.", "answer"]
 		]
 	],
-	["askpilot1Scout", // 41
+	["askpilot1Scout", // 41 d 
 		[
 			[0,"Say name, G.I.", "question"],
 			[1,"I'm Captain Mike Reynolds. I'm with the 615th Tactical Fighter Squadron. And I'm glad as hell to see you. Was starting to think I was a dead man.", "answer"]
 		]
 	],
-	["askpilot2Scout", // 42
+	["askpilot2Scout", // 42 d 
 		[
 			[0,"Condition what? You bleed?", "question"],
 			[1,"My back feels funny but it's not painful—damndest thing. Let's just get the hell out of here, I'll worry about the rest later.", "answer"]
 		]
 	],
-	["askpilot3Scout", // 43
+	["askpilot3Scout", // 43 d 
 		[
 			[0,"You fly for what?", "question"],
 			[1,"I was on a CAS run, hitting enemy positions for our ground guys. Took fire, probably a ZPU, and turned back. Nav gear and radio were knocked out, so I had to go visual. Spotted the SAM trail just in time.", "answer"]
@@ -949,19 +949,19 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Oh shit... A big one too by the looks of it.", "answer"]
 		]
 	],
-	["seespow", // 44
+	["seespow", // 44 d 
 		[
 			[0,"Hey! Over here! Please help me.", "answer"],
 			[1,"Jesus, you got it pal. Hold tight.", "answer"]
 		]
 	],
-	["scoutseespow", // 45
+	["scoutseespow", // 45 d 
 		[
 			[0,"Hey! Over here! Please help me.", "answer"],
 			[1,"I help. You quiet now.", "answer"]
 		]
 	],
-	["untiepow", // 46
+	["untiepow", // 46 d 
 		[
 			[1,"Goddamn, your leg’s messed up... Here hold still, I’ll get those off you. Think you can walk on your own?", "answer"],
 			[0,"I think so but I can't move very fast.", "answer"],
@@ -969,74 +969,74 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Sure thing, please hurry. They're everywhere.", "answer"]
 		]
 	],
-	["scoutuntiepow", // 47
+	["scoutuntiepow", // 47 d 
 		[
 			[1,"You be still. I help. You stay here. No move at all.", "answer"],
 			[0,"Who are you?", "answer"],
 			[1,"I save you. You welcome. No more talk.", "answer"]
 		]
 	],
-	["askpow1", // 48
+	["askpow1", // 48 d 
 		[
 			[0,"Who are you? What's your name, buddy?", "answer"],
 			[1,"Mark Davis, Specialist Fourth Class. I run supplies.", "answer"]
 		]
 	],
-	["askpow2", // 49
+	["askpow2", // 49 d 
 		[
 			[0,"How did you end up in this hellhole?", "answer"],
 			[1,"We were on a supply run when we were ambushed. My unit was overrun, and I got captured. They dragged me here and kept me underground, barely fed.", "answer"]
 		]
 	],
-	["askpow3", // 50
+	["askpow3", // 50 d 
 		[
 			[0,"How long have you been held here, and what have they been doing to you?", "answer"],
 			[1,"I'm not sure how long but it feels like months. They interrogate me sometimes, trying to get information on us. The rest of the time, they keep me in chains and in the dark.", "answer"]
 		]
 	],
-	["askpow4", // 51
+	["askpow4", // 51 d 
 		[
 			[0,"Have they been treating you alright? Any other prisoners here?", "answer"],
 			[1,"They’ve been rough. Not much food or water. I’m not sure if there are others. They kept me isolated most of the time. Sometimes I hear other voices, but never see anyone.", "answer"]
 		]
 	],
-	["askpow5", // 52
+	["askpow5", // 52 d 
 		[
 			[0,"How'd you get that leg wound? Looks like it's been giving you trouble for a while.", "answer"],
 			[1,"I picked it up three weeks back, trying to escape. Stepped on a punji stick and punctured my leg bad. They just patched me up quick, no real treatment. It's been aching and swollen ever since. I can barely limp along and it just keeps getting worse.", "answer"]
 		]
 	],
-	["askpow1Scout", // 53
+	["askpow1Scout", // 53 d 
 		[
 			[0,"Say name G.I.", "answer"],
 			[1,"Mark Davis, Specialist Fourth Class. I run supplies.", "answer"]
 		]
 	],
-	["askpow2Scout", // 54
+	["askpow2Scout", // 54 d 
 		[
 			[0,"How you get here?", "answer"],
 			[1,"We were on a supply run when we were ambushed. My unit was overrun, and I got captured. They dragged me here and kept me underground, barely fed.", "answer"]
 		]
 	],
-	["askpow3Scout", // 55
+	["askpow3Scout", // 55 d 
 		[
 			[0,"How long you here?", "answer"],
 			[1,"I'm not sure how long but it feels like months. They interrogate me sometimes, trying to get information on us. The rest of the time, they keep me in chains and in the dark.", "answer"]
 		]
 	],
-	["askpow4Scout", // 56
+	["askpow4Scout", // 56 d 
 		[
 			[0,"More G.I. here?", "answer"],
 			[1,"I’m not sure if there are others. They kept me isolated most of the time. Sometimes I hear other voices, but never see anyone.", "answer"]
 		]
 	],
-	["askpow5Scout", // 57
+	["askpow5Scout", // 57 d 
 		[
 			[0,"You leg very bad.", "answer"],
 			[1,"I picked it up three weeks back, trying to escape. Stepped on a punji stick and punctured my leg bad. They just patched me up quick, no real treatment. It's been aching and swollen ever since. I can barely limp along and it just keeps getting worse.", "answer"]
 		]
 	],
-	["callPOW", // 58
+	["callPOW", // 58 d 
 		[
 			[1,"..... Hello?", "answer", 0, { 
 				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
@@ -1049,13 +1049,13 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["POWexits", // 59
+	["POWexits", // 59 d 
 		[
 			[1,"Goddamn it, my eyes. Gimmie a second, it hurts.", "answer"],
 			[0,"We gotta get you out of here ASAP and into some real medical care. Stay close, follow my lead.", "answer"]
 		]
 	],
-	["scoutcallPOW", // 60
+	["scoutcallPOW", // 60 d 
 		[
 			[1,"..... Hello?", "answer", 0, { 
 				fieldtelephone say3D ["talkradio", 100]; //crackle like its coming through phone
@@ -1068,48 +1068,48 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scoutPOWexits", // 61
+	["scoutPOWexits", // 61 d 
 		[
 			[1,"Goddamn my eyes. Gimmie a second, it hurts.", "answer"],
 			[0,"Don't be baby. I know pain, no more complain. You follow.", "answer"]
 		]
 	],
-	["heal1", // 62
+	["heal1", // 62 d 
 		[
 			[0,"Forget it, man. My leg’s shot! Let’s just get the hell outta here!", "answer"]
 		]
 	],
-	["heal2", // 63
+	["heal2", // 63 d 
 		[
 			[0,"Damn it, man, I told you—forget it! We don’t have time for this!", "answer"]
 		]
 	],
-	["heal3", // 64
+	["heal3", // 64 d 
 		[
 			[0,"I said leave it! You’re wasting time! We need to move—NOW!", "answer"]
 		]
 	],
-	["heal4", // 65
+	["heal4", // 65 d 
 		[
 			[0,"Fuck you, man...", "answer"]
 		]
 	],
-	["pow1", // 66
+	["pow1", // 66 d 
 		[
 			[0,"Damn, this leg is killing me. How much farther to the pickup point?", "answer"]
 		]
 	],
-	["pow2", // 67
+	["pow2", // 67 d 
 		[
 			[0,"I didn’t think I’d make it this far. Guess slow and steady wins the race.", "answer"]
 		]
 	],
-	["pow3", // 68
+	["pow3", // 68 d 
 		[
 			[0,"Every step is agony. I don’t know how much longer I can keep this up.", "answer"]
 		]
 	],
-	["extract", // 69
+	["extract", // 69 d 
 		[
 			[0, "", "answer", 3, { 
 				if (player != (_this#0)) then { playsound "talkradio"; };  
@@ -1123,7 +1123,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scoutextract", // 70
+	["scoutextract", // 70 d 
 		[
 			[0, "", "answer", 3, { 
 				if (player != (_this#0)) then { playsound "talkradio"; };  
@@ -1137,7 +1137,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smoke", // 71
+	["smoke", // 71 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1146,17 +1146,17 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["pilotSeesHeli", // 72
+	["pilotSeesHeli", // 72 d 
 		[
 			[0,"Hell yes! Get me on that bird!", "answer"]
 		]
 	],
-	["powSeesHeli", // 73
+	["powSeesHeli", // 73 d 
 		[
 			[0,"Thank God for that beautiful bird... Please let it be real.", "answer"]
 		]
 	],
-	["smokegrape", // 74
+	["smokegrape", // 74 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1165,7 +1165,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokecherry", // 75
+	["smokecherry", // 75 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1174,7 +1174,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokelemon", // 76
+	["smokelemon", // 76 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1183,7 +1183,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokelime", // 77
+	["smokelime", // 77 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1192,7 +1192,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokecream", // 78
+	["smokecream", // 78 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1201,7 +1201,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokeconfirm", // 79
+	["smokeconfirm", // 79 d 
 		[
 			[0, "", "answer", 0, { 
 				if (player != (_this#0)) then { playsound "talkradio"; };  
@@ -1215,7 +1215,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scoutsmokeconfirm", // 80
+	["scoutsmokeconfirm", // 80 d 
 		[
 			[0, "", "answer", 0, { 
 				if (player != (_this#0)) then { playsound "talkradio"; };  
@@ -1229,7 +1229,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokeRequest2", // 81
+	["smokeRequest2", // 81 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1238,7 +1238,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["smokedeny", // 82
+	["smokedeny", // 82 d 
 		[
 			[0, "", "answer", 0, { 
 				if (player != (_this#0)) then { playsound "talkradio"; };  
@@ -1252,7 +1252,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scoutsmokedeny", // 83
+	["scoutsmokedeny", // 83 d 
 		[
 			[0, "", "answer", 0, { 
 				if (player != (_this#0)) then { playsound "talkradio"; };  
@@ -1266,7 +1266,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["lzBlocked", // 84
+	["lzBlocked", // 84 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1275,7 +1275,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["lzNoLongerBlocked", // 85
+	["lzNoLongerBlocked", // 85 d 
 		[
 			[0,"", "answer", 0, { 
 				playsound "talkradio"; 
@@ -1284,19 +1284,19 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["goGoGo", // 86
+	["goGoGo", // 86 d 
 		[
 			[0,"Ranger, Get us the hell out of here!", "answer"],
 			[1,"My pleasure.", "answer"]
 		]
 	],
-	["goGoGoScout", // 87
+	["goGoGoScout", // 87 d 
 		[
 			[0,"Ranger, go fast!", "answer"],
 			[1,"My pleasure.", "answer"]
 		]
 	],
-	["extractpass", // 88
+	["extractpass", // 88 d 
 		[
 			[0, "Ranger, we have everyone accounted for!", "answer"],
 			[1, "Copy that, Rankin.", "answer"],
@@ -1312,7 +1312,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["extractpassScout", // 89
+	["extractpassScout", // 89 d 
 		[
 			[0, "Pilot, all here!", "answer"],
 			[1, "Copy that, Rankin.", "answer"],
@@ -1328,7 +1328,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["menLeftBehind", // 90
+	["menLeftBehind", // 90 d 
 		[
 			[0,"God fucking damnit! We left them behind...", "answer", 3],
 			[0,"Ranger, we have friendlies still in the AO. Relay to HQ.", "answer"],
@@ -1345,7 +1345,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["menLeftBehindScout", // 91
+	["menLeftBehindScout", // 91 d 
 		[
 			[0,"Brothers still down there...", "answer", 3],
 			[0,"Pilot, men still out there. You tell HQ.", "answer"],
@@ -1362,7 +1362,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["powpassconvo", // 92
+	["powpassconvo", // 92 d 
 		[
 			[0,"Ranger, we've a wounded POW on board. Need medical ASAP.", "answer"],
 			[1,"You got it.", "answer"],
@@ -1380,7 +1380,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Don't mention it. We’re all on the same team. Rest up and take care.", "answer"]
 		]
 	],
-	["powpassconvoScout", // 93
+	["powpassconvoScout", // 93 d 
 		[
 			[0,"Pilot, we need doctor soon for him.", "answer"],
 			[1,"You got it.", "answer"],
@@ -1398,7 +1398,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"You welcome, we on same team.", "answer"]
 		]
 	],
-	["pilotpassconvo", // 94
+	["pilotpassconvo", // 94 d 
 		[
 			[3,"Warrant Officer, I'm Captain Mike Reynolds, can you notify the 615th Tactical Fighter Squadron of my status?", "answer"],
 			[1,"Roger that, Captain.", "answer"],
@@ -1416,7 +1416,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"You just got shot down and you’re already itching to get back up there?! Damn, you’re a certifiable badass.", "answer"]
 		]
 	],
-	["pilotpassconvoScout", // 95
+	["pilotpassconvoScout", // 95 d 
 		[
 			[3,"Warrant Officer, I'm Captain Mike Reynolds, can you notify the 615th Tactical Fighter Squadron of my status?", "answer"],
 			[1,"Roger that, Captain.", "answer"],
@@ -1434,7 +1434,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"You number one brave man!", "answer"]
 		]
 	],
-	["powAndPilot", // 96
+	["powAndPilot", // 96 d 
 		[
 			[0,"Ranger, we picked up two survivors in the AO. Have medical ready.", "answer"],
 			[1,"You got it.", "answer"],
@@ -1453,7 +1453,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Don't mention it. We’re all on the same team. Rest up and take care.", "answer"]
 		]
 	],
-	["powAndPilotScout", // 97
+	["powAndPilotScout", // 97 d 
 		[
 			[0,"Pilot, we have two more soldier. Need doctor.", "answer"],
 			[1,"You got it.", "answer"],
@@ -1472,33 +1472,33 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"You welcome, we on same team.", "answer"]
 		]
 	],
-	["seePrisonDefault", // 98
+	["seePrisonDefault", // 98 d 
 		[
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"]
 		]
 	],
-	["seePrisonDefaultScout", // 99
+	["seePrisonDefaultScout", // 99 d 
 		[
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"This is very sad place. Stay far away.", "answer"]
 		]
 	],
-	["seePrison", // 100
+	["seePrison", // 100 d 
 		[
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
 			[2,"This is very sad place. Stay far away.", "answer"]
 		]
 	],
-	["seePrisonScout", // 101
+	["seePrisonScout", // 101 d 
 		[
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"This is very sad place. Stay far away.", "answer"],
 			[2,"The place is huge. Must hold hundreds of prisoners.", "answer"]
 		]
 	],
-	["seePrisonPOW", // 102
+	["seePrisonPOW", // 102 d 
 		[
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
@@ -1506,7 +1506,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[3,"Many there not belong. I know. You suffer one person. They suffer thousands.", "answer"]
 		]
 	],
-	["seePrisonScoutPOW", // 103
+	["seePrisonScoutPOW", // 103 d 
 		[
 			[0,"Look off the starboard side, boys. You can see Phu Quoc Prison. Hell of a sight from the air.", "answer"],
 			[1,"The place is huge. Must hold hundreds of prisoners.", "answer"],
@@ -1524,7 +1524,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"We back. Now talk to Captain.", "answer"]
 		]
 	],
-	["debriefArea", // 104
+	["debriefArea", // 104 d 
 		[
 			[0,"Welcome back, gentlemen.", "answer"]
 		]
@@ -1549,7 +1549,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"We loose pilot!", "answer"]
 		]
 	], 
-	["10", // 105
+	["10", // 105 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"You took out that filthy commie rat bastard son of a bitch! You destroyed all evidence of our involvement! You must have taken out every target of opportunity in the entire AO!", "answer"],
@@ -1560,7 +1560,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["9", // 106
+	["9", // 106 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"You took out that commie rat bastard and covered our tracks like pros! On top of that, you managed to handle some additional objectives that weren’t even on the list. Outstanding work! Hit the showers, and I’ll catch you guys at the bar later. Dismissed!", "answer", 0, {
@@ -1570,7 +1570,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["8", // 107
+	["8", // 107 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"You took out that commie bastard and cleaned up all traces of our involvement. You nailed the primary mission objective, and that’s exactly what we needed. Well done, gentlemen. Your country owes you a great deal. Dismissed!", "answer", 0, {
@@ -1580,7 +1580,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["7", // 108
+	["7", // 108 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"You took out the bastard, and you did a solid job disrupting their operations by hitting some additional targets. However, leaving evidence of our involvement is a serious breach. It’s unacceptable, but I’ll see if I can work some magic with the top brass, considering the extra effort you put in. Dismissed!", "answer", 0, {
@@ -1590,7 +1590,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["6", // 109
+	["6", // 109 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"You took out the bastard, but unfortunately, you left evidence of our involvement behind. While eliminating the General was crucial, the fact that our tracks are exposed could spell trouble, especially if the enemy can prove our involvement. This isn’t going to sit well with the top brass. Dismissed!", "answer", 0, {
@@ -1600,7 +1600,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["5", // 110
+	["5", // 110 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"I'm sorry you couldn't nail the slippery bastard, but you did a solid job covering our tracks. Textbook work. On the bright side, you managed to disrupt enemy operations by hitting some additional targets, and that’s not going unnoticed. Good effort. Dismissed!", "answer", 0, {
@@ -1610,7 +1610,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["4", // 111
+	["4", // 111 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"I'm sorry you couldn't nail the slippery bastard. However, you did a commendable job covering our tracks. I’ll be hoping for better results on your next mission. Dismissed.", "answer", 0, {
@@ -1620,7 +1620,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["3", // 112
+	["3", // 112 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"It’s regrettable you missed the target, and worse, you left evidence of our involvement. What am I supposed to tell the top brass? The only small consolation is that you did manage to disrupt enemy operations. Get your shit squared away. Dismissed!", "answer", 0, {
@@ -1630,7 +1630,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["2", // 113
+	["2", // 113 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"Look, it’s regrettable enough that you missed the target, but what’s worse is you left evidence of our involvement. This mission is FUBAR because of you and your lack of discipline. Get out of my sight. Dismissed!", "answer", 0, {
@@ -1640,7 +1640,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["1", // 114
+	["1", // 114 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. I expected better from supposed professionals like you. This mission was a complete cluster-fuck and a critical failure. You should be ashamed. You’ll be cleaning latrines for the rest of your tour. Dismissed!", "answer", 0, {
@@ -1650,7 +1650,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["0", // 115
+	["0", // 115 d 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
 			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. And you left team members behind in the enemy AO. You might as well have signed their death warrants. Fully expect an immediate courtmartial. Surrender your gear right now. MPs, lock 'em up!", "answer", 0, {
@@ -1660,7 +1660,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout10", // 116
+	["scout10", // 116 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"You took out that filthy commie rat bastard son of a bitch! You destroyed all evidence of our involvement! You must have taken out every target of opportunity in the entire AO!", "answer"],
@@ -1671,7 +1671,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout9", // 117
+	["scout9", // 117 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"You took out that commie rat bastard and covered our tracks like pros! On top of that, you managed to handle some additional objectives that weren’t even on the list. Outstanding work! Hit the showers, and I’ll catch you guys at the bar later. Dismissed!", "answer", 0, {
@@ -1681,7 +1681,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout8", // 118
+	["scout8", // 118 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"You took out that commie bastard and cleaned up all traces of our involvement. You nailed the primary mission objective, and that’s exactly what we needed. Well done, gentlemen. Your country owes you a great deal. Dismissed!", "answer", 0, {
@@ -1691,7 +1691,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout7", // 119
+	["scout7", // 119 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"You took out the bastard, and you did a solid job disrupting their operations by hitting some additional targets. However, leaving evidence of our involvement is a serious breach. It’s unacceptable, but I’ll see if I can work some magic with the top brass, considering the extra effort you put in. Dismissed!", "answer", 0, {
@@ -1701,7 +1701,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout6", // 120
+	["scout6", // 120 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"You took out the bastard, but unfortunately, you left evidence of our involvement behind. While eliminating the General was crucial, the fact that our tracks are exposed could spell trouble, especially if the enemy can prove our involvement. This isn’t going to sit well with the top brass. Dismissed!", "answer", 0, {
@@ -1711,7 +1711,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout5", // 121
+	["scout5", // 121 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"I'm sorry you couldn't nail the slippery bastard, but you did a solid job covering our tracks. Textbook work. On the bright side, you managed to disrupt enemy operations by hitting some additional targets, and that’s not going unnoticed. Good effort. Dismissed!", "answer", 0, {
@@ -1721,7 +1721,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout4", // 122
+	["scout4", // 122 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"I'm sorry you couldn't nail the slippery bastard. However, you did a commendable job covering our tracks. I’ll be hoping for better results on your next mission. Dismissed.", "answer", 0, {
@@ -1731,7 +1731,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout3", // 123
+	["scout3", // 123 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"It’s regrettable you missed the target, and worse, you left evidence of our involvement. What am I supposed to tell the top brass? The only small consolation is that you did manage to disrupt enemy operations. Get your shit squared away. Dismissed!", "answer", 0, {
@@ -1741,7 +1741,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout2", // 124
+	["scout2", // 124 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"Look, it’s regrettable enough that you missed the target, but what’s worse is you left evidence of our involvement. This mission is FUBAR because of you and your lack of discipline. Get out of my sight. Dismissed!", "answer", 0, {
@@ -1751,7 +1751,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout1", // 125
+	["scout1", // 125 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. I expected better from supposed professionals like you. This mission was a complete cluster-fuck and a critical failure. You should be ashamed. You’ll be cleaning latrines for the rest of your tour. Dismissed!", "answer", 0, {
@@ -1761,7 +1761,7 @@ foxclub_var_conversations = createHashMapFromArray [
 			]
 		]
 	],
-	["scout0", // 126
+	["scout0", // 126 d 
 		[
 			[0,"We finish, Captain.", "answer"],
 			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. And you left team members behind in the enemy AO. You might as well have signed their death warrants. Fully expect an immediate courtmartial. Surrender your gear right now. MPs, lock 'em up!", "answer", 0, {

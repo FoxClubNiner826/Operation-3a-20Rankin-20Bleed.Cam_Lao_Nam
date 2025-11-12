@@ -287,7 +287,7 @@ while {true} do {
         };
             while {missionNamespace getVariable ["fox_var_radioLoop",false]} do {
                 if (alive speakers) then {
-                    [selectRandom ["speakers1", "speakers2", "speakers3"], [HanoiHannah]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 200}];
+                    [selectRandom ["speakers1", "speakers2", "speakers3"], [HanoiHannah], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance speakers <= 200}];
                     sleep 60;
                 };
         };
@@ -309,11 +309,11 @@ while {true} do {
         };
             while {missionNamespace getVariable ["fox_var_powloop",false]} do {
                 if (alive POW) then {
-                    ["pow1", [POW]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
+                    ["pow1", [POW], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
                     sleep 90;
-                    ["pow2", [POW]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
+                    ["pow2", [POW], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
                     sleep 90;
-                    ["pow3", [POW]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
+                    ["pow3", [POW], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance POW <= 100}];
                     missionNamespace setVariable ["fox_var_powloop", false, true]; 
                 };
         };

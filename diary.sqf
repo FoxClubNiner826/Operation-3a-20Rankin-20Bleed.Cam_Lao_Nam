@@ -116,13 +116,43 @@ The trail operates both day and night, with no end in sight.<br/><br/>
 Above: Ho Chi Minh Trail flows through Laos and Cambodia into South Vietnam.
 "]];
 
-player createDiarySubject ["Historical","Field Manual"];
+player createDiarySubject ["Historical","Mission Codex"];
 
 player createDiarySubject ["Parameters","Mission Options"];
 
-player createDiaryRecord ["Parameters", ["Mission Options", 
-"<br/>1. You can change who is the group leader (who controls the AI) by interacting with the map stand next to the arsenal. (Multiplayer Only)<br/><br/>
-2. Zeus (Game Master) is availble in singleplayer and multiplayer. In multiplayer you can access it by selecting the virtual entity slot in the lobby or by logging in as a server admin.
+player createDiaryRecord ["Parameters", ["Subtitles", 
+"<br/>
+Subtitles are enabled by default.<br/><br/>
+You can disable them by interacting with the map board next to the arsenal.<br/><br/>
+This is a local effect, meaning subtitles are only disabled for the player who chooses to do so.
+" ]];
+
+player createDiaryRecord ["Parameters", ["Squad Banter", 
+"<br/>
+Squad Banter is enabled by default.<br/><br/>
+
+You can turn it off by interacting with the map board next to the arsenal.<br/><br/>
+
+It’s recommended to keep it on for your first playthrough. The option to turn it off exists mainly for multiplayer,
+where a player may prefer to hear information from another player instead of their character.
+For example, a player might report a sighting at the same time their character does, resulting in redundant dialogue.<br/><br/>
+
+This is a local effect, meaning banter is only minimized for the player who chooses to do so.
+" ]];
+
+player createDiaryRecord ["Parameters", ["Group Leader", 
+"<br/>
+Multiplayer only:<br/><br/>
+The default group leader (the player who controls the AI) is the Commander slot.<br/><br/>
+You can change the group leader by interacting with the map stand next to the arsenal.<br/><br/>
+You can also choose to play without AI by disabling them in the lobby.
+" ]];
+
+player createDiaryRecord ["Parameters", ["Game Master", 
+"<br/>Game Master (Zeus) is available in singleplayer and multiplayer.<br/><br/>
+In multiplayer, you can:<br/>
+- Select the Virtual Entity slot in the lobby to play as a dedicated Game Master.<br/>
+- Select a playable unit and log in as server admin to be Zeus while commanding that unit.
 " ]];
 
 player createDiaryRecord ["Historical", ["Phu Quoc Prison", 
@@ -310,17 +340,13 @@ role in the Phoenix Program, left a lasting legacy on the conduct of special ope
 Above: SEAL Team One (1967).<br/><br/>
 " ]];
 
-player createDiaryRecord ["Historical", ["Introduction", 
+player createDiaryRecord ["Historical", ["Author Notes", 
 "<br/>This history codex showcases the authentic elements incorporated into this historical-fiction Vietnam War era mission.<br/><br/>
 
 As the mission author, I have made every effort to use period-correct equipment, weapons, uniforms, and other relevant elements.<br/><br/>
 
-If I have made an error regarding the previous statement, please contact me on Steam. Happy learing and happy gaming! I hope you enjoy my mission.<br/><br/>
+If you have any feedback please share on the Rankin Bleed Discord. Happy learing and happy gaming! I hope you enjoy my mission.<br/><br/>
 
 Best Regards,
 FoxClubNiner
-
-<img image='pics\introhistory.jpg'/><br/><br/>
-
-Above: SEAL Team in Vietnam.
 " ]];

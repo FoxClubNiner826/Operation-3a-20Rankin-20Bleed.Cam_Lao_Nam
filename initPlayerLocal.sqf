@@ -97,13 +97,15 @@ map addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     
     [playergroup, _caller] remoteExec ["selectLeader", 0];
-	[ format ["%1 has chosen to be group leader", name _caller] ] remoteExec ["systemChat", 0];
+	
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["takingCommand", "takingCommandScout"] select (_caller == _scout); 
-    [_convo, [_caller]] remoteExec [ 
+    [_convo, [_caller], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }
         ];
+	sleep .1;
+	[ format ["%1 has chosen to be group leader", name _caller] ] remoteExec ["systemChat", 0];
 	}, 
     nil, 
     8, 
@@ -129,15 +131,13 @@ map addAction [
     "<t color='#FFFF00'>Turn Off Squad Banter</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-    systemChat "Squad Banter: Off";
-	missionNamespace setVariable ["minimizeChatter", true];
-
+    missionNamespace setVariable ["minimizeChatter", true];
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["minimizeChatter", "minimizeChatterScout"] select (_caller == _scout); 
-    [_convo, [_caller], true] remoteExec [ 
-        "FoxClub_fnc_Conversation",     
-        allPlayers select { _x distance _caller <= 100 }
-        ];
+	[_convo, [_caller], true] call FoxClub_fnc_Conversation;
+	//sleep .1;
+	systemChat "Squad Banter: Off";
+	
 	}, 
     nil, 
     8, 
@@ -163,15 +163,14 @@ map addAction [
     "<t color='#FFFF00'>Turn On Squad Banter</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-	systemChat "Squad Banter: On";
+	
 	missionNamespace setVariable ["minimizeChatter", false];
 
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["restoreChatter", "restoreChatterScout"] select (_caller == _scout); 
-    [_convo, [_caller]] remoteExec [ 
-        "FoxClub_fnc_Conversation",     
-        allPlayers select { _x distance _caller <= 100 }
-        ];
+    [_convo, [_caller]] call FoxClub_fnc_Conversation;
+	//sleep .1;
+	systemChat "Squad Banter: On";
 	}, 
     nil, 
     8, 
@@ -250,7 +249,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko1", false, true]; //removes the used addAction 
 	
 	params ["_target", "_caller", "_actionID", "_args"]; //needed for finding player that made the action    
-	["question1", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
+	["question1", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
 	}, 
     nil, 
     8, 
@@ -269,7 +268,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko2", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"];    
-	["question2", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question2", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 
 	0 spawn {
   			sleep 10;
@@ -292,7 +291,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko3", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question3", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
+	["question3", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}]; 
 	}, 
     nil, 
     8, 
@@ -310,7 +309,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko4", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question4", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question4", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
@@ -328,7 +327,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko5", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question5", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question5", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
@@ -346,7 +345,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko6", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question6", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question6", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
@@ -364,7 +363,7 @@ Marcinko addAction [
     missionNamespace setVariable ["ActionTalkToMarcinko7", false, true]; 
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question7", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question7", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
@@ -382,7 +381,7 @@ scout addAction [
 	missionNamespace setVariable ["ActionTalkToCarson", false, true];
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question8", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question8", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
@@ -401,7 +400,7 @@ Marcinko addAction [
 	missionNamespace setVariable ["ActionTalkToMarcinko9", false, true];
     
 	params ["_target", "_caller", "_actionID", "_args"]; 
-	["question9", [_caller, _target]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
+	["question9", [_caller, _target], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _target <= 100}];
 	}, 
     nil, 
     8, 
@@ -722,11 +721,11 @@ private _conditionGeneral = {
 	{
 		params ["_target", "_caller", "_actionID", "_args"];
         if (_caller == missionNamespace getVariable ["scout", objNull]) then {
-			["bingoScout", [_caller, covey]] remoteExec [
+			["bingoScout", [_caller, covey], true] remoteExec [
                 "FoxClub_fnc_Conversation", 
                 allPlayers select {_x distance _caller <= 100}];
 		} else {
-			["bingo", [_caller, covey]] remoteExec [
+			["bingo", [_caller, covey], true] remoteExec [
                 "FoxClub_fnc_Conversation", 
                 allPlayers select {_x distance _caller <= 100}];
 		};
@@ -892,7 +891,7 @@ pilot addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["askpilot1", "askpilot1Scout"] select (_caller == _scout); 
-    [_convo, [_caller, _target]] remoteExec [ 
+    [_convo, [_caller, _target], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }     
     ];
@@ -913,7 +912,7 @@ pilot addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     _scout = missionNamespace getVariable ["scout", objNull];   
 	private _convo = ["askpilot2", "askpilot2Scout"] select (_caller == _scout); 
-    [_convo, [_caller, _target]] remoteExec [ 
+    [_convo, [_caller, _target], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }     
     ];
@@ -934,7 +933,7 @@ pilot addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     _scout = missionNamespace getVariable ["scout", objNull];   
 	private _convo = ["askpilot3", "askpilot3Scout"] select (_caller == _scout); 
-    [_convo, [_caller, _target]] remoteExec [ 
+    [_convo, [_caller, _target], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }     
     ];
@@ -962,7 +961,7 @@ pow addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["askpow1", "askpow1Scout"] select (_caller == _scout); 
-    [_convo, [_caller, _target]] remoteExec [ 
+    [_convo, [_caller, _target], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }
         ];
@@ -983,7 +982,7 @@ pow addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["askpow2", "askpow2Scout"] select (_caller == _scout); 
-    [_convo, [_caller, _target]] remoteExec [ 
+    [_convo, [_caller, _target], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }
         ];
@@ -1004,7 +1003,7 @@ pow addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["askpow3", "askpow3Scout"] select (_caller == _scout); 
-    [_convo, [_caller, _target]] remoteExec [ 
+    [_convo, [_caller, _target], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }
         ];
@@ -1025,7 +1024,7 @@ pow addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["askpow4", "askpow4Scout"] select (_caller == _scout); 
-    [_convo, [_caller, _target]] remoteExec [ 
+    [_convo, [_caller, _target], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }
         ];
@@ -1046,7 +1045,7 @@ pow addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
     _scout = missionNamespace getVariable ["scout", objNull];    
 	private _convo = ["askpow5", "askpow5Scout"] select (_caller == _scout); 
-    [_convo, [_caller, _target]] remoteExec [ 
+    [_convo, [_caller, _target], true] remoteExec [ 
         "FoxClub_fnc_Conversation",     
         allPlayers select { _x distance _caller <= 100 }
         ];
@@ -1094,7 +1093,7 @@ player addEventHandler ["FiredMan", {
 				deleteVehicle _projectile;				
 				[] spawn {
 					sleep 20;
-					["smokegrape", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+					["smokegrape", [ranger], true] remoteExec ["FoxClub_fnc_Conversation"];
 					missionNamespace setVariable ["ActionConfirmSmoke", true, true];
 				}; 
 			};
@@ -1117,7 +1116,7 @@ player addEventHandler ["FiredMan", {
 				deleteVehicle _projectile;				
 				[] spawn {
 					sleep 20;
-					["smokecherry", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+					["smokecherry", [ranger], true] remoteExec ["FoxClub_fnc_Conversation"];
 					missionNamespace setVariable ["ActionConfirmSmoke", true, true];
 				}; 
 			};
@@ -1140,7 +1139,7 @@ player addEventHandler ["FiredMan", {
 				deleteVehicle _projectile;				
 				[] spawn {
 					sleep 20;
-					["smokelemon", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+					["smokelemon", [ranger], true] remoteExec ["FoxClub_fnc_Conversation"];
 					missionNamespace setVariable ["ActionConfirmSmoke", true, true];
 				}; 
 			};
@@ -1163,7 +1162,7 @@ player addEventHandler ["FiredMan", {
 				deleteVehicle _projectile;				
 				[] spawn {
 					sleep 20;
-					["smokelime", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+					["smokelime", [ranger], true] remoteExec ["FoxClub_fnc_Conversation"];
 					missionNamespace setVariable ["ActionConfirmSmoke", true, true];
 				}; 
 			};
@@ -1186,7 +1185,7 @@ player addEventHandler ["FiredMan", {
 				deleteVehicle _projectile;				
 				[] spawn {
 					sleep 20;
-					["smokecream", [ranger]] remoteExec ["FoxClub_fnc_Conversation"];
+					["smokecream", [ranger], true] remoteExec ["FoxClub_fnc_Conversation"];
 					missionNamespace setVariable ["ActionConfirmSmoke", true, true];
 				}; 
 			};
@@ -1221,7 +1220,7 @@ private _conditionExtract = {
         private _convo = ["goGoGo", "goGoGoScout"] select (_caller == _scout);
         missionNamespace setVariable ["actionReturnToBase", false, true];
         
-        [_convo, [_caller, ranger]] remoteExec [
+        [_convo, [_caller, ranger], true] remoteExec [
             "FoxClub_fnc_Conversation",    
             allPlayers select { _x distance _caller <= 100 }    
         ];
@@ -1240,6 +1239,61 @@ private _conditionExtract = {
 		};
         */
         remoteExec ["FoxClub_fnc_heliRTB", extractHeli];
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	3, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	true //show in middle of screen
+] call BIS_fnc_holdActionAdd;
+
+
+//////////////////////////////////////////////////
+//                                              //
+//             TEST ACTION FOR RTB              //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionExtract = {
+    _this in crew extractHeli_1
+};
+
+[
+	extractheli_1,
+	"<t color='#FFFF00'>Return to Base TEST</t>",
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
+	toString _conditionExtract, //condition, all alive players in the helicopter.
+	"true", //condition progress
+	{}, //code on start
+	{}, // code every tick
+	{
+        params ["_target", "_caller", "_actionID", "_args"];
+        _scout   = missionNamespace getVariable ["scout", objNull]; 
+        private _convo = ["goGoGo", "goGoGoScout"] select (_caller == _scout);
+        missionNamespace setVariable ["actionReturnToBase", false, true];
+        
+        [_convo, [_caller, ranger], true] remoteExec [
+            "FoxClub_fnc_Conversation",    
+            allPlayers select { _x distance _caller <= 100 }    
+        ];
+        /*
+        [] spawn {
+            ExtractHeli landAt [ExtractHelipad, "None"]; // lets the heli take off
+            ExtractHeli flyInHeight 80; // goes to height then moves to base. Doesnt look smooth.
+            _group = ExtractHeliGroup;  
+            _markerName = "returnToBase";   
+            _waypointPosition = getMarkerPos _markerName;  
+            _wp1 = _group addWaypoint [_waypointPosition, 0]; 
+            _wp1 setWaypointType "MOVE";  
+            _group setCurrentWaypoint _wp1; // forces heli to move
+            sleep 60; // lets heli take off before giving another landing
+            ExtractHeli landAt [baseHelipad, "Land"]; // if there was no sleep the engine will turn off and heli wont take off.
+		};
+        */
+        remoteExec ["FoxClub_fnc_heliRTBTEST", extractHeli_1];
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements
@@ -1278,93 +1332,93 @@ Marcinko addAction [
     if (_scout == _caller) then {
 
 		if (_allPrimary && _allSecondary)  then {
-			["scout10", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout10", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 
 		if (_allPrimary && _someSecondary && !_allSecondary)  then {
-			["scout9", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout9", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
 		if (_allPrimary && !_allSecondary && !_someSecondary)  then {
-			["scout8", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout8", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
 		if (_hvtDead && _stabFailed && _someSecondary)  then {
-			["scout7", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout7", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
         
 		if (_hvtDead && _stabFailed && !_someSecondary)  then {
-			["scout6", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout6", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
         if (_hvtFled && _stabPassed && _someSecondary)  then {
-			["scout5", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout5", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
         if (_hvtFled && _stabPassed && !_someSecondary)  then {
-			["scout4", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout4", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
         if (_hvtFled && _stabFailed && _someSecondary)  then {
-			["scout3", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout3", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		
         };
 		if (_hvtFled && _stabFailed && !_someSecondary && !_powDied && !_pilotDied)  then {
-			["scout2", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout2", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		
         };
 		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && !_menLeftBehind)  then {
-			["scout1", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout1", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		
         };
 		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && _menLeftBehind)  then {
-			["scout0", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["scout0", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 
     } else {
 
         if (_allPrimary && _allSecondary)  then {
-			["10", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["10", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 
 		if (_allPrimary && _someSecondary && !_allSecondary)  then {
-			["9", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["9", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
 		if (_allPrimary && !_allSecondary && !_someSecondary)  then {
-			["8", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["8", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
 		if (_hvtDead && _stabFailed && _someSecondary)  then {
-			["7", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["7", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
         
 		if (_hvtDead && _stabFailed && !_someSecondary)  then {
-			["6", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["6", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
         if (_hvtFled && _stabPassed && _someSecondary)  then {
-			["5", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["5", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
         if (_hvtFled && _stabPassed && !_someSecondary)  then {
-			["4", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["4", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 		
         if (_hvtFled && _stabFailed && _someSecondary)  then {
-			["3", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["3", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		
         };
 		if (_hvtFled && _stabFailed && !_someSecondary && !_powDied && !_pilotDied)  then {
-			["2", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["2", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		
         };
 		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && !_menLeftBehind)  then {
-			["1", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["1", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		
         };
 		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && _menLeftBehind)  then {
-			["0", [_caller, Marcinko]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
+			["0", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
 		};
 
     };

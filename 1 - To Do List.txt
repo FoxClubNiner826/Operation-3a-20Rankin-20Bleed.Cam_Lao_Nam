@@ -15,26 +15,28 @@ triggerActivated trg_heliRTB;
 
 
 
-Current TASK: go through all lines and adjust the function call for all mandatory lines.
-- Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
-            - maybe in the function add a variable that will exit with that turns it off. though that would block everything.
-                - I can achieve this by spilting the functions. Have one for priority convo and one for not. Do a exitWith check for a variable
-                    for the non priority function. Players can send the variable from the map stand at mission start.
-                - Another option is to send an additional index that marks the convo as priorty and somehow bypasses a variable check. 
-                    Will have to post on discord about this one.
-            - Built the function already, just need to figure out if there are more or less mandatory convos and go through them all.
-    - I have modified the function so that subtitles only play within a certain distance to the player. Also any client can:
-        - disable subtitles
-        - reduce squad banter
-
-
+Current TASK:
+   
 - helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP
-    - try adjusting the waypoint to have a height value.
-    - to steamline the testing process, setup a test helicopter with the same code as the current one.
     - confirmed. it seems to me that its flys different in SP than MP.
         - removed the flyInHeight to see what happens
             - nothing happened. I think the flyInHeight isnt doing anything in MP despite being remoteexeced.
             - The helicopter flys smooth on the server/local host but not on the client
+    - to steamline the testing process, setup a test helicopter with the same code as the current one.
+    - findings:
+        - doesn't seem to matter if you remoteExec the code in the function or not. Client heli is always bouncy.
+            - suggests a network issue? but i dont remember sogpf like this.
+            - try a different heli
+                - tried a old style heli, didn't change
+            - try less people in the heli
+                - just the crew plus local host and client, didn't change
+            - try adjusting the waypoint to have a height value.
+                - added one 500 ft above the groud. the heli had no change on the way there and would only climb once near the end point
+            - try adding flyInHeight back 
+                - was a little smoother but still jerky and didn't actually try to fly in the defined height until almost at the prison.
+            - try it without any players. Have the client be in the zeus slot to follow it.
+            - try a different area of the map. flat terrain and hilly.
+
     
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -74,8 +76,9 @@ TO DO MASTER LIST:
         - polish: remove unused actions for performance.
         - Adjustments to arsenal, inventories, and unit classes to match decription (RTO, medic, etc). I think that the variable name might 
             also show up in the U menu when switching units in singleplayer.
-        - Record voice actors (literally the last thing you do), gives plenty of time to refine dialog.
         - remove all mod dependencies.
+        - Record voice actors (literally the last thing you do), gives plenty of time to refine dialog.
+        
     
     POLISH:
         - When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
@@ -157,6 +160,18 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
+            - maybe in the function add a variable that will exit with that turns it off. though that would block everything.
+                - I can achieve this by spilting the functions. Have one for priority convo and one for not. Do a exitWith check for a variable
+                    for the non priority function. Players can send the variable from the map stand at mission start.
+                - Another option is to send an additional index that marks the convo as priorty and somehow bypasses a variable check. 
+                    Will have to post on discord about this one.
+            - Built the function already, just need to figure out if there are more or less mandatory convos and go through them all.
+    - I have modified the function so that subtitles only play within a certain distance to the player. Also any client can:
+        - disable subtitles
+        - reduce squad banter
+            - I went through at added 'true' to the function call for all mandatory convos.
+    - I added some diary entries that explain the different mission options and how to access them.
 Fixed: prison convo didn't happen
     - Might have something to do with me taking command of the AI from the client as the scout?
         - seems so since its works with the command as the leader.
