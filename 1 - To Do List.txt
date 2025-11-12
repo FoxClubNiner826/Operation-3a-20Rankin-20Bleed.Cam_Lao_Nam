@@ -15,28 +15,9 @@ triggerActivated trg_heliRTB;
 
 
 
-Current TASK:
+Current TASK: clean up all the test code and object in mission from the heli issue debugging. Test flight one more time to verify working 
+    as good as possible.
    
-- helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP
-    - confirmed. it seems to me that its flys different in SP than MP.
-        - removed the flyInHeight to see what happens
-            - nothing happened. I think the flyInHeight isnt doing anything in MP despite being remoteexeced.
-            - The helicopter flys smooth on the server/local host but not on the client
-    - to steamline the testing process, setup a test helicopter with the same code as the current one.
-    - findings:
-        - doesn't seem to matter if you remoteExec the code in the function or not. Client heli is always bouncy.
-            - suggests a network issue? but i dont remember sogpf like this.
-            - try a different heli
-                - tried a old style heli, didn't change
-            - try less people in the heli
-                - just the crew plus local host and client, didn't change
-            - try adjusting the waypoint to have a height value.
-                - added one 500 ft above the groud. the heli had no change on the way there and would only climb once near the end point
-            - try adding flyInHeight back 
-                - was a little smoother but still jerky and didn't actually try to fly in the defined height until almost at the prison.
-            - try it without any players. Have the client be in the zeus slot to follow it.
-            - try a different area of the map. flat terrain and hilly.
-
     
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -160,6 +141,60 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+- helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP
+    - confirmed. it seems to me that its flys different in SP than MP.
+        - removed the flyInHeight to see what happens
+            - nothing happened. I think the flyInHeight isnt doing anything in MP despite being remoteexeced.
+            - The helicopter flys smooth on the server/local host but not on the client
+    - to steamline the testing process, setup a test helicopter with the same code as the current one.
+    - findings:
+        - doesn't seem to matter if you remoteExec the code in the function or not. Client heli is always bouncy.
+            - suggests a network issue? but i dont remember sogpf like this.
+            - try a different heli
+                - tried a old style heli, didn't change
+            - try less people in the heli
+                - just the crew plus local host and client, didn't change
+            - try adjusting the waypoint to have a height value.
+                - added one 500 ft above the groud. the heli had no change on the way there and would only climb once near the end point
+            - try adding flyInHeight back 
+                - was a little smoother but still jerky and didn't actually try to fly in the defined height until almost at the prison.
+            - try it without any players. Have the client be in the zeus slot to follow it.
+            - try a different area of the map. flat terrain and hilly.
+                - tried it on the runway. same issue. very choppy from inside the chopper view too.
+            - try with editor waypoints 
+                - same issue on client
+            - try the sogpf main campaign
+                - has the exact same issue for the client! tested on LAN. I'm not confident that it's a helicopter issue anymore. I noticed 
+                    that when the helicopter hitches, the game itself hitches. Maybe this is a network issue with arma? Also tried playing as 
+                    pilot in sogpf. The client stuttered on take off but was smooth for a short flight. Need to test more.
+            - try vanilla ARMA
+                - same issue!
+            - try dedicated server
+                - same issue! I noticed this time that it seems worse at the beginning of the ride when the heli is close to the ground 
+                        though it did still do the hitching from above the water at medium height.
+            - try it while in zeus mode.
+                - interesting findings. The hitching of the game is there. but the chopper is smoother. small zorps but not bounces. 
+                    following heli from zeus. Now if I do puppet control with zeus it is perfectly still. maybe because zeus is virtual entity?
+            - see if heli height effects it. spawn in the air with a move way point.
+                - same issue!
+            - try different waypoint commands
+                tied loiter command. same issue!
+            - try singleplayer
+                - no issue. I have never been able to get the issue to happen on the server (singleplayer or localhost). More and more evidence 
+                    is pointing to this being a network issue with arma. Perhaps related to how often a players position needs to be updated?
+            - try from client as zeus but not entity zeus
+                - same as entity zeus. its smooth. maybe because the player is controlling it? 
+            - try localhost and client as pilot and copilot. 
+                - perfectly smooth for the client, even if the local host is the pilot. same for vice versa
+            - try to change locality of helicopter.
+                - BINGO! If you change the locality from the server to a player it is smooth again. The original code for the heli works as 
+                    well. The pilots wont get out anymore and walk their waypoints. Likely because ownership change. Might have to execute that 
+                    code a little differently. 
+                    - Next step is to see if it is smooth for all clients and not just the owner.
+                        - was NOT smooth on the local host after the switch.
+                        - was Not smooth on any client except the groupOwner - fuck!
+                        - there cannot be more than one owner of the group. Looks like this issue cannot be solved. I posted a video on 
+                            discord to see if people smarter than me can solve it.
 - Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
             - maybe in the function add a variable that will exit with that turns it off. though that would block everything.
                 - I can achieve this by spilting the functions. Have one for priority convo and one for not. Do a exitWith check for a variable
