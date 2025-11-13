@@ -238,6 +238,68 @@ map addAction [
 
 //////////////////////////////////////////////////
 //                                              //
+//         LET PLAYERS SKIP TO INFIL            //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionSubtitlesOn = {
+    ( isNil "skipEnabled" )
+};
+
+map addAction [
+    "<t color='#FFFF00'>Enable Skip to Infil</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+	systemChat "Skip to Infil: Enabled";
+	missionNamespace setVariable ["skipEnabled", true, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionSubtitlesOn, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//          HOLD ACTION SKIP TO INFIL           //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionInfil = {
+    isNil "skipToInfil" && 
+	((units playerGroup findIf { isPlayer _x && !(_x in crew ptboat) }) == -1) &&
+	missionNamespace getVariable ["skipEnabled", false]
+};
+
+[
+	ptboat,
+	"<t color='#FFFF00'>Skip to the Infiltration Point</t>",
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
+	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
+	toString _conditionInfil, //condition, use this for any player in boat in the init field _this in (crew _target)
+	"true", //condition progress
+	{}, //code on start
+	{}, // code every tick
+	{
+		missionNamespace setVariable ["skipToInfil", false, true]; 
+		["scripts\SkiptoIngress.sqf"] remoteExec ["execVM", 0];
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	3, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+] call BIS_fnc_holdActionAdd;
+
+
+//////////////////////////////////////////////////
+//                                              //
 //             SEAL BOSS QUESTIONS              //
 //                                              //
 //////////////////////////////////////////////////
@@ -410,40 +472,6 @@ Marcinko addAction [
     "_this in [scout] && ActionTalkToMarcinko9 && !(_originalTarget getVariable ['foxclub_var_isTalking',false])",
 	4
 ];
-
-
-//////////////////////////////////////////////////
-//                                              //
-//          HOLD ACTION SKIP TO INFIL           //
-//                                              //
-//////////////////////////////////////////////////
-
-private _conditionInfil = {
-    isNil "skipToInfil" && 
-	((units playerGroup findIf { isPlayer _x && !(_x in crew ptboat) }) == -1)
-};
-
-[
-	ptboat,
-	"<t color='#FFFF00'>Skip to the Infiltration Point</t>",
-	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
-	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
-	toString _conditionInfil, //condition, use this for any player in boat in the init field _this in (crew _target)
-	"true", //condition progress
-	{}, //code on start
-	{}, // code every tick
-	{
-		missionNamespace setVariable ["skipToInfil", false, true]; 
-		["scripts\SkiptoIngress.sqf"] remoteExec ["execVM", 0];
-	}, // code on finish
-	{}, // code on interuption
-	[], //arguements
-	3, //duration
-	8, //order from top
-	true, //remove on finish
-	false, //show if unconcious
-	false //show in middle of screen
-] call BIS_fnc_holdActionAdd;
 
 
 //////////////////////////////////////////////////

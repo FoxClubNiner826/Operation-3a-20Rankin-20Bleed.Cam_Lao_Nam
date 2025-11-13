@@ -140,6 +140,14 @@ For example, a player might report a sighting at the same time their character d
 This is a local effect, meaning banter is only minimized for the player who chooses to do so.
 " ]];
 
+player createDiaryRecord ["Parameters", ["Skipping Ahead", 
+"<br/>
+The beginning portion off the mission can be skipped which will reduce playtime by about 30 minutes. You will placed next to 
+the infiltration point.<br/><br/>
+You can enable this option by interacting with the map stand next to the arsenal. 
+Select the 'Enable Skip to Infil' option. Once enabled, you can execute this option from within the STAB after all human players are aboard.
+" ]];
+
 player createDiaryRecord ["Parameters", ["Group Leader", 
 "<br/>
 Multiplayer only:<br/><br/>

@@ -2,21 +2,14 @@ TO DO UP NEXT:
 
 // When you are done testing NPCs at staging area put this stuff back to normal
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
-this &&  
-extractheli in thislist
-
-// marcinko debrief trigger condition
-this &&
-triggerActivated trg_heliRTB;
-
-// npc walk across road trigger condition
-this &&
-triggerActivated trg_heliRTB;
 
 
 
-Current TASK: clean up all the test code and object in mission from the heli issue debugging. Test flight one more time to verify working 
-    as good as possible.
+Current TASK: 
+- players are allowed to drive away without their human squad mates but the next task wont popup until they are all in. 
+        - I tried setting fuel to 0 but the unit calls it out which breaks immersion. I tried enableRadio false, but it turns off my customChat 
+            I tried disablesimulation but then you can't enter.
+            - using disableAI works but it's a local arg, might need to remoteExec it to get it to work. only the enable portion not working.
    
     
 DEDICATED SERVER TESTING:
@@ -62,10 +55,11 @@ TO DO MASTER LIST:
         
     
     POLISH:
+        - try the lookAt and reveal command on the SAM site and see if you get more consistant results of it not tracking players and 
+            instead tracking the plane.
+        - see if possible to attach prop object to boat as a bomb then unhide when planted. do the same for scubba clothes and props 
         - When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
         - Add a convo that tells the pow/pilot that the ambulance is waiting for them.
-        - If mission start is overcrowded with subtitles in play testing then delete the custom chat index for subtitles. 
-            That way the sound still plays but not the custom chat.
         - See if it's possible to add climbing animation to the POW as he exits the tunnel.
         - Add all NPCs is staging area to the exclusion list for blufor speech chatter/banter. This is at the very end of polish so that 
             you don't have to keep updating it since the amount of NPCs could change. Possible to just remove the feature entirley?
@@ -141,7 +135,9 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
-- helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP
+Polish: make a variable from the map stand allow skiping to the infil and add a diary entry about it.
+Polish: Test flight one more time to verify working as good as possible. (looks good)
+Polish: helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP. (tldr: not fixable)
     - confirmed. it seems to me that its flys different in SP than MP.
         - removed the flyInHeight to see what happens
             - nothing happened. I think the flyInHeight isnt doing anything in MP despite being remoteexeced.
@@ -195,7 +191,7 @@ FINISHED:
                         - was Not smooth on any client except the groupOwner - fuck!
                         - there cannot be more than one owner of the group. Looks like this issue cannot be solved. I posted a video on 
                             discord to see if people smarter than me can solve it.
-- Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
+Design: Convos: If people think there is too much talking then have an option to reduce it for SP vs MP. Or on/off for either.
             - maybe in the function add a variable that will exit with that turns it off. though that would block everything.
                 - I can achieve this by spilting the functions. Have one for priority convo and one for not. Do a exitWith check for a variable
                     for the non priority function. Players can send the variable from the map stand at mission start.
