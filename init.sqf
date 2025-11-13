@@ -1526,7 +1526,8 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["debriefArea", // 104 d 
 		[
-			[0,"Welcome back, gentlemen.", "answer"]
+			[0,"Hey, Captain!", "answer"],
+			[1,"Welcome back, gentlemen.", "answer"]
 		]
 	],
 	["powDead",
@@ -1769,6 +1770,48 @@ foxclub_var_conversations = createHashMapFromArray [
 				["0", false , true, true, true] remoteExec ["VN_fnc_endMission"];
 				}
 			]
+		]
+	],
+	["debrief", // 
+		[
+			[0,"Ready for debrief, sir.", "answer"],
+			[1,"Aright, lets hear it.", "answer"]
+		]
+	],
+	["allPallS", // 
+		[
+			[0,"We completed all primary objectives and even all secondary objectives!", "answer"],
+			[1,"Amazing performance!", "answer"]
+		]
+	],
+	["allPallSfoundDead", // 
+		[
+			[0,"We completed all pri/sec obj and even tried to rescue some additionals. But, they didn't make it.", "answer"],
+			[1,"That's a damn shame. I know yall tried. Good job on completing all objectives none the less.", "answer"]
+		]
+	],
+	["allPallSfoundAlive", // 
+		[
+			[0,"We completed all pri/sec obj and even rescued some friendlies.", "answer"],
+			[1,"Good job on completing all objectives! Amazing rescue. ", "answer"]
+		]
+	],
+	["allPriSomeSec", // 
+		[
+			[0,"We completed all primary objectives and some secondary objectives!", "answer"],
+			[1,"Great performance!", "answer"]
+		]
+	],
+	["allPriSomeSecfoundDead", // 
+		[
+			[0,"We completed all pri obj and some sec, even tried to rescue some additionals. But, they didn't make it.", "answer"],
+			[1,"That's a damn shame. I know yall tried. Good job on completing all objectives none the less.", "answer"]
+		]
+	],
+	["allPriSomeSecfoundAlive", // 
+		[
+			[0,"We completed all pri obj and some sec, even rescued some friendlies.", "answer"],
+			[1,"Good job on completing all objectives! Amazing rescue. ", "answer"]
 		]
 	]
 ];

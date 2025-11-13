@@ -96,7 +96,8 @@ forceWeatherChange;
         missionNamespace getVariable ["mg1", objNull],
         missionNamespace getVariable ["mg2", objNull],
         missionNamespace getVariable ["medic", objNull],
-        missionNamespace getVariable ["rto", objNull]
+        missionNamespace getVariable ["rto", objNull],
+        missionNamespace getVariable ["testUnit", objNull]
     ];
 
     private _radioChannel = radioChannelCreate [[1, 1, 1, 1], "Dialogue", "%UNIT_NAME", _NPCtoAdd, false];

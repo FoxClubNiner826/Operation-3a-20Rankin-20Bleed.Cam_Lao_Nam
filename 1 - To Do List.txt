@@ -6,10 +6,10 @@ TO DO UP NEXT:
 
 
 Current TASK: 
-- players are allowed to drive away without their human squad mates but the next task wont popup until they are all in. 
-        - I tried setting fuel to 0 but the unit calls it out which breaks immersion. I tried enableRadio false, but it turns off my customChat 
-            I tried disablesimulation but then you can't enter.
-            - using disableAI works but it's a local arg, might need to remoteExec it to get it to work. only the enable portion not working.
+- Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
+    - i added a failure state for proceed to infil spot
+    - I decided to not have performance ratings for players but I like the flavor text
+    - I reworked the extract task which can now be failed so I might need to add that as a primary objective.
    
     
 DEDICATED SERVER TESTING:
@@ -38,16 +38,11 @@ TO DO MASTER LIST:
     MEDIUM PRIORITY:
     
     LOW PRIORITY:
-        - Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
-            - i added a failure state for proceed to infil spot
-            - I decided to not have performance ratings for players but I like the flavor text
-            - I reworked the extract task which can now be failed so I might need to add that as a primary objective.
         - see if an grenade explode EH is worth putting for the cache task.
         - Update all needed pictures in the mission from tasks to victory/death screens. This should be near the last thing you do
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
         - Entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
             learn the program and workflow)
-        - polish: remove unused actions for performance.
         - Adjustments to arsenal, inventories, and unit classes to match decription (RTO, medic, etc). I think that the variable name might 
             also show up in the U menu when switching units in singleplayer.
         - remove all mod dependencies.
@@ -55,6 +50,8 @@ TO DO MASTER LIST:
         
     
     POLISH:
+        - skip to infil not fading to black, intermittant
+        - adjust the time of day for skip to infil to have closer parity with TOD of not using the skip.
         - try the lookAt and reveal command on the SAM site and see if you get more consistant results of it not tracking players and 
             instead tracking the plane.
         - see if possible to attach prop object to boat as a bomb then unhide when planted. do the same for scubba clothes and props 
@@ -64,6 +61,20 @@ TO DO MASTER LIST:
         - Add all NPCs is staging area to the exclusion list for blufor speech chatter/banter. This is at the very end of polish so that 
             you don't have to keep updating it since the amount of NPCs could change. Possible to just remove the feature entirley?
         - trg_convo_cove; If the scout is the leader then he will end up speaking to himself.
+    
+    PERFORMANCE:
+        - In the staging area the client gets about 13fps more (80 vs 67). Something runs on the server only. For sure the server only 
+            triggers. I wonder if there is anything else?
+        - use this command to enabledynamic sim on object through a trigger: https://community.bistudio.com/wiki/enableDynamicSimulation 
+            mainly thinking of the reinforcement trucks.
+        - remove unused actions for performance. Eh, triggers, etc
+        - There may be some incompatibility between the hide module and dynamic simulation. If both are enabled I can see in zeus that all 
+            NPCs are frozen suggesting sim is disabled. But if players move to the infil spot and then come back then the NPCs will walk 
+            around, only they will be invisible. I can see them walking in zeus. Also the player can see their footprints and hear their 
+            foot steps. When I turned the dynamic simulation off, they did not have this behavior and performace seemed better in the staging 
+            area before players leave (not verified). Do testing of performace benefeits and employ as needed.
+            - I did one test with the NPCs with DS on/off. No noticable difference. Maybe 1-2fps difference, which could be due to testing 
+                methodology or other reasons.
 
 
     IDEA GRAVEYARD:
@@ -135,6 +146,13 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 FINISHED:
+Design: players are allowed to drive away without their human squad mates but the next task wont popup until they are all in. I am going to 
+    leave this as is and see how play testing goes. If there are problems with players leaving their mates behind then I will disable 
+    the STAB until all players are on board:
+    - I tried setting fuel to 0 but the unit calls it out which breaks immersion. I tried enableRadio false, but it turns off my customChat 
+        I tried disablesimulation but then you can't enter.
+        - using disableAI works but it's a local arg, might need to remoteExec it to get it to work. only the enable portion not working.
+            - players wont get feed back from ai boarding the STAB tho, which is a downside.
 Polish: make a variable from the map stand allow skiping to the infil and add a diary entry about it.
 Polish: Test flight one more time to verify working as good as possible. (looks good)
 Polish: helicopter didn't fly correctly. bobbed up and down and didn't fly high like in SP. (tldr: not fixable)
