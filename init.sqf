@@ -1813,6 +1813,24 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"We completed all pri obj and some sec, even rescued some friendlies.", "answer"],
 			[1,"Good job on completing all objectives! Amazing rescue. ", "answer"]
 		]
+	],
+	["someSec", // 
+		[
+			[0,"someSec", "answer"],
+			[1,"Great performance!", "answer"]
+		]
+	],
+	["allSec", // 
+		[
+			[0,"allSec", "answer"],
+			[1,"Great performance!", "answer"]
+		]
+	],
+	["noSec", // 
+		[
+			[0,"noSec", "answer"],
+			[1,"Great performance!", "answer"]
+		]
 	]
 ];
 

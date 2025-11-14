@@ -1769,3 +1769,275 @@ Sleep 3;
 Sleep 1;
 [ptunit3, "AmovPercMstpSnonWnonDnon_exercisePushup"] call foxClub_fnc_loopAnimation2;
 };
+
+_scout = missionNamespace getVariable ["scout", objNull];
+private _allPrimary = missionnamespace getVariable ["AllPriTasksComplete",false];
+private _allSecondary = missionnamespace getVariable ["AllSecTasksComplete",false];
+private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete",false];
+private _hvtDead = missionNamespace getVariable ["hvtDead",false];
+private _stabFailed = missionNamespace getVariable ["stabFailed",false];
+private _hvtFled = missionNamespace getVariable ["hvtFled",false];
+private _stabPassed = missionNamespace getVariable ["stabPassed",false];
+private _powDied = missionNamespace getVariable ["powDied",false];
+private _pilotDied = missionNamespace getVariable ["pilotDied",false];
+private _menLeftBehind = missionNamespace getVariable ["extractTaskFailed",false];
+
+if (_allPrimary) then {
+    // intial greet convo
+    if (_hvtPass) then {
+        // hvt pass convos
+        if (_powFound || _pilotFound) then {
+            if (_powRescued) then {
+                //pow saved convos
+                if (_allSecondary) then {
+                };
+                if (_someSecondary) then {
+                };
+                if (_noSecondary) then {
+                }; 
+            } else { 
+                // pow dead convos
+                if (_allSecondary) then {
+                };
+                if (_someSecondary) then {
+                };
+                if (_noSecondary) then {
+                };
+            };
+            if (_pilotRescued) then {
+                //pilot saved convos
+                if (_allSecondary) then {
+                };
+                if (_someSecondary) then {
+                };
+                if (_noSecondary) then {
+                };
+            } else {
+                //pilot dead convos
+                if (_allSecondary) then {
+                };
+                if (_someSecondary) then {
+                };
+                if (_noSecondary) then {
+                };
+            };
+        } else {
+            // standard convos if pow and pilot were not found
+            if (_allSecondary) then {
+                // all primary/secondary convo
+            };
+            if (_someSecondary) then {
+                // all primary and some secondary convo
+            };
+            if (_noSecondary) then {
+                // all primary and no secondary convo
+            };
+        };
+    } else {
+        // hvt failed convos
+        if (_powFound || _pilotFound) then {
+            if (_powRescued) then {
+                //pow saved convos
+                if (_allSecondary) then {
+                };
+                if (_someSecondary) then {
+                };
+                if (_noSecondary) then {
+                }; 
+            } else { 
+                // pow dead convos
+                if (_allSecondary) then {
+                };
+                if (_someSecondary) then {
+                };
+                if (_noSecondary) then {
+                };
+            };
+            if (_pilotRescued) then {
+                //pilot saved convos
+                if (_allSecondary) then {
+                };
+                if (_someSecondary) then {
+                };
+                if (_noSecondary) then {
+                };
+            } else {
+                //pilot dead convos
+                if (_allSecondary) then {
+                };
+                if (_someSecondary) then {
+                };
+                if (_noSecondary) then {
+                };
+            };
+        } else {
+            // standard convos if pow and pilot were not found
+            if (_allSecondary) then {
+                // all primary/secondary convo
+            };
+            if (_someSecondary) then {
+                // all primary and some secondary convo
+            };
+            if (_noSecondary) then {
+                // all primary and no secondary convo
+            };
+        };
+    };
+};
+
+
+if (!_allPrimary) then {
+    // intial greet convo
+    if (_powFound || _pilotFound) then {
+        if (_powRescued) then {
+            //pow saved convos
+            if (_allSecondary) then {
+            };
+            if (_someSecondary) then {
+            };
+            if (_noSecondary) then {
+            }; 
+        } else { 
+            // pow dead convos
+            if (_allSecondary) then {
+            };
+            if (_someSecondary) then {
+            };
+            if (_noSecondary) then {
+            };
+        };
+        if (_pilotRescued) then {
+            //pilot saved convos
+            if (_allSecondary) then {
+            };
+            if (_someSecondary) then {
+            };
+            if (_noSecondary) then {
+            };
+        } else {
+            //pilot dead convos
+            if (_allSecondary) then {
+            };
+            if (_someSecondary) then {
+            };
+            if (_noSecondary) then {
+            };
+        };
+    } else {
+        // standard convos if pow and pilot were not found
+        if (_allSecondary) then {
+        };
+        if (_someSecondary) then {
+        };
+        if (_noSecondary) then {
+        };
+    };
+};
+
+
+
+if (!_allPrimary) exitWith {};
+
+private _sentences = ["greetings"];
+if (_powFound || _pilotRescued) then
+{
+    _sentences pushBack (["powLost", "powSaved"] select _powFound);
+    _sentences pushBack (["pilotDead", "pilotSaved"] select _pilotRescued);
+}
+else
+{
+    _sentences pushBack "nobodySaved";
+};
+
+switch { true } do
+{
+    case _allSecondary: { _sentences pushBack "allSecondary"; };
+    case _someSecondary: { _sentences pushBack "someSecondary"; };
+    case _noSecondary: { _sentences pushBack "noSecondary"; };
+};
+
+{
+    [_x, [_caller, ranger], true] remoteExec [
+        "FoxClub_fnc_Conversation",
+        allPlayers select { _x distance _caller <= 100 }
+    ];
+} forEach _sentences;
+
+
+
+private _allPrimary = missionnamespace getVariable ["AllPriTasksComplete",false];
+private _allSecondary = missionnamespace getVariable ["AllSecTasksComplete",false];
+private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete",false];
+private _noSecondary = missionNamespace getVariable ["noSecTasksComplete",false];
+private _powFound = missionNamespace getVariable ["powFound",false];
+private _pilotRescued = missionNamespace getVariable ["pilotRescued",false];
+
+if (!_allPrimary) exitWith {};
+
+private _sentences = ["debrief"];
+if (_powFound || _pilotRescued) then
+{
+	_sentences pushBack (["allPallSfoundDead", "allPallSfoundAlive"] select _powFound);
+	_sentences pushBack (["allPallSfoundDead", "allPallSfoundAlive"] select _pilotRescued);
+}
+else
+{
+	_sentences pushBack "allPallS";
+};
+
+switch { true } do
+{
+	case _allSecondary: { _sentences pushBack "allSec"; };
+	case _someSecondary: { _sentences pushBack "someSec"; };
+	case _noSecondary: { _sentences pushBack "noSec"; };
+};
+
+{
+	[_x, [command, testUnit], true] remoteExec [
+		"FoxClub_fnc_Conversation",
+		allPlayers select { _x distance command <= 100 }
+	];
+} forEach _sentences;
+
+
+private _allPrimary = missionnamespace getVariable ["AllPriTasksComplete",false];
+private _allSecondary = missionnamespace getVariable ["AllSecTasksComplete",false];
+private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete",false];
+private _noSecondary = missionNamespace getVariable ["noSecTasksComplete",false];
+private _powFound = missionNamespace getVariable ["powFound",false];
+private _pilotRescued = missionNamespace getVariable ["pilotRescued",false];
+
+if (!_allPrimary) exitWith {};
+
+private _sentences = ["debrief"];
+if (_powFound || _pilotRescued) then
+{
+	_sentences pushBack (["allPallSfoundDead", "allPallSfoundAlive"] select _powFound);
+	_sentences pushBack (["allPallSfoundDead", "allPallSfoundAlive"] select _pilotRescued);
+}
+else
+{
+	_sentences pushBack "allPallS";
+};
+
+switch { true } do
+{
+	case _allSecondary: { _sentences pushBack "allSec"; };
+	case _someSecondary: { _sentences pushBack "someSec"; };
+	case _noSecondary: { _sentences pushBack "noSec"; };
+};
+
+{
+	waitUntil {(missionnamespace getVariable ["functionOn", false])};
+	[_x, [command, testUnit], true] remoteExec [
+		"FoxClub_fnc_Conversation",
+		allPlayers select { _x distance command <= 100 }
+	];
+} forEach _sentences;
+
+missionnamespace setVariable ["AllPriTasksComplete", true, true];
+//missionnamespace setVariable ["AllSecTasksComplete", true, true];
+//missionNamespace setVariable ["SomeSecTasksComplete", true, true];
+//missionNamespace setVariable ["noSecTasksComplete", true, true];
+//missionNamespace setVariable ["powFound", true, true];
+//missionNamespace setVariable ["pilotRescued", true, true];

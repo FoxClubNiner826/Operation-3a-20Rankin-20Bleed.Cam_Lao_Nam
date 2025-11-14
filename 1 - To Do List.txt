@@ -10,6 +10,10 @@ Current TASK:
     - i added a failure state for proceed to infil spot
     - I decided to not have performance ratings for players but I like the flavor text
     - I reworked the extract task which can now be failed so I might need to add that as a primary objective.
+Design: I have to make a decision on if I make the debrief based on the players task list or events within the mission. 
+    - Task List: It's fun that the convo lines up with what tasks are completed or not, but kind of results in speech that is immersion 
+        breaking (i.e. "We did all primary objectives but not all secondary objectives). 
+    - Mission Events: I like this one better cause the convos can be more specific like "We got the general".
    
     
 DEDICATED SERVER TESTING:
