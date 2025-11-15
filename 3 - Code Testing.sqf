@@ -2041,3 +2041,155 @@ missionnamespace setVariable ["AllPriTasksComplete", true, true];
 //missionNamespace setVariable ["noSecTasksComplete", true, true];
 //missionNamespace setVariable ["powFound", true, true];
 //missionNamespace setVariable ["pilotRescued", true, true];
+
+// newest version
+private _hvtPass = missionNamespace getVariable ["hvtPass",false];
+private _hvtMid = missionNamespace getVariable ["hvtMid",false];
+private _hvtFailed = missionNamespace getVariable ["hvtFailed",false];
+
+private _stabPassed = missionNamespace getVariable ["stabPassed",false];
+
+private _allSecondary = missionnamespace getVariable ["AllSecTasksComplete",false];
+private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete",false];
+private _noSecondary = missionNamespace getVariable ["noSecTasksComplete",false];
+
+private _powFound = missionNamespace getVariable ["powFound",false];
+private _pilotFound = missionNamespace getVariable ["pilotFound",false];
+private _powRescued = missionNamespace getVariable ["powRescued",false];
+private _pilotRescued = missionNamespace getVariable ["pilotRescued",false];
+
+private _extractPassed = missionNamespace getVariable ["extractPassed",false];
+
+if (!isServer) exitWith {};
+
+//if (!_allPrimary) exitWith {};
+
+//systemChat "fired";
+
+private _sentences = [];
+
+_sentences append ["debrief", 8];
+
+// hvt convos
+switch (true) do
+{
+	case ( _hvtPass ):
+	{
+		_sentences append ["hvtPass", 10];
+		//systemChat "allSec";
+	};
+	case ( _hvtMid && _hvtFailed ):
+	{
+		_sentences append ["hvtMid", 10];
+		//systemChat "someSec";
+	};
+	case ( _hvtFailed ):
+	{
+		_sentences append ["hvtFailed", 10];
+		//systemChat "noSec";
+	};
+};
+
+// stab convos
+_sentences append ([["stabFailed", 10], ["stabPassed", 10]] select _stabPassed );
+
+// secondary tasks convos
+switch (true) do
+{
+	case ( _allSecondary ):
+	{
+		_sentences append ["allSec", 8];
+	};
+
+	case ( _someSecondary ):
+	{
+		_sentences append ["someSec", 8];
+	};
+	default
+	{
+		_sentences append ["noSec", 8];
+	};
+};
+
+// rescued convos
+switch (true) do
+{
+	case ( _pilotFound && _powFound ):
+		{
+			_sentences append ([["pilotAndPowDied", 8], ["pilotAndPowRescued", 8]] select (_pilotRescued && _powRescued) );
+		};
+	case ( _powFound ):
+		{
+			_sentences append ([["powDied", 8], ["powRescued", 8]] select _powRescued);
+		};
+	case ( _pilotFound ):
+		{
+			_sentences append ([["pilotDied", 8], ["pilotRescued", 8]] select _pilotRescued);
+		};
+};
+
+// extract convos
+_sentences append ([["extractFailed", 8], ["extractPassed", 8]] select _extractPassed );
+
+// wrapup convo and mission exit screen
+switch (true) do
+{
+	case ( missionNamespace getVariable ["hvtPass",false] &&
+			missionNamespace getVariable ["stabPassed",false] &&
+			missionNamespace getVariable ["extractPassed",false] &&
+			missionnamespace getVariable ["AllSecTasksComplete",false] ):
+		{
+			_sentences append ["summaryBest", 8];
+		};
+	case ( missionNamespace getVariable ["hvtPass",false] &&
+			missionNamespace getVariable ["stabPassed",false] &&
+			missionNamespace getVariable ["extractPassed",false] ):
+		{
+			_sentences append ["summaryGood", 8];
+		};
+	case ( !(missionNamespace getVariable ["hvtPass",false]) &&
+			!(missionNamespace getVariable ["stabPassed",false]) &&
+			!(missionNamespace getVariable ["extractPassed",false]) ):
+		{
+			_sentences append ["summaryPoor", 8];
+		};
+	default
+		{
+			_sentences append ["summaryDefault", 8];
+		};
+};
+
+// play all gathered strings now
+for "_i" from 0 to (count _sentences - 1) step 2 do
+{
+	[_sentences select _i, [command, testUnit], true] remoteExec [
+		"FoxClub_fnc_Conversation",	
+		allPlayers select { _x distance testUnit <= 100 }	
+	];
+	sleep (_sentences select (_i + 1));
+};
+
+// hvt possibilities. for mid to work: mid and failed will have to be true. at least one of these is always true.
+//missionNamespace setVariable ["hvtPass", true, true];
+missionNamespace setVariable ["hvtMid", true, true];
+missionNamespace setVariable ["hvtFailed", true, true];
+
+//stab possibilities. just need this one since its boolean check
+//missionNamespace setVariable ["stabPassed", true, true];
+
+//side task possibilities. no need for noSec since its default case
+//missionnamespace setVariable ["AllSecTasksComplete", true, true];
+missionNamespace setVariable ["SomeSecTasksComplete", true, true];
+//missionNamespace setVariable ["noSecTasksComplete", true, true];
+
+//rescue possibilities
+missionNamespace setVariable ["powFound", true, true];
+//missionNamespace setVariable ["pilotFound", true, true];
+//missionNamespace setVariable ["powRescued", true, true];
+//missionNamespace setVariable ["pilotRescued", true, true];
+
+//extract possibilities
+missionNamespace setVariable ["extractPassed", true, true];
+
+
+

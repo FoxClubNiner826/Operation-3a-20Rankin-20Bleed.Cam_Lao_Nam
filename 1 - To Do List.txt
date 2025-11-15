@@ -13,7 +13,23 @@ Current TASK:
 Design: I have to make a decision on if I make the debrief based on the players task list or events within the mission. 
     - Task List: It's fun that the convo lines up with what tasks are completed or not, but kind of results in speech that is immersion 
         breaking (i.e. "We did all primary objectives but not all secondary objectives). 
-    - Mission Events: I like this one better cause the convos can be more specific like "We got the general".
+    - Mission Events: I like this one better cause the convos can be more specific to the narritive events of the mission like "We got the general".
+        IRL the boss wouldn't care that every little objective like "get in the stab" was accomplished. This version is less gamey and more immersive.
+        - I think it would actually be better to have the debrief centered around the point of the whole operation; kill the general. It 
+            gives continuity with the briefing and it's focus on him, while minimizing scripting complexity. In the future I can always 
+            try the FSM builder in the tools to make a robust version. 
+            - There just needs to be three cases: I.d. retrieved, general dead no idea, general fled.
+                - I need to fabricate a reason that it's important to get the I.D. and not just kill him.
+            - I was able to adapt Lou's script to my needs. It works pretty well actually. I have it centered around main mission objectives. 
+                The only thing that sucks is I have to put in sleeps manually tied to the audio files and since sleeps aren't guarenteed length there can be 
+                some odd pauses in the convo. Maybe ask Nikko about that.
+            - Current task is to go through and refine the text for all cases to make it flow together. I just started the work on best and worst cases.
+                - you can modify the function to have a delay before (default 0) much like the delay after. That would cause a pause.
+                - look into this: !(_originalTarget getVariable ['foxclub_var_isTalking',false])
+            - Let's add a convo that specifies which side tasks were hit 
+            - After it's all done testing then you need to implement it by adding the variables into the various triggers.
+
+also try to broadcast the istalking variable
    
     
 DEDICATED SERVER TESTING:
@@ -54,6 +70,8 @@ TO DO MASTER LIST:
         
     
     POLISH:
+        - changed the pow/pilot task complete condition to if they enter the ambulance. Hide the ambulance unless the task to save either 
+            of them creates.
         - skip to infil not fading to black, intermittant
         - adjust the time of day for skip to infil to have closer parity with TOD of not using the skip.
         - try the lookAt and reveal command on the SAM site and see if you get more consistant results of it not tracking players and 
@@ -82,8 +100,19 @@ TO DO MASTER LIST:
 
 
     IDEA GRAVEYARD:
-        - Design: Add achievements; Perfect mission, never spotted, rescued NPC. I think this is a neat idea but it will add a bunch of
+        - Design: Add achievements. I think this is a neat idea but it will add a bunch of
             scope to a project already struggling to find completion. Reevaluate later if you wish.
+            - Now that I know more this wouldn't be that hard to implement. The whole thing is drive by global variables that already exist. 
+                Just have to tie those to some achievement tasks that players can elect from the map board. Default is off since the 
+                achievements contain spoilers. Have cheevo names be non-descript and tongue in cheek vietnam/seal references.
+                - Some cheevo ideas: 
+                    - Complete every task 
+                    - retrieve the general I.D. and extract without alerting patrols
+                    - find and rescue the downed pilot
+                    - find and rescue the pow
+                    - disable the enemy radio tower
+                    - have scout equip enemy radio backpack
+                    - complete every cheevo
         - Design: Try to incourage the hand signal module by punishing players using their radios. 
             Send trackers after them if they use it too much. I like this idea but it will add too much scope to the mission.
             Perhaps in the future for another mission or if I ever finish this one with time to spare.
@@ -94,13 +123,23 @@ TO DO MASTER LIST:
         - Design: Disable the squad radio chatter. It is vanilla ARMA sounds so it breaks immersion for me. But if I do this then it could
             hamper important game feedback for single players would want AI. Unfortunantley I think we need to keep it unless playtesting
             proves otherwise.
+            - You could have an option from the map board to turn this off (enableRadio, enableSentences, disableAI "radioprotocol").
         - Design: If you put on an enemy back pack you get to know if you are being tracked and whatever other info/things could be
             a boon to players. I think this is a neat idea that could play into having an indiginous unit in the group but as it sits 
             right now I don't see the value it can add mechanic wise.
-                - Idea: Lets players know if they are currently tracked. 
+            - I've thought of some interesting ideas. Also this could be an interesting risk reward mechanic. The risk is the patrol alerting 
+                the general but if they get the backpack without alerting him then they gain an advantage on intel.
+                - Lets players know if they are currently tracked.
+                - let's players know whenever things happen in the mission behind the scenes:
+                    - stab was found
+                    - reinforcement sent to lumphat
+                    - reinforcement sent to road
+                    - helicopter inbound
+                - have scout impersonate the enemy to gain advantage
+                    - send the patrol in lumphat away from town
     ABANDONED STUFF:
-        - When the heli flys to base it follows the tree line and tilts back and forth and isn't smooth. I've tried a bunch of commands,
-            but nothing seems to stop it. Unless I find someone expert at this or I stumble on a solution it is a wasteful time sink.
+        - On the client, helicopter flys glitchy. There is no fix for this since the group can only be local to one machine. More detailed 
+            in the log
         - Design: I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
             but not the SAM? I decided not to pursue this because it will add too much time to change the code and have to do more rewriting 
             of it for little payoff of polish. This is a great learning experience on why it is better to make designs in the early part of 

@@ -1778,58 +1778,126 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Aright, lets hear it.", "answer"]
 		]
 	],
-	["allPallS", // 
+	["hvtPass", // 
 		[
-			[0,"We completed all primary objectives and even all secondary objectives!", "answer"],
-			[1,"Amazing performance!", "answer"]
+			[0,"We got the bastard, Captain! Here are his credentials!", "answer"],
+			[1,"Hot damn! You got that commie rat bastard! Outstanding job!", "answer"],
+			[1,"And what about the STAB? Did you cover your tracks?", "answer"]
 		]
 	],
-	["allPallSfoundDead", // 
+	["hvtMid", // 
 		[
-			[0,"We completed all pri/sec obj and even tried to rescue some additionals. But, they didn't make it.", "answer"],
-			[1,"That's a damn shame. I know yall tried. Good job on completing all objectives none the less.", "answer"]
+			[0,"The general is dead, but any proof of the deed went up in flames.", "answer"],
+			[1,"Well this isn't the best outcome but this is surley a blow to the enemy none the less.", "answer"],
+			[1,"And what about the STAB? Did you cover your tracks?", "answer"]
 		]
 	],
-	["allPallSfoundAlive", // 
+	["hvtFailed", // 
 		[
-			[0,"We completed all pri/sec obj and even rescued some friendlies.", "answer"],
-			[1,"Good job on completing all objectives! Amazing rescue. ", "answer"]
+			[0,"Well, as you know. The slippery bastard got away.", "answer"],
+			[1,"I feared as much when we listened in on their comms. We'll nab the son of a bitch next time. Well, if there is a next time...", "answer"],
+			[1,"And what about the STAB? Did you cover your tracks?", "answer"]
 		]
 	],
-	["allPriSomeSec", // 
+	["stabFailed", // 
 		[
-			[0,"We completed all primary objectives and some secondary objectives!", "answer"],
-			[1,"Great performance!", "answer"]
+			[0,"Unfortunantley, no. We take full responsibility, sir.", "answer"],
+			[1,"This is truly unfortunante, we no longer have plausible deniability. Let's hope this doesn't cause and internation incident. Anything else?", "answer"]
 		]
 	],
-	["allPriSomeSecfoundDead", // 
+	["stabPassed", // 
 		[
-			[0,"We completed all pri obj and some sec, even tried to rescue some additionals. But, they didn't make it.", "answer"],
-			[1,"That's a damn shame. I know yall tried. Good job on completing all objectives none the less.", "answer"]
-		]
-	],
-	["allPriSomeSecfoundAlive", // 
-		[
-			[0,"We completed all pri obj and some sec, even rescued some friendlies.", "answer"],
-			[1,"Good job on completing all objectives! Amazing rescue. ", "answer"]
-		]
-	],
-	["someSec", // 
-		[
-			[0,"someSec", "answer"],
-			[1,"Great performance!", "answer"]
+			[0,"We wiped clean any involvment of ourselfs. Zero traces, noboby will know we we're ever there.", "answer"],
+			[1,"Textbook, I knew you would. We're you able to accomplish any other objectives?", "answer"]
 		]
 	],
 	["allSec", // 
 		[
-			[0,"allSec", "answer"],
-			[1,"Great performance!", "answer"]
+			[0,"Yes sir, We hit so many targets of opportunity, the enemy will be reeling for days.", "answer"],
+			[1,"Fantastic!", "answer"]
+		]
+	],
+	["someSec", // 
+		[
+			[0,"Yes sir, we we're able to hit some additonal targets.", "answer"],
+			[1,"Nicely done.", "answer"]
 		]
 	],
 	["noSec", // 
 		[
-			[0,"noSec", "answer"],
-			[1,"Great performance!", "answer"]
+			[0,"We didn't get a chance to occomplish any other objectives in the AO.", "answer"],
+			[1,"I guess we can't have our cake and eat it too, huh?", "answer"]
+		]
+	],
+	["powDied", // 
+		[
+			[0,"There's more, we seached a rat-hole and found a POW. But... he didn't make it. They worked him over pretty good.", "answer"],
+			[1,"Use it to fuel your fury. This is what the enemy does.", "answer"]
+		]
+	],
+	["powRescued", // 
+		[
+			[0,"There's more, we found a rat-hole in the AO and wouldn't you believe it, a POW. We saw him to the ambulance for his wounds.", "answer"],
+			[1,"Now there's lucky bastard that needs to play the lotto.", "answer"]
+		]
+	],
+	["pilotDied", // 
+		[
+			[0,"There's more, we came across a down pilot, an American. But... he didn't make it.", "answer"],
+			[1,"That's a damn shame. I know yall tried.", "answer"]
+		]
+	],
+	["pilotRescued", // 
+		[
+			[0,"There's more, we brought back a down pilot, an American. We saw him off to the ambulance.", "answer"],
+			[1,"What are the chances that you all were in the same place at the same time? He's a lucky son of a bitch.", "answer"]
+		]
+	],
+	["pilotAndPowDied", // 
+		[
+			[0,"There's more, we found two friendlies from the AO, but they didn't make it out...", "answer"],
+			[1,"That's a goddamn shame. I know yall tried.", "answer"]
+		]
+	],
+	["pilotAndPowRescued", // 
+		[
+			[0,"There's more, we brought back two extra friendlies from the AO! They are getting checked over now.", "answer"],
+			[1,"These men and their families will be ever thankfull for this.", "answer"]
+		]
+	],
+	["extractFailed", // 
+		[
+			[0,"Captain... I'm ashamed to say, not everyone made it back...", "answer", 1],
+			[1,"Yeah, I heard Ranger call it in, we're already prepping a rescue effort. God help them.", "answer"]
+		]
+	],
+	["extractPassed", // 
+		[
+			[0,"And here we are, sir, every man accounted for.", "answer"]
+		]
+	],
+	["summaryBest", // 
+		[
+			[1,"We'll I've heard enough. You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
+			[0,"Thank you, Sir!", "answer"]
+		]
+	],
+	["summaryGood", // 
+		[
+			[0,"Fantastic work, gentelmen. Your country owes you a great deal! There will be a victory celebration at the bar tonight! Dismissed!", "answer"],
+			[1,"Thank you, Sir.", "answer"]
+		]
+	],
+	["summaryDefault", // 
+		[
+			[0,"Great work today even though not everything went our way. That's just how it goes. Hit the head and get cleaned up, I'll see you at chow. Dismissed!", "answer"],
+			[1,"Thank you, Sir.", "answer"]
+		]
+	],
+	["summaryPoor", // 
+		[
+			[0,"Well gentlemen, that was quite the shit show! I don't know what to say. I thought you were professionals. I'm going to reccommend we step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
+			[1,"Aye aye, Sir.", "answer"]
 		]
 	]
 ];

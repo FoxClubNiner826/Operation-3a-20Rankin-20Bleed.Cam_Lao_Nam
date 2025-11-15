@@ -9,7 +9,7 @@ params ["_convo", "_speakers", ["_mandatory", false]];
 
 if (missionNamespace getVariable ["minimizeChatter", false] && !_mandatory) exitwith {};
 
-missionNamespace setVariable ["functionOn", true, true];
+//missionNamespace setVariable ["functionOn", true, true];
 
 {
 	_x setVariable ["foxclub_var_isTalking",true];
@@ -39,7 +39,7 @@ private _conversationData = foxclub_var_conversations get _convo;
 	_x setVariable ["foxclub_var_isTalking",false];
 } forEach _speakers;
 
-missionNamespace setVariable ["functionOn", false, true];
+//missionNamespace setVariable ["functionOn", false, true];
 
 //////////////////////////////////////////////////
 //                                              //
