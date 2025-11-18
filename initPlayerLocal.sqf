@@ -758,6 +758,7 @@ private _conditionGeneral = {
                 allPlayers select {_x distance _caller <= 100}];
 		};
         missionNamespace setVariable ["hvtdead", true, true];
+		missionNamespace setVariable ["hvtPass", true, true]; // for debrief convo
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements

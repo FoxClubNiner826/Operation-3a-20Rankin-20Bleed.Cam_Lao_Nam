@@ -1830,7 +1830,7 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0,"Unfortunantley, no. We take full responsibility, sir.", "answer"],
 			[1,"Truly unfortunante, now we no longer have plausible deniability. Let's hope this doesn't cause and international incident.", "answer"],
-			[1,"We're you able to take a look around in Lumphat?", "answer"]
+			[1,"Were you able to take a look around in Lumphat?", "answer"]
 		]
 	],
 	["stabPassed", // 
@@ -1841,9 +1841,9 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["stabFailedScout", // 
 		[
-			[0,"STAB no destroy. We make mistake.", "answer"],
+			[0,"STAB no destroy. We make big mistake.", "answer"],
 			[1,"Truly unfortunante indeed, now we no longer have plausible deniability. Let's hope this doesn't cause and international incident.", "answer"],
-			[1,"We're you able to take a look around in Lumphat?", "answer"]
+			[1,"Were you able to take a look around in Lumphat?", "answer"]
 		]
 	],
 	["stabPassedScout", // 
@@ -1890,8 +1890,8 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["powDied", // 
 		[
-			[0,"There's more, we seached a rat-hole and found a POW. But... he didn't make it. They worked him over pretty good.", "answer"],
-			[1,"Use it to fuel your fury. This is what the enemy does.", "answer"]
+			[0,"There's more, we seached a rat-hole and found a POW. But... recovery wasn’t possible.", "answer"],
+			[1,"Use that to fuel your fury.", "answer"]
 		]
 	],
 	["powRescued", // 
@@ -1902,8 +1902,8 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["pilotDied", // 
 		[
-			[0,"There's more, we came across a down pilot, an American. But... he didn't make it.", "answer"],
-			[1,"That's a damn shame. I know yall tried.", "answer"]
+			[0,"There's more, we came across a down pilot, an American. But... recovery wasn’t possible.", "answer"],
+			[1,"That's a damn shame.", "answer"]
 		]
 	],
 	["pilotRescued", // 
@@ -1914,8 +1914,8 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["pilotAndPowDied", // 
 		[
-			[0,"There's more, we found two friendlies from the AO, but they didn't make it...", "answer"],
-			[1,"That's a goddamn shame. God rest their souls. I'll notify the family.", "answer"]
+			[0,"There's more, we found two friendlies from the AO, but recovery wasn’t possible...", "answer"],
+			[1,"That's a goddamn shame. I'll notify the family.", "answer"]
 		]
 	],
 	["pilotAndPowRescued", // 
@@ -1926,37 +1926,37 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["powDiedScout", // 
 		[
-			[0,"We find POW in rat-hole. He die, so sorry.", "answer"],
-			[1,"Use it to fuel your fury. This is what the enemy does.", "answer"]
+			[0,"We find POW in rat-hole. But he not here, so sorry.", "answer"],
+			[1,"Use it to fuel your fury.", "answer"]
 		]
 	],
 	["powRescuedScout", // 
 		[
-			[0,"We find POW in rat-hole. He alive in base.", "answer"],
+			[0,"We find POW in rat-hole. He alive in base now.", "answer"],
 			[1,"Now there's lucky bastard that needs to play the lotto.", "answer"]
 		]
 	],
 	["pilotDiedScout", // 
 		[
-			[0,"We find American pilot. He die, so sorry.", "answer"],
-			[1,"That's a damn shame. I know yall tried.", "answer"]
+			[0,"We find American pilot. But he not here, so sorry.", "answer"],
+			[1,"That's a damn shame.", "answer"]
 		]
 	],
 	["pilotRescuedScout", // 
 		[
-			[0,"We find American pilot. He alive in base.", "answer"],
+			[0,"We find American pilot. He alive in base now.", "answer"],
 			[1,"What are the chances that you all were in the same place at the same time? He's a lucky son of a bitch.", "answer"]
 		]
 	],
 	["pilotAndPowDiedScout", // 
 		[
-			[0,"We find two Americans but they die, so sorry.", "answer"],
+			[0,"We find two Americans but they not here, so sorry.", "answer"],
 			[1,"That's a goddamn shame. God rest their souls. I'll notify the family.", "answer"]
 		]
 	],
 	["pilotAndPowRescuedScout", // 
 		[
-			[0,"We find two Americans. They alive in base.", "answer"],
+			[0,"We find two Americans. They alive in base now.", "answer"],
 			[1,"These men and their families will be ever thankfull for this.", "answer"]
 		]
 	],
@@ -1982,33 +1982,79 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"Now, we here, sir. We have all soldier.", "answer"]
 		]
 	],
-	["summaryBest", // 
+	["summaryBest", // players complete all major tasks and all side tasks plus at least one rescue
 		[
 			[1,"Exemplary performance! You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
 			[0,"Thank you, Sir!", "answer"]
 		]
 	],
-	["summaryGood", // 
+	["summaryBetter", // players complete all major tasks and all side tasks. disregards whether or not a rescue was made. 
 		[
-			[0,"Fantastic work, gentelmen. Your country owes you a great deal! There will be a victory celebration at the bar tonight! Dismissed!", "answer"],
-			[1,"Thank you, Sir.", "answer"]
+			[1,"Fantastic work, gentelmen! Your country owes you a great deal! There will be a victory celebration at the bar tonight with drinks on the Navy! Dismissed!", "answer"],
+			[0,"Thank you, Sir.", "answer"]
 		]
 	],
-	["summaryDefault", // 
+	["summaryGood", // players complete all major tasks and some or not of side tasks. disregards whether or not a rescue was made
 		[
-			[0,"Great work today even though not everything went our way. That's just how it goes. Hit the head and get cleaned up, I'll see you at chow. Dismissed!", "answer"],
-			[1,"Thank you, Sir.", "answer"]
+			[1,"Damn fine work out there, gentlemen! You held your own in a tough AO and came through solid. Command will be pleased, and so am I. Get some rest, you earned it!", "answer"],
+			[0,"Thank you, Sir.", "answer"]
 		]
 	],
-	["summaryPoor", // 
+	["summaryDefault", // players fail at least one but not all major tasks. disregards whether or not a rescue was made 
 		[
-			[0,"We'll I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
-			[1,"Aye aye, Sir.", "answer"]
+			[1,"Great work today even though not everything went our way. That's just how it goes. Hit the head and get cleaned up, I'll see you at chow. Dismissed!", "answer"],
+			[0,"Thank you, Sir.", "answer"]
+		]
+	],
+	["summaryPoor", // players fail all major tasks. this is the worst case. disregards whether or not a rescue was made
+		[
+			[1,"Well, I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
+			[0,"Aye aye, Sir.", "answer"]
+		]
+	],
+	["summaryLessPoor", // players fail all major tasks. this is the worst case. disregards whether or not a rescue was made
+		[
+			[1,"Tough operation, gentlemen. The jungle had other plans today. What matters is you’re still standing. Clean up, get some chow, and we’ll sort this out in the morning. Dismissed.", "answer", 1],
+			[0,"Aye aye, Sir.", "answer"]
+		]
+	],
+	["summaryBestScout", // players complete all major tasks and all side tasks plus at least one rescue
+		[
+			[1,"Exemplary performance! You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
+			[0,"Thank you, Sir!", "answer"]
+		]
+	],
+	["summaryBetterScout", // players complete all major tasks and all side tasks. disregards whether or not a rescue was made. 
+		[
+			[1,"Fantastic work, gentelmen! Your country owes you a great deal! There will be a victory celebration at the bar tonight with drinks on the Navy! Dismissed!", "answer"],
+			[0,"Thank you, Sir.", "answer"]
+		]
+	],
+	["summaryGoodScout", // players complete all major tasks and some or not of side tasks. disregards whether or not a rescue was made
+		[
+			[1,"Damn fine work out there, gentlemen! You held your own in a tough AO and came through solid. Command will be pleased, and so am I. Get some rest, you earned it!", "answer"],
+			[0,"Thank you, Sir.", "answer"]
+		]
+	],
+	["summaryDefaultScout", // players fail at least one but not all major tasks. disregards whether or not a rescue was made 
+		[
+			[1,"Great work today even though not everything went our way. That's just how it goes. Hit the head and get cleaned up, I'll see you at chow. Dismissed!", "answer"],
+			[0,"Thank you, Sir.", "answer"]
+		]
+	],
+	["summaryPoorScout", // players fail all major tasks. this is the worst case. disregards whether or not a rescue was made
+		[
+			[1,"Well, I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
+			[0,"Aye aye, Sir.", "answer"]
+		]
+	],
+	["summaryLessPoorScout", // players fail all major tasks. this is the worst case. disregards whether or not a rescue was made
+		[
+			[1,"Tough operation, gentlemen. The jungle had other plans today. What matters is you’re still standing. Clean up, get some chow, and we’ll sort this out in the morning. Dismissed.", "answer", 1],
+			[0,"Aye aye, Sir.", "answer"]
 		]
 	]
 ];
-
-
 
 
 

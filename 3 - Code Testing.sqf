@@ -2169,68 +2169,76 @@ for "_i" from 0 to (count _sentences - 1) step 2 do
 	sleep (_sentences select (_i + 1));
 };
 
-private _hvtPass = missionNamespace getVariable ["hvtPass",false];
-private _hvtMid = missionNamespace getVariable ["hvtMid",false];
-private _hvtFailed = missionNamespace getVariable ["hvtFailed",false];
+private _hvtPass	= missionNamespace getVariable ["hvtPass", false];
+private _hvtMid	 = missionNamespace getVariable ["hvtMid", false];
+private _hvtFailed  = missionNamespace getVariable ["hvtFailed", false];
 
-private _stabPassed = missionNamespace getVariable ["stabPassed",false];
+private _stabPassed = missionNamespace getVariable ["stabPassed", false];
 
-private _allSecondary = missionnamespace getVariable ["AllSecTasksComplete",false];
-private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete",false];
-private _noSecondary = missionNamespace getVariable ["noSecTasksComplete",false];
+private _allSecondary  = missionNamespace getVariable ["AllSecTasksComplete", false];
+private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete", false];
 
-private _powFound = missionNamespace getVariable ["powFound",false];
-private _pilotFound = missionNamespace getVariable ["pilotFound",false];
-private _powRescued = missionNamespace getVariable ["powRescued",false];
-private _pilotRescued = missionNamespace getVariable ["pilotRescued",false];
+private _powFound	  = missionNamespace getVariable ["powFound", false];
+private _pilotFound	= missionNamespace getVariable ["pilotFound", false];
+private _powRescued	= missionNamespace getVariable ["powRescued", false];
+private _pilotRescued  = missionNamespace getVariable ["pilotRescued", false];
+private _powDied	   = missionNamespace getVariable ["powDied", false];
+private _pilotDied	 = missionNamespace getVariable ["pilotDied", false];
 
-private _extractPassed = missionNamespace getVariable ["extractPassed",false];
+private _extractPassed = missionNamespace getVariable ["extractPassed", false];
 
 private _scout  = missionNamespace getVariable ["scout", objNull];
-private _caller  = missionNamespace getVariable ["scout", objNull];
+private _caller = missionNamespace getVariable ["command", objNull];
 
-if (!isServer) exitWith {};
 
-//if (!_allPrimary) exitWith {};
-
-//systemChat "fired";
+//if (!isServer) exitWith {};
 
 private _sentences = [];
 
-_sentences pushBack (
+
+_sentences pushBack
+(
 	"debrief"
 	+ (if (_caller == _scout) then {"Scout"} else {""})
 );
 
+
 // hvt convos
 switch (true) do
 {
-	case ( _hvtPass ):
+	case (_hvtPass):
 	{
-		_sentences pushBack (
+		_sentences pushBack
+		(
 			"hvtPass"
 			+ (if (_caller == _scout) then {"Scout"} else {""})
 		);
 	};
-	case ( _hvtMid && _hvtFailed ):
+
+	case (_hvtMid && _hvtFailed):
 	{
-		_sentences pushBack (
+		_sentences pushBack
+		(
 			"hvtMid"
 			+ (if (_caller == _scout) then {"Scout"} else {""})
 		);
 	};
-	case ( _hvtFailed ):
+
+	case (_hvtFailed):
 	{
-		_sentences pushBack (
+		_sentences pushBack
+		(
 			"hvtFailed"
 			+ (if (_caller == _scout) then {"Scout"} else {""})
 		);
 	};
 };
 
+
 // stab convos
-_sentences pushBack (
-	(["stabFailed","stabPassed"] select _stabPassed)
+_sentences pushBack
+(
+	(["stabFailed", "stabPassed"] select _stabPassed)
 	+ (if (_caller == _scout) then {"Scout"} else {""})
 );
 
@@ -2238,100 +2246,204 @@ _sentences pushBack (
 // secondary tasks convos
 switch (true) do
 {
-	case ( _allSecondary ):
+	case (_allSecondary):
 	{
-		_sentences pushBack (
+		_sentences pushBack
+		(
 			"allSec"
 			+ (if (_caller == _scout) then {"Scout"} else {""})
 		);
 	};
 
-	case ( _someSecondary ):
+	case (_someSecondary):
 	{
-		_sentences pushBack (
+		_sentences pushBack
+		(
 			"someSec"
 			+ (if (_caller == _scout) then {"Scout"} else {""})
 		);
 	};
+
 	default
 	{
-		_sentences pushBack (
+		_sentences pushBack
+		(
 			"noSec"
 			+ (if (_caller == _scout) then {"Scout"} else {""})
 		);
 	};
 };
 
+
 // rescued convos
 switch (true) do
 {
-	case ( _pilotFound && _powFound ):
-		{
-			_sentences pushBack (
-				(["pilotAndPowDied","pilotAndPowRescued"] select (_pilotRescued && _powRescued) )
-				+ (if (_caller == _scout) then {"Scout"} else {""})
-			);
-		};
-	case ( _powFound ):
-		{
-			_sentences pushBack (
-				(["powDied","powRescued"] select _powRescued )
-				+ (if (_caller == _scout) then {"Scout"} else {""})
-			);
-		};
-	case ( _pilotFound ):
-		{
-			_sentences pushBack (
-				(["pilotDied","pilotRescued"] select _pilotRescued )
-				+ (if (_caller == _scout) then {"Scout"} else {""})
-			);
-		};
+	case (_pilotFound && _powFound): // pow and pilot are found
+	{
+		_sentences pushBack // pow and pilot are rescued
+		(
+			(["pilotAndPowDied", "pilotAndPowRescued"] select (_pilotRescued && _powRescued))
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
+
+	case (_powFound): // pow is found
+	{
+		_sentences pushBack // pow is rescued if true, else pow died or was left behind
+		(
+			(["powDied", "powRescued"] select _powRescued)
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
+
+	case (_pilotFound): // pilot is found
+	{
+		_sentences pushBack // pilot is rescued if true, else pow died or was left behind
+		(
+			(["pilotDied", "pilotRescued"] select _pilotRescued)
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
 };
 
+
 // extract convos
-_sentences pushBack (
-				(["extractFailed","extractPassed"] select _extractPassed )
-				+ (if (_caller == _scout) then {"Scout"} else {""})
-			);
+_sentences pushBack
+(
+	(["extractFailed", "extractPassed"] select _extractPassed)
+	+ (if (_caller == _scout) then {"Scout"} else {""})
+);
+
 
 // wrapup convo and mission exit screen
 switch (true) do
 {
-	case ( missionNamespace getVariable ["hvtPass",false] &&
-			missionNamespace getVariable ["stabPassed",false] &&
-			missionNamespace getVariable ["extractPassed",false] &&
-			missionnamespace getVariable ["AllSecTasksComplete",false] ):
-		{
-			_sentences pushBack "summaryBest";
-		};
-	case ( missionNamespace getVariable ["hvtPass",false] &&
-			missionNamespace getVariable ["stabPassed",false] &&
-			missionNamespace getVariable ["extractPassed",false] ):
-		{
-			_sentences pushBack "summaryGood";
-		};
-	case ( !(missionNamespace getVariable ["hvtPass",false]) &&
-			!(missionNamespace getVariable ["stabPassed",false]) &&
-			!(missionNamespace getVariable ["extractPassed",false]) ):
-		{
-			_sentences pushBack "summaryPoor";
-		};
-	default
-		{
-			_sentences pushBack "summaryDefault";
-		};
+	case // players complete all major tasks and all side tasks plus at least one rescue
+	(
+		_hvtPass	 &&
+		_stabPassed  &&
+		_extractPassed &&
+		_allSecondary &&
+		(
+			(
+				_pilotRescued ||
+				_powRescued
+			)
+			&&
+			(
+				!_pilotDied ||
+				!_powDied
+			)
+		)
+	):
+	{
+		_sentences pushBack
+		(
+			"summaryBest"
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
+
+	case // players complete all major tasks and all side tasks
+	(
+		_hvtPass	&&
+		_stabPassed &&
+		_extractPassed &&
+		_allSecondary
+	):
+	{
+		_sentences pushBack
+		(
+			"summaryBetter"
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
+
+	case // players complete all major tasks, any number of side tasks including none
+	(
+		_hvtPass &&
+		_stabPassed &&
+		_extractPassed
+	):
+	{
+		_sentences pushBack
+		(
+			"summaryGood"
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
+	
+	case // players fail all major tasks
+	(
+		!_hvtPass	&&
+		!_stabPassed &&
+		!_extractPassed
+	):
+	{
+		_sentences pushBack
+		(
+			"summaryPoor"
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
+
+	case // players fail both these major tasks
+	(
+		!_hvtPass &&
+		!_stabPassed	
+	):
+	{
+		_sentences pushBack
+		(
+			"summaryLessPoor"
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
+	
+	default // players fail at one major tasks
+	{
+		_sentences pushBack
+		(
+			"summaryDefault"
+			+ (if (_caller == _scout) then {"Scout"} else {""})
+		);
+	};
 };
 
-// play all gathered strings now
+
+// send all strings to the function for unpacking
 systemChat str _sentences;
 
-[_sentences, [command, testUnit], true] remoteExec [
-		"FoxClub_fnc_Conversation",
-		allPlayers select { _x distance command <= 100 }
+[_sentences, [command, testUnit], true] remoteExec
+[
+	"FoxClub_fnc_Conversation",
+	allPlayers select { _x distance command <= 100 }
 ];
 
-/*
-{
-	[_x, [command, testUnit], true] call FoxClub_fnc_Conversation;
-} forEach _sentences;
-*/
+// go through these and implement into the mission 
+
+// hvt possibilities. for mid to work: mid and failed will have to be true. at least one of these is always true.
+
+missionNamespace setVariable ["hvtPass", true, true]; // in holdAction for searching general
+missionNamespace setVariable ["hvtMid", true, true]; // in EH of generals car. triggers with car blows up with him inside.
+missionNamespace setVariable ["hvtFailed", true, true]; // in trigger once hvt reaches trigger area across the river
+
+//stab possibilities. just need this one since its boolean check
+missionNamespace setVariable ["stabPassed", true, true]; // in fail trigger for task "destroy the stab"
+
+//extract possibilities
+missionNamespace setVariable ["extractPassed", true, true]; // in complete trigger for task "extract from LZ"
+
+//side task possibilities. no need for noSec since its default case
+missionnamespace setVariable ["AllSecTasksComplete", true, true];
+missionNamespace setVariable ["SomeSecTasksComplete", true, true]; // in trigger SomeSecTasksCompleteTrigger
+
+//rescue possibilities
+missionNamespace setVariable ["powFound", true, true];
+missionNamespace setVariable ["pilotFound", true, true];
+missionNamespace setVariable ["powRescued", true, true];
+missionNamespace setVariable ["pilotRescued", true, true];
+//missionNamespace setVariable ["powDied", true, true];
+//missionNamespace setVariable ["pilotDied", true, true];
+
+

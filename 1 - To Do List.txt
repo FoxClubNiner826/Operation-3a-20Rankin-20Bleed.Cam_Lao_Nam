@@ -3,7 +3,7 @@ TO DO UP NEXT:
 // When you are done testing NPCs at staging area put this stuff back to normal
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
- 
+Current TASK: 
 - Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
     - i added a failure state for proceed to infil spot
     - I decided to not have performance ratings for players but I like the flavor text
@@ -22,12 +22,12 @@ Design: I have to make a decision on if I make the debrief based on the players 
                 The only thing that sucks is I have to put in sleeps manually tied to the audio files and since sleeps aren't guarenteed length there can be 
                 some odd pauses in the convo. Maybe ask Nikko about that.
                 - With Leopards help I was able to find a work around so that I don't need the sleeps anymore
-Current TASK:            - Go through and refine the text for all cases to make it flow together. Need to test for both scout and commander
+            - Go through and refine the text for all cases to make it flow together. Need to test for both scout and commander
                 - add more summary cases
                 - Best cases
                 - Worst cases 
                 - Mixed cases
-            - After it's all done testing then you need to implement it by adding the variables into the various triggers. 
+           * - After it's all done testing then you need to implement it by adding the variables into the various triggers. 
             - Finally it needs to be placed in the addAction and tested.
             
     
