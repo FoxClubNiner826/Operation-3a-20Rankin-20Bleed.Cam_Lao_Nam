@@ -12,20 +12,7 @@ if (missionNamespace getVariable ["minimizeChatter", false] && !_mandatory) exit
 {
 	_x setVariable ["foxclub_var_isTalking",true];
 } forEach _speakers;
-
-private _conversationData =
-	if (typeName _convo == "STRING") then {
-		foxclub_var_conversations get _convo
-	} else {
-		// Build the array of strings to be played in order
-		private _combined = [];
-		{
-			private _c = foxclub_var_conversations get _x;
-			_combined append _c;
-		} forEach _convo;
-		_combined
-	};
-
+private _conversationData = foxclub_var_conversations get _convo;
 {
 	_x params ["_speakerIndex","_text","_sound", ["_delayAfter", 0], ["_customCode", {}]];
 	private _speaker = _speakers select _speakerIndex;

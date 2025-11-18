@@ -15,7 +15,7 @@ class CfgFunctions
             class intelAlreadyDone {};
             class heliRTB {};
             class loopAnimation {};
-            class heliRTBTEST {};
+            class testFunction {};
         };
     };
 };

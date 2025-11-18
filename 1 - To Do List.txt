@@ -3,9 +3,7 @@ TO DO UP NEXT:
 // When you are done testing NPCs at staging area put this stuff back to normal
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
-
-
-Current TASK: 
+ 
 - Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
     - i added a failure state for proceed to infil spot
     - I decided to not have performance ratings for players but I like the flavor text
@@ -23,14 +21,15 @@ Design: I have to make a decision on if I make the debrief based on the players 
             - I was able to adapt Lou's script to my needs. It works pretty well actually. I have it centered around main mission objectives. 
                 The only thing that sucks is I have to put in sleeps manually tied to the audio files and since sleeps aren't guarenteed length there can be 
                 some odd pauses in the convo. Maybe ask Nikko about that.
-            - Current task is to go through and refine the text for all cases to make it flow together. I just started the work on best and worst cases.
-                - you can modify the function to have a delay before (default 0) much like the delay after. That would cause a pause.
-                - look into this: !(_originalTarget getVariable ['foxclub_var_isTalking',false])
-            - Let's add a convo that specifies which side tasks were hit 
-            - After it's all done testing then you need to implement it by adding the variables into the various triggers.
-
-also try to broadcast the istalking variable
-   
+                - With Leopards help I was able to find a work around so that I don't need the sleeps anymore
+Current TASK:            - Go through and refine the text for all cases to make it flow together. Need to test for both scout and commander
+                - add more summary cases
+                - Best cases
+                - Worst cases 
+                - Mixed cases
+            - After it's all done testing then you need to implement it by adding the variables into the various triggers. 
+            - Finally it needs to be placed in the addAction and tested.
+            
     
 DEDICATED SERVER TESTING:
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -63,6 +62,7 @@ TO DO MASTER LIST:
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
         - Entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
             learn the program and workflow)
+            - prison siren in the AM. sounds like they got another runner.
         - Adjustments to arsenal, inventories, and unit classes to match decription (RTO, medic, etc). I think that the variable name might 
             also show up in the U menu when switching units in singleplayer.
         - remove all mod dependencies.
@@ -113,6 +113,7 @@ TO DO MASTER LIST:
                     - disable the enemy radio tower
                     - have scout equip enemy radio backpack
                     - complete every cheevo
+                    - prevent the pilot from getting shot down
         - Design: Try to incourage the hand signal module by punishing players using their radios. 
             Send trackers after them if they use it too much. I like this idea but it will add too much scope to the mission.
             Perhaps in the future for another mission or if I ever finish this one with time to spare.
@@ -144,7 +145,7 @@ TO DO MASTER LIST:
             but not the SAM? I decided not to pursue this because it will add too much time to change the code and have to do more rewriting 
             of it for little payoff of polish. This is a great learning experience on why it is better to make designs in the early part of 
             the mission. The idea here is to have that aspect solidified so that you don't loose time reworking systems or rewriting code.
-        - Function Rework: Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. 
+        - Add animations to convo function: Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. 
             Then in the function itself you can have the playmove and then animation name and also a cancel animation. 
             Maybe mirror how say3d works in the function. Should be the same.
                 - Through much testing it is clear that there is no one size fits all approach to animations. Some animations seemingly 
@@ -188,7 +189,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 - move pics files back
 
 
-FINISHED:
+CHANGE LOG:
 Design: players are allowed to drive away without their human squad mates but the next task wont popup until they are all in. I am going to 
     leave this as is and see how play testing goes. If there are problems with players leaving their mates behind then I will disable 
     the STAB until all players are on board:

@@ -1778,6 +1778,12 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Aright, lets hear it.", "answer"]
 		]
 	],
+	["debriefScout", // 
+		[
+			[0,"Ready for debrief, sir.", "answer"],
+			[1,"Aright, lets hear it.", "answer"]
+		]
+	],
 	["hvtPass", // 
 		[
 			[0,"We got the bastard, Captain! Here are his credentials!", "answer"],
@@ -1795,37 +1801,90 @@ foxclub_var_conversations = createHashMapFromArray [
 	["hvtFailed", // 
 		[
 			[0,"Well, as you know. The slippery bastard got away.", "answer"],
-			[1,"I feared as much when we listened in on their comms. We'll nab the son of a bitch next time. Well, if there is a next time...", "answer"],
+			[1,"I feared as much. We'll nab the son of a bitch next time. Well, if there is a next time...", "answer"],
+			[1,"And what about the STAB? Did you cover your tracks?", "answer"]
+		]
+	],
+	["hvtPassScout", // 
+		[
+			[0,"We kill General! Here, take papers.", "answer"],
+			[1,"Hot damn! You got that commie rat bastard! Outstanding job!", "answer"],
+			[1,"And what about the STAB? Did you cover your tracks?", "answer"]
+		]
+	],
+	["hvtMidScout", // 
+		[
+			[0,"We kill General but no papers.", "answer"],
+			[1,"Well this isn't the best outcome but this is surley a blow to the enemy none the less.", "answer"],
+			[1,"And what about the STAB? Did you cover your tracks?", "answer"]
+		]
+	],
+	["hvtFailedScout", // 
+		[
+			[0,"General run away.", "answer"],
+			[1,"I feared as much. We'll nab the son of a bitch next time. Well, if there is a next time...", "answer"],
 			[1,"And what about the STAB? Did you cover your tracks?", "answer"]
 		]
 	],
 	["stabFailed", // 
 		[
 			[0,"Unfortunantley, no. We take full responsibility, sir.", "answer"],
-			[1,"This is truly unfortunante, we no longer have plausible deniability. Let's hope this doesn't cause and internation incident. Anything else?", "answer"]
+			[1,"Truly unfortunante, now we no longer have plausible deniability. Let's hope this doesn't cause and international incident.", "answer"],
+			[1,"We're you able to take a look around in Lumphat?", "answer"]
 		]
 	],
 	["stabPassed", // 
 		[
 			[0,"We wiped clean any involvment of ourselfs. Zero traces, noboby will know we we're ever there.", "answer"],
-			[1,"Textbook, I knew you would. We're you able to accomplish any other objectives?", "answer"]
+			[1,"Textbook, I knew you would. We're you able to search Lumphat, as well?", "answer"]
+		]
+	],
+	["stabFailedScout", // 
+		[
+			[0,"STAB no destroy. We make mistake.", "answer"],
+			[1,"Truly unfortunante indeed, now we no longer have plausible deniability. Let's hope this doesn't cause and international incident.", "answer"],
+			[1,"We're you able to take a look around in Lumphat?", "answer"]
+		]
+	],
+	["stabPassedScout", // 
+		[
+			[0,"STAB destroy. We ghost.", "answer"],
+			[1,"Textbook, I knew you would. We're you able to search Lumphat, as well?", "answer"]
 		]
 	],
 	["allSec", // 
 		[
-			[0,"Yes sir, We hit so many targets of opportunity, the enemy will be reeling for days.", "answer"],
+			[0,"Yes sir! We found some intel there that lead to multiple targets. We hit them like hell! The enemy will be reeling for weeks.", "answer"],
 			[1,"Fantastic!", "answer"]
 		]
 	],
 	["someSec", // 
 		[
-			[0,"Yes sir, we we're able to hit some additonal targets.", "answer"],
+			[0,"Yes sir. After we left Lumphat, we we're able to hit some additonal targets in the AO.", "answer"],
 			[1,"Nicely done.", "answer"]
 		]
 	],
 	["noSec", // 
 		[
-			[0,"We didn't get a chance to occomplish any other objectives in the AO.", "answer"],
+			[0,"We tried but didn't get a chance to accomplish anything else in the AO.", "answer"],
+			[1,"I guess we can't have our cake and eat it too, huh?", "answer"]
+		]
+	],
+	["allSecScout", // 
+		[
+			[0,"Yes sir! We destroy many target. Enemy very afraid, now.", "answer"],
+			[1,"Fantastic!", "answer"]
+		]
+	],
+	["someSecScout", // 
+		[
+			[0,"Yes sir, we destroy some target.", "answer"],
+			[1,"Nicely done.", "answer"]
+		]
+	],
+	["noSecScout", // 
+		[
+			[0,"No other target this time.", "answer"],
 			[1,"I guess we can't have our cake and eat it too, huh?", "answer"]
 		]
 	],
@@ -1855,8 +1914,8 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["pilotAndPowDied", // 
 		[
-			[0,"There's more, we found two friendlies from the AO, but they didn't make it out...", "answer"],
-			[1,"That's a goddamn shame. I know yall tried.", "answer"]
+			[0,"There's more, we found two friendlies from the AO, but they didn't make it...", "answer"],
+			[1,"That's a goddamn shame. God rest their souls. I'll notify the family.", "answer"]
 		]
 	],
 	["pilotAndPowRescued", // 
@@ -1865,9 +1924,45 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"These men and their families will be ever thankfull for this.", "answer"]
 		]
 	],
+	["powDiedScout", // 
+		[
+			[0,"We find POW in rat-hole. He die, so sorry.", "answer"],
+			[1,"Use it to fuel your fury. This is what the enemy does.", "answer"]
+		]
+	],
+	["powRescuedScout", // 
+		[
+			[0,"We find POW in rat-hole. He alive in base.", "answer"],
+			[1,"Now there's lucky bastard that needs to play the lotto.", "answer"]
+		]
+	],
+	["pilotDiedScout", // 
+		[
+			[0,"We find American pilot. He die, so sorry.", "answer"],
+			[1,"That's a damn shame. I know yall tried.", "answer"]
+		]
+	],
+	["pilotRescuedScout", // 
+		[
+			[0,"We find American pilot. He alive in base.", "answer"],
+			[1,"What are the chances that you all were in the same place at the same time? He's a lucky son of a bitch.", "answer"]
+		]
+	],
+	["pilotAndPowDiedScout", // 
+		[
+			[0,"We find two Americans but they die, so sorry.", "answer"],
+			[1,"That's a goddamn shame. God rest their souls. I'll notify the family.", "answer"]
+		]
+	],
+	["pilotAndPowRescuedScout", // 
+		[
+			[0,"We find two Americans. They alive in base.", "answer"],
+			[1,"These men and their families will be ever thankfull for this.", "answer"]
+		]
+	],
 	["extractFailed", // 
 		[
-			[0,"Captain... I'm ashamed to say, not everyone made it back...", "answer", 1],
+			[0,"Captain... I'm ashamed to say, not everyone made it back...", "answer"],
 			[1,"Yeah, I heard Ranger call it in, we're already prepping a rescue effort. God help them.", "answer"]
 		]
 	],
@@ -1876,9 +1971,20 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"And here we are, sir, every man accounted for.", "answer"]
 		]
 	],
+	["extractFailedScout", // 
+		[
+			[0,"Captain... everybody no here...", "answer"],
+			[1,"Yeah, I heard Ranger call it in, we're already prepping a rescue effort. God help them.", "answer"]
+		]
+	],
+	["extractPassedScout", // 
+		[
+			[0,"Now, we here, sir. We have all soldier.", "answer"]
+		]
+	],
 	["summaryBest", // 
 		[
-			[1,"We'll I've heard enough. You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
+			[1,"Exemplary performance! You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
 			[0,"Thank you, Sir!", "answer"]
 		]
 	],
@@ -1896,7 +2002,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["summaryPoor", // 
 		[
-			[0,"Well gentlemen, that was quite the shit show! I don't know what to say. I thought you were professionals. I'm going to reccommend we step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
+			[0,"We'll I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
 			[1,"Aye aye, Sir.", "answer"]
 		]
 	]
