@@ -28,7 +28,16 @@ Design: I have to make a decision on if I make the debrief based on the players 
                 - Worst cases 
                 - Mixed cases
             - Completed: After it's all done testing then you need to implement it by adding the variables into the various triggers. 
-           * - Finally it needs to be placed in the addAction and tested.
+            - Completed: Finally it needs to be placed in the addAction and tested.
+            - Completed: Add in endmission function
+            - Test in SP then MP
+                - Fixed: players can watch big boat spawn in on return to staging area.
+                - Fixed: have the amublance only appear if pow or scout is found.
+                - Fixed: changed the pow/pilot task complete condition to if they enter the ambulance.
+                - When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
+                - Completed: Add a convo that tells the pow/pilot that the ambulance is waiting for them.
+                - start the pushup units earlier
+                - error when entering debrief trigger zone.
             
     
 DEDICATED SERVER TESTING:
@@ -70,23 +79,18 @@ TO DO MASTER LIST:
         
     
     POLISH:
-        - players can watch big boat spawn in on return to staging area.
-        - have the amublance only appear if pow or scout is found.
-        - changed the pow/pilot task complete condition to if they enter the ambulance. Hide the ambulance unless the task to save either 
-            of them creates.
         - skip to infil not fading to black, intermittant
         - adjust the time of day for skip to infil to have closer parity with TOD of not using the skip.
         - try the lookAt and reveal command on the SAM site and see if you get more consistant results of it not tracking players and 
             instead tracking the plane.
         - see if possible to attach prop object to boat as a bomb then unhide when planted. do the same for scubba clothes and props 
-        - When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
-        - Add a convo that tells the pow/pilot that the ambulance is waiting for them.
         - See if it's possible to add climbing animation to the POW as he exits the tunnel.
         - Add all NPCs is staging area to the exclusion list for blufor speech chatter/banter. This is at the very end of polish so that 
             you don't have to keep updating it since the amount of NPCs could change. Possible to just remove the feature entirley?
         - trg_convo_cove; If the scout is the leader then he will end up speaking to himself.
     
     PERFORMANCE:
+        - go through the mission and see if there are a ton of SAM radars. I can't remember if I did this but it is probably a performance concern.
         - In the staging area the client gets about 13fps more (80 vs 67). Something runs on the server only. For sure the server only 
             triggers but do they matter? I wonder if there is anything else?
             - Interesting performance findings suggest that triggers, even with more complex conditions, barley effect performance.

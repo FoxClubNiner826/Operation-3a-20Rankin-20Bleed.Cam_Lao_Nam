@@ -2451,3 +2451,17 @@ missionNamespace getVariable ["pilotEjected", false];
 missionNamespace getVariable ["testPOW", false];
 
 
+// wait until none of the _speakers have foxclub_var_isTalking == true
+//private _waitTimeout = 30; // seconds to wait max (adjust)
+//private _endTime = time + _waitTimeout;
+
+waitUntil {
+    // count how many speakers are currently marked talking
+    private _busyCount = 0;
+    {
+        if (_x getVariable ["foxclub_var_isTalking", false]) then { _busyCount = _busyCount + 1 };
+    } forEach _speakers;
+    (_busyCount == 0) //|| (time > _endTime) // stop waiting when clear or timeout
+};
+
+

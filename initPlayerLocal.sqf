@@ -1339,125 +1339,265 @@ private _conditionExtract = {
 //     DEBFRIEF CONVO BASED ON PERFORMANCE      //
 //                                              //
 //////////////////////////////////////////////////
-/*
+
 Marcinko addAction [
     "<t color='#FFFF00'>""Ready for debrief, sir.""</t>",
     {
+        params ["_target", "_caller", "_actionID", "_args"];
+        
         missionNamespace setVariable ["ActionDebrief", false, true];
-		params ["_target", "_caller", "_actionID", "_args"]; //makes the caller say the first line
-		
-        _scout = missionNamespace getVariable ["scout", objNull];
-        private _allPrimary = missionnamespace getVariable ["AllPriTasksComplete",false];
-        private _allSecondary = missionnamespace getVariable ["AllSecTasksComplete",false];
-        private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete",false];
-        private _hvtDead = missionNamespace getVariable ["hvtDead",false];
-        private _stabFailed = missionNamespace getVariable ["stabFailed",false];
-        private _hvtFled = missionNamespace getVariable ["hvtFled",false];
-        private _stabPassed = missionNamespace getVariable ["stabPassed",false];
-        private _powDied = missionNamespace getVariable ["powDied",false];
-        private _pilotDied = missionNamespace getVariable ["pilotDied",false];
-        private _menLeftBehind = missionNamespace getVariable ["extractTaskFailed",false];
-
-    if (_scout == _caller) then {
-
-		if (_allPrimary && _allSecondary)  then {
-			["scout10", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-
-		if (_allPrimary && _someSecondary && !_allSecondary)  then {
-			["scout9", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-		if (_allPrimary && !_allSecondary && !_someSecondary)  then {
-			["scout8", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-		if (_hvtDead && _stabFailed && _someSecondary)  then {
-			["scout7", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
         
-		if (_hvtDead && _stabFailed && !_someSecondary)  then {
-			["scout6", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-        if (_hvtFled && _stabPassed && _someSecondary)  then {
-			["scout5", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-        if (_hvtFled && _stabPassed && !_someSecondary)  then {
-			["scout4", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-        if (_hvtFled && _stabFailed && _someSecondary)  then {
-			["scout3", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		
-        };
-		if (_hvtFled && _stabFailed && !_someSecondary && !_powDied && !_pilotDied)  then {
-			["scout2", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		
-        };
-		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && !_menLeftBehind)  then {
-			["scout1", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		
-        };
-		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && _menLeftBehind)  then {
-			["scout0", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-
-    } else {
-
-        if (_allPrimary && _allSecondary)  then {
-			["10", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-
-		if (_allPrimary && _someSecondary && !_allSecondary)  then {
-			["9", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-		if (_allPrimary && !_allSecondary && !_someSecondary)  then {
-			["8", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-		if (_hvtDead && _stabFailed && _someSecondary)  then {
-			["7", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
+        private _hvtPass    = missionNamespace getVariable ["hvtPass", false];
+        private _hvtMid     = missionNamespace getVariable ["hvtMid", false];
+        private _hvtFailed  = missionNamespace getVariable ["hvtFailed", false];
         
-		if (_hvtDead && _stabFailed && !_someSecondary)  then {
-			["6", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-        if (_hvtFled && _stabPassed && _someSecondary)  then {
-			["5", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-        if (_hvtFled && _stabPassed && !_someSecondary)  then {
-			["4", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-		
-        if (_hvtFled && _stabFailed && _someSecondary)  then {
-			["3", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		
+        private _stabPassed = missionNamespace getVariable ["stabPassed", false];
+        
+        private _allSecondary  = missionNamespace getVariable ["AllSecTasksComplete", false];
+        private _someSecondary = missionNamespace getVariable ["SomeSecTasksComplete", false];
+        
+        private _powFound      = missionNamespace getVariable ["powFound", false];
+        private _pilotFound    = missionNamespace getVariable ["pilotFound", false];
+        private _powRescued    = missionNamespace getVariable ["powRescued", false];
+        private _pilotRescued  = missionNamespace getVariable ["pilotRescued", false];
+        private _powDied       = missionNamespace getVariable ["powDied", false];
+        private _pilotDied     = missionNamespace getVariable ["pilotDied", false];
+        
+        private _extractPassed = missionNamespace getVariable ["extractPassed", false];
+        
+        private _scout  = missionNamespace getVariable ["scout", objNull];
+        
+        private _sentences = [];
+        
+        _sentences pushBack
+        (
+            "debrief"
+            + (if (_caller == _scout) then {"Scout"} else {""})
+        );
+        
+        
+        // hvt convos
+        switch (true) do
+        {
+            case (_hvtPass):
+            {
+                _sentences pushBack
+                (
+                    "hvtPass"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            case (_hvtMid && _hvtFailed):
+            {
+                _sentences pushBack
+                (
+                    "hvtMid"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            case (_hvtFailed):
+            {
+                _sentences pushBack
+                (
+                    "hvtFailed"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
         };
-		if (_hvtFled && _stabFailed && !_someSecondary && !_powDied && !_pilotDied)  then {
-			["2", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		
+        
+        
+        // stab convos
+        _sentences pushBack
+        (
+            (["stabFailed", "stabPassed"] select _stabPassed)
+            + (if (_caller == _scout) then {"Scout"} else {""})
+        );
+        
+        
+        // secondary tasks convos
+        switch (true) do
+        {
+            case (_allSecondary):
+            {
+                _sentences pushBack
+                (
+                    "allSec"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            case (_someSecondary):
+            {
+                _sentences pushBack
+                (
+                    "someSec"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            default
+            {
+                _sentences pushBack
+                (
+                    "noSec"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
         };
-		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && !_menLeftBehind)  then {
-			["1", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		
+        
+        
+        // rescued convos
+        switch (true) do
+        {
+            case (_pilotFound && _powFound): // pow and pilot are found
+            {
+                _sentences pushBack // pow and pilot are rescued
+                (
+                    (["pilotAndPowDied", "pilotAndPowRescued"] select (_pilotRescued && _powRescued))
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            case (_powFound): // pow is found
+            {
+                _sentences pushBack // pow is rescued if true, else pow died or was left behind
+                (
+                    (["powDied", "powRescued"] select _powRescued)
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            case (_pilotFound): // pilot is found
+            {
+                _sentences pushBack // pilot is rescued if true, else pow died or was left behind
+                (
+                    (["pilotDied", "pilotRescued"] select _pilotRescued)
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
         };
-		if (_hvtFled && _stabFailed && (_powDied || _pilotDied) && _menLeftBehind)  then {
-			["0", [_caller, Marcinko], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance Marcinko <= 100}];  
-		};
-
-    };
-
-	},
+        
+        
+        // extract convos
+        _sentences pushBack
+        (
+            (["extractFailed", "extractPassed"] select _extractPassed)
+            + (if (_caller == _scout) then {"Scout"} else {""})
+        );
+        
+        
+        // wrapup convo and mission exit screen
+        switch (true) do
+        {
+            case // players complete all major tasks and all side tasks plus at least one rescue
+            (
+                _hvtPass     &&
+                _stabPassed  &&
+                _extractPassed &&
+                _allSecondary &&
+                (
+                    (
+                        _pilotRescued ||
+                        _powRescued
+                    )
+                    &&
+                    (
+                        !_pilotDied ||
+                        !_powDied
+                    )
+                )
+            ):
+            {
+                _sentences pushBack
+                (
+                    "summaryBest"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            case // players complete all major tasks and all side tasks
+            (
+                _hvtPass    &&
+                _stabPassed &&
+                _extractPassed &&
+                _allSecondary
+            ):
+            {
+                _sentences pushBack
+                (
+                    "summaryBetter"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            case // players complete all major tasks, any number of side tasks including none
+            (
+                _hvtPass &&
+                _stabPassed &&
+                _extractPassed
+            ):
+            {
+                _sentences pushBack
+                (
+                    "summaryGood"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+            
+            case // players fail all major tasks
+            (
+                !_hvtPass    &&
+                !_stabPassed &&
+                !_extractPassed
+            ):
+            {
+                _sentences pushBack
+                (
+                    "summaryPoor"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        
+            case // players fail both these major tasks
+            (
+                !_hvtPass &&
+                !_stabPassed    
+            ):
+            {
+                _sentences pushBack
+                (
+                    "summaryLessPoor"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+            
+            default // players fail at one major tasks
+            {
+                _sentences pushBack
+                (
+                    "summaryDefault"
+                    + (if (_caller == _scout) then {"Scout"} else {""})
+                );
+            };
+        };
+        
+        
+        // send all strings to the function for unpacking
+        systemChat str _sentences;
+        
+        [_sentences, [command, testUnit], true] remoteExec
+        [
+            "FoxClub_fnc_Conversation",
+            allPlayers select { _x distance command <= 100 }
+        ];         
+    },
     [],
     8,
     false,
     true,
     "",
-    "ActionDebrief && (player in units playerGroup)", //ActionDebrief
-	4
+    "ActionDebrief && (player in units playerGroup)", // variable in trigger: DebriefPass
+    4
 ];

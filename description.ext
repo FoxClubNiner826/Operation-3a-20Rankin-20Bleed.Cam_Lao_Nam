@@ -98,125 +98,70 @@ class CfgIdentities
 
 class CfgDebriefing
 {
-    class 10
+    class 1 // players complete all major tasks and all side tasks plus at least one rescue
     {
-        title =    "Mission Success";
-        subtitle = "Performance Rating: 10/10";
-        description = "You took out that filthy commie rat bastard son of a bitch! You destroyed all evidence of our involvement! You must have taken out every target of opportunity in the entire AO! You disrupted enemy operations so badly that they'll be reeling for months. You've all earned the title of true warriors! Dismissed!";
+        title =    "Operation Complete";
+        subtitle = "Objectives Accomplished"; 
+        description = "All mission tasks were completed without critical deviation from plan. Team cohesion and individual execution were exemplary. The unit displayed superior initiative and adaptability while operating in high-risk, enemy-held territory. The unit went above and beyond the call of duty by accomplishing additional objectives in the AO, despite significant personal risk, demonstrating exceptional initiative and commitment to mission success. The unit successfully recovered American personnel from the AO, demonstrating precision, discipline, and unwavering commitment to mission imperatives.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Outstanding Performance!";
+        vn_debrief_mission_text = "Kill the HVT.<br/>Destroy the STAB.<br/>Extract with all personnel.<br/>Complete additional objectives at unit's discretion.";
+        vn_debrief_notes_text = "Following the successful completion of assigned objectives, the team demonstrated exceptional professionalism, discipline, and combat effectiveness throughout the entirety of the operation. Performance met and exceeded operational expectations under adverse conditions. Effective immediately, the team has been granted rest-and-recovery leave in recognition of outstanding service during this operation.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
     };
-	class 9
+	class 2 // players complete all major tasks and all side tasks, but no rescue
     {
-        title =    "Mission Success";
-        subtitle = "Performance Rating: 9/10";
-        description = "You took out that commie rat bastard and covered our tracks like pros! On top of that, you managed to handle some additional objectives that weren’t even on the list. Outstanding work! Hit the showers, and I’ll catch you guys at the bar later. Dismissed!";
+        title =    "Operation Complete";
+        subtitle = "Objectives Accomplished";
+        description = "All mission tasks were completed without critical deviation from plan. Team cohesion and individual execution were exemplary. The unit displayed superior initiative and adaptability while operating in high-risk, enemy-held territory. The unit went above and beyond the call of duty by accomplishing additional objectives in the AO, despite significant personal risk, demonstrating exceptional initiative and commitment to mission success.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Amazing Performance!";
+        vn_debrief_mission_text = "Kill the HVT.<br/>Destroy the STAB.<br/>Extract with all personnel.<br/>Complete additional objectives at unit's discretion.";
+        vn_debrief_notes_text = "Following the successful completion of assigned objectives, the team demonstrated exceptional professionalism, discipline, and combat effectiveness throughout the entirety of the operation. Performance met and exceeded operational expectations under adverse conditions. The team is authorized rest-and-recovery leave at the earliest operational opportunity.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
     };
-	class 8
+	class 3 // players complete all major tasks, and any number of side tasks including none
     {
-        title =    "Mission Success";
-        subtitle = "Performance Rating: 8/10";
-        description = "You took out that commie bastard and cleaned up all traces of our involvement. You nailed the primary mission objective, and that’s exactly what we needed. Well done, gentlemen. Your country owes you a great deal. Dismissed!";
+        title =    "Operation Complete";
+        subtitle = "Objectives Accomplished";
+        description = "All mission tasks were completed without critical deviation from plan. Team cohesion and individual execution were exemplary. The unit displayed superior initiative and adaptability while operating in high-risk, enemy-held territory. The unit exceeded primary mission requirements by accomplishing additional objectives where possible in the AO, despite significant personal risk, reflecting commendable initiative and dedication under challenging conditions.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Excellent Performance!";
+        vn_debrief_mission_text = "Kill the HVT.<br/>Destroy the STAB.<br/>Extract with all personnel.<br/>Complete additional objectives at unit's discretion.";
+        vn_debrief_notes_text = "Following the successful completion of assigned objectives, the team demonstrated exceptional professionalism, discipline, and combat effectiveness throughout the entirety of the operation. Performance met and exceeded operational expectations under adverse conditions. The team is authorized rest-and-recovery leave at the earliest operational opportunity.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
     };
-	class 7
+	class 4 // players fail at one major task
     {
-        title =    "Mission Complete";
-        subtitle = "Performance Rating: 7/10";
-        description = "You took out the bastard, and you did a solid job disrupting their operations by hitting some additional targets. However, leaving evidence of our involvement is a serious breach. It’s unacceptable, but I’ll see if I can work some magic with the top brass, considering the extra effort you put in. Dismissed!";
+        title =    "Operation Complete";
+        subtitle = "Objectives Incomplete";
+        description = "Mission execution met most objectives, though a all major tasks were not fully completed. Team cohesion and individual performance were generally effective, with minor areas for improvement under operational stress. Adaptability in high-risk, enemy-held territory was sufficient, but overall effectiveness was slightly diminished.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Subpar performance.";
+        vn_debrief_mission_text = "Kill the HVT.<br/>Destroy the STAB.<br/>Extract with all personnel.<br/>Complete additional objectives at unit's discretion.";
+        vn_debrief_notes_text = "Following partial completion of assigned objectives, the team demonstrated overall competence but encountered challenges that prevented full mission success. Performance met some operational expectations but fell short in specific areas. The unit is advised to review these shortcomings and prepare for subsequent operations before rest-and-recovery leave is granted.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
     };
-	class 6
+	class 5 // players fail hvt and stab major tasks
     {
-        title =    "Mission Complete";
-        subtitle = "Performance Rating: 6/10";
-        description = "You took out the bastard, but unfortunately, you left evidence of our involvement behind. While eliminating the General was crucial, the fact that our tracks are exposed could spell trouble, especially if the enemy can prove our involvement. This isn’t going to sit well with the top brass. Dismissed!";
+        title =    "Operation Complete";
+        subtitle = "Objectives Incomplete";
+        description = "Mission execution deviated significantly from planned objectives, and some major tasks were left incomplete. Team cohesion was inconsistent, and individual performance showed notable deficiencies under pressure. The unit demonstrated limited adaptability while operating in high-risk, enemy-held territory, resulting in reduced operational effectiveness.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Subpar performance.";
+        vn_debrief_mission_text = "Kill the HVT.<br/>Destroy the STAB.<br/>Extract with all personnel.<br/>Complete additional objectives at unit's discretion.";
+        vn_debrief_notes_text = "Following the unsuccessful completion of assigned objectives, the team exhibited lapses in professionalism, discipline, and combat effectiveness throughout the operation. Performance failed to meet operational expectations. Effective immediately, the team is withheld from rest-and-recovery leave pending further review and remedial action to address deficiencies observed during this mission.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
     };
-	class 5
+	class 6 // players fail all major tasks
     {
-        title =    "Mission Complete";
-        subtitle = "Performance Rating: 5/10";
-        description = "I'm sorry you couldn't nail the slippery bastard, but you did a solid job covering our tracks. Textbook work. On the bright side, you managed to disrupt enemy operations by hitting some additional targets, and that’s not going unnoticed. Good effort. Dismissed!";
+        title =    "Operation Complete";
+        subtitle = "Objectives Incomplete";
+        description = "Mission execution was unacceptable. All primary objectives were left incomplete, and the team failed to maintain cohesion under operational stress. Individual performance was deficient, and adaptability in high-risk, enemy-held territory was severely lacking. Operational effectiveness was critically compromised, and corrective action is required before further deployment.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Decent Performance.";
-        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
-    };
-	class 4
-    {
-        title =    "Mission Complete";
-        subtitle = "Performance Rating: 4/10";
-        description = "I'm sorry you couldn't nail the slippery bastard. However, you did a commendable job covering our tracks. I’ll be hoping for better results on your next mission. Dismissed.";
-        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
-        
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Decent Performance.";
-        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
-    };
-	class 3
-    {
-        title =    "Mission Failure";
-        subtitle = "Performance Rating: 3/10";
-        description = "It’s regrettable you missed the target, and worse, you left evidence of our involvement. What am I supposed to tell the top brass? The only small consolation is that you did manage to disrupt enemy operations. Get your shit squared away. Dismissed!";
-        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
-        
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Subpar performance.";
-        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
-    };
-	class 2
-    {
-        title =    "Mission Failure";
-        subtitle = "Performance Rating: 2/10";
-        description = "Look, it’s regrettable enough that you missed the target, but what’s worse is you left evidence of our involvement. This mission is FUBAR because of you and your lack of discipline. Get out of my sight. Dismissed!";
-        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
-        
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Abysmal performance.";
-        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
-    };
-	class 1
-    {
-        title =    "Mission Failure";
-        subtitle = "Performance Rating: 1/10";
-        description = "You lost the target. You left evidence behind of our involvement. You got friendlies killed. I expected better from supposed professionals like you. This mission was a complete cluster-fuck and a critical failure. You should be ashamed. You’ll be cleaning latrines for the rest of your tour. Dismissed!";
-        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
-        
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Abysmal performance.";
-        vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
-    };
-	class 0
-    {
-        title =    "Mission Failure";
-        subtitle = "Performance Rating: 0/10";
-        description = "You lost the target. You left evidence behind of our involvement. You got friendlies killed. And you left team members behind in the enemy AO. You might as well have signed their death warrants. Fully expect an immediate courtmartial. Surrender your gear right now. MPs, lock 'em up!";
-        pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
-        
-        vn_debrief_mission_text = "Kill the HVT";
-        vn_debrief_notes_text = "Abysmal performance.";
+        vn_debrief_mission_text = "Kill the HVT.<br/>Destroy the STAB.<br/>Extract with all personnel.<br/>Complete additional objectives at unit's discretion.";
+        vn_debrief_notes_text = "The team failed to complete assigned objectives. Professionalism, discipline, and combat effectiveness were notably deficient throughout the operation. Cohesion broke down under pressure, and individual performance was unacceptable. Rest-and-recovery leave is withheld until thorough corrective action is completed and deficiencies are fully addressed.";
         vn_debrief_background = "vn\missions_f_vietnam\data\img\debrief\debrief_03.paa";
     };
 	class DefeatSTABDestroyed

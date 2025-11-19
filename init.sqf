@@ -1330,7 +1330,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["menLeftBehind", // 90 d 
 		[
-			[0,"God fucking damnit! We left them behind...", "answer", 3],
+			[0,"God fucking damnit! We left men behind...", "answer", 3],
 			[0,"Ranger, we have friendlies still in the AO. Relay to HQ.", "answer"],
 			[1,"You got it.", "answer"],
 			[1,"", "answer", 0, { 
@@ -1514,6 +1514,11 @@ foxclub_var_conversations = createHashMapFromArray [
 			[3,"Many there not belong. I know. You suffer one person. They suffer thousands.", "answer"]
 		]
 	],
+	["heliAtBaseAmbulance",
+		[
+			[0,"Anyone recovered needing transport or medical attention, get in the ambulance right there and they will get you taken care of.", "answer"]
+		]
+	],
 	["heliAtBase",
 		[
 			[0,"Alright boys, last stop. Head to the beach and let's debrief with the Captain.", "answer"]
@@ -1548,228 +1553,6 @@ foxclub_var_conversations = createHashMapFromArray [
 	["pilotDeadScout",
 		[
 			[0,"We loose pilot!", "answer"]
-		]
-	], 
-	["10", // 105 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"You took out that filthy commie rat bastard son of a bitch! You destroyed all evidence of our involvement! You must have taken out every target of opportunity in the entire AO!", "answer"],
-			[1,"You disrupted enemy operations so badly that they'll be reeling for months. You've all earned the title of true warriors! You're gonna be banging boom-boom girls on R&R till the cows come home! Outstanding job. Dismissed!", "answer", 0, {
-				sleep 5;
-				["10", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["9", // 106 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"You took out that commie rat bastard and covered our tracks like pros! On top of that, you managed to handle some additional objectives that weren’t even on the list. Outstanding work! Hit the showers, and I’ll catch you guys at the bar later. Dismissed!", "answer", 0, {
-				sleep 5;
-				["9", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["8", // 107 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"You took out that commie bastard and cleaned up all traces of our involvement. You nailed the primary mission objective, and that’s exactly what we needed. Well done, gentlemen. Your country owes you a great deal. Dismissed!", "answer", 0, {
-				sleep 5;
-				["8", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["7", // 108 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"You took out the bastard, and you did a solid job disrupting their operations by hitting some additional targets. However, leaving evidence of our involvement is a serious breach. It’s unacceptable, but I’ll see if I can work some magic with the top brass, considering the extra effort you put in. Dismissed!", "answer", 0, {
-				sleep 5;
-				["7", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["6", // 109 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"You took out the bastard, but unfortunately, you left evidence of our involvement behind. While eliminating the General was crucial, the fact that our tracks are exposed could spell trouble, especially if the enemy can prove our involvement. This isn’t going to sit well with the top brass. Dismissed!", "answer", 0, {
-				sleep 5;
-				["6", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["5", // 110 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"I'm sorry you couldn't nail the slippery bastard, but you did a solid job covering our tracks. Textbook work. On the bright side, you managed to disrupt enemy operations by hitting some additional targets, and that’s not going unnoticed. Good effort. Dismissed!", "answer", 0, {
-				sleep 5;
-				["5", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["4", // 111 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"I'm sorry you couldn't nail the slippery bastard. However, you did a commendable job covering our tracks. I’ll be hoping for better results on your next mission. Dismissed.", "answer", 0, {
-				sleep 5;
-				["4", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["3", // 112 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"It’s regrettable you missed the target, and worse, you left evidence of our involvement. What am I supposed to tell the top brass? The only small consolation is that you did manage to disrupt enemy operations. Get your shit squared away. Dismissed!", "answer", 0, {
-				sleep 5;
-				["3", false, true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["2", // 113 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"Look, it’s regrettable enough that you missed the target, but what’s worse is you left evidence of our involvement. This mission is FUBAR because of you and your lack of discipline. Get out of my sight. Dismissed!", "answer", 0, {
-				sleep 5;
-				["2", false , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["1", // 114 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. I expected better from supposed professionals like you. This mission was a complete cluster-fuck and a critical failure. You should be ashamed. You’ll be cleaning latrines for the rest of your tour. Dismissed!", "answer", 0, {
-				sleep 5;
-				["1", false , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["0", // 115 d 
-		[
-			[0,"Ready for debrief, sir.", "answer"],
-			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. And you left team members behind in the enemy AO. You might as well have signed their death warrants. Fully expect an immediate courtmartial. Surrender your gear right now. MPs, lock 'em up!", "answer", 0, {
-				sleep 5;
-				["0", false , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout10", // 116 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"You took out that filthy commie rat bastard son of a bitch! You destroyed all evidence of our involvement! You must have taken out every target of opportunity in the entire AO!", "answer"],
-			[1,"You disrupted enemy operations so badly that they'll be reeling for months. You've all earned the title of true warriors! You're gonna be banging boom-boom girls on R&R till the cows come home! Outstanding job. Dismissed!", "answer", 0, {
-				sleep 5;
-				["10", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout9", // 117 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"You took out that commie rat bastard and covered our tracks like pros! On top of that, you managed to handle some additional objectives that weren’t even on the list. Outstanding work! Hit the showers, and I’ll catch you guys at the bar later. Dismissed!", "answer", 0, {
-				sleep 5;
-				["9", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout8", // 118 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"You took out that commie bastard and cleaned up all traces of our involvement. You nailed the primary mission objective, and that’s exactly what we needed. Well done, gentlemen. Your country owes you a great deal. Dismissed!", "answer", 0, {
-				sleep 5;
-				["8", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout7", // 119 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"You took out the bastard, and you did a solid job disrupting their operations by hitting some additional targets. However, leaving evidence of our involvement is a serious breach. It’s unacceptable, but I’ll see if I can work some magic with the top brass, considering the extra effort you put in. Dismissed!", "answer", 0, {
-				sleep 5;
-				["7", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout6", // 120 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"You took out the bastard, but unfortunately, you left evidence of our involvement behind. While eliminating the General was crucial, the fact that our tracks are exposed could spell trouble, especially if the enemy can prove our involvement. This isn’t going to sit well with the top brass. Dismissed!", "answer", 0, {
-				sleep 5;
-				["6", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout5", // 121 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"I'm sorry you couldn't nail the slippery bastard, but you did a solid job covering our tracks. Textbook work. On the bright side, you managed to disrupt enemy operations by hitting some additional targets, and that’s not going unnoticed. Good effort. Dismissed!", "answer", 0, {
-				sleep 5;
-				["5", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout4", // 122 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"I'm sorry you couldn't nail the slippery bastard. However, you did a commendable job covering our tracks. I’ll be hoping for better results on your next mission. Dismissed.", "answer", 0, {
-				sleep 5;
-				["4", true , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout3", // 123 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"It’s regrettable you missed the target, and worse, you left evidence of our involvement. What am I supposed to tell the top brass? The only small consolation is that you did manage to disrupt enemy operations. Get your shit squared away. Dismissed!", "answer", 0, {
-				sleep 5;
-				["3", false , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout2", // 124 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"Look, it’s regrettable enough that you missed the target, but what’s worse is you left evidence of our involvement. This mission is FUBAR because of you and your lack of discipline. Get out of my sight. Dismissed!", "answer", 0, {
-				sleep 5;
-				["2", false , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout1", // 125 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. I expected better from supposed professionals like you. This mission was a complete cluster-fuck and a critical failure. You should be ashamed. You’ll be cleaning latrines for the rest of your tour. Dismissed!", "answer", 0, {
-				sleep 5;
-				["1", false , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
-		]
-	],
-	["scout0", // 126 d 
-		[
-			[0,"We finish, Captain.", "answer"],
-			[1,"You lost the target. You left evidence behind of our involvement. You got friendlies killed. And you left team members behind in the enemy AO. You might as well have signed their death warrants. Fully expect an immediate courtmartial. Surrender your gear right now. MPs, lock 'em up!", "answer", 0, {
-				sleep 5;
-				["0", false , true, true, true] remoteExec ["VN_fnc_endMission"];
-				}
-			]
 		]
 	],
 	["debrief", // 
@@ -1984,74 +1767,110 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["summaryBest", // players complete all major tasks and all side tasks plus at least one rescue
 		[
-			[1,"Exemplary performance! You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
-			[0,"Thank you, Sir!", "answer"]
+			[1,"Exemplary performance, gentlemen! You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
+			[0,"Thank you, Sir!", "answer", 0, {
+				sleep 5;
+				["1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryBetter", // players complete all major tasks and all side tasks. disregards whether or not a rescue was made. 
 		[
-			[1,"Fantastic work, gentelmen! Your country owes you a great deal! There will be a victory celebration at the bar tonight with drinks on the Navy! Dismissed!", "answer"],
-			[0,"Thank you, Sir.", "answer"]
+			[1,"Outstanding performance, gentlemen! Your country owes you a great deal! There will be a victory celebration at the bar tonight with drinks on the Navy! Dismissed!", "answer"],
+			[0,"Thank you, Sir!", "answer", 0, {
+				sleep 5;
+				["2", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryGood", // players complete all major tasks and some or not of side tasks. disregards whether or not a rescue was made
 		[
-			[1,"Damn fine work out there, gentlemen! You held your own in a tough AO and came through solid. Command will be pleased, and so am I. Get some rest, you earned it!", "answer"],
-			[0,"Thank you, Sir.", "answer"]
+			[1,"Amazing performance, gentlemen! Damn fine work out there! You held your own in a tough AO and came through solid. Command will be pleased, and so am I. Get some rest, you earned it!", "answer"],
+			[0,"Thank you, Sir!", "answer", 0, {
+				sleep 5;
+				["3", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryDefault", // players fail at least one but not all major tasks. disregards whether or not a rescue was made 
 		[
 			[1,"Great work today even though not everything went our way. That's just how it goes. Hit the head and get cleaned up, I'll see you at chow. Dismissed!", "answer"],
-			[0,"Thank you, Sir.", "answer"]
+			[0,"Thank you, Sir!", "answer", 0, {
+				sleep 5;
+				["4", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryPoor", // players fail all major tasks. this is the worst case. disregards whether or not a rescue was made
 		[
 			[1,"Well, I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
-			[0,"Aye aye, Sir.", "answer"]
+			[0,"Aye aye, Sir.", "answer", 0, {
+				sleep 5;
+				["6", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
-	["summaryLessPoor", // players fail all major tasks. this is the worst case. disregards whether or not a rescue was made
+	["summaryLessPoor", // players fail both hvt and stab tasks
 		[
 			[1,"Tough operation, gentlemen. The jungle had other plans today. What matters is you’re still standing. Clean up, get some chow, and we’ll sort this out in the morning. Dismissed.", "answer", 1],
-			[0,"Aye aye, Sir.", "answer"]
+			[0,"Aye aye, Sir.", "answer", 0, {
+				sleep 5;
+				["5", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryBestScout", // players complete all major tasks and all side tasks plus at least one rescue
 		[
-			[1,"Exemplary performance! You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
-			[0,"Thank you, Sir!", "answer"]
+			[1,"Exemplary performance, gentlemen! You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
+			[0,"Thank you, Sir!", "answer", 0, {
+				sleep 5;
+				["1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryBetterScout", // players complete all major tasks and all side tasks. disregards whether or not a rescue was made. 
 		[
-			[1,"Fantastic work, gentelmen! Your country owes you a great deal! There will be a victory celebration at the bar tonight with drinks on the Navy! Dismissed!", "answer"],
-			[0,"Thank you, Sir.", "answer"]
+			[1,"Outstanding performance, gentlemen! Your country owes you a great deal! There will be a victory celebration at the bar tonight with drinks on the Navy! Dismissed!", "answer"],
+			[0,"Thank you, Sir!", "answer", 0, {
+				sleep 5;
+				["2", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryGoodScout", // players complete all major tasks and some or not of side tasks. disregards whether or not a rescue was made
 		[
-			[1,"Damn fine work out there, gentlemen! You held your own in a tough AO and came through solid. Command will be pleased, and so am I. Get some rest, you earned it!", "answer"],
-			[0,"Thank you, Sir.", "answer"]
+			[1,"Amazing performance, gentlemen! Damn fine work out there! You held your own in a tough AO and came through solid. Command will be pleased, and so am I. Get some rest, you earned it!", "answer"],
+			[0,"Thank you, Sir!", "answer", 0, {
+				sleep 5;
+				["3", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryDefaultScout", // players fail at least one but not all major tasks. disregards whether or not a rescue was made 
 		[
 			[1,"Great work today even though not everything went our way. That's just how it goes. Hit the head and get cleaned up, I'll see you at chow. Dismissed!", "answer"],
-			[0,"Thank you, Sir.", "answer"]
+			[0,"Thank you, Sir!", "answer", 0, {
+				sleep 5;
+				["4", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
 	["summaryPoorScout", // players fail all major tasks. this is the worst case. disregards whether or not a rescue was made
 		[
 			[1,"Well, I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
-			[0,"Aye aye, Sir.", "answer"]
+			[0,"Yes, Sir.", "answer", 0, {
+				sleep 5;
+				["6", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	],
-	["summaryLessPoorScout", // players fail all major tasks. this is the worst case. disregards whether or not a rescue was made
+	["summaryLessPoorScout", // players fail both hvt and stab tasks
 		[
 			[1,"Tough operation, gentlemen. The jungle had other plans today. What matters is you’re still standing. Clean up, get some chow, and we’ll sort this out in the morning. Dismissed.", "answer", 1],
-			[0,"Aye aye, Sir.", "answer"]
+			[0,"Yes, Sir.", "answer", 0, {
+				sleep 5;
+				["5", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+			}]
 		]
 	]
 ];
