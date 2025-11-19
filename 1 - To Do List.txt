@@ -22,13 +22,13 @@ Design: I have to make a decision on if I make the debrief based on the players 
                 The only thing that sucks is I have to put in sleeps manually tied to the audio files and since sleeps aren't guarenteed length there can be 
                 some odd pauses in the convo. Maybe ask Nikko about that.
                 - With Leopards help I was able to find a work around so that I don't need the sleeps anymore
-            - Go through and refine the text for all cases to make it flow together. Need to test for both scout and commander
+            - Completed: Go through and refine the text for all cases to make it flow together. Need to test for both scout and commander
                 - add more summary cases
                 - Best cases
                 - Worst cases 
                 - Mixed cases
-           * - After it's all done testing then you need to implement it by adding the variables into the various triggers. 
-            - Finally it needs to be placed in the addAction and tested.
+            - Completed: After it's all done testing then you need to implement it by adding the variables into the various triggers. 
+           * - Finally it needs to be placed in the addAction and tested.
             
     
 DEDICATED SERVER TESTING:
@@ -70,6 +70,8 @@ TO DO MASTER LIST:
         
     
     POLISH:
+        - players can watch big boat spawn in on return to staging area.
+        - have the amublance only appear if pow or scout is found.
         - changed the pow/pilot task complete condition to if they enter the ambulance. Hide the ambulance unless the task to save either 
             of them creates.
         - skip to infil not fading to black, intermittant
@@ -86,7 +88,17 @@ TO DO MASTER LIST:
     
     PERFORMANCE:
         - In the staging area the client gets about 13fps more (80 vs 67). Something runs on the server only. For sure the server only 
-            triggers. I wonder if there is anything else?
+            triggers but do they matter? I wonder if there is anything else?
+            - Interesting performance findings suggest that triggers, even with more complex conditions, barley effect performance.
+                - I deleted all the triggers in my mission with a handy script and saw no noticable dip in framerates.
+                - The I ran a script with a more complex condition to create 100s of triggers. The fps didn't dip till around 600 total triggers. 
+                    My mission has 128 so I think I'm good. Plus I run all triggers on the server and constantly delete unused triggers as the mission 
+                    progresses.
+                - When I started to delete AI I saw big gains in performance. Around 15fps gain after I deleted all the AI in my mission. It is worth 
+                    the investment to figure out how to use dynamic simulation effectivley.
+                - When I create a blank mission the local host has around 10fps less than the client. Keep in mind the two instances open at the same time 
+                    are competing for resources on the same computer. In any case this testing methodology is not a good way to discernce performance costs 
+                    of server only triggers like I thought it would be.
         - use this command to enabledynamic sim on object through a trigger: https://community.bistudio.com/wiki/enableDynamicSimulation 
             mainly thinking of the reinforcement trucks.
         - remove unused actions for performance. Eh, triggers, etc

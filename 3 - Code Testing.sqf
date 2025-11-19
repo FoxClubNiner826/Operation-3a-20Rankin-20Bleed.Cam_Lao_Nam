@@ -2435,15 +2435,19 @@ missionNamespace setVariable ["stabPassed", true, true]; // in fail trigger for 
 missionNamespace setVariable ["extractPassed", true, true]; // in complete trigger for task "extract from LZ"
 
 //side task possibilities. no need for noSec since its default case
-missionnamespace setVariable ["AllSecTasksComplete", true, true];
+missionnamespace setVariable ["AllSecTasksComplete", true, true]; // in trigger trg_all_sec_pass
 missionNamespace setVariable ["SomeSecTasksComplete", true, true]; // in trigger SomeSecTasksCompleteTrigger
 
 //rescue possibilities
-missionNamespace setVariable ["powFound", true, true];
-missionNamespace setVariable ["pilotFound", true, true];
-missionNamespace setVariable ["powRescued", true, true];
-missionNamespace setVariable ["pilotRescued", true, true];
-//missionNamespace setVariable ["powDied", true, true];
-//missionNamespace setVariable ["pilotDied", true, true];
+missionNamespace setVariable ["powFound", true, true]; // in trigger: trg_seesPow_convo
+missionNamespace setVariable ["pilotFound", true, true]; // in trigger: save_pilot
+missionNamespace setVariable ["powRescued", true, true]; // in ambulance EH
+missionNamespace setVariable ["pilotRescued", true, true]; // in ambulance EH
+missionNamespace setVariable ["powDied", true, true]; // in trigger: POWFail
+missionNamespace setVariable ["pilotDied", true, true]; // in trigger: PilotFail
+
+// for testing the ambulance EH
+missionNamespace getVariable ["pilotEjected", false];
+missionNamespace getVariable ["testPOW", false];
 
 
