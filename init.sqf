@@ -1558,13 +1558,17 @@ foxclub_var_conversations = createHashMapFromArray [
 	["debrief", // 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
-			[1,"Aright, lets hear it.", "answer"]
+			[1,"Aright, lets hear it.", "answer", 0, {
+				marcinko switchMove ["HubBriefing_loop", 0, 0];
+			}]
 		]
 	],
 	["debriefScout", // 
 		[
 			[0,"Ready for debrief, sir.", "answer"],
-			[1,"Aright, lets hear it.", "answer"]
+			[1,"Aright, lets hear it.", "answer", 0, {
+				marcinko switchMove ["HubBriefing_loop", 0, 0];
+			}]
 		]
 	],
 	["hvtPass", // 
@@ -1824,7 +1828,9 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Exemplary performance, gentlemen! You all have truly earned the title of warriors. Effective immediately you're on R and R. Go bang boom-boom girls in Saigon 'till the cows come home! Dismissed!", "answer"],
 			[0,"Thank you, Sir!", "answer", 0, {
 				sleep 5;
-				["1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+				//["1", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+				["1", true, true, true, true] call VN_fnc_endMission;
+
 			}]
 		]
 	],
@@ -1833,7 +1839,8 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Outstanding performance, gentlemen! Your country owes you a great deal! There will be a victory celebration at the bar tonight with drinks on the Navy! Dismissed!", "answer"],
 			[0,"Thank you, Sir!", "answer", 0, {
 				sleep 5;
-				["2", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+				//["2", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+				["2", true, true, true, true] call VN_fnc_endMission;
 			}]
 		]
 	],
@@ -1842,7 +1849,8 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Amazing performance, gentlemen! Damn fine work out there! You held your own in a tough AO and came through solid. Command will be pleased, and so am I. Get some rest, you earned it!", "answer"],
 			[0,"Thank you, Sir!", "answer", 0, {
 				sleep 5;
-				["3", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+				//["3", true , true, true, true] remoteExec ["VN_fnc_endMission"];
+				["3", true, true, true, true] call VN_fnc_endMission;
 			}]
 		]
 	],
@@ -1851,7 +1859,8 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Great work today even though not everything went our way. That's just how it goes. Hit the head and get cleaned up, I'll see you at chow. Dismissed!", "answer"],
 			[0,"Thank you, Sir!", "answer", 0, {
 				sleep 5;
-				["4", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+				//["4", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+				["4", false, true, true, true] call VN_fnc_endMission;
 			}]
 		]
 	],
@@ -1860,7 +1869,8 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Well, I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
 			[0,"Yes, Sir.", "answer", 0, {
 				sleep 5;
-				["6", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+				//["6", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+				["6", false, true, true, true] call VN_fnc_endMission;
 			}]
 		]
 	],
@@ -1869,7 +1879,8 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Tough operation, gentlemen. The jungle had other plans today. What matters is you’re still standing. Clean up, get some chow, and we’ll sort this out in the morning. Dismissed.", "answer", 1],
 			[0,"Yes, Sir.", "answer", 0, {
 				sleep 5;
-				["5", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+				//["5", false , true, true, true] remoteExec ["VN_fnc_endMission"];
+				["5", false, true, true, true] call VN_fnc_endMission;
 			}]
 		]
 	]

@@ -30,14 +30,25 @@ Design: I have to make a decision on if I make the debrief based on the players 
             - Completed: After it's all done testing then you need to implement it by adding the variables into the various triggers. 
             - Completed: Finally it needs to be placed in the addAction and tested.
             - Completed: Add in endmission function
-            - Test in SP then MP
-                - Fixed: players can watch big boat spawn in on return to staging area.
-                - Fixed: have the amublance only appear if pow or scout is found.
-                - Fixed: changed the pow/pilot task complete condition to if they enter the ambulance.
-                - When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
-                - Completed: Add a convo that tells the pow/pilot that the ambulance is waiting for them.
-                - start the pushup units earlier
-                - error when entering debrief trigger zone.
+           * - Test in SP then MP
+                Fixed: players can watch big boat spawn in on return to staging area.
+                Fixed: have the amublance only appear if pow or scout is found.
+                Fixed: changed the pow/pilot task complete condition to if they enter the ambulance.
+            *   Completed: When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
+                    move trigger area closer to lz
+                    create a lower ceiling for trigger
+                Completed: Add a convo that tells the pow/pilot that the ambulance is waiting for them.
+                Completed: start the pushup units earlier
+                Fixed: error when entering debrief trigger zone.
+            *   Completed: add 10 secs to cobra fly over.
+            *   Completed: move up trigger for walking unit
+                Fixed: marcinko odd behavior; spinnng in place.
+            *   Fixed: Marcinko not doing animation on client.
+            *   Completed: changed extract heli to sog slick. verify still works.
+                    - seems to still work
+                Completed: unhide OP heli sooner
+                - might not need to remoteExec end mission
+                - Remove pistols and rifles from ranger pilot/copilot
             
     
 DEDICATED SERVER TESTING:
@@ -90,6 +101,7 @@ TO DO MASTER LIST:
         - trg_convo_cove; If the scout is the leader then he will end up speaking to himself.
     
     PERFORMANCE:
+        - go through mission and use dynamic simulation to make better performance.
         - go through the mission and see if there are a ton of SAM radars. I can't remember if I did this but it is probably a performance concern.
         - In the staging area the client gets about 13fps more (80 vs 67). Something runs on the server only. For sure the server only 
             triggers but do they matter? I wonder if there is anything else?

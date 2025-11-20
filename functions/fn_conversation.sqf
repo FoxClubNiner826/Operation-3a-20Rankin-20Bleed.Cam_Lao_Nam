@@ -48,7 +48,7 @@ private _conversationData =
 	_x setVariable ["foxclub_var_isTalking",false];
 } forEach _speakers;
 
-systemChat "Current convo finished.";
+//systemChat "Current convo finished.";
 
 
 //////////////////////////////////////////////////

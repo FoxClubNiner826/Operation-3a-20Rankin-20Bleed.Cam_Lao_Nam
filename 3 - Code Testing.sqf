@@ -2465,3 +2465,6 @@ waitUntil {
 };
 
 
+&& 
+triggerActivated trg_heliRTB;
+

@@ -1281,61 +1281,6 @@ private _conditionExtract = {
 
 //////////////////////////////////////////////////
 //                                              //
-//             TEST ACTION FOR RTB              //
-//                                              //
-//////////////////////////////////////////////////
-
-private _conditionExtract = {
-    _this in crew extractHeli_1
-};
-
-[
-	extractheli_1,
-	"<t color='#FFFF00'>Return to Base TEST</t>",
-	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //idle icon 
-	"\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\map_ca.paa", //progress icon
-	toString _conditionExtract, //condition, all alive players in the helicopter.
-	"true", //condition progress
-	{}, //code on start
-	{}, // code every tick
-	{
-        params ["_target", "_caller", "_actionID", "_args"];
-        _scout   = missionNamespace getVariable ["scout", objNull]; 
-        private _convo = ["goGoGo", "goGoGoScout"] select (_caller == _scout);
-        missionNamespace setVariable ["actionReturnToBase", false, true];
-        
-        [_convo, [_caller, ranger], true] remoteExec [
-            "FoxClub_fnc_Conversation",    
-            allPlayers select { _x distance _caller <= 100 }    
-        ];
-        /*
-        [] spawn {
-            ExtractHeli landAt [ExtractHelipad, "None"]; // lets the heli take off
-            ExtractHeli flyInHeight 80; // goes to height then moves to base. Doesnt look smooth.
-            _group = ExtractHeliGroup;  
-            _markerName = "returnToBase";   
-            _waypointPosition = getMarkerPos _markerName;  
-            _wp1 = _group addWaypoint [_waypointPosition, 0]; 
-            _wp1 setWaypointType "MOVE";  
-            _group setCurrentWaypoint _wp1; // forces heli to move
-            sleep 60; // lets heli take off before giving another landing
-            ExtractHeli landAt [baseHelipad, "Land"]; // if there was no sleep the engine will turn off and heli wont take off.
-		};
-        */
-        remoteExec ["FoxClub_fnc_heliRTBTEST", extractHeli_1];
-	}, // code on finish
-	{}, // code on interuption
-	[], //arguements
-	3, //duration
-	8, //order from top
-	true, //remove on finish
-	false, //show if unconcious
-	true //show in middle of screen
-] call BIS_fnc_holdActionAdd;
-
-
-//////////////////////////////////////////////////
-//                                              //
 //     DEBFRIEF CONVO BASED ON PERFORMANCE      //
 //                                              //
 //////////////////////////////////////////////////
@@ -1346,7 +1291,7 @@ Marcinko addAction [
         params ["_target", "_caller", "_actionID", "_args"];
         
         missionNamespace setVariable ["ActionDebrief", false, true];
-        
+
         private _hvtPass    = missionNamespace getVariable ["hvtPass", false];
         private _hvtMid     = missionNamespace getVariable ["hvtMid", false];
         private _hvtFailed  = missionNamespace getVariable ["hvtFailed", false];
@@ -1585,13 +1530,14 @@ Marcinko addAction [
         
         
         // send all strings to the function for unpacking
-        systemChat str _sentences;
+        //systemChat str _sentences;
+        diag_log format ["Debug Debrief: %1", _sentences];
         
-        [_sentences, [command, testUnit], true] remoteExec
-        [
-            "FoxClub_fnc_Conversation",
-            allPlayers select { _x distance command <= 100 }
-        ];         
+        [_sentences, [_caller, Marcinko], true] remoteExec
+            [
+                "FoxClub_fnc_Conversation",
+                allPlayers select { _x distance command <= 100 }
+            ];         
     },
     [],
     8,
@@ -1599,5 +1545,27 @@ Marcinko addAction [
     true,
     "",
     "ActionDebrief && (player in units playerGroup)", // variable in trigger: DebriefPass
+    4
+];
+
+
+
+testUnit addAction [
+    "<t color='#FFFF00'>""Ready for debrief, sir.""</t>",
+    {
+        params ["_target", "_caller", "_actionID", "_args"];
+        
+     ["summaryBestScout", [command, testUnit], true] remoteExec [ 
+		"FoxClub_fnc_Conversation",	 
+		allPlayers select { _x distance testUnit <= 100 }
+	];   
+                
+    },
+    [],
+    8,
+    false,
+    true,
+    "",
+    "", // variable in trigger: DebriefPass
     4
 ];

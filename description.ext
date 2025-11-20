@@ -135,7 +135,7 @@ class CfgDebriefing
     {
         title =    "Operation Complete";
         subtitle = "Objectives Incomplete";
-        description = "Mission execution met most objectives, though a all major tasks were not fully completed. Team cohesion and individual performance were generally effective, with minor areas for improvement under operational stress. Adaptability in high-risk, enemy-held territory was sufficient, but overall effectiveness was slightly diminished.";
+        description = "Mission execution met most objectives, though all major tasks were not fully completed. Team cohesion and individual performance were generally effective, with minor areas for improvement under operational stress. Adaptability in high-risk, enemy-held territory was sufficient, but overall effectiveness was slightly diminished.";
         pictureBackground = "vn\missions_f_vietnam\data\img\m03\debrief_success.jpg";
         
         vn_debrief_mission_text = "Kill the HVT.<br/>Destroy the STAB.<br/>Extract with all personnel.<br/>Complete additional objectives at unit's discretion.";
