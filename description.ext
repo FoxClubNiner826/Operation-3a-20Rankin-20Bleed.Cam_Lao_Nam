@@ -78,7 +78,7 @@ class CfgIdentities
         speaker = "Male01ENG";
         pitch = 1.0;
     };
-	class rangerpilot
+	class rangerPilot
     {
         name = "CWO George Scott (Exfil Pilot)";  
         face = "WhiteHead_18";  

@@ -4,51 +4,23 @@ TO DO UP NEXT:
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
 Current TASK: 
-- Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
-    - i added a failure state for proceed to infil spot
-    - I decided to not have performance ratings for players but I like the flavor text
-    - I reworked the extract task which can now be failed so I might need to add that as a primary objective.
-Design: I have to make a decision on if I make the debrief based on the players task list or events within the mission. 
-    - Task List: It's fun that the convo lines up with what tasks are completed or not, but kind of results in speech that is immersion 
-        breaking (i.e. "We did all primary objectives but not all secondary objectives). 
-    - Mission Events: I like this one better cause the convos can be more specific to the narritive events of the mission like "We got the general".
-        IRL the boss wouldn't care that every little objective like "get in the stab" was accomplished. This version is less gamey and more immersive.
-        - I think it would actually be better to have the debrief centered around the point of the whole operation; kill the general. It 
-            gives continuity with the briefing and it's focus on him, while minimizing scripting complexity. In the future I can always 
-            try the FSM builder in the tools to make a robust version. 
-            - There just needs to be three cases: I.d. retrieved, general dead no idea, general fled.
-                - I need to fabricate a reason that it's important to get the I.D. and not just kill him.
-            - I was able to adapt Lou's script to my needs. It works pretty well actually. I have it centered around main mission objectives. 
-                The only thing that sucks is I have to put in sleeps manually tied to the audio files and since sleeps aren't guarenteed length there can be 
-                some odd pauses in the convo. Maybe ask Nikko about that.
-                - With Leopards help I was able to find a work around so that I don't need the sleeps anymore
-            - Completed: Go through and refine the text for all cases to make it flow together. Need to test for both scout and commander
-                - add more summary cases
-                - Best cases
-                - Worst cases 
-                - Mixed cases
-            - Completed: After it's all done testing then you need to implement it by adding the variables into the various triggers. 
-            - Completed: Finally it needs to be placed in the addAction and tested.
-            - Completed: Add in endmission function
-           * - Test in SP then MP
-                Fixed: players can watch big boat spawn in on return to staging area.
-                Fixed: have the amublance only appear if pow or scout is found.
-                Fixed: changed the pow/pilot task complete condition to if they enter the ambulance.
-            *   Completed: When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
-                    move trigger area closer to lz
-                    create a lower ceiling for trigger
-                Completed: Add a convo that tells the pow/pilot that the ambulance is waiting for them.
-                Completed: start the pushup units earlier
-                Fixed: error when entering debrief trigger zone.
-            *   Completed: add 10 secs to cobra fly over.
-            *   Completed: move up trigger for walking unit
-                Fixed: marcinko odd behavior; spinnng in place.
-            *   Fixed: Marcinko not doing animation on client.
-            *   Completed: changed extract heli to sog slick. verify still works.
-                    - seems to still work
-                Completed: unhide OP heli sooner
-                - might not need to remoteExec end mission
-                - Remove pistols and rifles from ranger pilot/copilot
+           
+Staging Area Polish:
+I want the boat to drive away after players ask for berief.
+Marcinkos pose on debrief flickers on client.
+
+Mission Difficulty Settings:
+    3D Task Markers:
+        I want to have them for players who need more help navigating, but I don't want to play with them. So the default will be off. 
+            I will try to make a setting from the map stand to turn on the task markers.
+
+            trg_convo_cove not behaving as expexted
+            something to do with this: missionNamespace setVariable ["skipToInfil", false, true];
+missionNamespace setVariable ["actionBriefing", false, true];
+
+
+
+
             
     
 DEDICATED SERVER TESTING:
@@ -90,6 +62,9 @@ TO DO MASTER LIST:
         
     
     POLISH:
+        - add some convos for the npcs in the staging area upon return.
+        - if the pow and presumably the downed pilot block the LZ the name displayed is not the indenity name. it shows crew (driver) and not 
+            the identity name I assigned it.
         - skip to infil not fading to black, intermittant
         - adjust the time of day for skip to infil to have closer parity with TOD of not using the skip.
         - try the lookAt and reveal command on the SAM site and see if you get more consistant results of it not tracking players and 
@@ -218,6 +193,58 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Staging Area Polish:
+    Done: verify that new pilot/co-pilot get set to careless on landing back at base.
+    Completed: miller instead of ranger
+    Completed: sog wont look at marcinko cause of hide module
+    Completed: adjust ambulance call to before landing
+    Completed: move pilots further down the road
+    Fixed: players can watch big boat spawn in on return to staging area.
+    Fixed: have the amublance only appear if pow or scout is found.
+    Fixed: changed the pow/pilot task complete condition to if they enter the ambulance.
+    Completed: When pilot asks for smoke color confirmation, that line and the pow/pilot all play at once. Too hard to tell who is saying what.
+        move trigger area closer to lz
+        create a lower ceiling for trigger
+    Completed: Add a convo that tells the pow/pilot that the ambulance is waiting for them.
+    Completed: start the pushup units earlier
+    Fixed: error when entering debrief trigger zone.
+    Completed: add 10 secs to cobra fly over.
+    Completed: move up trigger for walking unit
+    Fixed: marcinko odd behavior; spinnng in place.
+    Fixed: Marcinko not doing animation on client.
+    Completed: changed extract heli to sog slick. verify still works.
+        - seems to still work
+    Completed: unhide OP heli sooner
+    Completed: do not need to remoteExec end mission function
+        - update the calls in the hashmap in init.
+    Completed: Remove pistols and rifles from ranger pilot/copilot
+Design Mechanic: End of mission debrief: 
+    Recheck how the Captain debrief is working. Some stuff might have broken. Ditch the performance ratings.
+    - i added a failure state for proceed to infil spot
+    - I decided to not have performance ratings for players but I like the flavor text
+    - I reworked the extract task which can now be failed so I might need to add that as a primary objective.
+    Design: I have to make a decision on if I make the debrief based on the players task list or events within the mission. 
+        - Task List: It's fun that the convo lines up with what tasks are completed or not, but kind of results in speech that is immersion 
+            breaking (i.e. "We did all primary objectives but not all secondary objectives). 
+        - Mission Events: I like this one better cause the convos can be more specific to the narritive events of the mission like "We got the general".
+            IRL the boss wouldn't care that every little objective like "get in the stab" was accomplished. This version is less gamey and more immersive.
+            - I think it would actually be better to have the debrief centered around the point of the whole operation; kill the general. It 
+                gives continuity with the briefing and it's focus on him, while minimizing scripting complexity. In the future I can always 
+                try the FSM builder in the tools to make a robust version. 
+                - There just needs to be three cases: I.d. retrieved, general dead no idea, general fled.
+                    - I need to fabricate a reason that it's important to get the I.D. and not just kill him.
+                - I was able to adapt Lou's script to my needs. It works pretty well actually. I have it centered around main mission objectives. 
+                    The only thing that sucks is I have to put in sleeps manually tied to the audio files and since sleeps aren't guarenteed length there can be 
+                    some odd pauses in the convo. Maybe ask Nikko about that.
+                    - With Leopards help I was able to find a work around so that I don't need the sleeps anymore
+                - Completed: Go through and refine the text for all cases to make it flow together. Need to test for both scout and commander
+                    - add more summary cases
+                    - Best cases
+                    - Worst cases 
+                    - Mixed cases
+                - Completed: After it's all done testing then you need to implement it by adding the variables into the various triggers. 
+                - Completed: Finally it needs to be placed in the addAction and tested.
+                - Completed: Add in endmission function
 Design: players are allowed to drive away without their human squad mates but the next task wont popup until they are all in. I am going to 
     leave this as is and see how play testing goes. If there are problems with players leaving their mates behind then I will disable 
     the STAB until all players are on board:
