@@ -12,18 +12,19 @@ Marcinkos pose on debrief flickers on client.
 Mission Difficulty Settings:
     3D Task Markers:
         I want to have them for players who need more help navigating, but I don't want to play with them. So the default will be off. 
-            I will try to make a setting from the map stand to turn on the task markers.
+            I will try to make a setting from the map stand to turn on the 3d task markers.
+                I made the setting work but it turns out I don't need to cause the 3d task markers are tied to the "waypoints" game difficulty 
+                    options.
+                    I need to go through the whole mission and enable them now.
+                        Ok turns out that even if you disable the waypoints option in game there is still map marker on the map which gives away 
+                            the location of objectives.
+                            Ok using the task setter it will actually remove the icon from the map.
+                            Now I just need to go through the whole mission and set them up.
 
-            trg_convo_cove not behaving as expexted
-            something to do with this: missionNamespace setVariable ["skipToInfil", false, true];
-missionNamespace setVariable ["actionBriefing", false, true];
-
-
-
-
-            
+How does JIP work if there are or are not AI? Will the play be placed at the staging Area or next to group leader or what?      
     
 DEDICATED SERVER TESTING:
+- verify 3d task marker positions
 - worked on some triggers that let the player know if they are boating in the wrong direction.
 - mercinko should have no questions left. but the way its scripted looks like they still will be there.
 - fixed issue where the POW was saying SOG voice lines because I changed his object type and forgot to update it in the restrict voices module
@@ -193,6 +194,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Bug Fixed: trg_convo_cove not behaving as expexted
 Staging Area Polish:
     Done: verify that new pilot/co-pilot get set to careless on landing back at base.
     Completed: miller instead of ranger

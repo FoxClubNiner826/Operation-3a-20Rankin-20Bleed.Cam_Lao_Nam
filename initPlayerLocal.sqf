@@ -92,7 +92,7 @@ private _conditionLeader = {
 };
 
 map addAction [
-    "<t color='#FFFF00'>Take command of AI</t>", 
+    "<t color='#00FF00'>Take command of AI</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
     
@@ -128,7 +128,7 @@ private _conditionBanterOff = {
 };
 
 map addAction [
-    "<t color='#FFFF00'>Turn Off Squad Banter</t>", 
+    "<t color='#FF0000'>Disable Squad Banter</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
     missionNamespace setVariable ["minimizeChatter", true];
@@ -136,7 +136,7 @@ map addAction [
 	private _convo = ["minimizeChatter", "minimizeChatterScout"] select (_caller == _scout); 
 	[_convo, [_caller], true] call FoxClub_fnc_Conversation;
 	//sleep .1;
-	systemChat "Squad Banter: Off";
+	systemChat "Squad Banter: Disabled";
 	
 	}, 
     nil, 
@@ -160,7 +160,7 @@ private _conditionBanterOn = {
 };
 
 map addAction [
-    "<t color='#FFFF00'>Turn On Squad Banter</t>", 
+    "<t color='#00FF00'>Enable Squad Banter</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
 	
@@ -170,7 +170,7 @@ map addAction [
 	private _convo = ["restoreChatter", "restoreChatterScout"] select (_caller == _scout); 
     [_convo, [_caller]] call FoxClub_fnc_Conversation;
 	//sleep .1;
-	systemChat "Squad Banter: On";
+	systemChat "Squad Banter: Enabled";
 	}, 
     nil, 
     8, 
@@ -193,10 +193,10 @@ private _conditionSubtitlesOff = {
 };
 
 map addAction [
-    "<t color='#FFFF00'>Turn Off Subtitles</t>", 
+    "<t color='#FF0000'>Disable Subtitles</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-	systemChat "Subtitles: Off";
+	systemChat "Subtitles: Disabled";
 	missionNamespace setVariable ["subtitlesOff", true];
 	}, 
     nil, 
@@ -220,10 +220,10 @@ private _conditionSubtitlesOn = {
 };
 
 map addAction [
-    "<t color='#FFFF00'>Turn On Subtitles</t>", 
+    "<t color='#00FF00'>Enable Subtitles</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-	systemChat "Subtitles: On";
+	systemChat "Subtitles: Enabled";
 	missionNamespace setVariable ["subtitlesOff", false];
 	}, 
     nil, 
@@ -238,16 +238,16 @@ map addAction [
 
 //////////////////////////////////////////////////
 //                                              //
-//         LET PLAYERS SKIP TO INFIL            //
+//      LET PLAYERS TURN ON SKIP TO INFIL       //
 //                                              //
 //////////////////////////////////////////////////
 
-private _conditionSubtitlesOn = {
-    ( isNil "skipEnabled" )
+private _conditionInfilOn = {
+    ( !(missionNamespace getVariable ["skipEnabled", false]) )
 };
 
 map addAction [
-    "<t color='#FFFF00'>Enable Skip to Infil</t>", 
+    "<t color='#00FF00'>Enable Skip to Infil</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
 	systemChat "Skip to Infil: Enabled";
@@ -258,7 +258,104 @@ map addAction [
     false, 
     true, 
     "", 
-    toString _conditionSubtitlesOn, 
+    toString _conditionInfilOn, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//      LET PLAYERS TURN OFF SKIP TO INFIL      //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionInfilOff = {
+    ( missionNamespace getVariable ["skipEnabled", false] )
+};
+
+map addAction [
+    "<t color='#FF0000'>Disable Skip to Infil</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+	systemChat "Skip to Infil: Disabled";
+	missionNamespace setVariable ["skipEnabled", false, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionInfilOff, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//        LET PLAYERS TURN ON VISUAL AID        //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionVisAidOn = {
+    ( !(missionNamespace getVariable ["visAid", false]) )
+};
+
+map addAction [
+    "<t color='#00FF00'>Enable 3D Task Markers</t>", 
+    {
+        params ["_target", "_caller", "_actionID", "_args"];
+        systemChat "3D Task Markers: Enabled";
+        missionNamespace setVariable ["visAid", true, true];
+
+        ["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination; // get in stab task
+        ["gettorecon", gettorecon] call BIS_fnc_taskSetDestination; // get to the cove task
+        ["uprivertask", uprivertask] call BIS_fnc_taskSetDestination; // proceed upriver
+        ["tsk_getToInfil", tsk_getToInfil] call BIS_fnc_taskSetDestination; // get to the infil spot
+        ["tsk_getToInfil_skipped", tsk_getToInfil_skipped] call BIS_fnc_taskSetDestination; // get to the infil spot if skipped
+        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
+        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
+        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
+        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
+        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
+        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
+        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
+        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination; 
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionVisAidOn, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//       LET PLAYERS TURN OFF VISUAL AID        //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionVisAidOff = {
+    ( (missionNamespace getVariable ["visAid", false]) )
+};
+
+map addAction [
+    "<t color='#FF0000'>Disable 3D Task Markers</t>", 
+    {
+        params ["_target", "_caller", "_actionID", "_args"];
+        systemChat "3D Task Markers: Disabled";
+        missionNamespace setVariable ["visAid", false, true];
+
+        ["getinstab_tsk", objNull] call BIS_fnc_taskSetDestination;
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionVisAidOff, 
 	4 
 ];
 
@@ -269,10 +366,10 @@ map addAction [
 //                                              //
 //////////////////////////////////////////////////
 
-private _conditionInfil = {
-    isNil "skipToInfil" && 
+private _conditionInfil = { 
 	((units playerGroup findIf { isPlayer _x && !(_x in crew ptboat) }) == -1) &&
-	missionNamespace getVariable ["skipEnabled", false]
+	missionNamespace getVariable ["skipEnabled", false] && // allows hold action to be shown from map board
+    missionNamespace getVariable ["skipToInfilAction", false] // removes hold action from being shown
 };
 
 [
@@ -285,7 +382,8 @@ private _conditionInfil = {
 	{}, //code on start
 	{}, // code every tick
 	{
-		missionNamespace setVariable ["skipToInfil", false, true]; 
+        missionNamespace setVariable ["skiptoinfilCreateTasks", true, true];
+		missionNamespace setVariable ["skipToInfilAction", false, true]; 
 		["scripts\SkiptoIngress.sqf"] remoteExec ["execVM", 0];
 	}, // code on finish
 	{}, // code on interuption
@@ -1545,27 +1643,5 @@ Marcinko addAction [
     true,
     "",
     "ActionDebrief && (player in units playerGroup)", // variable in trigger: DebriefPass
-    4
-];
-
-
-
-testUnit addAction [
-    "<t color='#FFFF00'>""Ready for debrief, sir.""</t>",
-    {
-        params ["_target", "_caller", "_actionID", "_args"];
-        
-     ["summaryBestScout", [command, testUnit], true] remoteExec [ 
-		"FoxClub_fnc_Conversation",	 
-		allPlayers select { _x distance testUnit <= 100 }
-	];   
-                
-    },
-    [],
-    8,
-    false,
-    true,
-    "",
-    "", // variable in trigger: DebriefPass
     4
 ];

@@ -35,6 +35,7 @@ missionNamespace setVariable ["ActionDebrief", false, true]; // Allows mission d
 missionNamespace setVariable ["holdActionAttemptCount", 0]; // Counter for attempts for searchable items in Lumphat.
 missionNamespace setVariable ["actionReturnToBase", true, true]; // Allows RTB holdAction at mission start.
 missionNamespace setVariable ["actionBriefing", true, true]; // turns on captain intro questions
+missionNamespace setVariable ["skipToInfilAction", true, true]; // condition for skip holdAction
 
 ActionEndMission = false; //might not be needed anymore
 
