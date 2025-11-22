@@ -312,14 +312,17 @@ map addAction [
         ["uprivertask", uprivertask] call BIS_fnc_taskSetDestination; // proceed upriver
         ["tsk_getToInfil", tsk_getToInfil] call BIS_fnc_taskSetDestination; // get to the infil spot
         ["tsk_getToInfil_skipped", tsk_getToInfil_skipped] call BIS_fnc_taskSetDestination; // get to the infil spot if skipped
-        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
-        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
-        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
-        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
-        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
-        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
-        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination;
-        //["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination; 
+        ["tsk_searchLumphat", tsk_searchLumphat] call BIS_fnc_taskSetDestination; // search Lumphat
+        ["hvt", officer] call BIS_fnc_taskSetDestination; // Kill the hvt
+        ["tsk_remainUndetected", tsk_remainUndetected] call BIS_fnc_taskSetDestination; // remain undetected
+        ["gunboattask2", gunboat] call BIS_fnc_taskSetDestination; // destroy gunboat
+        ["cachetask2", cachetask2] call BIS_fnc_taskSetDestination; // destroy the cache
+        ["samtask", samtask] call BIS_fnc_taskSetDestination; // destroy the sam site
+        ["PilotTask", pilot] call BIS_fnc_taskSetDestination; // rescue the pilot
+        ["POWTask", pow] call BIS_fnc_taskSetDestination; // rescue the pow
+        ["tsk_getToExfil", tsk_getToExfil] call BIS_fnc_taskSetDestination; // get to the exfil
+        ["MarkLZTask", MarkLZTask] call BIS_fnc_taskSetDestination; // smoke the lz
+        ["tsk_debrief", marcinko] call BIS_fnc_taskSetDestination; // debrief task
 	}, 
     nil, 
     8, 
@@ -348,7 +351,22 @@ map addAction [
         systemChat "3D Task Markers: Disabled";
         missionNamespace setVariable ["visAid", false, true];
 
-        ["getinstab_tsk", objNull] call BIS_fnc_taskSetDestination;
+        ["getinstab_tsk", objNull] call BIS_fnc_taskSetDestination; // get in stab task
+        ["gettorecon", objNull] call BIS_fnc_taskSetDestination; // get to the cove task
+        ["uprivertask", objNull] call BIS_fnc_taskSetDestination; // proceed upriver
+        ["tsk_getToInfil", objNull] call BIS_fnc_taskSetDestination; // get to the infil spot
+        ["tsk_getToInfil_skipped", objNull] call BIS_fnc_taskSetDestination; // get to the infil spot if skipped
+        ["tsk_searchLumphat", objNull] call BIS_fnc_taskSetDestination; // search Lumphat
+        ["hvt", objNull] call BIS_fnc_taskSetDestination; // Kill the hvt
+        ["tsk_remainUndetected", objNull] call BIS_fnc_taskSetDestination; // remain undetected
+        ["gunboattask2", objNull] call BIS_fnc_taskSetDestination; // destroy gunboat
+        ["cachetask2", objNull] call BIS_fnc_taskSetDestination; // destroy the cache
+        ["samtask", objNull] call BIS_fnc_taskSetDestination; // destroy the sam site
+        ["PilotTask", objNull] call BIS_fnc_taskSetDestination; // rescue the pilot
+        ["POWTask", objNull] call BIS_fnc_taskSetDestination; // rescue the pow
+        ["tsk_getToExfil", objNull] call BIS_fnc_taskSetDestination; // get to the exfil
+        ["MarkLZTask", objNull] call BIS_fnc_taskSetDestination; // smoke the lz
+        ["tsk_debrief", objNull] call BIS_fnc_taskSetDestination; // debrief task
 	}, 
     nil, 
     8, 
@@ -356,6 +374,62 @@ map addAction [
     true, 
     "", 
     toString _conditionVisAidOff, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//      LET PLAYERS TURN ON ACHIEVEMENTS        //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionCheevoOn = {
+    ( !(missionNamespace getVariable ["foxClub_var_createCheevos", false]) )
+};
+
+map addAction [
+    "<t color='#00FF00'>Enable Achievements</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+	systemChat "Achievements: Enabled";
+    missionNamespace setVariable ["foxClub_var_createParentCheevos", true, true];
+    sleep 2;
+	missionNamespace setVariable ["foxClub_var_createCheevos", true, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionCheevoOn, 
+	4 
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//      LET PLAYERS TURN OFF ACHIEVEMENTS       //
+//                                              //
+//////////////////////////////////////////////////
+
+private _conditionCheevoOff = {
+    ( missionNamespace getVariable ["foxClub_var_createCheevos", false] )
+};
+
+map addAction [
+    "<t color='#FF0000'>Disable Achievements</t>", 
+    {
+	params ["_target", "_caller", "_actionID", "_args"];
+	systemChat "Achievements: Disabled";
+	missionNamespace setVariable ["foxClub_var_createCheevos", false, true];
+	}, 
+    nil, 
+    8, 
+    false, 
+    true, 
+    "", 
+    toString _conditionCheevoOff, 
 	4 
 ];
 

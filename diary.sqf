@@ -120,6 +120,29 @@ player createDiarySubject ["Historical","Mission Codex"];
 
 player createDiarySubject ["Parameters","Mission Options"];
 
+player createDiaryRecord ["Parameters", ["Achievements", 
+"<br/>
+Achievements are disabled by default.<br/><br/>
+It’s recommended to play with them off for your first run, as many achievements contain spoilers. 
+Their titles are intentionally vague to reduce this, but some hints still remain.<br/><br/>
+You can enable achievements by interacting with the map board next to the arsenal.<br/><br/>
+This is a global effect, meaning it applies to all players in the mission.
+" ]];
+
+player createDiaryRecord ["Parameters", ["Navigation Aid", 
+"<br/>
+3D task markers are disabled by default.<br/><br/>
+This mission was designed to encourage players to use their orientation skills. By default, Arma 3 places 3D task markers in both the world and the map.  
+Although the game difficulty option Waypoints can disable markers in the world, it does not affect the map. 
+This means objectives that are meant to be searched for are still revealed, which undermines the challenge.<br/><br/>  
+If you don’t want to focus on orientation skills, you can enable 3D task markers to make objectives easy to find.<br/><br/>
+
+You can enable them by interacting with the map board next to the arsenal.<br/><br/>
+
+This is a global effect, meaning the setting will apply to every player in the mission.
+
+" ]];
+
 player createDiaryRecord ["Parameters", ["Subtitles", 
 "<br/>
 Subtitles are enabled by default.<br/><br/>
@@ -135,13 +158,14 @@ You can turn it off by interacting with the map board next to the arsenal.<br/><
 
 It’s recommended to keep it on for your first playthrough. The option to turn it off exists mainly for multiplayer,
 where a player may prefer to hear information from another player instead of their character.
-For example, a player might report a sighting at the same time their character does, resulting in redundant dialogue.<br/><br/>
+For example, a player might report a sighting at the same time their character does, resulting in redundant information.<br/><br/>
 
 This is a local effect, meaning banter is only minimized for the player who chooses to do so.
 " ]];
 
 player createDiaryRecord ["Parameters", ["Skipping Ahead", 
 "<br/>
+Skipping Ahead is disabled by default.<br/><br/>
 The beginning portion off the mission can be skipped which will reduce playtime by about 30 minutes. You will placed next to 
 the infiltration point.<br/><br/>
 You can enable this option by interacting with the map stand next to the arsenal. 

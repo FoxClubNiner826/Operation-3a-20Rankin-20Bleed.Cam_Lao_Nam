@@ -4,24 +4,30 @@ TO DO UP NEXT:
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
 Current TASK: 
-           
-Staging Area Polish:
-I want the boat to drive away after players ask for berief.
-Marcinkos pose on debrief flickers on client.
 
-Mission Difficulty Settings:
-    3D Task Markers:
-        I want to have them for players who need more help navigating, but I don't want to play with them. So the default will be off. 
-            I will try to make a setting from the map stand to turn on the 3d task markers.
-                I made the setting work but it turns out I don't need to cause the 3d task markers are tied to the "waypoints" game difficulty 
-                    options.
-                    I need to go through the whole mission and enable them now.
-                        Ok turns out that even if you disable the waypoints option in game there is still map marker on the map which gives away 
-                            the location of objectives.
-                            Ok using the task setter it will actually remove the icon from the map.
-                            Now I just need to go through the whole mission and set them up.
-
-How does JIP work if there are or are not AI? Will the play be placed at the staging Area or next to group leader or what?      
+- Design: Add achievements. I think this is a neat idea but it will add a bunch of
+    scope to a project already struggling to find completion. Reevaluate later if you wish.
+    - Now that I know more this wouldn't be that hard to implement. The whole thing is drive by global variables that already exist. 
+        Just have to tie those to some achievement tasks that players can elect from the map board. Default is off since the 
+        achievements contain spoilers. Have cheevo names be non-descript and tongue in cheek vietnam/seal references.
+        - Some cheevo ideas: 
+            - Complete every task
+            - get the worst outcome 
+            - retrieve the general I.D. and extract without alerting patrols
+            - find and rescue the downed pilot find and rescue the pow
+            - disable the enemy radio tower
+            - have scout equip enemy radio backpack
+            Cancelled: complete every cheevo - can't do this cause some are mutually exclusive.
+            - prevent the pilot from getting shot down
+        - The order in which parent task categories are created seems to be top to bottom where top is the oldest created. 
+            - The order of tasks created at the same time seems to be random. Maybe based on how the engine compiles them. I bet if I didn't use the 
+                modules and created them in initServer.sqf it would be more consistant. 
+        - In order to add disable achievements I would need to add a script to create them again after deletion.
+            - In the addAction code space or execVM I will use the task framework to create the tasks. In the remove addAction I will call the remove task 
+                function. 
+        Completed: I need to make a diary entry for achievements regardless.
+        - Then I need to implement them.
+      
     
 DEDICATED SERVER TESTING:
 - verify 3d task marker positions
@@ -63,6 +69,11 @@ TO DO MASTER LIST:
         
     
     POLISH:
+        - How does JIP work if there are or are not AI? Will the play be placed at the staging Area or next to group leader or what?
+        Staging Area Polish:
+            I want the boat to drive away after players ask for berief.
+                - put the line in the hashmap, so just test it now.
+            Marcinkos pose on debrief flickers on client.
         - add some convos for the npcs in the staging area upon return.
         - if the pow and presumably the downed pilot block the LZ the name displayed is not the indenity name. it shows crew (driver) and not 
             the identity name I assigned it.
@@ -104,20 +115,6 @@ TO DO MASTER LIST:
 
 
     IDEA GRAVEYARD:
-        - Design: Add achievements. I think this is a neat idea but it will add a bunch of
-            scope to a project already struggling to find completion. Reevaluate later if you wish.
-            - Now that I know more this wouldn't be that hard to implement. The whole thing is drive by global variables that already exist. 
-                Just have to tie those to some achievement tasks that players can elect from the map board. Default is off since the 
-                achievements contain spoilers. Have cheevo names be non-descript and tongue in cheek vietnam/seal references.
-                - Some cheevo ideas: 
-                    - Complete every task 
-                    - retrieve the general I.D. and extract without alerting patrols
-                    - find and rescue the downed pilot
-                    - find and rescue the pow
-                    - disable the enemy radio tower
-                    - have scout equip enemy radio backpack
-                    - complete every cheevo
-                    - prevent the pilot from getting shot down
         - Design: Try to incourage the hand signal module by punishing players using their radios. 
             Send trackers after them if they use it too much. I like this idea but it will add too much scope to the mission.
             Perhaps in the future for another mission or if I ever finish this one with time to spare.
@@ -125,6 +122,7 @@ TO DO MASTER LIST:
         - Design: Mission fails if friendly fire threshold is reached. I don't think I need to do this.
             - If anyone plays this mission almost certainly they know each other. Let social acceptance guide player behavior here.
             - Players punished by accidental friendly fire can feel can feel like it's unfair or unfun rule.
+            - perhaps just disable FF in the staging area.
         - Design: Disable the squad radio chatter. It is vanilla ARMA sounds so it breaks immersion for me. But if I do this then it could
             hamper important game feedback for single players would want AI. Unfortunantley I think we need to keep it unless playtesting
             proves otherwise.
@@ -194,6 +192,17 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Mission Difficulty Settings:
+    3D Task Markers:
+        I want to have them for players who need more help navigating, but I don't want to play with them. So the default will be off. 
+            I will try to make a setting from the map stand to turn on the 3d task markers.
+                I made the setting work but it turns out I don't need to cause the 3d task markers are tied to the "waypoints" game difficulty 
+                    options.
+                    I need to go through the whole mission and enable them now.
+                        Ok turns out that even if you disable the waypoints option in game there is still map marker on the map which gives away 
+                            the location of objectives.
+                            Ok using the task setter it will actually remove the icon from the map.
+                            Completed: Now I just need to go through the whole mission and set them up.
 Bug Fixed: trg_convo_cove not behaving as expexted
 Staging Area Polish:
     Done: verify that new pilot/co-pilot get set to careless on landing back at base.
