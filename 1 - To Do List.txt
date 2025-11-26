@@ -22,11 +22,15 @@ Current TASK:
         - The order in which parent task categories are created seems to be top to bottom where top is the oldest created. 
             - The order of tasks created at the same time seems to be random. Maybe based on how the engine compiles them. I bet if I didn't use the 
                 modules and created them in initServer.sqf it would be more consistant. 
-        - In order to add disable achievements I would need to add a script to create them again after deletion.
+    ** - In order to add disable achievements I would need to add a script to create them again after deletion.
             - In the addAction code space or execVM I will use the task framework to create the tasks. In the remove addAction I will call the remove task 
-                function. 
+                function.
+            - execVM seems to be the way to go. It keeps the action code from being super long and works in MP since the tasks are GA.
+                - Tasks are created. Now I need to go through the mission and implement them.
+                - Also remove uneeded task modules and triggers.
         Completed: I need to make a diary entry for achievements regardless.
         - Then I need to implement them.
+        - Go through systemChat for actions on map board because some need to be remoteExec since they are global effect.
       
     
 DEDICATED SERVER TESTING:

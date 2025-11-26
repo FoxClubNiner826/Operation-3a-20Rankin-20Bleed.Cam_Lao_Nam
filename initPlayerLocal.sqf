@@ -392,9 +392,11 @@ map addAction [
     "<t color='#00FF00'>Enable Achievements</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-	systemChat "Achievements: Enabled";
-    missionNamespace setVariable ["foxClub_var_createParentCheevos", true, true];
-    sleep 2;
+	//systemChat "Achievements: Enabled";
+    ["Achievements: Enabled"] remoteExec ["systemChat", 0];
+    execVM "scripts\achievements.sqf";
+    //missionNamespace setVariable ["foxClub_var_createParentCheevos", true, true];
+    //sleep 2;
 	missionNamespace setVariable ["foxClub_var_createCheevos", true, true];
 	}, 
     nil, 
@@ -421,9 +423,11 @@ map addAction [
     "<t color='#FF0000'>Disable Achievements</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-	systemChat "Achievements: Disabled";
+	//systemChat "Achievements: Disabled";
+    ["Achievements: Disabled"] remoteExec ["systemChat", 0];
 	missionNamespace setVariable ["foxClub_var_createCheevos", false, true];
-	}, 
+	["tsk_parent_cheevos", west, true] call BIS_fnc_deleteTask;
+    }, 
     nil, 
     8, 
     false, 
