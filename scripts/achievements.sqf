@@ -23,7 +23,44 @@
 ] call BIS_fnc_taskCreate;
 */
 
-// Parent task for achievements
+/* hvt possibilities. for mid to work: mid and failed will have to be true. at least one of these is always true.
+
+missionNamespace setVariable ["hvtPass", true, true]; // in holdAction for searching general
+missionNamespace setVariable ["hvtMid", true, true]; // in EH of generals car. triggers with car blows up with him inside.
+missionNamespace setVariable ["hvtFailed", true, true]; // in trigger once hvt reaches trigger area across the river
+
+//stab possibilities. just need this one since its boolean check
+missionNamespace setVariable ["stabPassed", true, true]; // in fail trigger for task "destroy the stab"
+
+//extract possibilities
+missionNamespace setVariable ["extractPassed", true, true]; // in complete trigger for task "extract from LZ"
+
+//side task possibilities. no need for noSec since its default case
+missionnamespace setVariable ["AllSecTasksComplete", true, true]; // in trigger trg_all_sec_pass
+missionNamespace setVariable ["SomeSecTasksComplete", true, true]; // in trigger SomeSecTasksCompleteTrigger
+
+//rescue possibilities
+missionNamespace setVariable ["powFound", true, true]; // in trigger: trg_seesPow_convo
+missionNamespace setVariable ["pilotFound", true, true]; // in trigger: save_pilot
+missionNamespace setVariable ["powRescued", true, true]; // in ambulance EH
+missionNamespace setVariable ["pilotRescued", true, true]; // in ambulance EH
+missionNamespace setVariable ["powDied", true, true]; // in trigger: POWFail
+missionNamespace setVariable ["pilotDied", true, true]; // in trigger: PilotFail
+
+// for testing the ambulance EH
+missionNamespace getVariable ["pilotEjected", false];
+missionNamespace getVariable ["testPOW", false];
+*/
+
+// Creates completion triggers for the tasks
+["scripts\achievementTriggers.sqf"] remoteExec ["execVM", 2];
+
+//////////////////////////////////////////////////
+//                                              //
+//         PARENT TASK FOR ACHIEVEMENTS         //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     "tsk_parent_cheevos", // task ID
@@ -40,7 +77,13 @@
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-// Perfect mission
+
+//////////////////////////////////////////////////
+//                                              //
+//               PERFECT MISSION                //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     ["cheevo_perfectScore", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
@@ -57,7 +100,13 @@
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-// Worst mission
+
+//////////////////////////////////////////////////
+//                                              //
+//                WORST MISSION                 //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     ["cheevo_worstScore", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
@@ -78,7 +127,13 @@
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-// Ghost mission
+
+//////////////////////////////////////////////////
+//                                              //
+//                GHOST MISSION                 //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     ["cheevo_phantomTeam", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]

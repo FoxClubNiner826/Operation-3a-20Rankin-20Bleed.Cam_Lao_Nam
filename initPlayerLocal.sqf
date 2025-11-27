@@ -250,7 +250,8 @@ map addAction [
     "<t color='#00FF00'>Enable Skip to Infil</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-	systemChat "Skip to Infil: Enabled";
+	//systemChat "Skip to Infil: Enabled";
+    ["Skip to Infil: Enabled"] remoteExec ["systemChat", 0];
 	missionNamespace setVariable ["skipEnabled", true, true];
 	}, 
     nil, 
@@ -277,7 +278,8 @@ map addAction [
     "<t color='#FF0000'>Disable Skip to Infil</t>", 
     {
 	params ["_target", "_caller", "_actionID", "_args"];
-	systemChat "Skip to Infil: Disabled";
+	//systemChat "Skip to Infil: Disabled";
+    ["Skip to Infil: Disabled"] remoteExec ["systemChat", 0];
 	missionNamespace setVariable ["skipEnabled", false, true];
 	}, 
     nil, 
@@ -304,7 +306,8 @@ map addAction [
     "<t color='#00FF00'>Enable 3D Task Markers</t>", 
     {
         params ["_target", "_caller", "_actionID", "_args"];
-        systemChat "3D Task Markers: Enabled";
+        //systemChat "3D Task Markers: Enabled";
+        ["3D Task Markers: Enabled"] remoteExec ["systemChat", 0];
         missionNamespace setVariable ["visAid", true, true];
 
         ["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination; // get in stab task
@@ -348,7 +351,8 @@ map addAction [
     "<t color='#FF0000'>Disable 3D Task Markers</t>", 
     {
         params ["_target", "_caller", "_actionID", "_args"];
-        systemChat "3D Task Markers: Disabled";
+        //systemChat "3D Task Markers: Disabled";
+        ["3D Task Markers: Disabled"] remoteExec ["systemChat", 0];
         missionNamespace setVariable ["visAid", false, true];
 
         ["getinstab_tsk", objNull] call BIS_fnc_taskSetDestination; // get in stab task

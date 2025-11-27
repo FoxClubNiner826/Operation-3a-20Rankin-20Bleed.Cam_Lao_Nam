@@ -31,6 +31,9 @@ Current TASK:
         Completed: I need to make a diary entry for achievements regardless.
         - Then I need to implement them.
         - Go through systemChat for actions on map board because some need to be remoteExec since they are global effect.
+            - Done but needs testing.
+        - Build some triggers to complete the tasks if needed. Decide when they should complete.
+        - Figure out how to delete the triggers if players turn them off.
       
     
 DEDICATED SERVER TESTING:
@@ -60,6 +63,8 @@ TO DO MASTER LIST:
     MEDIUM PRIORITY:
     
     LOW PRIORITY:
+        - see if you can use Nikkos comment on how to view function code to view the SOG module for advanced revive and see if you can remove the voice 
+            lines.
         - see if an grenade explode EH is worth putting for the cache task.
         - Update all needed pictures in the mission from tasks to victory/death screens. This should be near the last thing you do
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
