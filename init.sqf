@@ -1815,6 +1815,7 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[1,"Well, I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
 			[0,"Aye aye, Sir.", "answer", 0, {
+				missionNamespace setVariable ["foxClub_var_completeAchievementWorst", true, true];
 				sleep 5;
 				//["6", false , true, true, true] remoteExec ["VN_fnc_endMission"];
 				["6", false, true, true, true] call VN_fnc_endMission;
@@ -1876,6 +1877,7 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[1,"Well, I've heard enough. Gentlemen, that was quite the shit show! I'm at a loss for words. I thought you were professionals. We obviously need to step up our training regimine. What a disaster. You are dismissed.", "answer", 1],
 			[0,"Yes, Sir.", "answer", 0, {
+				missionNamespace setVariable ["foxClub_var_completeAchievementWorst", true, true];
 				sleep 5;
 				//["6", false , true, true, true] remoteExec ["VN_fnc_endMission"];
 				["6", false, true, true, true] call VN_fnc_endMission;

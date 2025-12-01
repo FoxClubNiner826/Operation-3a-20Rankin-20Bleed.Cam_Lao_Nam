@@ -53,7 +53,9 @@ missionNamespace getVariable ["testPOW", false];
 */
 
 // Creates completion triggers for the tasks
-["scripts\achievementTriggers.sqf"] remoteExec ["execVM", 2];
+//["scripts\achievementTriggers.sqf"] remoteExec ["execVM", 2];
+remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
+
 
 //////////////////////////////////////////////////
 //                                              //
@@ -218,3 +220,5 @@ missionNamespace getVariable ["testPOW", false];
     "airdrop", // task icon
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
+
+//hint "fired";

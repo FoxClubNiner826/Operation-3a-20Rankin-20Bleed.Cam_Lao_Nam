@@ -40,13 +40,14 @@ missionNamespace getVariable ["testPOW", false];
 //         PARENT TASK FOR ACHIEVEMENTS         //
 //                                              //
 //////////////////////////////////////////////////
-// add all the getVars from the cheevo conditions here
-_trgCompleteParentTaskCheevo = createTrigger [
+
+trgCompleteParentTaskCheevo = createTrigger [
     "EmptyDetector", // type
     objNull, // position
     false // makes global
 ];
 
+// add the getVars from all cheevo conditions here
 private _conditionParentTask = {
     missionNamespace getVariable ["AllPriTasksComplete", false] && // in trigger PRI_all_pass_tgr
     missionNamespace getVariable ["AllSecTasksCompleteCheevo", false] // in trigger OPT_all_pass_tgr
@@ -56,7 +57,7 @@ private _activationParentTask = {
     ["tsk_parent_cheevos","SUCCEEDED"] call BIS_fnc_taskSetState;
 };
 
-_trgCompleteParentTaskCheevo setTriggerStatements [
+trgCompleteParentTaskCheevo setTriggerStatements [
     toString _conditionParentTask,
     toString _activationParentTask,
     ""
@@ -69,7 +70,7 @@ _trgCompleteParentTaskCheevo setTriggerStatements [
 //                                              //
 //////////////////////////////////////////////////
 
-_trgCompleteTaskPerfect = createTrigger [
+trgCompleteTaskPerfect = createTrigger [
     "EmptyDetector", // type
     objNull, // position
     false // makes global
@@ -84,7 +85,7 @@ private _activationPerfectMission = {
     ["cheevo_perfectScore","SUCCEEDED"] call BIS_fnc_taskSetState;
 };
 
-_trgCompleteTaskPerfect setTriggerStatements [
+trgCompleteTaskPerfect setTriggerStatements [
     toString _conditionPerfectMission,
     toString _activationPerfectMission,
     ""
@@ -96,9 +97,8 @@ _trgCompleteTaskPerfect setTriggerStatements [
 //                WORST MISSION                 //
 //                                              //
 //////////////////////////////////////////////////
-// Worst mission
 
-_trgCompleteTaskWorst = createTrigger [
+trgCompleteTaskWorst = createTrigger [
     "EmptyDetector", // type
     objNull, // position
     false // makes global
@@ -108,16 +108,46 @@ private _conditionWorst = {
     !(missionNamespace getVariable ["hvtPass", false]) &&
     !(missionNamespace getVariable ["stabPassed", false]) &&
     !(missionNamespace getVariable ["extractPassed", false]) &&
-    missionNamespace getVariable ["ActionDebrief", false]
+    missionNamespace getVariable ["foxClub_var_completeAchievementWorst", false] // located in
 };
 
 private _activationWorst = {
     ["cheevo_worstScore","SUCCEEDED"] call BIS_fnc_taskSetState;
 };
 
-_trgCompleteTaskWorst setTriggerStatements [
+trgCompleteTaskWorst setTriggerStatements [
     toString _conditionWorst,
     toString _activationWorst,
+    ""
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//                GHOST MISSION                 //
+//                                              //
+//////////////////////////////////////////////////
+
+trgCompleteTaskGhost = createTrigger [
+    "EmptyDetector", // type
+    objNull, // position
+    false // makes global
+];
+
+private _conditionGhost = {
+    !(missionNamespace getVariable ["hvtPass", false]) &&
+    !(missionNamespace getVariable ["stabPassed", false]) &&
+    !(missionNamespace getVariable ["extractPassed", false]) &&
+    missionNamespace getVariable ["ActionDebrief", false]
+};
+
+private _activationGhost = {
+    ["cheevo_worstScore","SUCCEEDED"] call BIS_fnc_taskSetState;
+};
+
+trgCompleteTaskGhost setTriggerStatements [
+    toString _conditionGhost,
+    toString _activationGhost,
     ""
 ];
 
