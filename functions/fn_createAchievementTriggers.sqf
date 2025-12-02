@@ -37,35 +37,6 @@ missionNamespace getVariable ["testPOW", false];
 
 //////////////////////////////////////////////////
 //                                              //
-//         PARENT TASK FOR ACHIEVEMENTS         //
-//                                              //
-//////////////////////////////////////////////////
-
-trgCompleteParentTaskCheevo = createTrigger [
-    "EmptyDetector", // type
-    objNull, // position
-    false // makes global
-];
-
-// add the getVars from all cheevo conditions here
-private _conditionParentTask = {
-    missionNamespace getVariable ["AllPriTasksComplete", false] && // in trigger PRI_all_pass_tgr
-    missionNamespace getVariable ["AllSecTasksCompleteCheevo", false] // in trigger OPT_all_pass_tgr
-};
-
-private _activationParentTask = {
-    ["tsk_parent_cheevos","SUCCEEDED"] call BIS_fnc_taskSetState;
-};
-
-trgCompleteParentTaskCheevo setTriggerStatements [
-    toString _conditionParentTask,
-    toString _activationParentTask,
-    ""
-];
-
-
-//////////////////////////////////////////////////
-//                                              //
 //               PERFECT MISSION                //
 //                                              //
 //////////////////////////////////////////////////
@@ -78,7 +49,8 @@ trgCompleteTaskPerfect = createTrigger [
 
 private _conditionPerfectMission = {
     missionNamespace getVariable ["AllPriTasksComplete", false] && // in trigger PRI_all_pass_tgr
-    missionNamespace getVariable ["AllSecTasksCompleteCheevo", false] // in trigger OPT_all_pass_tgr
+    missionNamespace getVariable ["AllSecTasksCompleteCheevo", false] && // in trigger OPT_all_pass_tgr
+    missionNamespace getVariable ["foxClub_var_showAchievements", false] // located in init.sqf > debrief convo
 };
 
 private _activationPerfectMission = {
@@ -108,7 +80,7 @@ private _conditionWorst = {
     !(missionNamespace getVariable ["hvtPass", false]) &&
     !(missionNamespace getVariable ["stabPassed", false]) &&
     !(missionNamespace getVariable ["extractPassed", false]) &&
-    missionNamespace getVariable ["foxClub_var_completeAchievementWorst", false] // located in
+    missionNamespace getVariable ["foxClub_var_completeAchievementWorst", false] // located in init.sqf > debrief convo
 };
 
 private _activationWorst = {
@@ -134,15 +106,17 @@ trgCompleteTaskGhost = createTrigger [
     false // makes global
 ];
 
+// if players feel this achievement is inconsistent or unfair because of trigger attached to the tracker module (blufor detected by opfor)
+// then I will need to create a trigger like my players spotted by patrol that applies to all units that goes by knowsAbout command
 private _conditionGhost = {
-    !(missionNamespace getVariable ["hvtPass", false]) &&
-    !(missionNamespace getVariable ["stabPassed", false]) &&
-    !(missionNamespace getVariable ["extractPassed", false]) &&
-    missionNamespace getVariable ["ActionDebrief", false]
+    !(missionNamespace getVariable ["foxClub_var_failAchievementGhost", false]) && // located in initServer.sqf > players spotted by patrol
+    missionNamespace getVariable ["hvtPass", false] &&
+    !(missionNamespace getVariable ["playersSpottedLumphat", false]) && // located in editor trigger: tracker spawn
+    missionNamespace getVariable ["foxClub_var_showAchievements", false] // located in init.sqf > debrief convo  
 };
 
 private _activationGhost = {
-    ["cheevo_worstScore","SUCCEEDED"] call BIS_fnc_taskSetState;
+    ["cheevo_phantomTeam","SUCCEEDED"] call BIS_fnc_taskSetState;
 };
 
 trgCompleteTaskGhost setTriggerStatements [
@@ -150,4 +124,117 @@ trgCompleteTaskGhost setTriggerStatements [
     toString _activationGhost,
     ""
 ];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//                RESCUE MISSION                //
+//                                              //
+//////////////////////////////////////////////////
+
+trgCompleteTaskRescue = createTrigger [
+    "EmptyDetector", // type
+    objNull, // position
+    false // makes global
+];
+
+private _conditionRescue = {
+    missionNamespace getVariable ["foxClub_var_completeAchievementRescue", false] && // located in editor trigger: trg_heliRTB
+    missionNamespace getVariable ["foxClub_var_showAchievements", false] // located in init.sqf > debrief convo  
+};
+
+private _activationRescue = {
+    ["cheevo_rescueEffort","SUCCEEDED"] call BIS_fnc_taskSetState;
+};
+
+trgCompleteTaskRescue setTriggerStatements [
+    toString _conditionRescue,
+    toString _activationRescue,
+    ""
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//             DISABLE RADIO TOWER              //
+//                                              //
+//////////////////////////////////////////////////
+
+trgCompleteTaskRadioTower = createTrigger [
+    "EmptyDetector", // type
+    objNull, // position
+    false // makes global
+];
+
+private _conditionRadioTower = {
+    missionNamespace getVariable ["comsdestroyed", false] && // located in initPlayerLocal.sqf > hold action for disabling comms
+    missionNamespace getVariable ["foxClub_var_showAchievements", false] // located in init.sqf > debrief convo  
+};
+
+private _activationRadioTower = {
+    ["cheevo_radioTower","SUCCEEDED"] call BIS_fnc_taskSetState;
+};
+
+trgCompleteTaskRadioTower setTriggerStatements [
+    toString _conditionRadioTower,
+    toString _activationRadioTower,
+    ""
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//               RADIO BACKPACK                 //
+//                                              //
+//////////////////////////////////////////////////
+
+trgCompleteTaskRadioPack = createTrigger [
+    "EmptyDetector", // type
+    objNull, // position
+    false // makes global
+];
+
+private _conditionRadioPack = {
+    false;  
+};
+
+private _activationRadioPack = {
+    ["cheevo_radioBackpack","SUCCEEDED"] call BIS_fnc_taskSetState;
+};
+
+trgCompleteTaskRadioPack setTriggerStatements [
+    toString _conditionRadioPack,
+    toString _activationRadioPack,
+    ""
+];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//           PREVENT PILOT DOWNING              //
+//                                              //
+//////////////////////////////////////////////////
+
+trgCompleteTaskPreventDown = createTrigger [
+    "EmptyDetector", // type
+    objNull, // position
+    false // makes global
+];
+
+private _conditionPreventDown = {
+    missionNamespace getVariable ["foxClub_var_completeAchievementPreventDown", false] && // located in editor trigger: trg_pilot_not_shotdown
+    missionNamespace getVariable ["foxClub_var_showAchievements", false] // located in init.sqf > debrief convo
+};
+
+private _activationPreventDown = {
+    ["cheevo_preventDown","SUCCEEDED"] call BIS_fnc_taskSetState;
+};
+
+trgCompleteTaskPreventDown setTriggerStatements [
+    toString _conditionPreventDown,
+    toString _activationPreventDown,
+    ""
+];
+
+
 

@@ -179,6 +179,8 @@ _patrolGroup = [patrol1, patrol2, patrol3, patrol4, patrol5, patrol6];
 				if ({
 					alive _x
 				} count units _group > 0) then {
+                    // fail ghost achievement 
+                    missionNamespace setVariable ["foxClub_var_failAchievementGhost", true, true];
                     //create flare and sound
                     [(leader _group), ["flarelaunch", 400]] remoteExec ["say3D"];
 					private _pos = getPosATL leader _group;

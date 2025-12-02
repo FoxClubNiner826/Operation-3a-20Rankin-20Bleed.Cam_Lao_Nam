@@ -5,36 +5,8 @@ TO DO UP NEXT:
 
 Current TASK: 
 
-- Design: Add achievements. I think this is a neat idea but it will add a bunch of
-    scope to a project already struggling to find completion. Reevaluate later if you wish.
-    - Now that I know more this wouldn't be that hard to implement. The whole thing is drive by global variables that already exist. 
-        Just have to tie those to some achievement tasks that players can elect from the map board. Default is off since the 
-        achievements contain spoilers. Have cheevo names be non-descript and tongue in cheek vietnam/seal references.
-        - Some cheevo ideas: 
-            - Complete every task
-            - get the worst outcome 
-            - retrieve the general I.D. and extract without alerting patrols
-            - find and rescue the downed pilot find and rescue the pow
-            - disable the enemy radio tower
-            - have scout equip enemy radio backpack
-            Cancelled: complete every cheevo - can't do this cause some are mutually exclusive.
-            - prevent the pilot from getting shot down
-        - The order in which parent task categories are created seems to be top to bottom where top is the oldest created. 
-            - The order of tasks created at the same time seems to be random. Maybe based on how the engine compiles them. I bet if I didn't use the 
-                modules and created them in initServer.sqf it would be more consistant. 
-    ** - In order to add disable achievements I would need to add a script to create them again after deletion.
-            - In the addAction code space or execVM I will use the task framework to create the tasks. In the remove addAction I will call the remove task 
-                function.
-            - execVM seems to be the way to go. It keeps the action code from being super long and works in MP since the tasks are GA.
-                - Tasks are created. Now I need to go through the mission and implement them.
-                - Also remove uneeded task modules and triggers.
-        Completed: I need to make a diary entry for achievements regardless.
-        - Then I need to implement them.
-        - Go through systemChat for actions on map board because some need to be remoteExec since they are global effect.
-            - Done but needs testing.
-        - Build some triggers to complete the tasks if needed. Decide when they should complete.
-        - Figure out how to delete the triggers if players turn them off.
-      
+- see if you can use Nikkos comment on how to view function code to view the SOG module for advanced revive and see if you can remove the voice 
+            lines.  
     
 DEDICATED SERVER TESTING:
 - verify 3d task marker positions
@@ -63,8 +35,7 @@ TO DO MASTER LIST:
     MEDIUM PRIORITY:
     
     LOW PRIORITY:
-        - see if you can use Nikkos comment on how to view function code to view the SOG module for advanced revive and see if you can remove the voice 
-            lines.
+        
         - see if an grenade explode EH is worth putting for the cache task.
         - Update all needed pictures in the mission from tasks to victory/death screens. This should be near the last thing you do
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
@@ -140,7 +111,7 @@ TO DO MASTER LIST:
             a boon to players. I think this is a neat idea that could play into having an indiginous unit in the group but as it sits 
             right now I don't see the value it can add mechanic wise.
             - I've thought of some interesting ideas. Also this could be an interesting risk reward mechanic. The risk is the patrol alerting 
-                the general but if they get the backpack without alerting him then they gain an advantage on intel.
+                the general but if they get the backpack without alerting him then they gain an advantage on intel. We can extend this trade off; If players disable the radio tower then they turn off the trackers but then they don't get to use the back pack. Might need to think about this more because any usefull info might already be known.
                 - Lets players know if they are currently tracked.
                 - let's players know whenever things happen in the mission behind the scenes:
                     - stab was found
@@ -201,6 +172,35 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Design: Added achievements. I think this is a neat idea but it will add a bunch of
+    scope to a project already struggling to find completion. Reevaluate later if you wish.
+    - Now that I know more this wouldn't be that hard to implement. The whole thing is drive by global variables that already exist. 
+        Just have to tie those to some achievement tasks that players can elect from the map board. Default is off since the 
+        achievements contain spoilers. Have cheevo names be non-descript and tongue in cheek vietnam/seal references.
+        - Some cheevo ideas: 
+            - Complete every task
+            - get the worst outcome 
+            - retrieve the general I.D. and extract without alerting patrols
+            - find and rescue the downed pilot find and rescue the pow
+            - disable the enemy radio tower
+            - have scout equip enemy radio backpack
+            Cancelled: complete every cheevo - can't do this cause some are mutually exclusive.
+            - prevent the pilot from getting shot down
+        - The order in which parent task categories are created seems to be top to bottom where top is the oldest created. 
+            - The order of tasks created at the same time seems to be random. Maybe based on how the engine compiles them. I bet if I didn't use the 
+                modules and created them in initServer.sqf it would be more consistant. 
+       - In order to add disable achievements addaction I would need to add a script to create them again after deletion.
+            - In the addAction code space or execVM I will use the task framework to create the tasks. In the remove addAction I will call the remove task function.
+                - function works better
+            - execVM seems to be the way to go. It keeps the action code from being super long and works in MP since the tasks are GA.
+                - Tasks are created. Now I need to go through the mission and implement them.
+                - Also remove uneeded task modules and triggers.
+        Completed: I need to make a diary entry for achievements regardless.
+        Completed: Then I need to implement them.
+        Completed: Go through systemChat for actions on map board because some need to be remoteExec since they are global effect.
+            - Done but needs testing.
+        Completed: learn to write server only triggers. Decide when they should complete.
+        Completed: Figure out how to delete the triggers if players turn them off.
 Mission Difficulty Settings:
     3D Task Markers:
         I want to have them for players who need more help navigating, but I don't want to play with them. So the default will be off. 

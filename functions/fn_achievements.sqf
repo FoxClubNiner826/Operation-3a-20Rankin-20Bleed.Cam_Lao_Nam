@@ -113,7 +113,7 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
     west, // owner
     ["cheevo_worstScore", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
     [
-        "Fail all the most important tasks in the mission: <br/><br/>
+        "Fail all of the most important tasks in the mission: <br/><br/>
         1. Kill the HVT<br/>
         2. Destroy the STAB<br/>
         3. Extract from the LZ with all personnel.<br/>
@@ -140,7 +140,7 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
     west, // owner
     ["cheevo_phantomTeam", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
     [
-        "Extract with the HVT’s credentials without raising the alarm.", // description
+        "Secure the HVT’s credentials and exfiltrate undetected.", // description
         "Phantom Team", // title
         "" //marker
     ],
@@ -152,7 +152,13 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-// Rescue
+
+//////////////////////////////////////////////////
+//                                              //
+//                RESCUE MISSION                //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     ["cheevo_rescueEffort", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
@@ -169,12 +175,18 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-// radio tower
+
+//////////////////////////////////////////////////
+//                                              //
+//             DISABLE RADIO TOWER              //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     ["cheevo_radioTower", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
     [
-        "Find a way to disable the radio tower in Lumphat.", // description
+        "Find a way to disrupt enemy comms.", // description
         "Cut the Line", // title
         "" //marker
     ],
@@ -186,7 +198,13 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-// radio backpack
+
+//////////////////////////////////////////////////
+//                                              //
+//                RADIO BACKPACK                //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     ["cheevo_radioBackpack", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
@@ -204,7 +222,13 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;  
 
-// prevent pilot downing
+
+//////////////////////////////////////////////////
+//                                              //
+//           PREVENT PILOT DOWNING              //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     ["cheevo_preventDown", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]

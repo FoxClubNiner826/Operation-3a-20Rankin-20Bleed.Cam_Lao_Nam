@@ -6,7 +6,12 @@
 */
 
 // delete triggers
-deleteVehicle trgCompleteParentTaskCheevo;
 deleteVehicle trgCompleteTaskPerfect;
 deleteVehicle trgCompleteTaskWorst;
 deleteVehicle trgCompleteTaskGhost;
+deleteVehicle trgCompleteTaskRescue;
+deleteVehicle trgCompleteTaskRadioTower;
+deleteVehicle trgCompleteTaskRadioPack;
+deleteVehicle trgCompleteTaskPreventDown;
+
+

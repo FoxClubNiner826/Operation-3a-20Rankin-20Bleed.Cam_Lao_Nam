@@ -124,7 +124,7 @@ player createDiaryRecord ["Parameters", ["Achievements",
 "<br/>
 Achievements are disabled by default.<br/><br/>
 It’s recommended to play with them off for your first run, as many achievements contain spoilers. 
-Their titles are intentionally vague to reduce this, but some hints still remain.<br/><br/>
+Their titles are intentionally vague to reduce this, but some hints still remain. Completed achievements will be shown at the end of the mission.<br/><br/>
 You can enable achievements by interacting with the map board next to the arsenal.<br/><br/>
 This is a global effect, meaning it applies to all players in the mission.
 " ]];
