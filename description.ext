@@ -21,6 +21,16 @@ class CfgFunctions
             class testFunction {};
         };
     };
+    class vn
+    {
+        class revive
+        {
+            class revive_conversation
+            {
+                file = "functions\fn_disableReviveConversation.sqf";
+            };
+        };
+    };
 };
 
 class CfgIdentities

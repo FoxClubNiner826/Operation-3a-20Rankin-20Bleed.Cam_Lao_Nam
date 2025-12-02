@@ -3,10 +3,14 @@ TO DO UP NEXT:
 // When you are done testing NPCs at staging area put this stuff back to normal
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
-Current TASK: 
+Current TASK: Work on the bug first then setup the advanced revive module parameters and test it.
 
-- see if you can use Nikkos comment on how to view function code to view the SOG module for advanced revive and see if you can remove the voice 
-            lines.  
+Bug: If the client kills the local host, which is the group leader, a loop will form where the AI says over and over that they are taking command.
+
+Design: Try to implement the advanced revive module from SOG, while cutting out the voice overs.
+    - First I will try to override the funciton that calls the voices, by adding a blank file in it's place.
+        - This works great. By redefining the function with a file path to a blank .sqf, the voice lines are never spoken. But an issue remains of an error message at the button of the screen.
+            - Removed the recompile line in description.ext fixed it
     
 DEDICATED SERVER TESTING:
 - verify 3d task marker positions

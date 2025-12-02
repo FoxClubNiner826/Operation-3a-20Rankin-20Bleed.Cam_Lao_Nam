@@ -331,7 +331,7 @@ if (isMultiplayer) then {
 //  MAKES HUMAN LEADER IF LEADER IS CHAGED TO AI  //
 //                                                //
 ////////////////////////////////////////////////////
-
+/*
 [] spawn {
     sleep 3;
 
@@ -401,7 +401,7 @@ if (isMultiplayer) then {
         };
     }];
 };
-
+*/
 
 ////////////////////////////////////////////////////
 //                                                //
