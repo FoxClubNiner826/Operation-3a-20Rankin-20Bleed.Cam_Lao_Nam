@@ -81,6 +81,101 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"What's on your mind P.O.?", "answer"]
 		]
 	],
+	["revive_help", // 2 d
+		[
+			[0,"This is the convo for revive help.", "answer"],
+			[1,"Thanks for the revive help.", "answer"]
+		]
+	],
+	["revive_heal", // 2 d
+		[
+			[0,"This is the convo for revive heal.", "answer"],
+			[1,"Thanks for the revive heal.", "answer"]
+		]
+	],
+	["revive_revived", // 2 d
+		[
+			[0,"This is the convo for revive revived.", "answer"],
+			[1,"Thanks for the revive revived.", "answer"]
+		]
+	],
+	["drag_player", // 2 d
+		[
+			[0,"drag_player", "answer"],
+			[1,"Thanks for the revive revived.", "answer"]
+		]
+	],
+	["undrag_player", // 2 d
+		[
+			[0,"undrag_player", "answer"],
+			[1,"Thanks for the revive revived.", "answer"]
+		]
+	],
+	["pickup_player", // 2 d
+		[
+			[0,"pickup_player", "answer"],
+			[1,"Thanks for the revive revived.", "answer"]
+		]
+	],
+	["drop_player", // 2 d
+		[
+			[0,"drop_player", "answer"],
+			[1,"Thanks for the revive revived.", "answer"]
+		]
+	],
+	["carried", // 2 d
+		[
+			[0,"carried", "answer"],
+			[1,"Thanks for the revive revived.", "answer"]
+		]
+	],
+	["dragged", // 2 d
+		[
+			[0,"dragged", "answer"],
+			[1,"Thanks for the revive revived.", "answer"]
+		]
+	],
+	["general", // 2 d
+		[
+			[0,"general", "answer"],
+			[1,"Thanks for the revive revived.", "answer"]
+		]
+	],
+	["revive_healer_noScout", // 2 d
+		[
+			[0,"I am the healer. I am not the scout.", "answer"],
+			[1,"I am not the scout. Thanks for revive.", "answer"]	
+		]
+	],
+	["revive_healer", // 2 d
+		[
+			[0,"I am stopping bleeding. I am not the scout.", "answer"],
+			[1,"I am the scout. Thanks for stopping bleeding.", "answer"]	
+		]
+	],
+	["revive_healer_scout", // 2 d
+		[
+			[0,"I am the healer. I am the scout!", "answer"],
+			[1,"Thanks for the revive scout.", "answer"]
+		]
+	],
+	["revived_blu_scout", // 2 d
+		[
+			[0,"You are now revived. I am not the scout.", "answer"],
+			[1,"I am the scout. I am now fully revived.", "answer"]	
+		]
+	],
+	["revived_scout_blu", // 2 d
+		[
+			[0,"You are now revived. I am the scout.", "answer"],
+			[1,"Thanks for the revive, scout.", "answer"]
+		]
+	],
+	["revive_casualty", // 2 d
+		[
+			[0,"I am the casualty", "answer"]
+		]
+	],
 	["mpbanter1", // 3 d
 		[
 			[0,"Hop in, Lee.", "answer"],

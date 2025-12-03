@@ -2563,4 +2563,73 @@ this addEventHandler ["Killed", {
 
 
 			
-		
+params ["_user", "_action"];
+
+systemChat format [
+    "Revive Convo Debug: user=%1 | revive_target=%2",
+    _user,
+    (_user getVariable ['vn_revive_target', objNull])
+];
+
+if (!alive _user) exitWith {};
+
+private _radius = 6;
+private _near = _user nearEntities ["CAManBase", _radius];
+private _downed = _near select {
+    _x != _user && lifeState _x == "INCAPACITATED"
+};
+
+private _responder = objNull;
+private _minDist = _radius + 1;
+
+{
+    private _dist = _x distance _user;
+    if (_dist < _minDist) then {
+        _minDist = _dist;
+        _responder = _x;
+    };
+} forEach _downed;
+
+// _responder is now the closest downed unit (or objNull)
+
+private _convo = switch (_action) do {
+
+    case "help": {
+        systemChat "help case fired.";
+        "revive_help";
+    };
+
+    case "heal": {
+        if (!isNull _responder) then {
+            // per-target variable to track heals
+            private _alreadyHealed = _responder getVariable ["reviveConvoPlayed", false];
+
+            if (!_alreadyHealed) then {
+                // first time healing this unit — play convo
+                _responder setVariable ["reviveConvoPlayed", true, true]; // mark as done
+                systemChat "heal case fired.";
+
+                if (_user == scout) then {
+                    ["revive_healer_scout", [_user, _responder]] remoteExec ["foxclub_fnc_conversation", 0];
+                } else {
+                    ["revive_healer", [_user, _responder]] remoteExec ["foxclub_fnc_conversation", 0];
+                };
+            } else {
+                // second attempt on same unit
+                systemChat "heal fired twice!";
+            };
+        };
+    };
+
+    case "revive": { systemChat "revive case fired."; };
+    case "drag_player": { systemChat "drag_player case fired."; };
+    case "undrag_player": { systemChat "undrag_player case fired."; };
+    case "pickup_player": { systemChat "pickup_player case fired."; };
+    case "drop_player": { systemChat "drop_player case fired."; };
+    case "carried": { systemChat "carried case fired."; };
+    case "dragged": { systemChat "dragged case fired."; };
+    case "general": { systemChat "general case fired."; };
+
+    default { "" };
+};
+	

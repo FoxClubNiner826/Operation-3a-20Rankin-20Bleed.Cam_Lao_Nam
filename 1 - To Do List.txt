@@ -6,7 +6,7 @@ TO DO UP NEXT:
 Current TASK:
 - see if an grenade explode EH is worth putting for the cache task.
     - Instead I used a Killed EH. Just need to test that this works with the tasks completion and if so then remove the voice lines for the holdactions.
-
+- is it possible to use the new blank sqf from the advanced revive module to start my own convo?
     
 DEDICATED SERVER TESTING:
 - verify 3d task marker positions
