@@ -51,7 +51,7 @@ action to repeat wont work cause there is an addaction nested in the hold action
 place the hold action in OPR then the player will get the option to use it again regardless of death. And because of the remove action command in init
 duplicates of the hold action wont be a problem.
 */
-
+/*
 if (!isNil "weaponcache") then {
 _weaponCacheActionID = [
 	weaponcache,
@@ -223,7 +223,7 @@ _foodCacheActionID = [
 ] call BIS_fnc_holdActionAdd;
 missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
 };
-
+*/
 
 //////////////////////////////////////////////////
 //                                              //

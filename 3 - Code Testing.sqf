@@ -2468,3 +2468,99 @@ waitUntil {
 && 
 triggerActivated trg_heliRTB;
 
+
+
+
+
+this addEventHandler ["Killed", {
+    params ["_unit", "_killer", "_instigator"];
+
+    [_unit] spawn {
+        params ["_unit"];
+
+        //systemChat format ["%1 died!", _unit];
+
+        private _scout = missionNamespace getVariable ["scout", objNull];
+        private _convo = ["cachepass", "cachepassScout"] select (_unit == _scout);
+
+        // Mark cache destroyed globally
+        missionNamespace setVariable ["weaponsCacheDestroyed", true, true];
+
+        // Explosion effect
+        "M_Mo_82mm_AT_LG" createVehicle (getPos testCache);
+
+        sleep 1;
+
+        // Cleanup destroyed objects
+        deleteVehicle testCache;
+        deleteVehicle ammo_crate2;
+        deleteVehicle ammo_crate3;
+        deleteVehicle shelter1;
+
+        sleep 1;
+
+        // If both caches destroyed, trigger conversation
+        if (
+            missionNamespace getVariable ["weaponsCacheDestroyed", false] &&
+            missionNamespace getVariable ["foodCacheDestroyed", false]
+        ) then {
+
+            [_convo, [_unit]] remoteExec [
+                "FoxClub_fnc_Conversation",
+                allPlayers select { _x distance _unit <= 100 }
+            ];
+        };
+    };
+}];
+
+
+
+this addEventHandler ["Killed", {
+    params ["_unit", "_killer", "_instigator"];
+
+    [_unit] spawn {
+        params ["_unit"];
+
+        //systemChat format ["%1 died!", _unit];
+
+        private _scout = missionNamespace getVariable ["scout", objNull];
+        private _convo = ["cachepass", "cachepassScout"] select (_unit == _scout);
+
+        // Mark cache destroyed globally
+        missionNamespace setVariable ["foodCacheDestroyed", true, true];
+
+        // Explosion effect
+        "M_Mo_82mm_AT_LG" createVehicle (getPos foodcache);
+
+        sleep 1;
+
+        // Cleanup destroyed objects
+        deletevehicle foodcache;
+        deletevehicle food1;
+        deletevehicle food4;
+        deletevehicle food5;
+        deletevehicle food6;
+        deletevehicle food7;
+        deletevehicle food8;
+        deletevehicle food9;
+        deletevehicle food10;
+        sleep 1;
+
+        // If both caches destroyed, trigger conversation
+        if (
+            missionNamespace getVariable ["weaponsCacheDestroyed", false] &&
+            missionNamespace getVariable ["foodCacheDestroyed", false]
+        ) then {
+            
+            [_convo, [_unit]] remoteExec [
+                "FoxClub_fnc_Conversation",
+                allPlayers select { _x distance _unit <= 100 }
+            ];
+        };
+    };
+}];
+
+
+
+			
+		

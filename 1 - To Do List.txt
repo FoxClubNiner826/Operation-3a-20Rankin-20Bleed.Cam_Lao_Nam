@@ -3,14 +3,10 @@ TO DO UP NEXT:
 // When you are done testing NPCs at staging area put this stuff back to normal
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
-Current TASK: Work on the bug first then setup the advanced revive module parameters and test it.
+Current TASK:
+- see if an grenade explode EH is worth putting for the cache task.
+    - Instead I used a Killed EH. Just need to test that this works with the tasks completion and if so then remove the voice lines for the holdactions.
 
-Bug: If the client kills the local host, which is the group leader, a loop will form where the AI says over and over that they are taking command.
-
-Design: Try to implement the advanced revive module from SOG, while cutting out the voice overs.
-    - First I will try to override the funciton that calls the voices, by adding a blank file in it's place.
-        - This works great. By redefining the function with a file path to a blank .sqf, the voice lines are never spoken. But an issue remains of an error message at the button of the screen.
-            - Removed the recompile line in description.ext fixed it
     
 DEDICATED SERVER TESTING:
 - verify 3d task marker positions
@@ -40,7 +36,7 @@ TO DO MASTER LIST:
     
     LOW PRIORITY:
         
-        - see if an grenade explode EH is worth putting for the cache task.
+        
         - Update all needed pictures in the mission from tasks to victory/death screens. This should be near the last thing you do
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
         - Entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
@@ -175,7 +171,18 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 - move pics files back
 
 
+
+
+
+
+
 CHANGE LOG:
+Bug Completed: If the client kills the local host, which is the group leader, a loop will form where the AI says over and over that they are taking command.
+    I think that I don't need the EH for leader changed. Maybe it's needed but I don't remember it's use case so I will disable for now.
+Design Completed: Try to implement the advanced revive module from SOG, while cutting out the voice overs.
+    - First I will try to override the funciton that calls the voices, by adding a blank file in it's place.
+        - This works great. By redefining the function with a file path to a blank .sqf, the voice lines are never spoken. But an issue remains of an error message at the button of the screen.
+            - Removed the recompile line in description.ext fixed it
 Design: Added achievements. I think this is a neat idea but it will add a bunch of
     scope to a project already struggling to find completion. Reevaluate later if you wish.
     - Now that I know more this wouldn't be that hard to implement. The whole thing is drive by global variables that already exist. 
@@ -479,6 +486,9 @@ Summary of the group leader mechanic that I've learned so far.
         - Unless the editor placed leader comes into the mission.
     - The leader wont change with death.
         - Might change if respawn is disbled.
+    - The leader will change if the leader is downed but still able to be revived.
+        - Seems to give it to the next AI in the group order.
+            - If you kill the downed leader the same AI will still be the new leader, until the original leader respawns.
     - The leader can change if the leader exits the mission. Unsure of priority for units.
         - They cannot get it back by rejoining.
 2. The group leader is defined in the editor.

@@ -331,7 +331,7 @@ if (isMultiplayer) then {
 //  MAKES HUMAN LEADER IF LEADER IS CHAGED TO AI  //
 //                                                //
 ////////////////////////////////////////////////////
-/*
+/* I can't remember when this is needed. Its possible that the player disconnects one below covers its use case.
 [] spawn {
     sleep 3;
 
