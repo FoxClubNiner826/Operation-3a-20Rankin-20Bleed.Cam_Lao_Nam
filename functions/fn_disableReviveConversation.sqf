@@ -18,6 +18,12 @@
 */
 
 //systemChat "fired";
+hint "Override function fn_disableReviveConversation is running";
+
+/*
+   Disabled revive conversation.
+*/
+
 
 params ["_user", "_action"];
 

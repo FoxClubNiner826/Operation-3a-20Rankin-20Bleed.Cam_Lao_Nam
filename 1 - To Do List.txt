@@ -4,18 +4,14 @@ TO DO UP NEXT:
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
 Current TASK:
+
+clean up any code remaining from my advance revive adventure. put it in script repository for later if need.
+
 - see if an grenade explode EH is worth putting for the cache task.
     - Instead I used a Killed EH. Just need to test that this works with the tasks completion and if so then remove the voice lines for the holdactions.
 
 
-- is it possible to use the new blank sqf from the advanced revive module to start my own convo?
-    - Yes with some caveats. And because of that it is a half-assed hacky solution. So I decide against it. I will use default Arma 3 revive system. And in the future I can decide to make my own revive system that can use my own convo funciton code.
-        First for some reason the SOG team made the holdAction icons look bigger than normal which annoys me since there is no more parity in the       mission with a standard size holdAciton icon. 
-        Second, I can make a convo play but only after the hold is complete not at the start which could add immersion. 
-        Third, I have to make my own filter for the revived person since they don't pass that param. Which I did and seems to work OK but who knows what ever else will cause it to break. 
-        Forth, I don't think its a big deal to have dragging/carrying. People will just use ACE if they want that anyways. 
-        Fifth, It appears to affect singleplayer which is really weird cause you get a crazy long bleed out timer. But you get to withstand and crawl around and shot/throw grenades.
-    
+   
 DEDICATED SERVER TESTING:
 - verify 3d task marker positions
 - worked on some triggers that let the player know if they are boating in the wrong direction.
@@ -186,6 +182,13 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Design Decision: is it possible to use the new blank sqf from the advanced revive module to start my own convo?
+    - Yes with some caveats. And because of that it is a half-assed hacky solution. So I decide against it. I will use default Arma 3 revive system. And in the future I can decide to make my own revive system that can use my own convo funciton code.
+        First for some reason the SOG team made the holdAction icons look bigger than normal which annoys me since there is no more parity in the       mission with a standard size holdAciton icon. 
+        Second, I can make a convo play but only after the hold is complete not at the start which could add immersion. 
+        Third, I have to make my own filter for the revived person since they don't pass that param. Which I did and seems to work OK but who knows what ever else will cause it to break. 
+        Forth, I don't think its a big deal to have dragging/carrying. People will just use ACE if they want that anyways. 
+        Fifth, It appears to affect singleplayer which is really weird cause you get a crazy long bleed out timer. But you get to withstand and crawl around and shot/throw grenades.
 Bug Completed: If the client kills the local host, which is the group leader, a loop will form where the AI says over and over that they are taking command.
     I think that I don't need the EH for leader changed. Maybe it's needed but I don't remember it's use case so I will disable for now.
 Design Completed: Try to implement the advanced revive module from SOG, while cutting out the voice overs.

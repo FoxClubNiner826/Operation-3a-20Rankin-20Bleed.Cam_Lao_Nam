@@ -21,6 +21,16 @@ class CfgFunctions
             class testFunction {};
         };
     };
+    class bis
+    {
+        class Revive
+        {
+            class reviveOnState
+            {
+                file = "functions\fn_reviveOnState.sqf";
+            };
+        };
+    };
     class vn
     {
         class revive
@@ -31,6 +41,7 @@ class CfgFunctions
             };
         };
     };
+
 };
 
 class CfgIdentities
