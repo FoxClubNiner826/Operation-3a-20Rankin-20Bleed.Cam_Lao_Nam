@@ -6,7 +6,15 @@ TO DO UP NEXT:
 Current TASK:
 - see if an grenade explode EH is worth putting for the cache task.
     - Instead I used a Killed EH. Just need to test that this works with the tasks completion and if so then remove the voice lines for the holdactions.
+
+
 - is it possible to use the new blank sqf from the advanced revive module to start my own convo?
+    - Yes with some caveats. And because of that it is a half-assed hacky solution. So I decide against it. I will use default Arma 3 revive system. And in the future I can decide to make my own revive system that can use my own convo funciton code.
+        First for some reason the SOG team made the holdAction icons look bigger than normal which annoys me since there is no more parity in the       mission with a standard size holdAciton icon. 
+        Second, I can make a convo play but only after the hold is complete not at the start which could add immersion. 
+        Third, I have to make my own filter for the revived person since they don't pass that param. Which I did and seems to work OK but who knows what ever else will cause it to break. 
+        Forth, I don't think its a big deal to have dragging/carrying. People will just use ACE if they want that anyways. 
+        Fifth, It appears to affect singleplayer which is really weird cause you get a crazy long bleed out timer. But you get to withstand and crawl around and shot/throw grenades.
     
 DEDICATED SERVER TESTING:
 - verify 3d task marker positions
@@ -121,6 +129,7 @@ TO DO MASTER LIST:
                 - have scout impersonate the enemy to gain advantage
                     - send the patrol in lumphat away from town
     ABANDONED STUFF:
+        - Make my own revive system so I can intigrate my convo function for revives. This is a large undertaking so lets shelve it unless it's completely needed later. A stop gap is to use the advanced revive module but it also has downsides.
         - On the client, helicopter flys glitchy. There is no fix for this since the group can only be local to one machine. More detailed 
             in the log
         - Design: I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache

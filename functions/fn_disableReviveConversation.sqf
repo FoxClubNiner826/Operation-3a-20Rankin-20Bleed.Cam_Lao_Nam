@@ -21,13 +21,9 @@
 
 params ["_user", "_action"];
 
-systemChat format [
-    "Revive Convo Debug: user=%1 | revive_target=%2",
-    _user,
-    (_user getVariable ['vn_revive_target', objNull])
-];
-
 if (!alive _user) exitWith {};
+
+private _scout  = missionNamespace getVariable ["scout", objNull];
 
 private _radius = 6;
 private _near = _user nearEntities ["CAManBase", _radius];
@@ -54,26 +50,50 @@ private _convo = switch (_action) do {
     };
 
     case "heal": {
-        systemChat "heal case fired.";
+    systemChat "heal case fired.";
 
-        if (_user == scout) then {
-            ["revive_healer_scout", [_user, _responder]] remoteExec ["foxclub_fnc_conversation", 0];
-        } else {
-            ["revive_healer", [_user, _responder]] remoteExec ["foxclub_fnc_conversation", 0];
+        if (_user != _scout && _responder != _scout) then {
+            systemChat "neither user nor responder is scout.";
+            ["heal_blu_blu", [_user, _responder]]
+                remoteExec ["foxclub_fnc_conversation", 0];
+        }
+        else {
+            if (_user != _scout && _responder == _scout) then {
+                systemChat "user is not the scout but the responder is.";
+                ["heal_blu_scout", [_user, _responder]]
+                    remoteExec ["foxclub_fnc_conversation", 0];
+            }
+            else {
+                systemChat "user is the scout.";
+                ["heal_scout_blu", [_user, _responder]]
+                    remoteExec ["foxclub_fnc_conversation", 0];
+            };
         };
     };
 
     case "revive": {
         systemChat "revive case fired.";
 
-        if (_user == scout) then {
-            ["revive_healer_scout", [_user, _responder]] remoteExec ["foxclub_fnc_conversation", 0];
-        } else {
-            ["revive_healer", [_user, _responder]] remoteExec ["foxclub_fnc_conversation", 0];
+        if (_user != _scout && _responder != _scout) then {
+            systemChat "neither user nor responder is scout.";
+            ["revive_blu_blu", [_user, _responder]]
+                remoteExec ["foxclub_fnc_conversation", 0];
+        }
+        else {
+            if (_user != _scout && _responder == _scout) then {
+                systemChat "user is not the scout but the responder is.";
+                ["revive_blu_scout", [_user, _responder]]
+                    remoteExec ["foxclub_fnc_conversation", 0];
+            }
+            else {
+                systemChat "user is the scout.";
+                ["revive_scout_blu", [_user, _responder]]
+                    remoteExec ["foxclub_fnc_conversation", 0];
+            };
         };
     };
 
-    //case "revive": { systemChat "revive case fired."; };
+    
     case "drag_player": { systemChat "drag_player case fired."; };
     case "undrag_player": { systemChat "undrag_player case fired."; };
     case "pickup_player": { systemChat "pickup_player case fired."; };

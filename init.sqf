@@ -81,31 +81,49 @@ foxclub_var_conversations = createHashMapFromArray [
 			[0,"What's on your mind P.O.?", "answer"]
 		]
 	],
-	["revive_help", // 2 d
+	["heal_blu_blu", 
 		[
-			[0,"This is the convo for revive help.", "answer"],
-			[1,"Thanks for the revive help.", "answer"]
+			[0,"Hold still, I got you. Pressure on that, don’t move.", "answer"],
+			[1,"I’m good, I’m good—keep me in the fight.", "answer"]
 		]
 	],
-	["revive_heal", // 2 d
+	["heal_blu_scout", 
 		[
-			[0,"This is the convo for revive heal.", "answer"],
-			[1,"Thanks for the revive heal.", "answer"]
+			[0,"Easy, Kit. Stay with me, I’ve got you.", "answer"],
+			[1,"I stay. I’m good. Just finish fast.", "answer"]
 		]
 	],
-	["revive_revived", // 2 d
+	["heal_scout_blu", 
 		[
-			[0,"This is the convo for revive revived.", "answer"],
-			[1,"Thanks for the revive revived.", "answer"]
+			[0,"Hey, stay awake. I fix you.", "answer"],
+			[1,"Just patch it and I’ll move.”", "answer"]
 		]
 	],
-	["drag_player", // 2 d
+	["revive_blu_blu", 
+		[
+			[0,"You’re patched. Try not to leak again till we’re done.", "answer"],
+			[1,"“No promises. Let’s move.", "answer"]	
+		]
+	],
+	["revive_blu_scout", 
+		[
+			[0,"Bandage holds. Don’t push it too hard.", "answer"],
+			[1,"I only push to kill enemy. No more.", "answer"]	
+		]
+	],
+	["revive_scout_blu",
+		[
+			[0,"I fix. You move now.", "answer"],
+			[1,"Thanks Kit. Let's hit it.", "answer"]
+		]
+	],
+	["drag_player", 
 		[
 			[0,"drag_player", "answer"],
 			[1,"Thanks for the revive revived.", "answer"]
 		]
 	],
-	["undrag_player", // 2 d
+	["undrag_player", 
 		[
 			[0,"undrag_player", "answer"],
 			[1,"Thanks for the revive revived.", "answer"]
@@ -139,41 +157,6 @@ foxclub_var_conversations = createHashMapFromArray [
 		[
 			[0,"general", "answer"],
 			[1,"Thanks for the revive revived.", "answer"]
-		]
-	],
-	["revive_healer_noScout", // 2 d
-		[
-			[0,"I am the healer. I am not the scout.", "answer"],
-			[1,"I am not the scout. Thanks for revive.", "answer"]	
-		]
-	],
-	["revive_healer", // 2 d
-		[
-			[0,"I am stopping bleeding. I am not the scout.", "answer"],
-			[1,"I am the scout. Thanks for stopping bleeding.", "answer"]	
-		]
-	],
-	["revive_healer_scout", // 2 d
-		[
-			[0,"I am the healer. I am the scout!", "answer"],
-			[1,"Thanks for the revive scout.", "answer"]
-		]
-	],
-	["revived_blu_scout", // 2 d
-		[
-			[0,"You are now revived. I am not the scout.", "answer"],
-			[1,"I am the scout. I am now fully revived.", "answer"]	
-		]
-	],
-	["revived_scout_blu", // 2 d
-		[
-			[0,"You are now revived. I am the scout.", "answer"],
-			[1,"Thanks for the revive, scout.", "answer"]
-		]
-	],
-	["revive_casualty", // 2 d
-		[
-			[0,"I am the casualty", "answer"]
 		]
 	],
 	["mpbanter1", // 3 d

@@ -2621,7 +2621,11 @@ private _convo = switch (_action) do {
         };
     };
 
-    case "revive": { systemChat "revive case fired."; };
+    case "revive": { if (_user == scout) then {
+                    ["revived_scout_blu", [_user, _responder]] remoteExec ["foxclub_fnc_conversation", 0];
+                } else {
+                    ["revived_blu_scout", [_user, _responder]] remoteExec ["foxclub_fnc_conversation", 0];
+                }; };
     case "drag_player": { systemChat "drag_player case fired."; };
     case "undrag_player": { systemChat "undrag_player case fired."; };
     case "pickup_player": { systemChat "pickup_player case fired."; };

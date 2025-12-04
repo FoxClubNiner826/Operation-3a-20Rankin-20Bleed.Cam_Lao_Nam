@@ -546,6 +546,3 @@ private _group = playergroup;
     };
 };
 };
-
-
-
