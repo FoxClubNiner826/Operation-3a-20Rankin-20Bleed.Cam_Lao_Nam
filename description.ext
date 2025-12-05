@@ -18,6 +18,8 @@ class CfgFunctions
             class achievements {};
             class createAchievementTriggers {};
             class deleteAchievementTriggers {};
+            class revive_conversation_start {};
+            class revive_conversation_finish {};
             class testFunction {};
         };
     };

@@ -7,16 +7,15 @@ private _codeStart =
 {
 	SET_BEING_REVIVED(_a0,true);
 	hint "on start fired";
-	["heal_blu_scout", [_caller, _target]] remoteExec [
-			"FoxClub_fnc_Conversation",
-			allPlayers select { _x distance _target <= 100 }
-		];
+	[_caller, _target] call foxClub_fnc_revive_conversation_start;
 	//start revive animation
 	player playAction "medicStart";
 };
 private _codeProgress = {};
 private _codeCompleted =
 {
+	[_caller, _target] call foxClub_fnc_revive_conversation_finish;
+	
 	SET_BEING_REVIVED(_target,false);
 
 	if (bis_revive_killfeedShow) then

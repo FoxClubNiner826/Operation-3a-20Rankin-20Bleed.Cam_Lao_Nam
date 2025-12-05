@@ -117,6 +117,61 @@ foxclub_var_conversations = createHashMapFromArray [
 			[1,"Thanks Kit. Let's hit it.", "answer"]
 		]
 	],
+	["revive_blu_blu_start_1", 
+		[
+			[0,"Hold still, I got you. Pressure on that, don’t move.", "answer"]
+		]
+	],
+	["revive_start_blu_blu_1", 
+		[
+			[0,"“Easy, Kit. I’m right here. Don’t drift.", "answer"]
+		]
+	],
+	["revive_start_blu_blu_2", 
+		[
+			[0,"Stay with me, Kit. Keep your eyes open.", "answer"]
+		]
+	],
+	["revive_start_blu_blu_3", 
+		[
+			[0,"Breathe, Kit. Nice and slow. I’ve got you.", "answer"]
+		]
+	],
+	["revive_start_blu_blu_4", 
+		[
+			[0,"Steady, Kit. I’m not letting you go down.", "answer"]
+		]
+	],
+	["revive_start_blu_blu_5", 
+		[
+			[0,"Focus up, Kit. Look at me. That’s it.", "answer"]
+		]
+	],
+	["revive_start_blu_blu_6", 
+		[
+			[0,"Don’t fade, Kit. I’m here. You’re fine.", "answer"]
+		]
+	],
+	["revive_scout_blu_start_1",
+		[
+			[0,"Hey, stay awake. I fix you.", "answer"]
+		]
+	],
+	["revive_blu_blu_finish_1", 
+		[
+			[0,"You’re patched. Try not to leak again till we’re done.", "answer"]
+		]
+	],
+	["revive_blu_scout_finish_1", 
+		[
+			[0,"I stay. I’m good. Just finish fast.", "answer"]
+		]
+	],
+	["revive_scout_blu_finish_1",
+		[
+			[0,"I fix. You move now.", "answer"]
+		]
+	],
 	["drag_player", 
 		[
 			[0,"drag_player", "answer"],

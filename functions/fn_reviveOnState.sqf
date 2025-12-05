@@ -173,6 +173,7 @@ switch (_state) do
 			//create revive & secure actions
 			if (side group player getFriend side group _unit >= 0.6) then
 			{
+				// this file contains the actual addaction code
 				#include "_addAction_revive.inc"
 			}
 			else
