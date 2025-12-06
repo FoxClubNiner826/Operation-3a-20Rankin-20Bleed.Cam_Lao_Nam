@@ -4,33 +4,19 @@ TO DO UP NEXT:
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
 Current TASK:
-
-clean up any code remaining from my advance revive adventure. put it in script repository for later if need.
-
-- see if an grenade explode EH is worth putting for the cache task.
-    - Instead I used a Killed EH. Just need to test that this works with the tasks completion and if so then remove the voice lines for the holdactions.
-
-
-   
-DEDICATED SERVER TESTING:
-- verify 3d task marker positions
-- worked on some triggers that let the player know if they are boating in the wrong direction.
-- mercinko should have no questions left. but the way its scripted looks like they still will be there.
-- fixed issue where the POW was saying SOG voice lines because I changed his object type and forgot to update it in the restrict voices module
-- test infil convo for working on dedicated server.
-- Test if players still have holdAction after respawn. there is some question as to if they persist.
-- Test if skip to infil needs to be remoteexeced. weather and time might not change. you can copy some code from radiohq.sqf
-- the sam site targets player which could lead to the pilot not getting shot down. needs more testing to see how often that would happen.
-- Any code with _responder might have unit talking to itself. take a look during playtesting.
-- If during testing notifications are overlaping each other at the infil spot then consider disabling the notifications for the several tasks 
-    and try to use this to create a single notification of "many tasks created" https://community.bistudio.com/wiki/BIS_fnc_showNotification      
-- There is some question to how leadership is changed when a leader disconnects. To test it properly we need to setup the laptop and have two
-    clients. See if you are able to get the scout to be the group leader with 2 clients connected. He is supposed to be 2nd because of editor
-    order but I never could get it to work with local host + client testing. I have added an EH that should reassign leader to a human if
-    the AI is ever given leader.
+- I am going to use BIS_fnc_showNotification to create single notification instead of the 5 that would normally pop up. This is a cleaner approach. Tasks notifications wont be able to display on top of each other and it also prevents from annoying players with too many notifications. Another benefeit is that I get to control more reliably the order the tasks are listed in the journal.
+    - I will need to create a function that creates these tasks.
+        - I can copy the 3d positon of the current tasks in order to preserve their 3d icon placement before deleting them.
+    - I will need to create some server only triggers.
+        - I can copy the condition of the triggers in the editor before deleting them.
+    - The notification will need to be remoteExec.
+    - I may be able to reuse this function and the triggers for the backup tasks and triggers that are needed if players fail the infil task
+    - I can get rid of the duplicate tasks and triggers for skip to infil situation now that I know how to use setTaskState.
+        In the skiptoIngress file I can delete any triggers/tasks that are not needed and create my own.
+    - Try to keep the tasks names the same else you will have to update the 3d icon options (map board).
 
 
-BUGS FROM LATEST PLAYTHROUGH:
+
 
 
 TO DO MASTER LIST:
@@ -39,8 +25,23 @@ TO DO MASTER LIST:
     MEDIUM PRIORITY:
     
     LOW PRIORITY:
-        
-        
+        - Finish work on adding convos to the revive system, theres a JIP one I need to overwrite as well
+        -add patrols to each objective and adjust the tracker module to reflect the changes. This will make the ghost achievement more and understood by players.
+        - Do a test to see if this is possible before wasting a ton of time. Design: If you put on an enemy back pack you get to know if you are being tracked and whatever other info/things could be
+            a boon to players. I think this is a neat idea that could play into having an indiginous unit in the group but as it sits 
+            right now I don't see the value it can add mechanic wise.
+            - I've thought of some interesting ideas. Also this could be an interesting risk reward mechanic. The risk is the patrol alerting 
+                the general but if they get the backpack without alerting him then they gain an advantage on intel. We can extend this trade off; If players disable the radio tower then they turn off the trackers but then they don't get to use the back pack. Might need to think about this more because any usefull info might already be known.
+                - Lets players know if they are currently tracked.
+                - let's players know whenever things happen in the mission behind the scenes:
+                    - stab was found
+                    - reinforcement sent to lumphat
+                    - reinforcement sent to road
+                    - helicopter inbound
+                - have scout impersonate the enemy to gain advantage
+                    - send the patrol in lumphat away from town
+                    - say that rankin has been captured. results in a delay of trackers.
+                    - If a flare goes off you get one chance to lie on the radio and say that it's a false alarm.
         - Update all needed pictures in the mission from tasks to victory/death screens. This should be near the last thing you do
             because the mission is ever evolving and what you use now might not be usable later, which results in wasted time.
         - Entire SFX pass for whole project for addactions and hold actions and whatever else you can think of (do this before voices so you can 
@@ -96,47 +97,52 @@ TO DO MASTER LIST:
             area before players leave (not verified). Do testing of performace benefeits and employ as needed.
             - I did one test with the NPCs with DS on/off. No noticable difference. Maybe 1-2fps difference, which could be due to testing 
                 methodology or other reasons.
+    
+    
+DEDICATED SERVER TESTING:
+- verify 3d task marker positions
+- worked on some triggers that let the player know if they are boating in the wrong direction.
+- mercinko should have no questions left. but the way its scripted looks like they still will be there.
+- fixed issue where the POW was saying SOG voice lines because I changed his object type and forgot to update it in the restrict voices module
+- test infil convo for working on dedicated server.
+- Test if players still have holdAction after respawn. there is some question as to if they persist.
+- Test if skip to infil needs to be remoteexeced. weather and time might not change. you can copy some code from radiohq.sqf
+- the sam site targets player which could lead to the pilot not getting shot down. needs more testing to see how often that would happen.
+- Any code with _responder might have unit talking to itself. take a look during playtesting.
+- If during testing notifications are overlaping each other at the infil spot then consider disabling the notifications for the several tasks 
+    and try to use this to create a single notification of "many tasks created" https://community.bistudio.com/wiki/BIS_fnc_showNotification      
+- There is some question to how leadership is changed when a leader disconnects. To test it properly we need to setup the laptop and have two
+    clients. See if you are able to get the scout to be the group leader with 2 clients connected. He is supposed to be 2nd because of editor
+    order but I never could get it to work with local host + client testing. I have added an EH that should reassign leader to a human if
+    the AI is ever given leader.
 
 
-    IDEA GRAVEYARD:
-        - Design: Try to incourage the hand signal module by punishing players using their radios. 
-            Send trackers after them if they use it too much. I like this idea but it will add too much scope to the mission.
-            Perhaps in the future for another mission or if I ever finish this one with time to spare.
-            - This simulates the ability of the enemy to use radio direction finding.
-        - Design: Mission fails if friendly fire threshold is reached. I don't think I need to do this.
-            - If anyone plays this mission almost certainly they know each other. Let social acceptance guide player behavior here.
-            - Players punished by accidental friendly fire can feel can feel like it's unfair or unfun rule.
-            - perhaps just disable FF in the staging area.
-        - Design: Disable the squad radio chatter. It is vanilla ARMA sounds so it breaks immersion for me. But if I do this then it could
-            hamper important game feedback for single players would want AI. Unfortunantley I think we need to keep it unless playtesting
-            proves otherwise.
-            - You could have an option from the map board to turn this off (enableRadio, enableSentences, disableAI "radioprotocol").
-        - Design: If you put on an enemy back pack you get to know if you are being tracked and whatever other info/things could be
-            a boon to players. I think this is a neat idea that could play into having an indiginous unit in the group but as it sits 
-            right now I don't see the value it can add mechanic wise.
-            - I've thought of some interesting ideas. Also this could be an interesting risk reward mechanic. The risk is the patrol alerting 
-                the general but if they get the backpack without alerting him then they gain an advantage on intel. We can extend this trade off; If players disable the radio tower then they turn off the trackers but then they don't get to use the back pack. Might need to think about this more because any usefull info might already be known.
-                - Lets players know if they are currently tracked.
-                - let's players know whenever things happen in the mission behind the scenes:
-                    - stab was found
-                    - reinforcement sent to lumphat
-                    - reinforcement sent to road
-                    - helicopter inbound
-                - have scout impersonate the enemy to gain advantage
-                    - send the patrol in lumphat away from town
-    ABANDONED STUFF:
-        - Make my own revive system so I can intigrate my convo function for revives. This is a large undertaking so lets shelve it unless it's completely needed later. A stop gap is to use the advanced revive module but it also has downsides.
-        - On the client, helicopter flys glitchy. There is no fix for this since the group can only be local to one machine. More detailed 
-            in the log
-        - Design: I think I have to add holdActions to the SAM site stuff for parity. How else do you explain to players why you can use holdAction on the cache
-            but not the SAM? I decided not to pursue this because it will add too much time to change the code and have to do more rewriting 
-            of it for little payoff of polish. This is a great learning experience on why it is better to make designs in the early part of 
-            the mission. The idea here is to have that aspect solidified so that you don't loose time reworking systems or rewriting code.
-        - Add animations to convo function: Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. 
-            Then in the function itself you can have the playmove and then animation name and also a cancel animation. 
-            Maybe mirror how say3d works in the function. Should be the same.
-                - Through much testing it is clear that there is no one size fits all approach to animations. Some animations seemingly 
-                    only work with certain commands and the same reguarding the EH for them. It's a mess and not worth pursuing.
+BUGS FROM LATEST PLAYTHROUGH:
+
+
+IDEA GRAVEYARD:
+    - Design: Try to incourage the hand signal module by punishing players using their radios. 
+        Send trackers after them if they use it too much. I like this idea but it will add too much scope to the mission.
+        Perhaps in the future for another mission or if I ever finish this one with time to spare.
+        - This simulates the ability of the enemy to use radio direction finding.
+    - Design: Mission fails if friendly fire threshold is reached. I don't think I need to do this.
+        - If anyone plays this mission almost certainly they know each other. Let social acceptance guide player behavior here.
+        - Players punished by accidental friendly fire can feel can feel like it's unfair or unfun rule.
+        - perhaps just disable FF in the staging area.
+    - Design: Disable the squad radio chatter. It is vanilla ARMA sounds so it breaks immersion for me. But if I do this then it could
+        hamper important game feedback for single players would want AI. Unfortunantley I think we need to keep it unless playtesting
+        proves otherwise.
+        - You could have an option from the map board to turn this off (enableRadio, enableSentences, disableAI "radioprotocol").
+    
+
+ABANDONED STUFF:
+    - On the client, helicopter flys glitchy. There is no fix for this since the group can only be local to one machine. More detailed 
+        in the log
+    - Add animations to convo function: Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. 
+        Then in the function itself you can have the playmove and then animation name and also a cancel animation. 
+        Maybe mirror how say3d works in the function. Should be the same.
+            - Through much testing it is clear that there is no one size fits all approach to animations. Some animations seemingly 
+                only work with certain commands and the same reguarding the EH for them. It's a mess and not worth pursuing.
 
 
 TOUGH BUGS:
@@ -174,6 +180,7 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 - make sure player groups call sign is Rankin and all at the start area
 - enable damage for command and scout unit
 - move pics files back
+- adjust multiplayer respawns settings like medic and medkit required for respawn.
 
 
 
@@ -182,19 +189,27 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Design: SCUBA Task: try the stab with scuba gear to see if we even need holdactions for it.
+    - Yes! With 8 people the boat inventory would become a mess and players won't know whos backpack belongs to who when they are done with the task.
+Design: Add the params as a mission option at the lobby for the a3 revive framework
+Design Decision: Mission: I am going to go with the default A3 revive framework because it is easier/faster to implement with my convo function. If at the end of development I want to add the SOG revive framework then I can do so. I spent about an hour of trial and error seeing if I could use the mission params from the lobby to add the SOG revive. I had some success getting the initial actions to show by running their damage EH but it wouldn't call other functions for some reason (like not action to drop a unit after carrying). I tried placing that drop sqf in my function folder but didn't work. Also tried to override files but didn't work.
+    - Clean up any code remaining from my advance revive adventure. put it in script repository for later if need.
+Design: Cache Task: see if an grenade explode EH is worth putting for the cache task.
+    - Instead I used a Killed EH. Just need to test that this works with the tasks completion and if so then remove the voice lines for the holdactions.
+        - I tested in SP that you can complete the task both before or after finding the intel in Lumphat.
+    - Remove any code related to the old holdActions to plant C4.
+        - Removed the holdActions and the remove holdAction code.
+    - Adjust the task description
+        - Remove the mention of how to plant bombs.
 Design Decision: is it possible to use the new blank sqf from the advanced revive module to start my own convo?
     - Yes with some caveats. And because of that it is a half-assed hacky solution. So I decide against it. I will use default Arma 3 revive system. And in the future I can decide to make my own revive system that can use my own convo funciton code.
-        First for some reason the SOG team made the holdAction icons look bigger than normal which annoys me since there is no more parity in the       mission with a standard size holdAciton icon. 
+        First for some reason the SOG team made the holdAction icons look bigger than normal which annoys me since there is no more parity in the mission with a standard size holdAciton icon. 
         Second, I can make a convo play but only after the hold is complete not at the start which could add immersion. 
         Third, I have to make my own filter for the revived person since they don't pass that param. Which I did and seems to work OK but who knows what ever else will cause it to break. 
         Forth, I don't think its a big deal to have dragging/carrying. People will just use ACE if they want that anyways. 
         Fifth, It appears to affect singleplayer which is really weird cause you get a crazy long bleed out timer. But you get to withstand and crawl around and shot/throw grenades.
 Bug Completed: If the client kills the local host, which is the group leader, a loop will form where the AI says over and over that they are taking command.
     I think that I don't need the EH for leader changed. Maybe it's needed but I don't remember it's use case so I will disable for now.
-Design Completed: Try to implement the advanced revive module from SOG, while cutting out the voice overs.
-    - First I will try to override the funciton that calls the voices, by adding a blank file in it's place.
-        - This works great. By redefining the function with a file path to a blank .sqf, the voice lines are never spoken. But an issue remains of an error message at the button of the screen.
-            - Removed the recompile line in description.ext fixed it
 Design: Added achievements. I think this is a neat idea but it will add a bunch of
     scope to a project already struggling to find completion. Reevaluate later if you wish.
     - Now that I know more this wouldn't be that hard to implement. The whole thing is drive by global variables that already exist. 

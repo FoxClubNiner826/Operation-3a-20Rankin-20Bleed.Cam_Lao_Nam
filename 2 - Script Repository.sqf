@@ -711,3 +711,314 @@ if (isNil "SmokeThrown") then {
         };
     }];
 };
+
+
+//////////////////////////////////////////////////
+//                                              //
+//      HOLD ACTION FOR WEAPON CACHE BOMB       //
+//                                              //
+//////////////////////////////////////////////////
+/* 
+bomb for weapon cache. Although normally you dont want non-player object addactions here in OPR, this is needed because if a player uses the hold action
+it is removed from their action menu. If they die it will remember they used the hold action and wouldnt be able to use it again. Changing the hold
+action to repeat wont work cause there is an addaction nested in the hold action and they could repeatedly add the addaction to the obhect. Thus if we 
+place the hold action in OPR then the player will get the option to use it again regardless of death. And because of the remove action command in init
+duplicates of the hold action wont be a problem.
+*/
+
+if (!isNil "weaponcache") then {
+_weaponCacheActionID = [
+	weaponcache,
+	"<t color='#FFFF00'>Place C-4 Plastic Explosive</t>",
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+	"_this distance _target < 3", //condition
+	"true", //condition progress
+	{
+		params ["_target", "_caller", "_actionID", "_args"];
+		_scout   = missionNamespace getVariable ["scout", objNull];
+		private _convo = ["cachebombPlace", "cachebombPlaceScout"] select (_caller == _scout);
+		[_convo, [_caller]] remoteExec [
+			"FoxClub_fnc_Conversation", 
+			allPlayers select {_x distance _caller <= 100}];
+	}, //code on start
+	{}, // code every tick
+	{
+		params ["_target", "_caller", "_actionID", "_args"];
+		_scout   = missionNamespace getVariable ["scout", objNull];
+		private _convo = ["cachebombset", "cachebombsetScout"] select (_caller == _scout);
+		[_convo, [_caller]] remoteExec [
+			"FoxClub_fnc_Conversation", 
+			allPlayers select {_x distance _caller <= 100}];
+		// holdAction
+		[
+		player,
+		"<t color='#FF0000'>Detonate Weapons Cache</t>",
+		"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+		"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+		"_this distance weaponcache < 60", //condition
+		"true", //condition progress
+		{
+			params ["_target", "_caller", "_actionID", "_args"];
+			_scout   = missionNamespace getVariable ["scout", objNull];
+			private _convo = ["cachebombCount", "cachebombCountScout"] select (_caller == _scout);
+			[_convo, [_caller]] remoteExec [
+				"FoxClub_fnc_Conversation", 
+				allPlayers select {_x distance _caller <= 100}];	
+		}, //code on start
+		{}, // code every tick
+		{	
+			params ["_target", "_caller", "_actionID", "_args"];
+			_scout   = missionNamespace getVariable ["scout", objNull];
+			private _convo = ["cachepass", "cachepassScout"] select (_caller == _scout);
+			missionNamespace setVariable ["weaponsCacheDestroyed", true, true];	
+			"M_Mo_82mm_AT_LG" createVehicle (getPos weaponcache);
+			sleep 1;
+			deletevehicle weaponcache;
+			deletevehicle ammo_crate2;
+			deletevehicle ammo_crate3;
+			deletevehicle shelter1;
+			sleep 1;
+			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && 
+				missionNamespace getvariable ["foodCacheDestroyed", false]) then {
+					[_convo, [_caller]] remoteExec [
+						"FoxClub_fnc_Conversation", 
+						allPlayers select {_x distance _caller <= 100}];
+				};	
+		}, // code on finish
+		{}, // code on interuption
+		[], //arguements
+		3, //duration
+		8, //order from top
+		true, //remove on finish
+		false, //show if unconcious
+		false //show in middle of screen
+		] call BIS_fnc_holdActionAdd;
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	3, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+] call BIS_fnc_holdActionAdd;
+missionNamespace setVariable ["weaponCacheActionID", _weaponCacheActionID];
+};
+
+
+//////////////////////////////////////////////////
+//                                              //
+//        HOLD ACTION FOR FOOD CACHE BOMB       //
+//                                              //
+//////////////////////////////////////////////////
+
+if (!isNil "foodcache") then { // have to do the nil check because you would get an error since this runs on respawn and the foodcache might not be alive.
+_foodCacheActionID = [
+	foodcache,
+	"<t color='#FFFF00'>Place C-4 Plastic Explosive</t>",
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+	"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+	"_this distance _target < 3", //condition
+	"true", //condition progress
+	{
+		params ["_target", "_caller", "_actionID", "_args"];
+		_scout   = missionNamespace getVariable ["scout", objNull];
+		private _convo = ["cachebombPlace", "cachebombPlaceScout"] select (_caller == _scout);
+		[_convo, [_caller]] remoteExec [
+			"FoxClub_fnc_Conversation", 
+			allPlayers select {_x distance _caller <= 100}];
+	}, //code on start
+	{}, // code every tick
+	{
+		params ["_target", "_caller", "_actionID", "_args"];
+		_scout   = missionNamespace getVariable ["scout", objNull];
+		private _convo = ["cachebombset", "cachebombsetScout"] select (_caller == _scout);
+		[_convo, [_caller]] remoteExec [
+			"FoxClub_fnc_Conversation", 
+			allPlayers select {_x distance _caller <= 100}];
+		// holdAction
+		[
+		player,
+		"<t color='#FF0000'>Detonate Food Cache</t>",
+		"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //idle icon 
+		"a3\ui_f_oldman\data\igui\cfg\holdactions\destroy_ca.paa", //progress icon
+		"_this distance foodcache < 60", //condition
+		"true", //condition progress
+		{
+			params ["_target", "_caller", "_actionID", "_args"];
+			_scout   = missionNamespace getVariable ["scout", objNull];
+			private _convo = ["cachebombCount", "cachebombCountScout"] select (_caller == _scout);
+			[_convo, [_caller]] remoteExec [
+				"FoxClub_fnc_Conversation", 
+				allPlayers select {_x distance _caller <= 100}];	
+		}, //code on start
+		{}, // code every tick
+		{	
+			params ["_target", "_caller", "_actionID", "_args"];
+			_scout   = missionNamespace getVariable ["scout", objNull];
+			private _convo = ["cachepass", "cachepassScout"] select (_caller == _scout);
+			missionNamespace setVariable ["foodCacheDestroyed", true, true];
+			"M_Mo_82mm_AT_LG" createVehicle (getPos foodcache);
+			sleep 1;
+			deletevehicle foodcache;
+			deletevehicle food1;
+			deletevehicle food4;
+			deletevehicle food5;
+			deletevehicle food6;
+			deletevehicle food7;
+			deletevehicle food8;
+			deletevehicle food9;
+			deletevehicle food10;
+			sleep 1;
+			if (missionNamespace getvariable ["weaponsCacheDestroyed", false] && 
+				missionNamespace getvariable ["foodCacheDestroyed", false]) then {
+					[_convo, [_caller]] remoteExec [
+						"FoxClub_fnc_Conversation", 
+						allPlayers select {_x distance _caller <= 100}];
+				};	
+		}, // code on finish
+		{}, // code on interuption
+		[], //arguements
+		3, //duration
+		8, //order from top
+		true, //remove on finish
+		false, //show if unconcious
+		false //show in middle of screen
+		] call BIS_fnc_holdActionAdd;	
+	}, // code on finish
+	{}, // code on interuption
+	[], //arguements
+	3, //duration
+	8, //order from top
+	true, //remove on finish
+	false, //show if unconcious
+	false //show in middle of screen
+] call BIS_fnc_holdActionAdd;
+missionNamespace setVariable ["foodCacheActionID", _foodCacheActionID];
+};
+
+
+//missionNamespace getvariable ["weaponCacheActionID", false]
+    // these are the correct way to remove holdactions. Just make sure that the holdACtion itself is in a variable.
+	[weaponcache, missionNamespace getvariable ["weaponCacheActionID", false]] call BIS_fnc_holdActionRemove;
+    [foodcache, missionNamespace getvariable ["foodCacheActionID", false]] call BIS_fnc_holdActionRemove;
+    //[weaponcache, _weaponCacheActionID] call BIS_fnc_holdActionRemove;
+	//[foodcache, _foodCacheActionID] call BIS_fnc_holdActionRemove;
+	//removeAllActions weaponcache; //now its not removing holdaction. also intermittant
+	//removeAllActions foodcache; //now its not removing holdaction. also intermittant
+
+
+//////////////////////////////////////////////////
+//                                              //
+//          OVERWRITE SOG REVIVE CONVO          //
+//                                              //
+//////////////////////////////////////////////////
+
+// How to overwrite the SOG advance revive conversation so that you can use your convo function. Define this is description.ext
+class vn
+    {
+        class revive
+        {
+            class revive_conversation
+            {
+                file = "functions\fn_disableReviveConversation.sqf";
+            };
+        };
+    };
+
+
+// Place this in the sqf
+hint "Override function fn_disableReviveConversation is running";
+
+// The main issue I've found with their system is that _user is called twice on one action. For example after the holdAction for stabilizing completes the _user will be the _caller for the action, say their line, then after that this script will fire again but this time _user will be _target.
+
+params ["_user", "_action"];
+
+if (!alive _user) exitWith {};
+
+private _scout  = missionNamespace getVariable ["scout", objNull];
+
+private _radius = 6;
+private _near = _user nearEntities ["CAManBase", _radius];
+private _downed = _near select {
+    _x != _user && lifeState _x == "INCAPACITATED"
+};
+
+private _responder = objNull;
+private _minDist = _radius + 1;
+
+{
+    private _dist = _x distance _user;
+    if (_dist < _minDist) then {
+        _minDist = _dist;
+        _responder = _x;
+    };
+} forEach _downed;
+
+private _convo = switch (_action) do {
+
+    case "help": {
+        systemChat "help case fired.";
+        "revive_help";
+    };
+
+    case "heal": {
+    systemChat "heal case fired.";
+
+        if (_user != _scout && _responder != _scout) then {
+            systemChat "neither user nor responder is scout.";
+            ["heal_blu_blu", [_user, _responder]]
+                remoteExec ["foxclub_fnc_conversation", 0];
+        }
+        else {
+            if (_user != _scout && _responder == _scout) then {
+                systemChat "user is not the scout but the responder is.";
+                ["heal_blu_scout", [_user, _responder]]
+                    remoteExec ["foxclub_fnc_conversation", 0];
+            }
+            else {
+                systemChat "user is the scout.";
+                ["heal_scout_blu", [_user, _responder]]
+                    remoteExec ["foxclub_fnc_conversation", 0];
+            };
+        };
+    };
+
+    case "revive": {
+        systemChat "revive case fired.";
+
+        if (_user != _scout && _responder != _scout) then {
+            systemChat "neither user nor responder is scout.";
+            ["revive_blu_blu", [_user, _responder]]
+                remoteExec ["foxclub_fnc_conversation", 0];
+        }
+        else {
+            if (_user != _scout && _responder == _scout) then {
+                systemChat "user is not the scout but the responder is.";
+                ["revive_blu_scout", [_user, _responder]]
+                    remoteExec ["foxclub_fnc_conversation", 0];
+            }
+            else {
+                systemChat "user is the scout.";
+                ["revive_scout_blu", [_user, _responder]]
+                    remoteExec ["foxclub_fnc_conversation", 0];
+            };
+        };
+    };
+
+    
+    case "drag_player": { systemChat "drag_player case fired."; };
+    case "undrag_player": { systemChat "undrag_player case fired."; };
+    case "pickup_player": { systemChat "pickup_player case fired."; };
+    case "drop_player": { systemChat "drop_player case fired."; };
+    case "carried": { systemChat "carried case fired."; };
+    case "dragged": { systemChat "dragged case fired."; };
+    case "general": { systemChat "general case fired."; };
+
+    default { "" };
+};
+
+
+
+
