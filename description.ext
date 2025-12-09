@@ -42,7 +42,9 @@ class CfgFunctions
             class deleteAchievementTriggers {};
             class revive_conversation_start {};
             class revive_conversation_finish {};
-            class testFunction {};
+            class skip_to_infil {};
+            class create_tasks {};
+            class create_task_triggers {};
         };
     };
     class bis

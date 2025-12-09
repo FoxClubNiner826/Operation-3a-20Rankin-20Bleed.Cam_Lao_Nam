@@ -2712,3 +2712,25 @@ if (player getUnitTrait "Medic") then
 
 private _actionID = [_unit,_title,_iconIdle,_iconProgress,_condShow,_condProgress,_codeStart,_codeProgress,_codeCompleted,_codeInterrupted,_arguments,_duration,_priority] call bis_fnc_holdActionAdd;
 _unit setVariable [VAR_ACTION_ID_REVIVE,_actionID];
+
+if (missionNamespace getVariable ["skiptoinfil", false]) then {
+
+_leader = leader playergroup; 
+["infill", [_leader, HQRadio], true] remoteExec [     
+    "FoxClub_fnc_Conversation",     
+    allPlayers select { _x distance _leader <= 100 }     
+];
+
+["Infill"] call BIS_fnc_showNotification;
+
+} else {
+
+_leader = leader playergroup; 
+["infill", [_leader, HQRadio], true] remoteExec [     
+    "FoxClub_fnc_Conversation",     
+    allPlayers select { _x distance _leader <= 100 }     
+];
+
+["Infill"] call BIS_fnc_showNotification;
+
+};

@@ -306,10 +306,11 @@ map addAction [
         ["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination; // get in stab task
         ["gettorecon", gettorecon] call BIS_fnc_taskSetDestination; // get to the cove task
         ["uprivertask", uprivertask] call BIS_fnc_taskSetDestination; // proceed upriver
-        ["tsk_getToInfil", tsk_getToInfil] call BIS_fnc_taskSetDestination; // get to the infil spot
-        ["tsk_getToInfil_skipped", tsk_getToInfil_skipped] call BIS_fnc_taskSetDestination; // get to the infil spot if skipped
+        ["tsk_getToInfil", tsk_getToInfil] call BIS_fnc_taskSetDestination; // get to the infil spot        
         ["tsk_searchLumphat", tsk_searchLumphat] call BIS_fnc_taskSetDestination; // search Lumphat
-        ["hvt", officer] call BIS_fnc_taskSetDestination; // Kill the hvt
+        ["tsk_hvt", officer] call BIS_fnc_taskSetDestination; // Kill the hvt
+        
+        ["tsk_stab", ptboat] call BIS_fnc_taskSetDestination; // Destroy the stab
         ["tsk_remainUndetected", tsk_remainUndetected] call BIS_fnc_taskSetDestination; // remain undetected
         ["gunboattask2", gunboat] call BIS_fnc_taskSetDestination; // destroy gunboat
         ["cachetask2", cachetask2] call BIS_fnc_taskSetDestination; // destroy the cache
@@ -352,9 +353,9 @@ map addAction [
         ["gettorecon", objNull] call BIS_fnc_taskSetDestination; // get to the cove task
         ["uprivertask", objNull] call BIS_fnc_taskSetDestination; // proceed upriver
         ["tsk_getToInfil", objNull] call BIS_fnc_taskSetDestination; // get to the infil spot
-        ["tsk_getToInfil_skipped", objNull] call BIS_fnc_taskSetDestination; // get to the infil spot if skipped
         ["tsk_searchLumphat", objNull] call BIS_fnc_taskSetDestination; // search Lumphat
-        ["hvt", objNull] call BIS_fnc_taskSetDestination; // Kill the hvt
+        ["tsk_hvt", objNull] call BIS_fnc_taskSetDestination; // Kill the hvt
+        ["tsk_stab", objNull] call BIS_fnc_taskSetDestination; // Destroy the stab
         ["tsk_remainUndetected", objNull] call BIS_fnc_taskSetDestination; // remain undetected
         ["gunboattask2", objNull] call BIS_fnc_taskSetDestination; // destroy gunboat
         ["cachetask2", objNull] call BIS_fnc_taskSetDestination; // destroy the cache
@@ -459,9 +460,8 @@ private _conditionInfil = {
 	{}, //code on start
 	{}, // code every tick
 	{
-        missionNamespace setVariable ["skiptoinfilCreateTasks", true, true];
 		missionNamespace setVariable ["skipToInfilAction", false, true]; 
-		["scripts\SkiptoIngress.sqf"] remoteExec ["execVM", 0];
+        remoteExec ["foxClub_fnc_skip_to_infil", 0]; // might need to put this on the server only    
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements

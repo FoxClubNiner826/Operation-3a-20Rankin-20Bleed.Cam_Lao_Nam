@@ -52,7 +52,7 @@ missionNamespace getVariable ["pilotEjected", false];
 missionNamespace getVariable ["testPOW", false];
 */
 
-// Creates completion triggers for the tasks
+// Creates completion triggers for the tasks only on the server
 //["scripts\achievementTriggers.sqf"] remoteExec ["execVM", 2];
 remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
 

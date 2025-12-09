@@ -566,7 +566,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["infill", // 29 d 
 		[
-			[0, "", "answer", 5, { 
+			[0, "", "answer", 0, { 
 				if (player != (_this#0)) then { playsound "talkradio"; }; 
 				_this#0 sideChat "*three squelches* pause *two squelches* (code for successful insertion)."; 
 				}
