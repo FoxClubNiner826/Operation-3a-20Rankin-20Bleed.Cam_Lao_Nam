@@ -461,7 +461,7 @@ private _conditionInfil = {
 	{}, // code every tick
 	{
 		missionNamespace setVariable ["skipToInfilAction", false, true]; 
-        remoteExec ["foxClub_fnc_skip_to_infil", 0]; // might need to put this on the server only    
+        remoteExec ["foxClub_fnc_skip_to_infil", 0];    
 	}, // code on finish
 	{}, // code on interuption
 	[], //arguements

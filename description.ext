@@ -45,6 +45,7 @@ class CfgFunctions
             class skip_to_infil {};
             class create_tasks {};
             class create_task_triggers {};
+            class cove_scene_transition {};
         };
     };
     class bis

@@ -424,7 +424,7 @@ foxclub_var_conversations = createHashMapFromArray [
 	],
 	["radiohq1", // 27 d 
 		[
-			[0, "", "answer", 3, { 
+			[0, "", "answer", 0, { 
 				if (player != (_this#0)) then { playsound "talkradio"; }; 
 				_this#0 sideChat "Rankin, Hawk. We’re set and ready for the show. Over."; 
 				}
@@ -434,15 +434,16 @@ foxclub_var_conversations = createHashMapFromArray [
 				HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
 				sleep 3;
 				missionNamespace setVariable ["radiohqpass", true, true];
-				sleep 7; // lets task complete before fade out
-				execVM "scripts\RadioHQ.sqf";
+				sleep 4; // lets task complete before fade out
+				//execVM "scripts\RadioHQ.sqf";
+				//call FoxClub_fnc_cove_scene_transition;
 				}
 			]
 		]
 	],
 	["radiohqScout", // 28 d 
 		[
-			[0, "", "answer", 3, { 
+			[0, "", "answer", 0, { 
 				if (player != (_this#0)) then { playsound "talkradio"; }; 
 				_this#0 sideChat "Rankin, Hawk. We here. Over."; 
 				}
@@ -452,8 +453,9 @@ foxclub_var_conversations = createHashMapFromArray [
 				HQRadio sideChat "Hawk, Rankin. Roger that. Heads up, weather should be moving in shortly. Out.";
 				sleep 3;
 				missionNamespace setVariable ["radiohqpass", true, true];
-				sleep 7;
-				execVM "scripts\RadioHQ.sqf";
+				sleep 4;
+				//execVM "scripts\RadioHQ.sqf";
+				//call FoxClub_fnc_cove_scene_transition;
 				}
 			]
 		]

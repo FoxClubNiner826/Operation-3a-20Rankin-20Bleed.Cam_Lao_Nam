@@ -30,6 +30,7 @@ _trg_complete_task_hvt setTriggerStatements [
 //           FAIL HVT TASK TRIGGER              //
 //                                              //
 //////////////////////////////////////////////////
+// tested and working
 
 _trg_fail_task_hvt = createTrigger [
     "EmptyDetector", // type
@@ -45,6 +46,11 @@ _trg_fail_task_hvt setTriggerArea [
     10        // activation height
 ];
 
+_trg_fail_task_hvt setTriggerActivation [
+    "ANY",   // who activates the trigger
+    "PRESENT",// how trigger is it activated
+    false      // Repeating
+];
 
 private _condition_fail_task_hvt = { 
    officer in thislist || 
@@ -119,7 +125,8 @@ _trg_fail_task_stab = createTrigger [
 
 private _condition_fail_task_stab = { 
     alive ptboat && 
-    (missionNamespace getVariable ["extractTaskSucceeded", false] || missionNamespace getVariable ["extractTaskFailed", false]) 
+    (missionNamespace getVariable ["extractTaskSucceeded", false] || 
+    missionNamespace getVariable ["extractTaskFailed", false]) 
 };
 
 private _activation_fail_task_stab = {
@@ -129,5 +136,57 @@ private _activation_fail_task_stab = {
 _trg_fail_task_stab setTriggerStatements [
     toString _condition_fail_task_stab, // trigger condition
     toString _activation_fail_task_stab, // code ran on activation
+    "" // code ran on deactivation
+];
+
+
+
+
+
+
+
+
+
+
+/*
+//////////////////////////////////////////////////
+//                                              //
+//          test          //
+//                                              //
+//////////////////////////////////////////////////
+// tested and working
+
+// creates trigger
+_trg_complete_task_test = createTrigger [
+    "EmptyDetector", // type
+    [3012.53,3979.81], // position
+    false // makes global
+];
+
+_trg_complete_task_test setTriggerArea [
+    8.7,   // a-axis
+    8.7,   // b-axis
+    0,        // angle
+    false,    // rectangular (false = ellipse)
+    10        // activation height
+];
+_trg_complete_task_test setTriggerActivation ["WEST", "PRESENT", true];
+
+_trg_complete_task_test setTriggerStatements ["this", "hint 'trigger on'", "hint 'trigger off'"];
+
+/*
+// trigger condition
+private _condition_task_test = {
+    commnad in thisList 
+};
+
+// code ran on activation
+private _activation_task_test = {
+    hint "fired";
+};
+
+_trg_complete_task_test setTriggerStatements [
+    toString _condition_task_test, // trigger condition
+    toString _activation_task_test, // code ran on activation
     "" // code ran on deactivation
 ];

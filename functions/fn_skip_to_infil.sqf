@@ -5,7 +5,7 @@
         Fades player screen. Completes a task. Moves units into boat. Changes weather. Displays text.
 */
 
-titleText ["", "BLACK OUT", 3];
+cutText ["", "BLACK OUT", 3]; // use cutText instead of titleText because my convo function (playSound) will disable the blackout.
 4 fadesound 0;
 0 fadespeech 0;
 missionNamespace setVariable ["skiptoinfil", true, true]; //needed to gate convo
@@ -87,10 +87,9 @@ sleep 3;
 4 fadesound 1;
 0 fadespeech 1;
 
-titleText ["", "BLACK IN", 3];
+cutText ["", "BLACK IN", 3];
 sleep 3;
 
-// this might be being duplicated because this fnc is remoteexec on the server and clients.
 [] Spawn {
 [ 
  [ 

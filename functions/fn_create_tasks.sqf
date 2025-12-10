@@ -1,6 +1,5 @@
 remoteExec ["FoxClub_fnc_create_task_triggers", 2];
 
-hint "create tasks fired";
 //////////////////////////////////////////////////
 //                                              //
 //         TASKS FOR PRIMARY OBJECTIVES         //
@@ -130,3 +129,6 @@ Tip: Use the Action Menu while looking at the STAB to place a timed explosive. T
 //        TASKS FOR SECONDARY OBJECTIVES        //
 //                                              //
 //////////////////////////////////////////////////
+
+
+// remoteExec ["foxClub_fnc_create_tasks", 2];
