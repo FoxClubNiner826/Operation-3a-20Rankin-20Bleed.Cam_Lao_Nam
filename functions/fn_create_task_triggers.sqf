@@ -140,53 +140,147 @@ _trg_fail_task_stab setTriggerStatements [
 ];
 
 
-
-
-
-
-
-
-
-
-/*
 //////////////////////////////////////////////////
 //                                              //
-//          test          //
+//          COMPLETE LZ TASK TRIGGER            //
 //                                              //
 //////////////////////////////////////////////////
-// tested and working
+// tested and working on client
 
 // creates trigger
-_trg_complete_task_test = createTrigger [
+foxClub_trg_complete_task_lz = createTrigger [
     "EmptyDetector", // type
-    [3012.53,3979.81], // position
+    [8588.83,8193.74], // position
     false // makes global
 ];
 
-_trg_complete_task_test setTriggerArea [
-    8.7,   // a-axis
-    8.7,   // b-axis
-    0,        // angle
+// defines the size of the trigger
+foxClub_trg_complete_task_lz setTriggerArea [
+    41.409,   // a-axis
+    59.285,   // b-axis
+    46.138,        // angle
     false,    // rectangular (false = ellipse)
     10        // activation height
 ];
-_trg_complete_task_test setTriggerActivation ["WEST", "PRESENT", true];
 
-_trg_complete_task_test setTriggerStatements ["this", "hint 'trigger on'", "hint 'trigger off'"];
+// defines how it is activated
+foxClub_trg_complete_task_lz setTriggerActivation [
+    "ANYPLAYER",   // who activates the trigger
+    "PRESENT",// how trigger is it activated
+    false      // Repeating
+];
 
-/*
 // trigger condition
-private _condition_task_test = {
-    commnad in thisList 
+private _condition_task_lz = {
+    this
 };
 
 // code ran on activation
-private _activation_task_test = {
-    hint "fired";
+private _activation_task_lz = {
+    // prevents extraction pilot from being shot down. will not delete it on off chance of player seeing it.
+    {
+        _x disableAI "ALL";
+    } forEach crew samlauncher;
+
+    ["tsk_lz","SUCCEEDED"] call BIS_fnc_taskSetState;
 };
 
-_trg_complete_task_test setTriggerStatements [
-    toString _condition_task_test, // trigger condition
-    toString _activation_task_test, // code ran on activation
+foxClub_trg_complete_task_lz setTriggerStatements [
+    toString _condition_task_lz, // trigger condition
+    toString _activation_task_lz, // code ran on activation
     "" // code ran on deactivation
 ];
+
+
+//////////////////////////////////////////////////
+//                                              //
+//          COMPLETE UNDETECTED TRIGGER         //
+//                                              //
+//////////////////////////////////////////////////
+// 
+
+// creates trigger
+_trg_complete_task_undetected = createTrigger [
+    "EmptyDetector", // type
+    [7803.95,9096.57], // position
+    false // makes global
+];
+
+// defines the size of the trigger
+_trg_complete_task_undetected setTriggerArea [
+    134.445,   // a-axis
+    112.007,   // b-axis
+    357.78,        // angle
+    false,    // rectangular (false = ellipse)
+    10        // activation height
+];
+
+// defines how it is activated
+_trg_complete_task_undetected setTriggerActivation [
+    "ANYPLAYER",   // who activates the trigger
+    "PRESENT",// how trigger is it activated
+    false      // Repeating
+];
+
+// trigger condition
+private _condition_task_undetected = {
+    this && !(missionNamespace getVariable ["playersSpotted", false])
+};
+
+// code ran on activation
+private _activation_task_undetected = {
+    missionNamespace setVariable ["aopassedVar", true, true];
+    missionNamespace setVariable ["playersAtLumphat", true, true];
+
+    ["tsk_undetected","SUCCEEDED"] call BIS_fnc_taskSetState;
+};
+
+_trg_complete_task_undetected setTriggerStatements [
+    toString _condition_task_undetected, // trigger condition
+    toString _activation_task_undetected, // code ran on activation
+    "" // code ran on deactivation
+];
+
+//////////////////////////////////////////////////
+//                                              //
+//           FAIL UNDETECTED TRIGGER            //
+//                                              //
+//////////////////////////////////////////////////
+// 
+
+// creates trigger
+_trg_fail_task_undetected = createTrigger [
+    "EmptyDetector", // type
+    objNull, // position
+    false // makes global
+];
+
+// trigger condition
+private _condition_fail_task_undetected = {
+    missionNamespace getVariable ["PlayersSpotted", false] &&
+    !(missionNamespace getVariable ["aopassedVar", false])
+};
+
+// code ran on activation
+private _activation_fail_task_undetected = {
+    officer setSpeedMode "FULL";
+    missionNamespace setVariable ["fox_var_radioLoop", true, true];
+
+    ["tsk_undetected","FAILED"] call BIS_fnc_taskSetState;
+};
+
+_trg_fail_task_undetected setTriggerStatements [
+    toString _condition_fail_task_undetected, // trigger condition
+    toString _activation_fail_task_undetected, // code ran on activation
+    "" // code ran on deactivation
+];
+
+
+
+
+
+
+
+
+
+

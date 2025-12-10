@@ -4,23 +4,19 @@ TO DO UP NEXT:
 // for the prison convo trigger, move pow and pilot back. make pow tied up. moved prop heli in staging are back
 
 Current TASK:
-- I am going to use BIS_fnc_showNotification to create single notification instead of the 5 that would normally pop up. This is a cleaner approach. Tasks notifications wont be able to display on top of each other and it also prevents from annoying players with too many notifications. Another benefeit is that I get to control more reliably the order the tasks are listed in the journal.
+
+One more task and trigger to add for the infil dump.
+3d icons see inconsistant. work for some but not for other.
+
+
+
+
+Polish: I used BIS_fnc_showNotification to create single notification instead of the 5 that would normally pop up at the infil location. This is a cleaner approach. Tasks notifications wont be able to display on top of each other and it also prevents from annoying players with too many notifications. Another benefeit is that I get to control more reliably the order the tasks are listed in the journal.
     - I will need to create a function that creates these tasks.
         - I can copy the 3d positon of the current tasks in order to preserve their 3d icon placement before deleting them.
     - I will need to create some server only triggers.
         - I can copy the condition of the triggers in the editor before deleting them.
-    - The notification will need to be remoteExec.
     - I may be able to reuse this function and the triggers for the backup tasks and triggers that are needed if players fail the infil task
-    - I can get rid of the duplicate tasks and triggers for skip to infil situation now that I know how to use setTaskState.
-        In the skiptoIngress file I can delete any triggers/tasks that are not needed and create my own.
-    - Try to keep the tasks names the same else you will have to update the 3d icon options (map board).
-    - I can probably use my new server triggers to update the tasks if infil is skipped.
-
-To do: rework the cove scene transition because of locailty issues. Try to place everyting in a function.
-    - got most of it working. the rain is not updating on the client.
-
-I swapped two scene transitions to cutText instead of titleText because my convo function (playsound) would disable the fade to black screen.
-
 
 
 
@@ -31,6 +27,8 @@ TO DO MASTER LIST:
     MEDIUM PRIORITY:
     
     LOW PRIORITY:
+        See if you can use the existing game ends when players are all downed to inject your end mission screen. That way you could potentionally use the Params at lobby screen.
+            In the end I want to use a scalable ticket system to determine end game. Each player gets x tickets where x can be scaled in Paras. X tickets get put in a pool anyone can call from.
         - Finish work on adding convos to the revive system, theres a JIP one I need to overwrite as well
         -add patrols to each objective and adjust the tracker module to reflect the changes. This will make the ghost achievement more and understood by players.
         - Do a test to see if this is possible before wasting a ton of time. Design: If you put on an enemy back pack you get to know if you are being tracked and whatever other info/things could be
@@ -60,6 +58,7 @@ TO DO MASTER LIST:
         
     
     POLISH:
+        Polish: see how flyInHeightASL affects the rtb chopper if it works it should result in less inputs from the ai since they fly at a set height and might look better.
         - How does JIP work if there are or are not AI? Will the play be placed at the staging Area or next to group leader or what?
         Staging Area Polish:
             I want the boat to drive away after players ask for berief.
@@ -126,7 +125,7 @@ DEDICATED SERVER TESTING:
 BUGS FROM LATEST PLAYTHROUGH:
 
 
-IDEA GRAVEYARD:
+IDEA GRAVEYARD: basically post 1.0 stuff
     - Design: Try to incourage the hand signal module by punishing players using their radios. 
         Send trackers after them if they use it too much. I like this idea but it will add too much scope to the mission.
         Perhaps in the future for another mission or if I ever finish this one with time to spare.
@@ -139,9 +138,10 @@ IDEA GRAVEYARD:
         hamper important game feedback for single players would want AI. Unfortunantley I think we need to keep it unless playtesting
         proves otherwise.
         - You could have an option from the map board to turn this off (enableRadio, enableSentences, disableAI "radioprotocol").
-    
+    - Let's take a look at the handle damage eh later. We can use it to create our own revive system.
+        After that we will deconstruct the base revive system by mimicking what it does. Does it play an animation? Then copy that. Etc. You can use the function viewer to get the exact animation name and use that.
 
-ABANDONED STUFF:
+ABANDONED STUFF: Not worth the time investment/some is impossible
     - On the client, helicopter flys glitchy. There is no fix for this since the group can only be local to one machine. More detailed 
         in the log
     - Add animations to convo function: Might be possible to pass an new index to the function. Pass the name of the animation to be displayed. 
@@ -195,9 +195,18 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Polish/Performance: I got rid of the duplicate tasks and triggers for skip to infil situation now that I know how to use setTaskState. In the skiptoIngress file I can delete any triggers/tasks that are not needed and create my own.
+
+Bug Fixed/Polish: Reworked the skip to infil scene transition because of a bug found with titleText being incompatiple with playSound. Used cutText instead and moved away from my old execVM method to a function. Used the new task frame work to add polish and optimization by making the skipped tasks complete without making duplicate triggers and tasks, while just creating my own completed tasks (instead of forcing the other tasks to update which was slow)
+    I went through the mission and deleted triggers and tasks up to the infil spot for performance. Really I should put these into a server only trigger themselves. But I will do that later if I need to rework the scene transition as much of the stuff just needs to be remoteExec on the server. But I have no issue right now so I'll move on.
+
+Bug Fix/Polish: Reworked the cove scene transition because of a bug found with titleText being incompatiple with playSound. Used cutText instead and moved away from my old execVM method to a function. Had to undo some remoteExec commands to fix some locailty bugs.
+
 Design: SCUBA Task: try the stab with scuba gear to see if we even need holdactions for it.
     - Yes! With 8 people the boat inventory would become a mess and players won't know whos backpack belongs to who when they are done with the task.
+
 Design: Add the params as a mission option at the lobby for the a3 revive framework
+
 Design Decision: Mission: I am going to go with the default A3 revive framework because it is easier/faster to implement with my convo function. If at the end of development I want to add the SOG revive framework then I can do so. I spent about an hour of trial and error seeing if I could use the mission params from the lobby to add the SOG revive. I had some success getting the initial actions to show by running their damage EH but it wouldn't call other functions for some reason (like not action to drop a unit after carrying). I tried placing that drop sqf in my function folder but didn't work. Also tried to override files but didn't work.
     - Clean up any code remaining from my advance revive adventure. put it in script repository for later if need.
 Design: Cache Task: see if an grenade explode EH is worth putting for the cache task.

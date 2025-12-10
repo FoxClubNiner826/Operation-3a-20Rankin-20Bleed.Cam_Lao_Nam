@@ -308,16 +308,15 @@ map addAction [
         ["uprivertask", uprivertask] call BIS_fnc_taskSetDestination; // proceed upriver
         ["tsk_getToInfil", tsk_getToInfil] call BIS_fnc_taskSetDestination; // get to the infil spot        
         ["tsk_searchLumphat", tsk_searchLumphat] call BIS_fnc_taskSetDestination; // search Lumphat
-        ["tsk_hvt", officer] call BIS_fnc_taskSetDestination; // Kill the hvt
-        
-        ["tsk_stab", ptboat] call BIS_fnc_taskSetDestination; // Destroy the stab
-        ["tsk_remainUndetected", tsk_remainUndetected] call BIS_fnc_taskSetDestination; // remain undetected
+        //["tsk_hvt", officer] call BIS_fnc_taskSetDestination; // Kill the hvt, updated
+        //["tsk_stab", ptboat] call BIS_fnc_taskSetDestination; // Destroy the stab, updated
+        //["tsk_undetected", [7813.57,9099.84,7.153]] call BIS_fnc_taskSetDestination; // remain undetected, updated
         ["gunboattask2", gunboat] call BIS_fnc_taskSetDestination; // destroy gunboat
         ["cachetask2", cachetask2] call BIS_fnc_taskSetDestination; // destroy the cache
         ["samtask", samtask] call BIS_fnc_taskSetDestination; // destroy the sam site
         ["PilotTask", pilot] call BIS_fnc_taskSetDestination; // rescue the pilot
         ["POWTask", pow] call BIS_fnc_taskSetDestination; // rescue the pow
-        ["tsk_getToExfil", tsk_getToExfil] call BIS_fnc_taskSetDestination; // get to the exfil
+        //["tsk_lz", [8585.34,8187.91,2.41499]] call BIS_fnc_taskSetDestination; // get to the exfil, updated and tested
         ["MarkLZTask", MarkLZTask] call BIS_fnc_taskSetDestination; // smoke the lz
         ["tsk_debrief", marcinko] call BIS_fnc_taskSetDestination; // debrief task
 	}, 
@@ -354,15 +353,15 @@ map addAction [
         ["uprivertask", objNull] call BIS_fnc_taskSetDestination; // proceed upriver
         ["tsk_getToInfil", objNull] call BIS_fnc_taskSetDestination; // get to the infil spot
         ["tsk_searchLumphat", objNull] call BIS_fnc_taskSetDestination; // search Lumphat
-        ["tsk_hvt", objNull] call BIS_fnc_taskSetDestination; // Kill the hvt
-        ["tsk_stab", objNull] call BIS_fnc_taskSetDestination; // Destroy the stab
-        ["tsk_remainUndetected", objNull] call BIS_fnc_taskSetDestination; // remain undetected
+        ["tsk_hvt", objNull] call BIS_fnc_taskSetDestination; // Kill the hvt, updated
+        ["tsk_stab", objNull] call BIS_fnc_taskSetDestination; // Destroy the stab, updated
+        ["tsk_undetected", objNull] call BIS_fnc_taskSetDestination; // remain undetected, updated
         ["gunboattask2", objNull] call BIS_fnc_taskSetDestination; // destroy gunboat
         ["cachetask2", objNull] call BIS_fnc_taskSetDestination; // destroy the cache
         ["samtask", objNull] call BIS_fnc_taskSetDestination; // destroy the sam site
         ["PilotTask", objNull] call BIS_fnc_taskSetDestination; // rescue the pilot
         ["POWTask", objNull] call BIS_fnc_taskSetDestination; // rescue the pow
-        ["tsk_getToExfil", objNull] call BIS_fnc_taskSetDestination; // get to the exfil
+        ["tsk_lz", objNull] call BIS_fnc_taskSetDestination; // get to the exfil, updated
         ["MarkLZTask", objNull] call BIS_fnc_taskSetDestination; // smoke the lz
         ["tsk_debrief", objNull] call BIS_fnc_taskSetDestination; // debrief task
 	}, 

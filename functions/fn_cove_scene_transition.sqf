@@ -14,7 +14,7 @@ if (_caller == missionNamespace getVariable ["scout", objNull]) then {
     //["radiohq1", [_caller, HQRadio], true] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _caller <= 100}];
 };
 
-sleep 10;
+sleep 8;
 
 cutText ["", "BLACK OUT", 3];
 3 fadesound 0;
@@ -22,16 +22,20 @@ sleep 5;
 
 missionNamespace setVariable ["NavalPatrolvariableActivated", true, true];
 
+skipTime -24;
+86400 setOvercast 0.5;
+skipTime 24;
+0 setRain 0.40;
+0 setFog [1, 0.20, 5];
+setDate [1967, 3, 31, 5, 57];
+
+/*
 [
     {
-        skipTime -24;
-        86400 setOvercast 0.5;
-        skipTime 24;
-        0 setRain 0.40;
-        0 setFog [1, 0.20, 5];
-        setDate [1967, 3, 31, 5, 57];
+        
     }
 ] remoteExec ["call", 0, true];
+*/
 
 3 fadesound 1;
 sleep 2;

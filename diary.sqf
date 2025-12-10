@@ -166,8 +166,8 @@ This is a local effect, meaning banter is only minimized for the player who choo
 player createDiaryRecord ["Parameters", ["Skipping Ahead", 
 "<br/>
 Skipping Ahead is disabled by default.<br/><br/>
-The beginning portion off the mission can be skipped which will reduce playtime by about 30 minutes. You will placed next to 
-the infiltration point.<br/><br/>
+The beginning portion off the mission can be skipped. You will placed at 
+the infiltration point, which will reduce playtime by about 30 minutes. Estimated play time for doing all primary objectives is x. Estimated playtime for doing all primary and secondary objectives is x.<br/><br/>
 You can enable this option by interacting with the map stand next to the arsenal. 
 Select the 'Enable Skip to Infil' option. Once enabled, you can execute this option from within the STAB after all human players are aboard.
 " ]];

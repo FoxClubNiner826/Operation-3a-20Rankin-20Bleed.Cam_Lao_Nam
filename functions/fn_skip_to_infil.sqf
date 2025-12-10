@@ -6,14 +6,74 @@
 */
 
 cutText ["", "BLACK OUT", 3]; // use cutText instead of titleText because my convo function (playSound) will disable the blackout.
-4 fadesound 0;
+3 fadesound 0;
 0 fadespeech 0;
 missionNamespace setVariable ["skiptoinfil", true, true]; //needed to gate convo
 
 sleep 3; //make sure the screen is black before teleport
 
+// deletes unneeded triggers and props in staging area
+deleteVehicle arsenal;
+deleteVehicle getinstab; 
+deleteVehicle heli_1;  
+deleteVehicle jeep;  
+deleteVehicle mp2;  
+deleteVehicle mp1;  
+deletevehicle trg_convo_cove; 
+deletevehicle intro2_trg; 
+deletevehicle trg_wrongway_1;
+deletevehicle trg_remove_naval_patrol; 
+
+// deleltes uneeded naval patrol at cove
+{ 
+    deleteVehicle _x; 
+} forEach units patrolboatgroup; 
+deleteVehicle patrolboat; 
+
+// deletes unneeded triggers at cove
+deleteVehicle waitforpatroltask; // task
+deleteVehicle trg_completeTask_radioHQ; // trigger for task
+deleteVehicle wait_task; // task
+deleteVehicle uprivertask; // trigger for task
+deleteVehicle createclearminestask;
+deleteVehicle upriver;
+
+deleteVehicle trg_wrongway_3; 
+deleteVehicle trg_wrongway_2; 
+deleteVehicle wait_pass; 
+deleteVehicle wait_fail; 
+deleteVehicle trg_patrolboat_dead; 
+deleteVehicle task0; 
+deleteVehicle scubatime; 
+
+// deletes unnedded units at cove
+{ 
+    deleteVehicle _x; 
+} forEach units ambushpatrol; 
+ 
+deleteVehicle trg_ambush; 
+
+// deletes unneeded naval units in upriver area
+{ 
+    deleteVehicle _x; 
+} forEach units sampanPatrol1; 
+deleteVehicle sampanPatrolBoat1; 
+deleteVehicle sampanPatrolBoat2; 
+{ 
+    deleteVehicle _x; 
+} forEach units sampanPatrol2; 
+deleteVehicle sampanPatrolBoat3; 
+deleteVehicle sampanPatrolBoat4; 
+deleteVehicle sampanPatrolBoat5; 
+{ 
+    deleteVehicle _x; 
+} forEach units sampanPatrol3; 
+deleteVehicle sampanPatrolBoat6;
+
+
 // complete the skipped tasks as if the player had done them
 ["gettorecon", west, true] call BIS_fnc_deleteTask;
+deleteVehicle trg_createTask_proceedToCove;
 
 [
     west, // owner

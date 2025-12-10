@@ -1,12 +1,13 @@
+// creates server-only triggers for the tasks
 remoteExec ["FoxClub_fnc_create_task_triggers", 2];
 
+
 //////////////////////////////////////////////////
 //                                              //
-//         TASKS FOR PRIMARY OBJECTIVES         //
+//                   HVT TASK                   //
 //                                              //
 //////////////////////////////////////////////////
 
-// updated the 3d icon for this already in the turn on and off from map board. also updated the fail condition in the editor
 [
     west, // owner
     ["tsk_hvt", "PRI"], // task ID' ["subTask", "parentTask"]
@@ -27,7 +28,13 @@ Tip: Use the Action Menu to search his body.<br/><br/>
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-// updated 3d icons. created fail trigger
+
+//////////////////////////////////////////////////
+//                                              //
+//                  STAB TASK                   //
+//                                              //
+//////////////////////////////////////////////////
+
 [
     west, // owner
     ["tsk_stab", "PRI"], // task ID' ["subTask", "parentTask"]
@@ -52,51 +59,30 @@ Tip: Use the Action Menu while looking at the STAB to place a timed explosive. T
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-[
-    west, // owner
-    ["tsk_cove_skipped", "PRI"], // task ID' ["subTask", "parentTask"]
-    [
-        "Motor north under cover of darkness. There are red-filter torches in the boat to aid you in the darkness. Hide the boat in the <marker name='cove'>cove</marker> and take up a reconnasance position. <br/><br/><img image='pics\reconpos3.jpg' />", // description
-        "Proceed to the Cove", // title
-        "" //marker
-    ],
-    objNull, // destination; object(or objNull) or array
-    "SUCCEEDED", // state (created, assigned,etc)
-    -1, // priority (-1 for not auto assign)
-    false, // show notificaiton
-    "navigate", // task icon
-    false // makes task always visible in 3D
-] call BIS_fnc_taskCreate;
+
+//////////////////////////////////////////////////
+//                                              //
+//               GET TO LZ TASK                 //
+//                                              //
+//////////////////////////////////////////////////
 
 [
     west, // owner
-    ["tsk_cove_skipped", "PRI"], // task ID' ["subTask", "parentTask"]
+    ["tsk_lz", "PRI"], // task ID' ["subTask", "parentTask"]
     [
-        "Motor north under cover of darkness. There are red-filter torches in the boat to aid you in the darkness. Hide the boat in the <marker name='cove'>cove</marker> and take up a reconnasance position. <br/><br/><img image='pics\reconpos3.jpg' />", // description
-        "Proceed to the Cove", // title
-        "" //marker
-    ],
-    objNull, // destination; object(or objNull) or array
-    "SUCCEEDED", // state (created, assigned,etc)
-    -1, // priority (-1 for not auto assign)
-    false, // show notificaiton
-    "navigate", // task icon
-    false // makes task always visible in 3D
-] call BIS_fnc_taskCreate;
+        "The <marker name='marker_1_LZ'>exfiltration point</marker> is located on Hill 156.<br/><br/>
 
-[
-    west, // owner
-    ["tsk_cove_skipped", "PRI"], // task ID' ["subTask", "parentTask"]
-    [
-        "Motor north under cover of darkness. There are red-filter torches in the boat to aid you in the darkness. Hide the boat in the <marker name='cove'>cove</marker> and take up a reconnasance position. <br/><br/><img image='pics\reconpos3.jpg' />", // description
-        "Proceed to the Cove", // title
+Tip: Be sure to bring a smoke grenade to mark the LZ for exfil.<br/><br/>
+
+<img image='pics\get2lz.jpg'/>", // description
+        "Proceed to the Exfil Point", // title
         "" //marker
     ],
     objNull, // destination; object(or objNull) or array
-    "SUCCEEDED", // state (created, assigned,etc)
+    "CREATED", // state (created, assigned,etc)
     -1, // priority (-1 for not auto assign)
     false, // show notificaiton
-    "navigate", // task icon
+    "run", // task icon
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
@@ -130,5 +116,29 @@ Tip: Use the Action Menu while looking at the STAB to place a timed explosive. T
 //                                              //
 //////////////////////////////////////////////////
 
+[
+    west, // owner
+    ["tsk_undetected", "tsk_parent_secondary"], // task ID' ["subTask", "parentTask"]
+    [
+        "Remain undetected before reaching <marker name='lumphat'>Lumphat</marker>. The HVT is likely to flee the area if your presence in known. <br/><br/>
 
-// remoteExec ["foxClub_fnc_create_tasks", 2];
+Tip: If you get spotted, eleminate all members of the patrol before they can raise the alarm.<br/><br/>
+
+<img image='pics\stealth.jpg' />", // description
+        "Remain Undetected", // title
+        "" //marker
+    ],
+    objNull, // destination; object(or objNull) or array
+    "CREATED", // state (created, assigned,etc)
+    -1, // priority (-1 for not auto assign)
+    false, // show notificaiton
+    "listen", // task icon
+    false // makes task always visible in 3D
+] call BIS_fnc_taskCreate;
+
+if (missionNamespace getVariable ["visAid", false]) then {
+    ["tsk_hvt", officer] call BIS_fnc_taskSetDestination; // Kill the hvt, updated
+    ["tsk_stab", ptboat] call BIS_fnc_taskSetDestination; // Destroy the stab, updated
+    ["tsk_undetected", [7813.57,9099.84,7.153]] call BIS_fnc_taskSetDestination; // remain undetected, updated
+    ["tsk_lz", [8585.34,8187.91,2.41499]] call BIS_fnc_taskSetDestination; // get to the exfil, updated and tested
+};
