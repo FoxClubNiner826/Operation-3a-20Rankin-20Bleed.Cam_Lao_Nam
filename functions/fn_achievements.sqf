@@ -54,7 +54,12 @@ missionNamespace getVariable ["testPOW", false];
 
 // Creates completion triggers for the tasks only on the server
 //["scripts\achievementTriggers.sqf"] remoteExec ["execVM", 2];
-remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
+
+
+// disables the creation of triggers on subsequent runs of the function 
+if (!(missionNamespace getVariable ["foxClub_var_cheevos_already_created", false])) then {
+    remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
+};
 
 
 //////////////////////////////////////////////////
@@ -62,6 +67,9 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
 //         PARENT TASK FOR ACHIEVEMENTS         //
 //                                              //
 //////////////////////////////////////////////////
+
+// disables the notification on subsequent runs of the function
+private _notification = [true, false] select (missionNamespace getVariable ["foxClub_var_cheevos_already_created", false]);
 
 [
     west, // owner
@@ -74,7 +82,7 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
     objNull, // destination; object(or objNull) or array
     "CREATED", // state (created, assigned,etc)
     -1, // priority (-1 for not auto assign)
-    true, // show notificaiton
+    _notification, // show notificaiton
     "whiteboard", // task icon
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
@@ -245,4 +253,5 @@ remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-//hint "fired";
+// this blocks the achievement triggers from creating twice when players get to infil spot.
+missionNamespace setVariable ["foxClub_var_cheevos_already_created", true, true];

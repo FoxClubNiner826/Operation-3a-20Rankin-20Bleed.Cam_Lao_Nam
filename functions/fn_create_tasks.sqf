@@ -1,3 +1,17 @@
+
+// if achievements where selected then we delete the parent task so they all disappear, thus allowing secondary tasks to be positioned under primary tasks
+if (missionNamespace getVariable ["foxClub_var_createCheevos", false]) then {
+    ["tsk_parent_cheevos", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_perfectScore", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_worstScore", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_phantomTeam", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_rescueEffort", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_radioTower", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_radioBackpack", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_preventDown", west, false] call BIS_fnc_deleteTask;
+};
+
+
 // creates server-only triggers for the tasks
 remoteExec ["FoxClub_fnc_create_task_triggers", 2];
 
@@ -112,9 +126,13 @@ Tip: Be sure to bring a smoke grenade to mark the LZ for exfil.<br/><br/>
 
 //////////////////////////////////////////////////
 //                                              //
-//        TASKS FOR SECONDARY OBJECTIVES        //
+//               UNDETECTED TASK                //
 //                                              //
 //////////////////////////////////////////////////
+
+// if players skip the infil spot and get to lumphat undetected then this task will complete and the others will be ran
+private _undetected_state = ["CREATED", "SUCCEEDED"] select (missionNamespace getVariable ["foxClub_var_players_skipped_infil_undetected", false]);
+private _undetected_notification = [false, true] select (missionNamespace getVariable ["foxClub_var_players_skipped_infil_undetected", false]);
 
 [
     west, // owner
@@ -129,9 +147,9 @@ Tip: If you get spotted, eleminate all members of the patrol before they can rai
         "" //marker
     ],
     objNull, // destination; object(or objNull) or array
-    "CREATED", // state (created, assigned,etc)
+    _undetected_state, // state (created, assigned,etc)
     -1, // priority (-1 for not auto assign)
-    false, // show notificaiton
+    _undetected_notification, // show notificaiton
     "listen", // task icon
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
@@ -141,4 +159,10 @@ if (missionNamespace getVariable ["visAid", false]) then {
     ["tsk_stab", ptboat] call BIS_fnc_taskSetDestination; // Destroy the stab, updated
     ["tsk_undetected", [7813.57,9099.84,7.153]] call BIS_fnc_taskSetDestination; // remain undetected, updated
     ["tsk_lz", [8585.34,8187.91,2.41499]] call BIS_fnc_taskSetDestination; // get to the exfil, updated and tested
+};
+
+
+// if achievements were selected, since we deleted them at the top of this script, when now add them again, thus allowing them to be displayed under secondary tasks
+if (missionNamespace getVariable ["foxClub_var_createCheevos", false]) then {
+    call FoxClub_fnc_achievements;
 };
