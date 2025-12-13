@@ -193,6 +193,13 @@ _patrolGroup = [patrol1, patrol2, patrol3, patrol4, patrol5, patrol6];
                     [_flare, ["flarewhistle", 400]] remoteExec ["say3D"];
                     sleep 3;
 
+                    // create tasks if players missed the infil spot
+                    if (!(missionNamespace getVariable ["infilTaskSucceeded", false]) && 
+                        !(missionNamespace getVariable ["playersAtLumphat", false])) then { 
+                            remoteExec ["foxClub_fnc_create_tasks", 2];
+                            missionNamespace setVariable ["infilTaskFailed", true, true];
+                    };
+
                     // if its the first time players are spotted by a patrol outside of lumphat and no other players have reached lumphat and the general hasnt fled then play this otherwise do nothing
                     if (!(missionNamespace getVariable ["PlayersSpotted", false]) && 
                         !(missionNamespace getVariable ["aopassedVar", false]) && 

@@ -197,7 +197,7 @@ foxClub_trg_complete_task_lz setTriggerStatements [
 //          COMPLETE UNDETECTED TRIGGER         //
 //                                              //
 //////////////////////////////////////////////////
-// 
+// tested and working
 
 // creates trigger
 _trg_complete_task_undetected = createTrigger [
@@ -275,6 +275,49 @@ _trg_fail_task_undetected setTriggerStatements [
     "" // code ran on deactivation
 ];
 
+
+//////////////////////////////////////////////////
+//                                              //
+//       COMPLETE SEARCH LUMPHAT TRIGGER        //
+//                                              //
+//////////////////////////////////////////////////
+// 
+
+_trg_complete_task_search = createTrigger [
+    "EmptyDetector", // type
+    objNull, // position
+    false // makes global
+];
+
+private _condition_task_search = {
+    (missionNamespace getVariable ["cacheTask", false] || missionNamespace getVariable ["cacheTaskAlreadyDone", false]) &&  
+    (missionNamespace getVariable ["gunboatTask", false] || missionNamespace getVariable ["gunboatTaskAlreadyDone", false]) &&  
+    (missionNamespace getVariable ["samsiteTask", false] || missionNamespace getVariable ["samsiteTaskAlreadyDone", false])
+};
+
+private _activation_task_search = {
+    deleteVehicle TOO_lumphat_canceled;
+    [] spawn {
+
+    _scout = missionNamespace getVariable ["scout", objNull]; 
+
+    if (leader playerGroup == _scout) then {  
+        ["scoutLumphatSearched", [_scout]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance _scout <= 100}];  
+    } else {  
+        ["LumphatSearched", [leader playerGroup]] remoteExec ["FoxClub_fnc_Conversation", allPlayers select {_x distance leader playerGroup <= 100}];  
+    };
+
+    sleep 3;
+
+    ["tsk_search","SUCCEEDED"] call BIS_fnc_taskSetState;
+    };
+};
+
+_trg_complete_task_search setTriggerStatements [
+    toString _condition_task_search, // trigger condition
+    toString _activation_task_search, // code ran on activation
+    "" // code ran on deactivation
+];
 
 
 

@@ -5,30 +5,8 @@ TO DO UP NEXT:
 
 Current TASK:
 
-One more task and trigger to add for the infil dump.
-
-gate the task function for the other edge case (players miss infil and get spotted)
-
-delete the secondary task module but keep the trigger that completes it and just have it set the task state of the one I created with scripting
-
-3d icons see inconsistant. work for some but not for other.
-    John says with scripted on units that it will update the 3d icon when the player has identified it.
-
-Polish: Make the achievement system compatible with my new task creation function.
-    If players choose to have achievements then they will be displayed below primary objectives. This is great until they get to the infil spot where the secondary tasks will be below the cheevos. So we will delete the cheevos then readd them after the secondary tasks. I gated the deletion of the triggers so the only thing it's doing is affecting the tasks.
-        The issue is if the create_tasks function is ran more than twice, already completed cheevo will be reset because of the deletion and readd. I need a way to gate against this if I plan on using the function again for if players skip the infil spot.
-            I don't think it can get called more than twice. The first time is whichever comes first; at the infil spot, lumphat if players miss the infil, or if they are detected after missing the infil.
-        The real issue is if the achievements function gets called after an achievement is completed. The achievements function only gets called two places. At the map board and at the infil spot. And all achievements are after the infil spot so there is no chance of overwriting them. Especially since the create_tasks function can only run once.
-            There is one case where if they don't go to the infil spot and complete an achievement, then get to lumphat/get spotted that it could overwrite their achievement though it is edge case I think. I will leave it until playtesting says I need to find a solution.
-
-
-Polish: I used BIS_fnc_showNotification to create single notification instead of the 5 that would normally pop up at the infil location. This is a cleaner approach. Tasks notifications wont be able to display on top of each other and it also prevents from annoying players with too many notifications. Another benefeit is that I get to control more reliably the order the tasks are listed in the journal.
-    Completed: I will need to create a function that creates these tasks.
-        - I can copy the 3d positon of the current tasks in order to preserve their 3d icon placement before deleting them.
-    Completed: I will need to create some server only triggers.
-        - I can copy the condition of the triggers in the editor before deleting them.
-    Completed: I may be able to reuse this function and the triggers for the backup tasks and triggers that are needed if players fail the infil task
-
+See if you can use the existing game ends when players are all downed to inject your end mission screen. That way you could potentionally use the Params at lobby screen.
+            In the end I want to use a scalable ticket system to determine end game. Each player gets x tickets where x can be scaled in Paras. X tickets get put in a pool anyone can call from.
 
 
 
@@ -38,8 +16,6 @@ TO DO MASTER LIST:
     MEDIUM PRIORITY:
     
     LOW PRIORITY:
-        See if you can use the existing game ends when players are all downed to inject your end mission screen. That way you could potentionally use the Params at lobby screen.
-            In the end I want to use a scalable ticket system to determine end game. Each player gets x tickets where x can be scaled in Paras. X tickets get put in a pool anyone can call from.
         - Finish work on adding convos to the revive system, theres a JIP one I need to overwrite as well
         -add patrols to each objective and adjust the tracker module to reflect the changes. This will make the ghost achievement more and understood by players.
         - Do a test to see if this is possible before wasting a ton of time. Design: If you put on an enemy back pack you get to know if you are being tracked and whatever other info/things could be
@@ -206,6 +182,24 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Polish: I used BIS_fnc_showNotification to create single notification instead of the 5 that would normally pop up at the infil location. This is a cleaner approach. Tasks notifications wont be able to display on top of each other and it also prevents from annoying players with too many notifications. Another benefeit is that I get to control more reliably the order the tasks are listed in the journal.
+    Completed: I will need to create a function that creates these tasks.
+        - I can copy the 3d positon of the current tasks in order to preserve their 3d icon placement before deleting them.
+    Completed: I will need to create some server only triggers.
+        - I can copy the condition of the triggers in the editor before deleting them.
+    Completed: I may be able to reuse this function and the triggers for the backup tasks and triggers that are needed if players fail the infil task
+    Completed: One more task and trigger to add for the infil task dump.
+    Completed: choose a task that will be the assigned task.
+    Completed: gate the task function for the other edge case (players miss infil and get spotted)
+    Completed: delete the secondary task module but keep the trigger that completes it and just have it set the task state of the one I created with scripting
+    Completed: 3d icons seem inconsistant. work for some but not for other.
+        John says with scripted on units that it will update the 3d icon when the player has identified it.
+Polish: Make the achievement system compatible with my new task creation function.
+    If players choose to have achievements then they will be displayed below primary objectives. This is great until they get to the infil spot where the secondary tasks will be below the cheevos. So we will delete the cheevos then readd them after the secondary tasks. I gated the deletion of the triggers so the only thing it's doing is affecting the tasks.
+        The issue is if the create_tasks function is ran more than twice, already completed cheevo will be reset because of the deletion and readd. I need a way to gate against this if I plan on using the function again for if players skip the infil spot.
+            I don't think it can get called more than twice. The first time is whichever comes first; at the infil spot, lumphat if players miss the infil, or if they are detected after missing the infil.
+        The real issue is if the achievements function gets called after an achievement is completed. The achievements function only gets called two places. At the map board and at the infil spot. And all achievements are after the infil spot so there is no chance of overwriting them. Especially since the create_tasks function can only run once.
+            There is one case where if they don't go to the infil spot and complete an achievement, then get to lumphat/get spotted that it could overwrite their achievement though it is edge case I think. I will leave it until playtesting says I need to find a solution.
 Polish/Performance: I got rid of the duplicate tasks and triggers for skip to infil situation now that I know how to use setTaskState. In the skiptoIngress file I can delete any triggers/tasks that are not needed and create my own.
 
 Bug Fixed/Polish: Reworked the skip to infil scene transition because of a bug found with titleText being incompatiple with playSound. Used cutText instead and moved away from my old execVM method to a function. Used the new task frame work to add polish and optimization by making the skipped tasks complete without making duplicate triggers and tasks, while just creating my own completed tasks (instead of forcing the other tasks to update which was slow)

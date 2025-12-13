@@ -307,7 +307,7 @@ map addAction [
         ["gettorecon", gettorecon] call BIS_fnc_taskSetDestination; // get to the cove task
         ["uprivertask", uprivertask] call BIS_fnc_taskSetDestination; // proceed upriver
         ["tsk_getToInfil", tsk_getToInfil] call BIS_fnc_taskSetDestination; // get to the infil spot        
-        ["tsk_searchLumphat", tsk_searchLumphat] call BIS_fnc_taskSetDestination; // search Lumphat
+        //["tsk_search", [7784.76,9091.68,6.89072]] call BIS_fnc_taskSetDestination; // search Lumphat, updated
         //["tsk_hvt", officer] call BIS_fnc_taskSetDestination; // Kill the hvt, updated
         //["tsk_stab", ptboat] call BIS_fnc_taskSetDestination; // Destroy the stab, updated
         //["tsk_undetected", [7813.57,9099.84,7.153]] call BIS_fnc_taskSetDestination; // remain undetected, updated

@@ -131,8 +131,15 @@ Tip: Be sure to bring a smoke grenade to mark the LZ for exfil.<br/><br/>
 //////////////////////////////////////////////////
 
 // if players skip the infil spot and get to lumphat undetected then this task will complete and the others will be ran
-private _undetected_state = ["CREATED", "SUCCEEDED"] select (missionNamespace getVariable ["foxClub_var_players_skipped_infil_undetected", false]);
-private _undetected_notification = [false, true] select (missionNamespace getVariable ["foxClub_var_players_skipped_infil_undetected", false]);
+private _undetected_notification = [false, true] select (!(missionNamespace getVariable ["infilTaskSucceeded", false]));
+
+private "_undetected_state";
+switch (true) do {
+    case (missionNamespace getVariable ["foxClub_var_players_skipped_infil_undetected", false]): { _undetected_state = "SUCCEEDED"; };
+    case (missionNamespace getVariable ["foxClub_var_failAchievementGhost", false]): { _undetected_state = "FAILED"; };
+    default { _undetected_state = "ASSIGNED"; };
+};
+
 
 [
     west, // owner
@@ -154,11 +161,38 @@ Tip: If you get spotted, eleminate all members of the patrol before they can rai
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
+
+//////////////////////////////////////////////////
+//                                              //
+//               SEARCH TASK                    //
+//                                              //
+//////////////////////////////////////////////////
+
+[
+    west, // owner
+    ["tsk_search", "tsk_parent_secondary"], // task ID' ["subTask", "parentTask"]
+    [
+        "At your discretion, search <marker name='lumphat'>Lumphat</marker> for anything of value.<br/><br/>
+<img image='pics\search.jpg' />", // description
+        "Search Lumphat for Intel", // title
+        "" //marker
+    ],
+    objNull, // destination; object(or objNull) or array
+    "CREATED", // state (created, assigned,etc)
+    -1, // priority (-1 for not auto assign)
+    false, // show notificaiton
+    "search", // task icon
+    false // makes task always visible in 3D
+] call BIS_fnc_taskCreate;
+
+
+// if players selected 3d icons then apply them to the new created tasks
 if (missionNamespace getVariable ["visAid", false]) then {
     ["tsk_hvt", officer] call BIS_fnc_taskSetDestination; // Kill the hvt, updated
     ["tsk_stab", ptboat] call BIS_fnc_taskSetDestination; // Destroy the stab, updated
     ["tsk_undetected", [7813.57,9099.84,7.153]] call BIS_fnc_taskSetDestination; // remain undetected, updated
     ["tsk_lz", [8585.34,8187.91,2.41499]] call BIS_fnc_taskSetDestination; // get to the exfil, updated and tested
+    ["tsk_search", [7784.76,9091.68,6.89072]] call BIS_fnc_taskSetDestination; // search lumphat, updated
 };
 
 
