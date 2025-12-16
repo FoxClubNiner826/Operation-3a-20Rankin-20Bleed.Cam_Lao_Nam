@@ -9,6 +9,7 @@ cutText ["", "BLACK OUT", 3]; // use cutText instead of titleText because my con
 3 fadesound 0;
 0 fadespeech 0;
 missionNamespace setVariable ["skiptoinfil", true, true]; //needed to gate convo
+//["gettorecon", west, true] call BIS_fnc_deleteTask; // before the sleep so that the task doesn't get created when the trigger is deleted
 
 sleep 3; //make sure the screen is black before teleport
 
@@ -72,15 +73,15 @@ deleteVehicle sampanPatrolBoat6;
 
 
 // complete the skipped tasks as if the player had done them
-["gettorecon", west, true] call BIS_fnc_deleteTask;
-deleteVehicle trg_createTask_proceedToCove;
+//deleteVehicle trg_createTask_proceedToCove;
+trg_createTask_proceedToCove enableSimulation false;
 
 [
     west, // owner
     ["tsk_cove_skipped", "PRI"], // task ID' ["subTask", "parentTask"]
     [
         "Motor north under cover of darkness. There are red-filter torches in the boat to aid you in the darkness. Hide the boat in the <marker name='cove'>cove</marker> and take up a reconnasance position. <br/><br/><img image='pics\reconpos3.jpg' />", // description
-        "Proceed to the Cove", // title
+        "Proceed to the Cove: Skip Function.", // title
         "" //marker
     ],
     objNull, // destination; object(or objNull) or array

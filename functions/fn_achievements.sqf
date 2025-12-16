@@ -52,16 +52,20 @@ missionNamespace getVariable ["pilotEjected", false];
 missionNamespace getVariable ["testPOW", false];
 */
 
-// Creates completion triggers for the tasks only on the server
+
 //["scripts\achievementTriggers.sqf"] remoteExec ["execVM", 2];
 
-
-// disables the creation of triggers on subsequent runs of the function 
+/*
+// disables the creation of triggers on subsequent runs of the function. The function must be ran again so that you can order the achievements how you like (with them at the bottom of the task list).
 if (!(missionNamespace getVariable ["foxClub_var_cheevos_already_created", false])) then {
     remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
 };
+*/
 
+// Creates completion triggers for the tasks only on the server
+remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
 
+sleep 1;
 //////////////////////////////////////////////////
 //                                              //
 //         PARENT TASK FOR ACHIEVEMENTS         //
@@ -69,7 +73,9 @@ if (!(missionNamespace getVariable ["foxClub_var_cheevos_already_created", false
 //////////////////////////////////////////////////
 
 // disables the notification on subsequent runs of the function
-private _notification = [true, false] select (missionNamespace getVariable ["foxClub_var_cheevos_already_created", false]);
+private _notification = [true, false] select (
+    missionNamespace getVariable ["infilTaskSucceeded", false]
+);
 
 [
     west, // owner
@@ -87,7 +93,7 @@ private _notification = [true, false] select (missionNamespace getVariable ["fox
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-
+sleep 1;
 //////////////////////////////////////////////////
 //                                              //
 //               PERFECT MISSION                //
@@ -253,5 +259,7 @@ private _notification = [true, false] select (missionNamespace getVariable ["fox
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-// this blocks the achievement triggers from creating twice when players get to infil spot.
-missionNamespace setVariable ["foxClub_var_cheevos_already_created", true, true];
+/* this blocks the achievement triggers from creating twice when players get to infil spot.
+if ((missionNamespace getVariable ["infilTaskSucceeded", false])) then {
+    missionNamespace setVariable ["foxClub_var_cheevos_already_created", true, true];
+};

@@ -425,6 +425,13 @@ map addAction [
     ["Achievements: Disabled"] remoteExec ["systemChat", 0];
 	missionNamespace setVariable ["foxClub_var_createCheevos", false, true];
 	["tsk_parent_cheevos", west, true] call BIS_fnc_deleteTask;
+    ["cheevo_perfectScore", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_worstScore", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_phantomTeam", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_rescueEffort", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_radioTower", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_radioBackpack", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_preventDown", west, false] call BIS_fnc_deleteTask;
     remoteExec ["FoxClub_fnc_deleteAchievementTriggers", 2];
     }, 
     nil, 

@@ -5,8 +5,22 @@ TO DO UP NEXT:
 
 Current TASK:
 
+Polish: the notification for cut the line task and comms disabled task play on top of each other if achievements are selected.
+
+Bug Fix: Achievements completely inconsistant when they are recreated at the infil spot in MP. They work when created at the map board just fine though. When they are created at the infil spot sometimes they are not named, not created at all, use default icons. And the ones effected change each play test. It's very inconsistant. Also which ones exist on the server or the client could be different as well.
+    - I tried a bunch of different remoteExec commands to see if that changed anything but it didn't.
+    - Then I tried adding some sleeps in the function for the achievement creation. That seems to help. It's worked three times in a row now.
+    - I wonder if the error message for no picures for the tasks is causing the issue.
+    - There is also some comments on the createTask wiki that I can investigate.
+
+Bug Fix: Intermittant: The cove task still was created on the server despite that achievements were selected. Litterally impossible according to the condition. I might need to switch this task to scripted instead of the module and see if it behaves more consistantly.
+
+
 See if you can use the existing game ends when players are all downed to inject your end mission screen. That way you could potentionally use the Params at lobby screen.
             In the end I want to use a scalable ticket system to determine end game. Each player gets x tickets where x can be scaled in Paras. X tickets get put in a pool anyone can call from.
+
+
+
 
 
 
@@ -182,6 +196,29 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Bug Fix: Proceed to the cove task still popped up when client skipped to the infil.
+    - Appears to only happen if you skip to infil before the creation of the cove task.
+        - That is exactly what is happening. The delete task code is being ran before the creation of cove task. So if you skip to infil fast enough the task doesn't get deleted.
+            I have gated the task not to show up if players select achievements.
+
+Bug Fix: The "proceed to cove" task appears assigned and not completed from within the skip to infil function.
+    - It turns out it was the editor task and it was getting created because it's creation trigger was getting deleted. I moved the task deletion in the skip to infil function to an area before a sleep to give the task time to be deleted. If this doesn't work we can try to disable the simulation on the trigger.
+        - I tried to delete the task with deleteTask but it didn't work. It might not be able to delete the task module. If I created the task with the task framework it might work. Maybe it's not compatible with editor modules or their variable names. In the end it seems disabling the simulation works. I tested it in MP and the condition will not resolve to true if the simulation is disabled.
+
+Bug Fix: I simplified the code of how triggers/task for achievements are created after players get to the infil spot. They are fully deleted then reapplied when the create task function is called. 
+    Original Work Flow: test what happens if you select achievements then delete them then select them again then create tasks. there is some question if the achievement triggers still exist in this instance.
+    - They do not. Make a flow chart of how it works.
+        - Players select achievements from the map board. Calls achievements funciton 
+        - The function creates the tasks and gates the triggers from being created again on a subsequent run.
+        - Player removes the achievements. Deletes tasks and runs function to remove triggers.
+        - Players select achievements from the map board. Calls achievements funciton. But because of the gate new triggers are not created.
+
+Bug Fix: Achievements pops up at infil spot when players elect to have them.
+    - Bug was related to obsolete variable.
+
+Bug Fix: The achievement task notification doesn't display when selecting the option more than once. Like if a player decides to remove the option then select it again.
+    - I used a variable to gate the pop up. It will always show untill players get to the infil spot.
+
 Polish: I used BIS_fnc_showNotification to create single notification instead of the 5 that would normally pop up at the infil location. This is a cleaner approach. Tasks notifications wont be able to display on top of each other and it also prevents from annoying players with too many notifications. Another benefeit is that I get to control more reliably the order the tasks are listed in the journal.
     Completed: I will need to create a function that creates these tasks.
         - I can copy the 3d positon of the current tasks in order to preserve their 3d icon placement before deleting them.

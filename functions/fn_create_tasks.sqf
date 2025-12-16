@@ -1,5 +1,5 @@
 
-// if achievements where selected then we delete the parent task so they all disappear, thus allowing secondary tasks to be positioned under primary tasks
+// if achievements where selected then we delete the task/triggers so they all disappear, thus allowing secondary tasks to be positioned under primary tasks
 if (missionNamespace getVariable ["foxClub_var_createCheevos", false]) then {
     ["tsk_parent_cheevos", west, false] call BIS_fnc_deleteTask;
     ["cheevo_perfectScore", west, false] call BIS_fnc_deleteTask;
@@ -9,6 +9,7 @@ if (missionNamespace getVariable ["foxClub_var_createCheevos", false]) then {
     ["cheevo_radioTower", west, false] call BIS_fnc_deleteTask;
     ["cheevo_radioBackpack", west, false] call BIS_fnc_deleteTask;
     ["cheevo_preventDown", west, false] call BIS_fnc_deleteTask;
+    remoteExec ["FoxClub_fnc_deleteAchievementTriggers", 2];
 };
 
 
@@ -198,5 +199,7 @@ if (missionNamespace getVariable ["visAid", false]) then {
 
 // if achievements were selected, since we deleted them at the top of this script, when now add them again, thus allowing them to be displayed under secondary tasks
 if (missionNamespace getVariable ["foxClub_var_createCheevos", false]) then {
-    call FoxClub_fnc_achievements;
+    //call FoxClub_fnc_achievements;
+    remoteExec ["FoxClub_fnc_achievements", 2]; // very inconsistant task creation on server and client 
+    //remoteExec ["FoxClub_fnc_achievements", 0]; // same issue. putting a sleep in the function seems to help
 };
