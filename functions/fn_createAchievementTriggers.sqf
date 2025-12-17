@@ -1,8 +1,8 @@
 /*
-    File: achievements.sqf
+    File: fn_createAchievementTriggers.sqf
     Author: FoxClubNiner
     Description:
-        Creates a task parent category and several tasks under it.
+        Creates achievement triggers.
 */
 
 /* hvt possibilities. for mid to work: mid and failed will have to be true. at least one of these is always true.

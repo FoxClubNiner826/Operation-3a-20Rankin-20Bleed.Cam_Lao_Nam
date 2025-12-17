@@ -63,23 +63,20 @@ if (!(missionNamespace getVariable ["foxClub_var_cheevos_already_created", false
 */
 
 // Creates completion triggers for the tasks only on the server
-remoteExec ["FoxClub_fnc_createAchievementTriggers", 2];
+//["FoxClub_fnc_createAchievementTriggers", 2];
 
-sleep 1;
+//sleep 1;
+
 //////////////////////////////////////////////////
 //                                              //
 //         PARENT TASK FOR ACHIEVEMENTS         //
 //                                              //
 //////////////////////////////////////////////////
 
-// disables the notification on subsequent runs of the function
-private _notification = [true, false] select (
-    missionNamespace getVariable ["infilTaskSucceeded", false]
-);
 
 [
     west, // owner
-    "tsk_parent_cheevos", // task ID
+    "tsk_parent_cheevos_placeholder", // task ID
     [
         "Complete these optional achievements at your discretion.", // description
         "Achievements", // title
@@ -88,12 +85,13 @@ private _notification = [true, false] select (
     objNull, // destination; object(or objNull) or array
     "CREATED", // state (created, assigned,etc)
     -1, // priority (-1 for not auto assign)
-    _notification, // show notificaiton
+    true, // show notificaiton
     "whiteboard", // task icon
     false // makes task always visible in 3D
 ] call BIS_fnc_taskCreate;
 
-sleep 1;
+//sleep 1;
+
 //////////////////////////////////////////////////
 //                                              //
 //               PERFECT MISSION                //
@@ -102,7 +100,7 @@ sleep 1;
 
 [
     west, // owner
-    ["cheevo_perfectScore", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
+    ["cheevo_perfectScore_placeholder", "tsk_parent_cheevos_placeholder"], // task ID' ["subTask", "parentTask"]
     [
         "Achieve a perfect outcome by completing all primary and secondary tasks that are possible in the mission.", // description
         "Medal of Honor", // title
@@ -125,7 +123,7 @@ sleep 1;
 
 [
     west, // owner
-    ["cheevo_worstScore", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
+    ["cheevo_worstScore_placeholder", "tsk_parent_cheevos_placeholder"], // task ID' ["subTask", "parentTask"]
     [
         "Fail all of the most important tasks in the mission: <br/><br/>
         1. Kill the HVT<br/>
@@ -152,7 +150,7 @@ sleep 1;
 
 [
     west, // owner
-    ["cheevo_phantomTeam", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
+    ["cheevo_phantomTeam_placeholder", "tsk_parent_cheevos_placeholder"], // task ID' ["subTask", "parentTask"]
     [
         "Secure the HVT’s credentials and exfiltrate undetected.", // description
         "Phantom Team", // title
@@ -175,7 +173,7 @@ sleep 1;
 
 [
     west, // owner
-    ["cheevo_rescueEffort", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
+    ["cheevo_rescueEffort_placeholder", "tsk_parent_cheevos_placeholder"], // task ID' ["subTask", "parentTask"]
     [
         "Find and Rescue both the Downed Pilot and the POW.", // description
         "All Assets Secured", // title
@@ -198,7 +196,7 @@ sleep 1;
 
 [
     west, // owner
-    ["cheevo_radioTower", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
+    ["cheevo_radioTower_placeholder", "tsk_parent_cheevos_placeholder"], // task ID' ["subTask", "parentTask"]
     [
         "Find a way to disrupt enemy comms.", // description
         "Cut the Line", // title
@@ -221,7 +219,7 @@ sleep 1;
 
 [
     west, // owner
-    ["cheevo_radioBackpack", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
+    ["cheevo_radioBackpack_placeholder", "tsk_parent_cheevos_placeholder"], // task ID' ["subTask", "parentTask"]
     [
         "Warning: Not currently implemented! <br/><br/>
         Equip the Kit Carson with an enemy radio backpack and use it to your advantage.", // description
@@ -245,7 +243,7 @@ sleep 1;
 
 [
     west, // owner
-    ["cheevo_preventDown", "tsk_parent_cheevos"], // task ID' ["subTask", "parentTask"]
+    ["cheevo_preventDown_placeholder", "tsk_parent_cheevos_placeholder"], // task ID' ["subTask", "parentTask"]
     [
         "Prevent the American pilot from being shot down.", // description
         "Overwatch", // title

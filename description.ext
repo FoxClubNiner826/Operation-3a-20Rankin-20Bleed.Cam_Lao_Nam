@@ -1,5 +1,6 @@
 respawnOnStart = 0;
 allowProfileGlasses = 0;
+respawnTemplates[] = { "MenuPosition", "Tickets" };
 
 class CfgNotifications
 {
@@ -20,6 +21,36 @@ class CfgNotifications
 
 class Params
 {
+    /*
+    class Respawn
+    {
+        title = "Number of Respawns Allowed";
+        values[] = { 0,8,16,24 };
+        texts[] = 
+        {
+            "Infinite",
+            "8",
+            "16",
+            "24"
+        };
+        default= 0;
+        code = "";
+    };
+    class Respawn Timer
+    {
+        title = "How Long Before Respawning is Allowed";
+        values[] = { 0,8,16,24 };
+        texts[] = 
+        {
+            "Infinite",
+            "8",
+            "16",
+            "24"
+        };
+        default= 0;
+        code = "";
+    };
+    */
     #include "\a3\Functions_F\Params\paramRevive.hpp"
 };
 
@@ -37,9 +68,8 @@ class CfgFunctions
             class intelAlreadyDone {};
             class heliRTB {};
             class loopAnimation {};
-            class achievements {};
+            class create_placeholder_achievement_tasks {};
             class createAchievementTriggers {};
-            class deleteAchievementTriggers {};
             class revive_conversation_start {};
             class revive_conversation_finish {};
             class skip_to_infil {};

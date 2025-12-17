@@ -304,7 +304,7 @@ map addAction [
         missionNamespace setVariable ["visAid", true, true];
 
         ["getinstab_tsk", ptboat] call BIS_fnc_taskSetDestination; // get in stab task
-        ["gettorecon", gettorecon] call BIS_fnc_taskSetDestination; // get to the cove task
+        ["tsk_cove_skipped_editor", [7171.26,6827.97,4.478]] call BIS_fnc_taskSetDestination; // get to the cove task
         ["uprivertask", uprivertask] call BIS_fnc_taskSetDestination; // proceed upriver
         ["tsk_getToInfil", tsk_getToInfil] call BIS_fnc_taskSetDestination; // get to the infil spot        
         //["tsk_search", [7784.76,9091.68,6.89072]] call BIS_fnc_taskSetDestination; // search Lumphat, updated
@@ -349,7 +349,7 @@ map addAction [
         missionNamespace setVariable ["visAid", false, true];
 
         ["getinstab_tsk", objNull] call BIS_fnc_taskSetDestination; // get in stab task
-        ["gettorecon", objNull] call BIS_fnc_taskSetDestination; // get to the cove task
+        ["tsk_cove_skipped_editor", objNull] call BIS_fnc_taskSetDestination; // get to the cove task
         ["uprivertask", objNull] call BIS_fnc_taskSetDestination; // proceed upriver
         ["tsk_getToInfil", objNull] call BIS_fnc_taskSetDestination; // get to the infil spot
         ["tsk_searchLumphat", objNull] call BIS_fnc_taskSetDestination; // search Lumphat
@@ -391,10 +391,7 @@ map addAction [
 	params ["_target", "_caller", "_actionID", "_args"];
 	//systemChat "Achievements: Enabled";
     ["Achievements: Enabled"] remoteExec ["systemChat", 0];
-    call FoxClub_fnc_achievements; // creates tasks and triggers for the tasks
-    //execVM "scripts\achievements.sqf";
-    //missionNamespace setVariable ["foxClub_var_createParentCheevos", true, true];
-    //sleep 2;
+    call FoxClub_fnc_create_placeholder_achievement_tasks; // creates tasks and triggers for the tasks
 	missionNamespace setVariable ["foxClub_var_createCheevos", true, true];
 	}, 
     nil, 
@@ -424,15 +421,14 @@ map addAction [
 	//systemChat "Achievements: Disabled";
     ["Achievements: Disabled"] remoteExec ["systemChat", 0];
 	missionNamespace setVariable ["foxClub_var_createCheevos", false, true];
-	["tsk_parent_cheevos", west, true] call BIS_fnc_deleteTask;
-    ["cheevo_perfectScore", west, false] call BIS_fnc_deleteTask;
-    ["cheevo_worstScore", west, false] call BIS_fnc_deleteTask;
-    ["cheevo_phantomTeam", west, false] call BIS_fnc_deleteTask;
-    ["cheevo_rescueEffort", west, false] call BIS_fnc_deleteTask;
-    ["cheevo_radioTower", west, false] call BIS_fnc_deleteTask;
-    ["cheevo_radioBackpack", west, false] call BIS_fnc_deleteTask;
-    ["cheevo_preventDown", west, false] call BIS_fnc_deleteTask;
-    remoteExec ["FoxClub_fnc_deleteAchievementTriggers", 2];
+	["tsk_parent_cheevos_placeholder", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_perfectScore_placeholder", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_worstScore_placeholder", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_phantomTeam_placeholder", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_rescueEffort_placeholder", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_radioTower_placeholder", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_radioBackpack_placeholder", west, false] call BIS_fnc_deleteTask;
+    ["cheevo_preventDown_placeholder", west, false] call BIS_fnc_deleteTask;
     }, 
     nil, 
     8, 

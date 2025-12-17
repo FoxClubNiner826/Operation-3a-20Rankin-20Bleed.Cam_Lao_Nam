@@ -5,17 +5,6 @@ TO DO UP NEXT:
 
 Current TASK:
 
-Polish: the notification for cut the line task and comms disabled task play on top of each other if achievements are selected.
-
-Bug Fix: Achievements completely inconsistant when they are recreated at the infil spot in MP. They work when created at the map board just fine though. When they are created at the infil spot sometimes they are not named, not created at all, use default icons. And the ones effected change each play test. It's very inconsistant. Also which ones exist on the server or the client could be different as well.
-    - I tried a bunch of different remoteExec commands to see if that changed anything but it didn't.
-    - Then I tried adding some sleeps in the function for the achievement creation. That seems to help. It's worked three times in a row now.
-    - I wonder if the error message for no picures for the tasks is causing the issue.
-    - There is also some comments on the createTask wiki that I can investigate.
-
-Bug Fix: Intermittant: The cove task still was created on the server despite that achievements were selected. Litterally impossible according to the condition. I might need to switch this task to scripted instead of the module and see if it behaves more consistantly.
-
-
 See if you can use the existing game ends when players are all downed to inject your end mission screen. That way you could potentionally use the Params at lobby screen.
             In the end I want to use a scalable ticket system to determine end game. Each player gets x tickets where x can be scaled in Paras. X tickets get put in a pool anyone can call from.
 
@@ -196,6 +185,19 @@ TO EXPORT FOR PLAY TESTING ON DEDICATED SERVER:
 
 
 CHANGE LOG:
+Bug Fix: The cove task remains in the journal if players enter the stab, get that task, then decide to enable achievements. I want it deleted after the skip to infil.
+    - I created two tasks that do the same thing and delete one if the skip to infil is performed.
+
+Bug Fix: Achievements completely inconsistant when they are recreated at the infil spot in MP. They work when created at the map board just fine though. When they are created at the infil spot sometimes they are not named, not created at all, use default icons. And the ones effected change each play test. It's very inconsistant. Also which ones exist on the server or the client could be different as well.
+    - I tried a bunch of different remoteExec commands to see if that changed anything but it didn't.
+    - Then I tried adding some sleeps in the function for the achievement creation. That seems to help. It's worked three times in a row now.
+    - I wonder if the error message for no picures for the tasks is causing the issue.
+    - There is also some comments on the createTask wiki that I can investigate.
+    - After much trial and error and discussion on discord. I have fixed this issue by making sure to call the function without remoteExec since the task framework will take care of networking. The other issue was that I was creating tasks with the same task name as ones that I had deleted. I assumed that since they were deleted that I could use the same name. Not true. They won't create. So I got around this by creating place holder tasks that I delete instead. I tested all 3 locations that the create_task function runs in MP without any issues.
+
+Polish: the notification for cut the line task and comms disabled task play on top of each other if achievements are selected.
+    - This is fine because it will only happen in testing. During the mission the achievement one will only notifiy at the debrief convo.
+
 Bug Fix: Proceed to the cove task still popped up when client skipped to the infil.
     - Appears to only happen if you skip to infil before the creation of the cove task.
         - That is exactly what is happening. The delete task code is being ran before the creation of cove task. So if you skip to infil fast enough the task doesn't get deleted.

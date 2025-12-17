@@ -2734,3 +2734,23 @@ _leader = leader playergroup;
 ["Infill"] call BIS_fnc_showNotification;
 
 };
+
+
+
+["tsk_parent_cheevos", west, false] call BIS_fnc_deleteTask;
+
+[
+    west, // owner
+    "tsk_parent_cheevos", // task ID
+    [
+        "Complete these optional achievements at your discretion.", // description
+        "Achievements", // title
+        "" //marker
+    ],
+    objNull, // destination; object(or objNull) or array
+    "CREATED", // state (created, assigned,etc)
+    -1, // priority (-1 for not auto assign)
+    _notification, // show notificaiton
+    "whiteboard", // task icon
+    false // makes task always visible in 3D
+] call BIS_fnc_taskCreate;

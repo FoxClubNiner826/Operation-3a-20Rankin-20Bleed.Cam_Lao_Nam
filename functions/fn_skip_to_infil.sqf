@@ -76,12 +76,15 @@ deleteVehicle sampanPatrolBoat6;
 //deleteVehicle trg_createTask_proceedToCove;
 trg_createTask_proceedToCove enableSimulation false;
 
+// remove the task that was 
+["tsk_cove_skipped_editor", west, false] call BIS_fnc_deleteTask;
+
 [
     west, // owner
     ["tsk_cove_skipped", "PRI"], // task ID' ["subTask", "parentTask"]
     [
         "Motor north under cover of darkness. There are red-filter torches in the boat to aid you in the darkness. Hide the boat in the <marker name='cove'>cove</marker> and take up a reconnasance position. <br/><br/><img image='pics\reconpos3.jpg' />", // description
-        "Proceed to the Cove: Skip Function.", // title
+        "Proceed to the Cove", // title
         "" //marker
     ],
     objNull, // destination; object(or objNull) or array
