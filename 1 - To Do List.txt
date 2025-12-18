@@ -5,8 +5,22 @@ TO DO UP NEXT:
 
 Current TASK:
 
+Try to implement a ticket system into the lobby parameters like you did with the revive system. My wishlist would include:
+    Completed: The ability to modify the respawn delay.
+        - Used a BI function and placed it in onPlayerKilled and pulled the value from lobby parameters.
+
+    - The ability to modify the number of tickets in a shared pool
+        - Got it mostly working. Just need to play around with it more.
+
+    - The ability to use the number of players to modify the tickets 
+     
+    
+    - A spectator camera that can be used in first and third person based on player game settings
+
+- Update the game options with default respawn behavior so players know what it is.
+
 See if you can use the existing game ends when players are all downed to inject your end mission screen. That way you could potentionally use the Params at lobby screen.
-            In the end I want to use a scalable ticket system to determine end game. Each player gets x tickets where x can be scaled in Paras. X tickets get put in a pool anyone can call from.
+    In the end I want to use a scalable ticket system to determine end game. Each player gets x tickets where x can be scaled in Paras. X tickets get put in a pool anyone can call from.
 
 
 

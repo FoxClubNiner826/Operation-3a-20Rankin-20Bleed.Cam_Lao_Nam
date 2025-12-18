@@ -38,13 +38,17 @@ missionNamespace setVariable ["actionBriefing", true, true]; // turns on captain
 missionNamespace setVariable ["skipToInfilAction", true, true]; // condition for skip holdAction
 
 ActionEndMission = false; //might not be needed anymore
-/*
-// then in the initServer.sqf
-private _respawn_tickets = [paramsArray, 0, -1, [0]] call BIS_fnc_param;
 
-[missionNamespace, _respawn_tickets] call BIS_fnc_respawnTickets;
-*/
-[] call BIS_fnc_setRespawnDelay;
+// Multiplayer lobby parameters
+private _respawn_tickets = paramsArray param [1];
+private _respawn_mode = paramsArray param [2];
+_respawn_mode = [player, missionNamespace] select _respawn_mode;
+
+[_respawn_mode, _respawn_tickets] call BIS_fnc_respawnTickets;
+
+
+
+ 
 
 ////////////////////////////////////////////////////
 //                                                //

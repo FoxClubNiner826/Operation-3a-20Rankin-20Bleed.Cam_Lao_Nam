@@ -20,37 +20,53 @@ class CfgNotifications
 };
 
 class Params
-{
-    /*
+{ 
+    class RespawnDelay
+    {
+        title = "Respawn Delay in Seconds";
+        values[] = { 60, 10, 20, 30, 40, 50, 60 };
+        texts[] = 
+        {
+            "Mission default",
+            "10",
+            "20",
+            "30",
+            "40",
+            "50",
+            "60"
+        };
+        default= 10; // make this 60 before publish
+        code = "";
+    };
+    
     class Respawn
     {
-        title = "Number of Respawns Allowed";
-        values[] = { 0,8,16,24 };
+        title = "Respawn Tickets";
+        values[] = { 0, 1, 2, 3 };
         texts[] = 
         {
             "Infinite",
-            "8",
-            "16",
-            "24"
+            "1",
+            "2",
+            "3"
         };
-        default= 0;
+        default= 2; // make this 0 before publish
         code = "";
     };
-    class Respawn Timer
+
+    class RespawnMode
     {
-        title = "How Long Before Respawning is Allowed";
-        values[] = { 0,8,16,24 };
+        title = "Respawn Tickets Mode";
+        values[] = { 0, 1 };
         texts[] = 
         {
-            "Infinite",
-            "8",
-            "16",
-            "24"
+            "Per Player",
+            "Global"
         };
-        default= 0;
+        default = 1; // 
         code = "";
     };
-    */
+    
     #include "\a3\Functions_F\Params\paramRevive.hpp"
 };
 
@@ -78,6 +94,7 @@ class CfgFunctions
             class cove_scene_transition {};
         };
     };
+    
     class bis
     {
         class Revive
@@ -88,6 +105,7 @@ class CfgFunctions
             };
         };
     };
+    
 };
 
 class CfgIdentities
