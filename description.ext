@@ -23,11 +23,10 @@ class Params
 { 
     class RespawnDelay
     {
-        title = "Respawn Delay in Seconds";
-        values[] = { 60, 10, 20, 30, 40, 50, 60 };
+        title = "Respawn Timer";
+        values[] = { 10, 20, 30, 40, 50, 60 };
         texts[] = 
         {
-            "Mission default",
             "10",
             "20",
             "30",
@@ -35,33 +34,37 @@ class Params
             "50",
             "60"
         };
-        default= 10; // make this 60 before publish
+        default= 60; // make this 60 before publish
         code = "";
     };
     
     class Respawn
     {
-        title = "Respawn Tickets";
-        values[] = { 0, 1, 2, 3 };
+        title = "Respawn Ticket Amount";
+        values[] = { 0, 1, 3, 5, 8, 10, 16, 24 };
         texts[] = 
         {
             "Infinite",
             "1",
-            "2",
-            "3"
+            "3",
+            "5",
+            "8",
+            "10",
+            "16",
+            "24"
         };
-        default= 2; // make this 0 before publish
+        default= 0; // make this 0 before publish
         code = "";
     };
 
     class RespawnMode
     {
-        title = "Respawn Tickets Mode";
+        title = "Respawn Ticket Distribution";
         values[] = { 0, 1 };
         texts[] = 
         {
             "Per Player",
-            "Global"
+            "Shared Pool"
         };
         default = 1; // 
         code = "";
@@ -94,7 +97,7 @@ class CfgFunctions
             class cove_scene_transition {};
         };
     };
-    /*
+    
     class bis
     {
         class Revive
@@ -105,7 +108,7 @@ class CfgFunctions
             };
         };
     };
-    */
+    
 };
 
 class CfgIdentities

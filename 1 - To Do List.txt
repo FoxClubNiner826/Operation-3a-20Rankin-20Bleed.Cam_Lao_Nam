@@ -11,21 +11,20 @@ Try to implement a ticket system into the lobby parameters like you did with the
         - Need to test compat with revive system.
             Bug Fix: If you set the editor respawn timer to zero, you will get an error on the local host. Setting it to one second seems to fix it and isn't noticable to the player that their actual respawn time is one second more than the times listed in the lobby params.
                 - In testing 1 second is not enough. Try 2.
+                    - It had nothing to do with the time. I to rewrite the code in onPlayerKilled because the old function wasn't for public use.
 
-    - The ability to modify the number of tickets in a shared pool
-        - Got it mostly working. Just need to play around with it more. This needs to run on the server.
+    Completed: The ability to modify the number of tickets in a shared pool
+        - I put this on the server and it's working as intended
 
-    - The ability to use the number of players to modify the tickets
-        - We need to try this in init.sqf
-     
+    Completed: The ability to use the number of players to modify the tickets
+        - I put this in init.sqf and it's working as intended
     
+    - A end game message if all players are out of tickets
+        - learn how the default one works before you try to use your own. I think there is a respawn template for it
+
     - A spectator camera that can be used in first and third person based on player game settings
 
 - Update the game options with default respawn behavior so players know what it is.
-
-See if you can use the existing game ends when players are all downed to inject your end mission screen. That way you could potentionally use the Params at lobby screen.
-    In the end I want to use a scalable ticket system to determine end game. Each player gets x tickets where x can be scaled in Paras. X tickets get put in a pool anyone can call from.
-
 
 
 

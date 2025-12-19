@@ -44,7 +44,7 @@ private _respawn_tickets = paramsArray param [1];
 private _respawn_mode = paramsArray param [2];
 if ( _respawn_mode == 1 ) then {
     [missionNamespace, _respawn_tickets] call BIS_fnc_respawnTickets;
-    ["RespawnTickets Global."] remoteExec ["systemChat", 0];
+    //["Respawn Ticket Mode: Global."] remoteExec ["systemChat", 0];
 };
 
 //_respawn_mode = [player, missionNamespace] select _respawn_mode;
