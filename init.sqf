@@ -41,6 +41,12 @@ override_vn_sam_masteraudioarray = compile preprocessFileLineNumbers "override_v
 [] call override_vn_sam_masteraudioarray;
 */
 
+private _respawn_tickets = paramsArray param [1];
+private _respawn_mode = paramsArray param [2];
+if ( _respawn_mode == 0 ) then {
+    [player, _respawn_tickets] call BIS_fnc_respawnTickets;
+	["RespawnTickets Per Player."] remoteExec ["systemChat", 0];
+};
 
 //////////////////////////////////////////////////
 //                                              //

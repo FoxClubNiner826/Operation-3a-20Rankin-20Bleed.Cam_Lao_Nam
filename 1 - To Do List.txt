@@ -8,11 +8,15 @@ Current TASK:
 Try to implement a ticket system into the lobby parameters like you did with the revive system. My wishlist would include:
     Completed: The ability to modify the respawn delay.
         - Used a BI function and placed it in onPlayerKilled and pulled the value from lobby parameters.
+        - Need to test compat with revive system.
+            Bug Fix: If you set the editor respawn timer to zero, you will get an error on the local host. Setting it to one second seems to fix it and isn't noticable to the player that their actual respawn time is one second more than the times listed in the lobby params.
+                - In testing 1 second is not enough. Try 2.
 
     - The ability to modify the number of tickets in a shared pool
-        - Got it mostly working. Just need to play around with it more.
+        - Got it mostly working. Just need to play around with it more. This needs to run on the server.
 
-    - The ability to use the number of players to modify the tickets 
+    - The ability to use the number of players to modify the tickets
+        - We need to try this in init.sqf
      
     
     - A spectator camera that can be used in first and third person based on player game settings

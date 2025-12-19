@@ -94,7 +94,7 @@ class CfgFunctions
             class cove_scene_transition {};
         };
     };
-    
+    /*
     class bis
     {
         class Revive
@@ -105,7 +105,7 @@ class CfgFunctions
             };
         };
     };
-    
+    */
 };
 
 class CfgIdentities
