@@ -1020,5 +1020,5 @@ private _convo = switch (_action) do {
 };
 
 
-
+_respawn_mode = [player, missionNamespace] select _respawn_mode; // selects based on 1 or 0 like the true or false
 

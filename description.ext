@@ -34,7 +34,7 @@ class Params
             "50",
             "60"
         };
-        default= 60; // make this 60 before publish
+        default= 10; // make this 60 before publish
         code = "";
     };
     
@@ -53,7 +53,7 @@ class Params
             "16",
             "24"
         };
-        default= 0; // make this 0 before publish
+        default= 1; // make this 0 before publish
         code = "";
     };
 
