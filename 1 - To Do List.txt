@@ -19,9 +19,15 @@ Try to implement a ticket system into the lobby parameters like you did with the
     Completed: The ability to use the number of players to modify the tickets
         - I put this in init.sqf and it's working as intended
     
-    - end the game if all players are out of tickets
+    - end the game if all players are out of tickets/dead
         - learn how the default one works before you try to use your own. I think there is a respawn template for it
             - template version doesn't work. It was recommened to build my own. I started the work but still need to sort through exaclty how I want it to work. Players can spawn on downed units which throws a wrench into how I envisioned the failure state.
+        - Through play testing I've discovered that it is possible for there to be a soft lock of mission progress if all players are dead. I made a condition to cover that and end the mission there.
+        - I've discovered in play testing that the AI group members are not subject to the ticket system or the respawn timer. I need to play test more and consider the ramifications of having AI group members.
+            It was suggest to use KilledEntity MEH and check for AI and manually reduce the tickets.
+            Consider ending the game if tickets are 0 and there is only AI alive since they cannot finish the mission.
+
+
     - A spectator camera that can be used in first and third person based on player game settings
 
 - Update the game options with default respawn behavior so players know what it is.
